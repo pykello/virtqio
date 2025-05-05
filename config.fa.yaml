@@ -1,0 +1,23 @@
+build_dir: build
+content_dir: content
+template_dir: templates
+translations_csv: translate.fa.csv
+language: fa
+text_direction: rtl
+context:
+  twitter: "pykello_fa"
+  github: "pykello"
+theorems:
+  - name: "theorem"
+    label: "Theorem"
+  - name: "lemma"
+    label: "Lemma"
+  - name: "corollary"
+    label: "Corollary"
+  - name: "proposition"
+    label: "Proposition"
+  - name: "definition"
+    label: "Definition"
+  - name: "proof"
+    label: "Proof"
+    numbered: false

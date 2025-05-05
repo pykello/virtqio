@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<article class="p-4 bg-white rounded shadow-sm">
+
+    <h1 class="mb-2">{{ blog.title }}</h1>
+    <div class="post-meta mb-3 text-muted">
+      <i class="bi bi-calendar-event me-1"></i>
+      <time datetime="2025-05-04">May 4, 2025</time> ·
+      <span class="ms-1">
+        {% for tag in blog.tags %}
+          <span class="badge tag">
+            <i class="bi bi-tag"></i>
+            {{ tag }}
+          </span>
+        {% endfor %}
+      </span>
+    </div>
+
+    <div class="post-body">
+      {{ blog.body | safe }}
+    </div>
+
+    <hr class="my-4">
+    <p class="text-muted small mb-0">
+      {{ translate(key="Author") }}: <strong>{{ blog.author }} </strong>
+    </p>
+  </article>
+
+{% endblock %}

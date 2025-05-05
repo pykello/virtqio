@@ -1,0 +1,4 @@
+build/*
+ssg/*
+ssg
+pandoc*
