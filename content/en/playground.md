@@ -15,7 +15,7 @@
 > [!CAUTION]
 > Negative potential consequences of an action.
 
-<div id="box" class="jxgbox" style="width:480px; height:360px; margin: auto;"></div>
+<div id="box" class="jxgbox" style="width:480px; height:360px; margin: 20px auto;"></div>
 
 <script>
     var board = JXG.JSXGraph.initBoard('box', {
@@ -45,4 +45,30 @@
     line = board.create('line',[p[0],p[1]],{strokeColor:'#ff0000',dash:1});
 
     board.unsuspendUpdate();
+</script>
+
+<div id="jxgbox" class="jxgbox" style="width:480px; height:480px; margin: 20px auto;"></div>
+
+<script>
+    const board2 = JXG.JSXGraph.initBoard('jxgbox', {
+        axis: true,
+        boundingbox: [-8, 8, 8, -8],
+        showCopyright: false,
+        showNavigation: false
+    });
+
+    // Ellipse parameters
+    const a = 5;  // semi-major axis
+    const b = 3;  // semi-minor axis
+
+    // Center
+    const O = board2.create('point', [0, 0], {name: 'O', fixed: true, size: 2});
+
+    // Axes endpoints
+    const B = board2.create('point', [a, 0], {name: 'B', fixed: true, size: 2});
+    const D = board2.create('point', [0, b], {name: 'D', fixed: true, size: 2});
+
+    // Ellipse
+    const ellipse = board2.create('ellipse', [B, D, O], {strokeWidth: 2});
+
 </script>
