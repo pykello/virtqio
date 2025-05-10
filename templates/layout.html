@@ -144,6 +144,82 @@
     h3 { font-size: 1.6rem !important; }
     h4 { font-size: 1.4rem !important; }
     h5 { font-size: 1.2rem !important; }
+
+    .markdown-alert {
+      padding: 1em 1.25em;
+      margin: 1em 0;
+      border-left: 4px solid;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+    }
+
+    .markdown-alert-title {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    /* Note */
+    .markdown-alert-note {
+      background-color: #f1f8ff;
+      border-color: #0969da;
+    }
+    .markdown-alert-note .markdown-alert-title::before {
+      content: "📝";
+    }
+    .markdown-alert-note .markdown-alert-title {
+      color: #0969da;
+    }
+
+    /* Tip */
+    .markdown-alert-tip {
+      background-color: #e8f5e9;
+      border-color: #1b873f;
+    }
+    .markdown-alert-tip .markdown-alert-title::before {
+      content: "💡";
+    }
+    .markdown-alert-tip .markdown-alert-title {
+      color: #1b873f;
+    }
+
+    /* Warning */
+    .markdown-alert-warning {
+      background-color: #fff8c5;
+      border-color: #e3b341;
+    }
+    .markdown-alert-warning .markdown-alert-title::before {
+      content: "⚠️";
+    }
+    .markdown-alert-warning .markdown-alert-title {
+      color: #9a6700;
+    }
+
+    /* Important */
+    .markdown-alert-important {
+      background-color: #fff3e6;
+      border-color: #c75100;
+    }
+    .markdown-alert-important .markdown-alert-title::before {
+      content: "❗";
+    }
+    .markdown-alert-important .markdown-alert-title {
+      color: #a04100;
+    }
+
+    /* Caution */
+    .markdown-alert-caution {
+      background-color: #ffeef0;
+      border-color: #d73a49;
+    }
+    .markdown-alert-caution .markdown-alert-title::before {
+      content: "🚫";
+    }
+    .markdown-alert-caution .markdown-alert-title {
+      color: #cb2431;
+    }
   </style>
 
   {% if language == "en" %}
