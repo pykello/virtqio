@@ -1,3 +1,5 @@
+# Playground
+
 ### Alerts
 
 > [!NOTE]  
@@ -15,7 +17,7 @@
 > [!CAUTION]
 > Negative potential consequences of an action.
 
-<div id="box" class="jxgbox" style="width:480px; height:360px; margin: 20px auto;"></div>
+<div id="box" class="jxgbox" style="width:90%; max-width: 480px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
 
 <script>
     var board = JXG.JSXGraph.initBoard('box', {
@@ -47,7 +49,7 @@
     board.unsuspendUpdate();
 </script>
 
-<div id="jxgbox" class="jxgbox" style="width:480px; height:480px; margin: 20px auto;"></div>
+<div id="jxgbox" class="jxgbox" style="width:90%; max-width: 480px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
 
 <script>
     const board2 = JXG.JSXGraph.initBoard('jxgbox', {
@@ -57,18 +59,39 @@
         showNavigation: false
     });
 
-    // Ellipse parameters
-    const a = 5;  // semi-major axis
-    const b = 3;  // semi-minor axis
-
-    // Center
-    const O = board2.create('point', [0, 0], {name: 'O', fixed: true, size: 2});
-
-    // Axes endpoints
-    const B = board2.create('point', [a, 0], {name: 'B', fixed: true, size: 2});
-    const D = board2.create('point', [0, b], {name: 'D', fixed: true, size: 2});
-
-    // Ellipse
-    const ellipse = board2.create('ellipse', [B, D, O], {strokeWidth: 2});
+    const ellipse = board2.create('ellipse', [[-4, 0], [4, 0], [0, 3]], {strokeWidth: 2});
 
 </script>
+
+### Theorem (Sum of the First $n$ Integers)
+
+For every positive integer $n$,
+
+$$
+1 + 2 + \dots + n = \frac{n(n+1)}{2}.
+$$
+
+:::expandable
+**Proof.** [Click to Expand]
+
+Let $S = 1 + 2 + \dots + n$.
+
+Write the same sum in reverse order and add term‑wise:
+
+$$
+\begin{aligned}
+S & = 1 + 2 + \dots + n,\\\\
+S & = n + (n-1) + \dots + 1,\\\\
+2S & = (n+1) + (n+1) + \dots + (n+1) 
+     \quad\text{(a total of \(n\) terms)}\\\\
+    & = n(n+1).
+\end{aligned}
+$$
+
+Dividing by $2$ gives
+
+$$
+S = \frac{n(n+1)}{2}.
+$$
+
+:::
