@@ -143,3 +143,52 @@ $$
 \lim\_{i\to\infty} c_i \mathbf{a}_i \= 0 \tag{1.5.23}
 $$
 
+**Proposition 1.5.17 (Sequence in closed set).**
+
+1. Let $i \mapsto \mathbf{x}_i$ be a sequence in a closed set $C \subset \mathbb{R}^n$
+converging to $\mathbf{x} \in \mathbb{R}^n$. Then $\mathbf{x} \in C$.
+2. Conversely, if every convergent sequence in $C \subset \mathbb{R}^n$ converges to 
+a point in $C$, then $C$ is closed.
+
+:::expandable
+**Proof.** [Click to Expand]
+
+1. Assume $\mathbf{x} \notin C$. Then $\mathbf{x} \in C^c$ which is open. So, there
+exists $r > 0$ such that $B_r(\mathbf{x}) \subset C^c$. Since all $\mathbf{x}_i \in C$, then $\mathbf{x}_i \notin B_r(\mathbf{x})$, which means for all $i$ we have $\lVert\mathbf{x}_i - \mathbf{x}\rVert \ge r$ for every $i$. Then if we choose $\epsilon = r/2$, we can't find an $M$ such that for $m > M$ we have $\lVert\mathbf{x}_m - \mathbf{x}\rVert < \epsilon$. So, $i \mapsto \mathbf{x}_i$ doesn't converge to $\mathbf{x}$. A contradiction.
+
+2. Assume $C$ is not closed. Choose $\mathbf{x} \in \partial C \notin C$. Since $\mathbf{x} \in \overline{C}$, then for all $r > 0$, $B_r(\mathbf{x}) \cap C \ne \emptyset$. We choose $i \mapsto \mathbf{x}_i$ such that $\mathbf{x}_i \in B\_{1/i}(\mathbf{x}) \cap C$.<br/>
+This sequence converges to $\mathbf{x}$: For a given $\epsilon > 0$, for all $m > 1/\epsilon$ we have $\lVert\mathbf{x} - \mathbf{x}_m\rVert <  1/m < \epsilon$.<br/>
+Since $\mathbf{x} \not\in C$, this sequence doesn't converge to a point in $C$. A contradiction. Hence, $C$ is closed.
+
+:::
+
+### Sequences
+
+**Subsequence.** $j \mapsto a_{i(j)}$ where $i(k) > i(j)$ when $k > j$.
+
+**Proposition 1.5.19 (Subsequence of convergent sequence converges).**
+If a sequence $k \mapsto \mathbf{a}_k$ converges to $\mathbf{a}$, then any
+subsequence of the sequence converges to the same limit $\mathbf{a}$.
+
+### Limits of Functions
+
+**Limit of a function.** Let $X$ be a subset of $\mathbb{R}^n$ and $\mathbf{x}_0$ a point in $\overline{X}$. A function $\mathbf{f}: X \to \mathbb{R}^n$ has the _limit_ $\mathbf{a}$ at $\mathbf{x}$:
+
+$$
+\lim_{\mathbf{x}\to\mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \mathbf{a}
+$$
+
+if for all $\epsilon > 0$ there exists $\delta > 0$ such that for all $\mathbf{x} \in X$,
+
+$$
+\lVert\mathbf{x} - \mathbf{x}_0\rVert < \delta \implies \lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert < \epsilon
+$$
+
+**Proposition 1.5.21 (Limit of function is unique).** Let $f: X \to \mathbb{R}^n$ be
+a function. If $f$ has a limit at $\mathbf{x}_0 \in \overline{X}$, the limit is unique.
+
+:::expandable
+Proof. [Click to Expand]
+
+[TODO]
+::::
