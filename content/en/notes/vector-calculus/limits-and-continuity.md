@@ -7,7 +7,7 @@
 **Open ball.** For any $\mathbf{x} \in \mathbb{R}^n$ and $r > 0$, the open ball of radius $r$ centered at $\mathbf{x}$ is the subset
 
 $$
-B_r(\mathbf{x}) := \\{\mathbf{y} \in \mathbb{R}^n : |\mathbf{x} - \mathbf{y}| < r\\}.
+B_r(\mathbf{x}) := \\{\mathbf{y} \in \mathbb{R}^n : \lVert\mathbf{x} - \mathbf{y}\rVert < r\\}.
 $$
 
 **Open set of $\mathbb{R}^n$.** A subset $U \subset \mathbb{R}^n$ is open if for every $x \in U$, there exists $r > 0$ such that $B_r(\mathbf{x}) \subset U$.
@@ -162,7 +162,7 @@ Since $\mathbf{x} \not\in C$, this sequence doesn't converge to a point in $C$. 
 
 :::
 
-### Sequences
+### Subsequences
 
 **Subsequence.** $j \mapsto a_{i(j)}$ where $i(k) > i(j)$ when $k > j$.
 
@@ -190,5 +190,22 @@ a function. If $f$ has a limit at $\mathbf{x}_0 \in \overline{X}$, the limit is 
 :::expandable
 Proof. [Click to Expand]
 
-[TODO]
+Assume it's not unique and $\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{f}(\mathbf{x})$ takes two values of $\mathbf{a} \ne \mathbf{b}$. Let
+$\epsilon = \dfrac{\lVert\mathbf{a} - \mathbf{b}\rVert}{2} > 0$.
+
+Since $\mathbf{a}$ is a limit, then there exists $\delta_a$ such that for all
+$\mathbf{x} \in X$, $\lVert\mathbf{x} - \mathbf{x}_0\rVert < \delta_a$ implies
+$\lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert < \epsilon$. Similar $\delta_b$ exists for $\mathbf{b}$.
+
+Then for all $\mathbf{x} \in X$ such that $\lVert\mathbf{x} - \mathbf{x}_0\rVert < \min\\{\delta_a, \delta_b\\}$, we have:
+
+$$
+\begin{align*}
+\lVert\mathbf{a}-\mathbf{b}\rVert &\le \lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert+\lVert\mathbf{f}(\mathbf{x}) - \mathbf{b}\rVert \quad\text{triangle inequality} \\\\
+&< \epsilon + \epsilon \\\\
+&= \lVert\mathbf{a}-\mathbf{b}\rVert
+\end{align*}
+$$
+
+$\lVert\mathbf{a}-\mathbf{b}\rVert < \lVert\mathbf{a}-\mathbf{b}\rVert$ is a contradiction. So, $\mathbf{a} = \mathbf{b}$
 ::::
