@@ -72,7 +72,7 @@ $$
 $$
 
 :::expandable
-**Proof.** [Click to Expand]
+**Proof.** ([Click to Expand])
 
 Let $S = 1 + 2 + \dots + n$.
 
