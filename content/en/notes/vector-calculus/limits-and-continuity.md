@@ -1,6 +1,10 @@
 # Limits and Continuity
 
-(Notes from section 1.5 of *Vector Calculus, Linear Algebra, and Differential Forms, 5th Edition* by John H. Hubbard and Barbara Burke Hubbard)
+Notes based on section 1.5 of *Vector Calculus, Linear Algebra, and Differential Forms, 5th Edition* by John H. Hubbard and Barbara Burke Hubbard.
+
+I initially attempted to write my own proofs. In few cases, I studied the proof from the book and then tried to reproduce it on my own.
+
+I've also added some notes and expanded some of the examples to make them clearer.
 
 ### Open and Closed Sets
 
@@ -172,7 +176,7 @@ subsequence of the sequence converges to the same limit $\mathbf{a}$.
 
 ### Limits of Functions
 
-**Limit of a function.** Let $X$ be a subset of $\mathbb{R}^n$ and $\mathbf{x}_0$ a point in $\overline{X}$. A function $\mathbf{f}: X \to \mathbb{R}^n$ has the _limit_ $\mathbf{a}$ at $\mathbf{x}$:
+**Limit of a function.** Let $X$ be a subset of $\mathbb{R}^n$ and $\mathbf{x}_0$ a point in $\overline{X}$. A function $\mathbf{f}: X \to \mathbb{R}^p$ has the _limit_ $\mathbf{a}$ at $\mathbf{x}_0$:
 
 $$
 \lim_{\mathbf{x}\to\mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \mathbf{a}
@@ -183,6 +187,31 @@ if for all $\epsilon > 0$ there exists $\delta > 0$ such that for all $\mathbf{x
 $$
 \lVert\mathbf{x} - \mathbf{x}_0\rVert < \delta \implies \lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert < \epsilon
 $$
+
+> [!NOTE]
+> With this definition, $\mathbf{x}_0$ need not be in $X$. It only needs to be in the
+> closure of $X$. But if $\mathbf{x}_0$ is in $X$, then $\mathbf{f}(\mathbf{x}_0)$
+> must be equal to $\mathbf{a}$.
+>
+> For example, limit of $f: \mathbb{R} \to \mathbb{R}$ doesn't exist at $0$:
+> $$
+> f(x) = \begin{cases}
+>     1 & \text{if } x \ne 0 \\\\
+>     0 & \text{if } x = 0
+> \end{cases}
+> $$
+>
+> Contrast this with the usual 1-dimensional definition of limit:
+>
+> **Definition (From Zorich, Mathematical Analysis I).** We shall say (following
+> Cauchy) that the function $f: E \to \mathbb{R}$ tends to $A$ as $x$ tends to $a$,
+> or that $A$ is the limit of $f$ as $x$ tends to $a$, if for every $\epsilon > 0$
+> there exists $\delta > 0$ such that $\lvert f(x) - A \rvert < \epsilon$ for
+> every $x \in E$ such that $0 < \lvert x - a \rvert < \delta$.
+>
+> The difference is the "greater than 0": $0 < \lvert x - a \rvert < \delta$
+> instead of $\lVert\mathbf{x} - \mathbf{x}_0\rVert < \delta$.
+
 
 **Proposition 1.5.21 (Limit of function is unique).** Let $f: X \to \mathbb{R}^n$ be
 a function. If $f$ has a limit at $\mathbf{x}_0 \in \overline{X}$, the limit is unique.
@@ -201,11 +230,48 @@ Then for all $\mathbf{x} \in X$ such that $\lVert\mathbf{x} - \mathbf{x}_0\rVert
 
 $$
 \begin{align*}
-\lVert\mathbf{a}-\mathbf{b}\rVert &\le \lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert+\lVert\mathbf{f}(\mathbf{x}) - \mathbf{b}\rVert \quad\text{triangle inequality} \\\\
+\lVert\mathbf{a}-\mathbf{b}\rVert &\le \lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert+\lVert\mathbf{f}(\mathbf{x}) - \mathbf{b}\rVert \quad\text{(triangle inequality)} \\\\
 &< \epsilon + \epsilon \\\\
 &= \lVert\mathbf{a}-\mathbf{b}\rVert
 \end{align*}
 $$
 
-$\lVert\mathbf{a}-\mathbf{b}\rVert < \lVert\mathbf{a}-\mathbf{b}\rVert$ is a contradiction. So, $\mathbf{a} = \mathbf{b}$
+Hence $\lVert\mathbf{a}-\mathbf{b}\rVert < \lVert\mathbf{a}-\mathbf{b}\rVert$, a contradiction. So, $\mathbf{a} = \mathbf{b}$
 ::::
+
+**Theorem 1.5.22 (Limit of a composition).** Let $U \subset \mathbb{R}^n$, $V \subset \mathbb{R}^m$, and $\mathbf{f}: U \to V$  and $\mathbf{g}: V \to \mathbb{R}^k$ be mappings, so that $\mathbf{g} \circ \mathbf{f}$ is defined on $U$. If $\mathbf{x}_0 \in \overline{U}$ and
+
+$$
+\mathbf{y}_0 = \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \quad \text{and} \quad \mathbf{z}\_0 \= \lim\_{\mathbf{y} \to \mathbf{y}_0} \mathbf{g}(\mathbf{y})
+$$
+
+both exist, then $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{g} \circ \mathbf{f}\right)(\mathbf{x})$ exists and is equal to $\mathbf{z}_0$.
+
+:::expandable
+**Proof.** [Click to Expand]
+
+[TODO]
+::::
+
+
+> [!NOTE]
+> With the standard definition of limit of real functions (see the previous note),
+> this theorem is not true. For example, consider $f, g: \mathbb{R} \to \mathbb{R}$
+>
+> $$
+> f(x) = \begin{cases}
+>     x \sin\left(\dfrac{1}{x}\right) & \text{if } x \ne 0 \\\\
+>     0 & \text{if } x = 0
+> \end{cases} \quad\text{and}\quad
+> g(x) = \begin{cases}
+>     1 & \text{if } x \ne 0 \\\\
+>     0 & \text{if } x = 0
+> \end{cases}
+> $$
+>
+> Then using the standard definition of limit, we have $\lim_{x \to 0} f(x) = 0$ and
+> $\lim_{x \to 0} g(x) = 1$. But $\lim_{x \to 0} (g \circ f)(x)$
+> does not exist: $sin(1/x) = 0$ for $x = 1/(k \pi)$, $k \in \mathbb{Z}$. So, in
+> any radius $r > 0$ of $0$, we have infinitely many points where $f(x) = 0$ and
+> infinitely many points where $f(x) \ne 0$. Hence, the limit of $(g \circ f)(x)$
+> does not exist.
