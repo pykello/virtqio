@@ -271,7 +271,26 @@ both exist, then $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{g} \circ \mat
 >
 > Then using the standard definition of limit, we have $\lim_{x \to 0} f(x) = 0$ and
 > $\lim_{x \to 0} g(x) = 1$. But $\lim_{x \to 0} (g \circ f)(x)$
-> does not exist: $sin(1/x) = 0$ for $x = 1/(k \pi)$, $k \in \mathbb{Z}$. So, in
+> does not exist: $\sin(1/x) = 0$ for $x = 1/(k \pi)$, $k \in \mathbb{Z}$. So, in
 > any radius $r > 0$ of $0$, we have infinitely many points where $f(x) = 0$ and
 > infinitely many points where $f(x) \ne 0$. Hence, the limit of $(g \circ f)(x)$
 > does not exist.
+>
+> With our definition, $\lim_{y \to 0} g(y)$ does not exist.
+
+**Proposition 1.5.25 (Convergence by coordinates).** Suppose
+
+$$
+U \subset \mathbb{R}^n, \quad
+\mathbf{f} =
+\begin{pmatrix}
+f_1 \\\\
+\vdots \\\\
+f_m
+\end{pmatrix}
+: U \to \mathbb{R}^m,
+\quad \text{and} \quad
+\mathbf{x}_0 \in \overline{U}.
+$$
+
+Then $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \begin{pmatrix}a_1\\\\ \vdots\\\\ a_2 \end{pmatrix}$ if and only if $\lim\_{x \to x_0} f_i(x) = a_i$ for all $i = 1, \ldots, m$.
