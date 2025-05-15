@@ -360,3 +360,26 @@ $$
 $$
 \lim\_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = 0.
 $$
+
+:::expandable
+**Proof of 4.** [Click to Expand]
+
+Using **1.5.25**, since limit of $\mathbf{f}$ exists, then limit of each coordinate function $f_i$ exits. Part 1 and 2 apply also when the target space is one-dimensional. Induction on part 1 implies similar result for finite-sums.
+
+So, we have:
+
+$$
+\begin{align*}
+\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \cdot \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}) &= 
+\sum\_{i=1}^{m} \left(\lim\_{\mathbf{x} \to \mathbf{x}_0}{f_i(\mathbf{x})}\right)
+\left(\lim\_{\mathbf{x} \to \mathbf{x}_0} {g_i(\mathbf{x})}\right)
+\\\\
+&= \sum\_{i=1}^{m} \lim\_{\mathbf{x} \to \mathbf{x}_0}{f_i(\mathbf{x}) g_i(\mathbf{x})} \tag{using part 2}
+\\\\
+&=\lim\_{\mathbf{x} \to \mathbf{x}_0} \sum\_{i=1}^{m}{f_i(\mathbf{x}) g_i(\mathbf{x})} 
+\tag{using part 1}
+\\\\
+&= \lim\_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} \cdot \mathbf{g})(\mathbf{x})
+\end{align*}
+$$
+::::
