@@ -217,7 +217,7 @@ $$
 a function. If $f$ has a limit at $\mathbf{x}_0 \in \overline{X}$, the limit is unique.
 
 :::expandable
-Proof. [Click to Expand]
+**Proof.** [Click to Expand]
 
 Assume it's not unique and $\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{f}(\mathbf{x})$ takes two values of $\mathbf{a} \ne \mathbf{b}$. Let
 $\epsilon = \dfrac{\lVert\mathbf{a} - \mathbf{b}\rVert}{2} > 0$.
@@ -250,7 +250,25 @@ both exist, then $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{g} \circ \mat
 :::expandable
 **Proof.** [Click to Expand]
 
-[TODO]
+Since $\lim\_{\mathbf{y}\to\mathbf{y}_0} \mathbf{g}(\mathbf{y}) \= \mathbf{z}_0$,
+
+$$
+\forall \epsilon > 0, \exists \eta > 0 \quad\text{s.t.}\quad\lVert \mathbf{y} - \mathbf{y}_0 \rVert < \eta \implies \lVert \mathbf{g}(\mathbf{y}) - \mathbf{z}_0 \rVert < \epsilon
+$$
+
+Since $\lim\_{\mathbf{x}\to\mathbf{x}_0} \mathbf{f}(\mathbf{x}) \= \mathbf{y}_0$,
+
+$$
+\forall \eta > 0, \exists \delta > 0 \quad\text{s.t.}\quad\lVert \mathbf{x} - \mathbf{x}_0 \rVert < \delta \implies \lVert \mathbf{f}(\mathbf{x}) - \mathbf{y}_0 \rVert < \eta
+$$
+
+Combining these, we get
+
+$$
+\forall \epsilon > 0, \exists \delta > 0 \quad\text{s.t.}\quad\lVert \mathbf{x} - \mathbf{x}_0 \rVert < \delta \implies \lVert \mathbf{g}(\mathbf{f}(\mathbf{x})) - \mathbf{z}_0 \rVert < \epsilon
+$$
+
+which is equivalent to saying $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{g} \circ \mathbf{f}\right)(\mathbf{x}) = \mathbf{z}_0$
 ::::
 
 
@@ -293,4 +311,4 @@ f_m
 \mathbf{x}_0 \in \overline{U}.
 $$
 
-Then $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \begin{pmatrix}a_1\\\\ \vdots\\\\ a_2 \end{pmatrix}$ if and only if $\lim\_{x \to x_0} f_i(x) = a_i$ for all $i = 1, \ldots, m$.
+Then $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \begin{pmatrix}a_1\\\\ \vdots\\\\ a_2 \end{pmatrix}$ if and only if $\lim\_{\mathbf{x} \to \mathbf{x}_0} f_i(\mathbf{x}) = a_i$ for all $i = 1, \ldots, m$.
