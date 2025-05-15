@@ -18,6 +18,10 @@ $$
 
 **Closed set of $\mathbb{R}^n$.** A subset $C \subset \mathbb{R}^n$ is closed if its complement $C^c = \mathbb{R}^n - C$ is open.
 
+> [!NOTE]
+> * A set can be both open and closed. For example, $\emptyset$ and $\mathbb{R}^n$ are both open and closed.
+> * A set can be neither open nor closed. For example, $[0, 1)$ is neither open nor closed.
+
 **Neighborhood.** A neighborhood of a point $\mathbf{x} \in \mathbb{R}^n$ is a subset $X \subset \mathbb{R}^n$ such that there exists $\epsilon > 0$ with $B_\epsilon(\mathbf{\mathbf{x}}) \subset X$.
 
 Often, we deal with sets that are neither open or closed. But every set is contained
