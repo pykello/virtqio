@@ -451,3 +451,6 @@ h(\mathbf{x}) \mathbf{f}(\mathbf{x}) & \text{for } \mathbf{x} \in U \\\\
 $$
 
 is continuous at $\mathbf{x}_0$.
+
+**Theorem 1.5.30 (Composition of continuous functions).** Let $U \subset \mathbb{R}^n$, $V \subset \mathbb{R}^m$, and $\mathbf{f}: U \to V$ and $\mathbf{g}: V \to \mathbb{R}^p$ be mappings, so that $\mathbf{g} \circ \mathbf{f}$ is defined on $U$. If $\mathbf{f}$ is continuous at $\mathbf{x}_0 \in U$ and $\mathbf{g}$ is continuous at $\mathbf{f}(\mathbf{x}_0)$, then $\mathbf{g} \circ \mathbf{f}$ is continuous at $\mathbf{x}_0$.
+
