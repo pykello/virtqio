@@ -469,7 +469,7 @@ is continuous at $\mathbf{x}_0$.
 >
 > $$
 > \mathbf{f}(\mathbf{x}) = \begin{cases}
->     x \cdot \frac{1}{x} & \text{if } x \ne 0 \\\\
+>     x \cdot \dfrac{1}{x} & \text{if } x \ne 0 \\\\
 >     0 & \text{if } x = 0
 > \end{cases}
 > $$
@@ -479,3 +479,20 @@ is continuous at $\mathbf{x}_0$.
 
 **Theorem 1.5.30 (Composition of continuous functions).** Let $U \subset \mathbb{R}^n$, $V \subset \mathbb{R}^m$, and $\mathbf{f}: U \to V$ and $\mathbf{g}: V \to \mathbb{R}^p$ be mappings, so that $\mathbf{g} \circ \mathbf{f}$ is defined on $U$. If $\mathbf{f}$ is continuous at $\mathbf{x}_0 \in U$ and $\mathbf{g}$ is continuous at $\mathbf{f}(\mathbf{x}_0)$, then $\mathbf{g} \circ \mathbf{f}$ is continuous at $\mathbf{x}_0$.
 
+**Corollary 1.5.31 (Continuity of polynomials and rational functions).** 
+1. Any polynomial function $\mathbf{f}: \mathbb{R}^n \to \mathbb{R}$ is continuous on all of $\mathbb{R}^n$.
+2. Any rational function $\mathbf{f}: \mathbb{R}^n \to \mathbb{R}$ is continuous on all of $\mathbb{R}^n$ except at points where the denominator is $0$.
+
+(A _rational function_ is a ratio of two polynomials.)
+
+### Uniform Continuity
+
+**Uniformly continuous function.** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is _uniformly continuous_ on $X$ if for every $\epsilon > 0$ there exists $\delta > 0$ such that for all $\mathbf{x}, \mathbf{y} \in X$, if $\lVert\mathbf{x} - \mathbf{y}\rVert < \delta$, then $\lVert\mathbf{f}(\mathbf{x}) - \mathbf{f}(\mathbf{y})\rVert < \epsilon$.
+
+**Theorem 1.5.33 (Linear functions are uniformly continuous).** Any linear function $\mathbf{f}: \mathbb{R}^n \to \mathbb{R}^m$ is uniformly continuous.
+
+:::expandable
+**Proof.** [Click to Expand]
+
+[TODO: Add proof]
+::::
