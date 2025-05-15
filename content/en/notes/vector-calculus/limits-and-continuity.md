@@ -322,3 +322,41 @@ function works also for the limit of each coordinate function.
 2. ($\impliedby$) Fix $\epsilon$, and for each coordinate function $f_i$ find the 
 $\delta_i$ corresponding to $\epsilon/\sqrt{m}$. Then use $\delta=\min\\{\delta_1,\ldots,\delta_m\\}$ for the vector function.
 ::::
+
+**Theorem 1.5.26 (Limits of functions).** Let $U \subset \mathbb{R}^n$, and let $\mathbf{f}, \mathbf{g}: U \to \mathbb{R}^m$, $h: U \to \mathbb{R}$.
+
+1. If $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x})$ exist, then
+
+$$
+\lim\_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} + \mathbf{g})(\mathbf{x}) = \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) + \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}).
+$$
+
+2. If $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim\_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x})$ exist, then
+
+$$
+\lim\_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = \lim\_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) \cdot \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}).
+$$
+
+3. If $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim\_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) \ne 0$ exist, then
+
+$$
+\lim\_{\mathbf{x} \to \mathbf{x}_0} \left( \frac{\mathbf{f}}{h} \right)(\mathbf{x}) = \frac{\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})}{\lim\_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x})}.
+$$
+
+4. Define $(\mathbf{f} \cdot \mathbf{g})(\mathbf{x}) := \mathbf{f}(\mathbf{x}) \cdot \mathbf{g}(\mathbf{x})$. If $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x})$ exist, then
+
+$$
+\lim\_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} \cdot \mathbf{g})(\mathbf{x}) = \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \cdot \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}).
+$$
+
+5. If $\mathbf{f}$ is bounded and $\lim\_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) = 0$, then
+
+$$
+\lim\_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = 0.
+$$
+
+6. If $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = 0$ and $h$ is bounded, then
+
+$$
+\lim\_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = 0.
+$$
