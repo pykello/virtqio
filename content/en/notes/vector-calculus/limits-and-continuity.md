@@ -383,3 +383,48 @@ $$
 \end{align*}
 $$
 ::::
+
+### Continuous Functions
+
+**Continuous function.** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is _continuous_ at $\mathbf{x}\_0 \in X$ if $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \mathbf{f}(\mathbf{x}_0)$.
+
+$\mathbf{f}$ is continuous on $X$ if it is continuous at every point $\mathbf{x}_0 \in X$.
+
+**Proposition 1.5.28 (Criterion for continuity).** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is continuous at $\mathbf{x}_0 \in X$ if and only if for every sequence $i \mapsto \mathbf{x}_i$ in $X$ converging to $\mathbf{x}_0$, we have
+
+$$
+\lim\_{i\to\infty} \mathbf{f}(\mathbf{x}_i) = \mathbf{f}(\mathbf{x}_0).
+$$
+
+:::expandable
+**Proof.** [Click to Expand]
+
+[TODO: Add proof]
+::::
+
+**Theorem 1.5.29 (Combining continuous mappings).**
+Let $U$ be a subset of $\mathbb{R}^n$, $\mathbf{f}$ and $\mathbf{g}$ mappings $U \to \mathbb{R}^m$, and $h$ a function $U \to \mathbb{R}$.
+
+1. If $\mathbf{f}$ and $\mathbf{g}$ are continuous at $\mathbf{x}_0 \in U$, so is $\mathbf{f} + \mathbf{g}$.
+
+2. If $\mathbf{f}$ and $h$ are continuous at $\mathbf{x}_0 \in U$, so is $h \mathbf{f}$.
+
+3. If $\mathbf{f}$ and $h$ are continuous at $\mathbf{x}_0 \in U$, and $h(\mathbf{x}_0) \ne 0$, so is $\dfrac{\mathbf{f}}{h}$.
+
+4. If $\mathbf{f}$ and $\mathbf{g}$ are continuous at $\mathbf{x}_0 \in U$, so is $\mathbf{f} \cdot \mathbf{g}$.
+
+5. If $h$ is defined and continuous at $\mathbf{x}_0 \in \overline{U}$ with $h(\mathbf{x}_0) = 0$, and there exist $C, \delta > 0$ such that 
+
+$$
+|\mathbf{\mathbf{f}}(\mathbf{x})| \le C \quad \text{for } \mathbf{x} \in U, \quad |\mathbf{x} - \mathbf{x}_0| < \delta,
+$$
+then the map
+$$
+\mathbf{x} \mapsto
+\begin{cases}
+h(\mathbf{x}) \mathbf{f}(\mathbf{x}) & \text{for } \mathbf{x} \in U \\\\
+0 & \text{if } \mathbf{x} = \mathbf{x}_0
+\end{cases}
+$$
+
+is continuous at $\mathbf{x}_0$.
