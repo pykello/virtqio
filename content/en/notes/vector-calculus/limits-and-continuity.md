@@ -394,6 +394,25 @@ $$
 
 $\mathbf{f}$ is continuous on $X$ if it is continuous at every point $\mathbf{x}_0 \in X$.
 
+> [!NOTE]
+> An example of a two-variable function that is continuous only at the origin:
+>
+> $$
+> f(x, y) = \begin{cases}
+>     \dfrac{xy}{x^2 + y^2} & \text{if } (x, y) \ne (0, 0) \\\\
+>     0 & \text{if } (x, y) = (0, 0)
+> \end{cases}
+> $$
+>
+> Another example:
+>
+> $$
+> f(x, y) = \begin{cases}
+>     \lVert(x,y)\rVert & \text{if } (x, y) \in \mathbb{Q}^2 \\\\
+>     0 & \text{otherwise}
+> \end{cases}
+> $$
+
 **Proposition 1.5.28 (Criterion for continuity).** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is continuous at $\mathbf{x}_0 \in X$ if and only if for every sequence $i \mapsto \mathbf{x}_i$ in $X$ converging to $\mathbf{x}_0$, we have
 
 $$
