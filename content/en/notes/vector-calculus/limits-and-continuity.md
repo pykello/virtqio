@@ -441,7 +441,7 @@ Let $U$ be a subset of $\mathbb{R}^n$, $\mathbf{f}$ and $\mathbf{g}$ mappings $U
 $$
 |\mathbf{\mathbf{f}}(\mathbf{x})| \le C \quad \text{for } \mathbf{x} \in U, \quad |\mathbf{x} - \mathbf{x}_0| < \delta,
 $$
-then the map
+(i.e. $\mathbf{f}$ is bounded near $\mathbf{x}_0$), then the map
 $$
 \mathbf{x} \mapsto
 \begin{cases}
@@ -451,6 +451,31 @@ h(\mathbf{x}) \mathbf{f}(\mathbf{x}) & \text{for } \mathbf{x} \in U \\\\
 $$
 
 is continuous at $\mathbf{x}_0$.
+
+> [!NOTE]
+> An example for part 5:
+>
+> $$
+> \mathbf{f}(\mathbf{x}) = \begin{cases}
+>     x \sin\left(\dfrac{1}{x}\right) & \text{if } x \ne 0 \\\\
+>     0 & \text{if } x = 0
+> \end{cases}
+> $$
+>
+> Here $\lvert\sin(1/x)\rvert \le 1$ for all $x \ne 0$ and value of $h(x)=x$ at $0$
+> is $0$. So, $\mathbf{f}$ is continuous at $0$.
+>
+> A discontinuous example in which the boundedness condition is not satisfied:
+>
+> $$
+> \mathbf{f}(\mathbf{x}) = \begin{cases}
+>     x \cdot \frac{1}{x} & \text{if } x \ne 0 \\\\
+>     0 & \text{if } x = 0
+> \end{cases}
+> $$
+>
+> Then $g(x) = 1$ for all $x \ne 0$, but $g(0) = 0$, so $g$ is discontinuous at $x = 0$.
+
 
 **Theorem 1.5.30 (Composition of continuous functions).** Let $U \subset \mathbb{R}^n$, $V \subset \mathbb{R}^m$, and $\mathbf{f}: U \to V$ and $\mathbf{g}: V \to \mathbb{R}^p$ be mappings, so that $\mathbf{g} \circ \mathbf{f}$ is defined on $U$. If $\mathbf{f}$ is continuous at $\mathbf{x}_0 \in U$ and $\mathbf{g}$ is continuous at $\mathbf{f}(\mathbf{x}_0)$, then $\mathbf{g} \circ \mathbf{f}$ is continuous at $\mathbf{x}_0$.
 
