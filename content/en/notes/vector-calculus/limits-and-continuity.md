@@ -268,7 +268,7 @@ $$
 \forall \epsilon > 0, \exists \delta > 0 \quad\text{s.t.}\quad\lVert \mathbf{x} - \mathbf{x}_0 \rVert < \delta \implies \lVert \mathbf{g}(\mathbf{f}(\mathbf{x})) - \mathbf{z}_0 \rVert < \epsilon
 $$
 
-which is equivalent to saying $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{g} \circ \mathbf{f}\right)(\mathbf{x}) = \mathbf{z}_0$
+which is equivalent to saying $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{g} \circ \mathbf{f}\right)(\mathbf{x}) = \mathbf{z}_0$.
 ::::
 
 
@@ -311,4 +311,14 @@ f_m
 \mathbf{x}_0 \in \overline{U}.
 $$
 
-Then $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \begin{pmatrix}a_1\\\\ \vdots\\\\ a_2 \end{pmatrix}$ if and only if $\lim\_{\mathbf{x} \to \mathbf{x}_0} f_i(\mathbf{x}) = a_i$ for all $i = 1, \ldots, m$.
+Then $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \begin{pmatrix}a_1\\\\ \vdots\\\\ a_m \end{pmatrix}$ if and only if $\lim\_{\mathbf{x} \to \mathbf{x}_0} f_i(\mathbf{x}) = a_i$ for all $i = 1, \ldots, m$.
+
+:::expandable
+**Proof.** [Click to Expand]
+
+1. ($\implies$) Since $\lVert\mathbf{x}-\mathbf{y}\rVert\ge\lvert x_i-y_i \rvert$, then for each $\epsilon$ the same $\delta$ that works for the limit of vector 
+function works also for the limit of each coordinate function.
+
+2. ($\impliedby$) Fix $\epsilon$, and for each coordinate function $f_i$ find the 
+$\delta_i$ corresponding to $\epsilon/\sqrt{m}$. Then use $\delta=\min\\{\delta_1,\ldots,\delta_m\\}$ for the vector function.
+::::
