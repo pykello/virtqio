@@ -320,7 +320,7 @@ Then $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \begin{pmatri
 :::expandable
 **Proof.** [Click to Expand]
 
-1. ($\implies$) Since $\lVert\mathbf{x}-\mathbf{y}\rVert\ge\lvert x_i-y_i \rvert$, then for each $\epsilon$ the same $\delta$ that works for the limit of vector 
+1. ($\implies$) Since $\forall i \in \\{1,\ldots,m\\}$ we have $\lVert\mathbf{f}(\mathbf{x})-\mathbf{f}(\mathbf{y})\rVert\ge\lvert f_i(\mathbf{x})-f_i(\mathbf{y}) \rvert$, then for each $\epsilon$ the same $\delta$ that works for the limit of vector 
 function works also for the limit of each coordinate function.
 
 2. ($\impliedby$) Fix $\epsilon$, and for each coordinate function $f_i$ find the 
@@ -489,10 +489,45 @@ is continuous at $\mathbf{x}_0$.
 
 **Uniformly continuous function.** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is _uniformly continuous_ on $X$ if for every $\epsilon > 0$ there exists $\delta > 0$ such that for all $\mathbf{x}, \mathbf{y} \in X$, if $\lVert\mathbf{x} - \mathbf{y}\rVert < \delta$, then $\lVert\mathbf{f}(\mathbf{x}) - \mathbf{f}(\mathbf{y})\rVert < \epsilon$.
 
+> [!NOTE]
+> The difference between continuity and uniform continuity is that in the latter
+> the $\delta$ is independent of the point $\mathbf{x}_0 \in X$. For example,
+> $f(x) = x^2$ is continuous on $\mathbb{R}$, but not uniformly continuous.
+
 **Theorem 1.5.33 (Linear functions are uniformly continuous).** Any linear function $\mathbf{f}: \mathbb{R}^n \to \mathbb{R}^m$ is uniformly continuous.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-[TODO: Add proof]
+Any linear function has a corresponding matrix $A$ such that $\mathbf{f}(\mathbf{x}) = A\mathbf{x}$. Then
+
+$$
+\begin{align*}
+\lVert\mathbf{f}(\mathbf{x})-\mathbf{f}(\mathbf{y})\rVert
+&= \lVert A \cdot \mathbf{x} - A \cdot \mathbf{y} \rVert \\\\
+&= \lVert A \cdot (\mathbf{x} - \mathbf{y}) \rVert \\\\
+&= \lVert A \rVert \cdot \lVert \mathbf{x} - \mathbf{y} \rVert
+\end{align*}
+$$
+
+Then, for all $\epsilon$ if we take $\delta = \dfrac{\epsilon}{\lVert A \rVert + 1 }$
+, we'll have:
+
+$$
+\begin{align*}
+\lVert \mathbf{x} - \mathbf{y} \rVert < \delta &\implies
+\lVert \mathbf{x} - \mathbf{y} \rVert < \dfrac{\epsilon}{\lVert A \rVert + 1 }
+\\\\
+&\implies
+\left(\lVert A \rVert + 1\right) \lVert \mathbf{x} - \mathbf{y} \rVert < \epsilon
+\\\\
+&\implies
+\lVert A \rVert \cdot \lVert \mathbf{x} - \mathbf{y} \rVert < \epsilon
+\\\\
+&\implies
+\lVert\mathbf{f}(\mathbf{x})-\mathbf{f}(\mathbf{y})\rVert < \epsilon
+\end{align*}
+$$
+
+which means $\mathbf{f}$ is uniformly continuous.
 ::::
