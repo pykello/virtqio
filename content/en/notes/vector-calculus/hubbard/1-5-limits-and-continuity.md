@@ -2,7 +2,7 @@
 
 Notes based on section 1.5 of *Vector Calculus, Linear Algebra, and Differential Forms, 5th Edition* by John H. Hubbard and Barbara Burke Hubbard.
 
-I initially attempted to write my own proofs. In few cases, I studied the proof from the book and then tried to reproduce it on my own.
+There's always a piece of me in the proofs. Many are the result of my own direct attempts; others are reconstructions of proofs from the book, rewritten in my own words after learning them.
 
 I've also added some notes and expanded some of the examples to make them clearer.
 
