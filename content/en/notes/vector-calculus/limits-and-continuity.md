@@ -510,6 +510,8 @@ $$
 \end{align*}
 $$
 
+Where $\lVert A \rVert = \sup_{\lVert v\rVert=1} \lVert Av \rVert$ is the [operator norm](https://mathworld.wolfram.com/OperatorNorm.html) of $A$.
+
 Then, for all $\epsilon$ if we take $\delta = \dfrac{\epsilon}{\lVert A \rVert + 1 }$
 , we'll have:
 
@@ -531,3 +533,35 @@ $$
 
 which means $\mathbf{f}$ is uniformly continuous.
 ::::
+
+### Series of Vectors
+
+**Convergent series of vectors.** A series $\sum\_{i=1}^{\infty} \vec{\mathbf{a}_i}$ 
+is _convergent_ if the sequence of partial sums $n \mapsto \vec{\mathbf{s}\_n} = \sum\_{i=1}^{n} \vec{\mathbf{a}_i}$ is convergent. The limit of the series is defined as
+
+$$
+\sum\_{i=1}^{\infty} \vec{\mathbf{a}_i} = \lim\_{n \to \infty} \vec{\mathbf{s}_n}
+$$
+
+**Proposition 1.5.35 (Absolute convergence).** If $\sum\_{i=1}^{\infty} \lVert \vec{\mathbf{a}_i} \rVert$ converges, then $\sum\_{i=1}^{\infty} \vec{\mathbf{a}_i}$ converges.
+
+> [!NOTE]
+> This is a very important result. This can be used to prove:
+> * Convergence of Newton's method
+> * Euler's identitiy
+> * That the geometric series of matrices can be treated like the geometric series of numbers
+
+### Complex exponentials and trigonometric functions
+
+**Proposition 1.5.36 (Complex exponentials).** For any complex number $z$, the
+series $e^z = \sum\_{n=0}^{\infty} \dfrac{z^n}{n!}$ converges.
+
+**Proposition 1.5.37.** For any real number $t$ we have $e^{it} = \cos(t) + i \sin(t)$.
+
+### Geometric series of matrices
+
+**Proposition 1.5.38.** Let $A$ be a square matrix. If $\lVert A \rVert < 1$, then the series $S = I + A + A^2 + \ldots$ converges to $(I - A)^{-1}$.
+
+**Corollary 1.5.39.** If $\lVert A \rVert < 1$, then $(I - A)^{-1}$ is invertible.
+
+**Corollary 1.5.40.** The set of invertible $n \times n$ matrices is open.
