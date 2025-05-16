@@ -52,3 +52,37 @@ for each $i \in \mathbb{N}$. Define $B = \cap_{i=0}^{\infty} A_i$. Then $B = \\{
 
 ---------
 
+**1.5.9.** Suppose $\sum_{i=1}^{\infty} \mathbf{x}_i$ is a convergent series
+in $\mathbb{R}^n$. Show that the triangle inequality applies
+
+$$
+\left\lVert \sum\_{i=1}^{n} \mathbf{x}_i \right\rVert \leq \sum\_{i=1}^{n} \lVert \mathbf{x}_i \rVert.
+$$
+
+:::expandable
+**Solution.** [Click to Expand]
+
+::::
+
+---------
+
+**1.5.10.** Let $A$ be an $n \times n$ matrix, and define
+
+$$
+e^{A} = \sum_{k=0}^{\infty} \frac{A^k}{k!} = I + A + \frac{A^2}{2!} + \frac{A^3}{3!} + \cdots
+$$
+
+1. Prove that the series converges for all $A$. Find a bound for $|e^A|$ in terms of $|A|$ and $n$.
+
+2. Prove or disprove:
+    - $e^{A+B} = e^A e^B$ for all $A$ and $B$.
+    - $e^{A+B} = e^A e^B$ for all $A$ and $B$ such that $AB = BA$.
+    - $e^{2A} = (e^A)^2$ for all $A$.
+
+:::expandable
+**Solution.** [Click to Expand]
+
+::::
+
+---------
+
