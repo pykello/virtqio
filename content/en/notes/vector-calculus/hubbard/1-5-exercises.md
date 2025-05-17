@@ -116,7 +116,7 @@ $$
 By definition it means:
 
 $$
-\forall \epsilon > 0 \exists \delta > 0\quad \text{s.t.} \quad \sqrt{x^2+y^2} < \delta \implies \left\lVert f\begin{pmatrix} x \\\\ y \end{pmatrix} - a \right\rVert < \epsilon
+\forall \epsilon > 0 \exists \delta > 0\quad \text{s.t.} \quad \sqrt{x^2+y^2} < \delta \implies | f\begin{pmatrix} x \\\\ y \end{pmatrix} - a | < \epsilon
 $$
 
 More intuitively it means: for any given $\epsilon$, there's an open circle centered at the origin with radius $0 < \delta < 1$ such that value of $f$ for all points in that region is in the $(a - \epsilon, a + \epsilon)$ interval.
