@@ -48,24 +48,20 @@ for each $i \in \mathbb{N}$. Define $B = \bigcap_{i=0}^{\infty} A_i$. Then $B = 
 :::expandable
 **Solution.** [Click to Expand]
 
-We will show that $\partial A \subset \overline{A} \cap \overline{A^c}$
-and $\overline{A} \cap \overline{A^c} \subset \partial A$, which means
-$\partial A = \overline{A} \cap \overline{A^c}$.
+We need to show that $\mathbf{x} \in \partial A$ if and only if $\mathbf{x} \in \overline{A} \cap \overline{A^c}$
 
-($\implies$) By definition of boundary, $\mathbf{x} \in \partial A$ implies
+($\implies$) Assume $\mathbf{x} \in \partial A$. Then by definition of boundary we have:
 
 1. $\forall r > 0$, $B_r({\mathbf{x}}) \cap A \ne \emptyset$, which implies $\mathbf{x} \in \overline{A}$.
 2. $\forall r > 0$, $B_r({\mathbf{x}}) \cap A^c \ne \emptyset$, which implies $\mathbf{x} \in \overline{A^c}$.
 
-Which means $\mathbf{x} \in \overline{A} \cap \overline{A^c}$. So,
-$\partial A \subset \overline{A} \cap \overline{A^c}$.
+Which means $\mathbf{x} \in \overline{A} \cap \overline{A^c}$.
 
-($\impliedby$) 
-1. $\mathbf{x} \in \overline{A}$ by definition means $\forall r > 0$, $B_r({\mathbf{x}}) \cap A \ne \emptyset$
-2.  $\mathbf{x} \in \overline{A^c}$ by definition means $\forall r > 0$, $B_r({\mathbf{x}}) \cap A^c \ne \emptyset$
+($\impliedby$) Assume $\mathbf{x} \in \overline{A} \cap \overline{A^c}$. Then:
+1. $\mathbf{x} \in \overline{A}$, which by definition means $\forall r > 0$, $B_r({\mathbf{x}}) \cap A \ne \emptyset$
+2.  $\mathbf{x} \in \overline{A^c}$, which by definition means $\forall r > 0$, $B_r({\mathbf{x}}) \cap A^c \ne \emptyset$
 
-So, by definition of boundary, $x \in \partial A$. So, $\overline{A} \cap \overline{A^c} \subset \partial A$.
-
+So, by definition of boundary, $x \in \partial A$.
 
 ::::
 
@@ -117,7 +113,13 @@ $$
 :::expandable
 **Solution.** [Click to Expand]
 
-For any given $\epsilon$, there's an open circle centered at the origin with radius $0 < \delta < 1$ such that value of $f$ for all points in that region is in the $(a - \epsilon, a + \epsilon)$ interval.
+By definition it means:
+
+$$
+\forall \epsilon \exists \delta \quad \text{s.t.} \quad \sqrt{x^2+y^2} < \delta \implies \left\lVert f\begin{pmatrix} x \\\\ y \end{pmatrix} - a \right\rVert < \epsilon
+$$
+
+More intuitively it means: for any given $\epsilon$, there's an open circle centered at the origin with radius $0 < \delta < 1$ such that value of $f$ for all points in that region is in the $(a - \epsilon, a + \epsilon)$ interval.
 ::::
 
 ---------
