@@ -23,7 +23,7 @@ $B_p(\mathbf{x}) \subset B$.
 Hence for each point in $B$ there's an open ball around it contained in $B$. Therefore, $B$ is open.
 
 **3.** Let $A_i=\left(-\dfrac{1}{2^i},\dfrac{1}{2^i}\right)$, which is open
-for each $i \in \mathbb{N}$. Define $B = \cap_{i=0}^{\infty} A_i$. Then $B = \\{0\\}$ which is not open.
+for each $i \in \mathbb{N}$. Define $B = \bigcap_{i=0}^{\infty} A_i$. Then $B = \\{0\\}$ which is not open.
 
 ::::
 
@@ -86,3 +86,68 @@ $$
 
 ---------
 
+**1.5.16.a.** 
+Let $D^* \subset \mathbb{R}^2$ be the region $0 < x^2 + y^2 < 1$, and
+let $f:D^* \to \mathbb{R}$ be a function. What does the following
+assertion mean?
+
+$$
+\lim_{\begin{pmatrix} x \\\\ y \end{pmatrix} \to \begin{pmatrix} 0 \\\\ 0 \end{pmatrix}} f\begin{pmatrix} x \\\\ y \end{pmatrix} = a
+$$
+
+:::expandable
+**Solution.** [Click to Expand]
+::::
+
+---------
+**1.5.16.b.** For the following two functions, defined on $\mathbb{R}^2 - \{\mathbf{0}\}$, either show that the limit exists at $\mathbf{0}$ and find it, or show that the limit does not exist.
+
+1.
+
+$$
+f \begin{pmatrix} x \\\\ y \end{pmatrix} = \dfrac{\sin(x + y)}{\sqrt{x^2 + y^2}}
+$$
+
+2.
+$$
+g \begin{pmatrix} x \\\\ y \end{pmatrix} = \left(|x| + |y|\right) \ln(x^2 + y^2)
+$$
+
+:::expandable
+**Solution.** [Click to Expand]
+::::
+
+---------
+
+**1.5.19.** Let $U \subset \text{Mat}(2,2)$ be the set of matrices $A$ such that
+$I - A$ is invertible.
+
+1. Show that $U$ is open, and find a sequence in $U$ that converges to $I$.
+2. Consider the mapping $f:U \to \text{Mat}(2,2)$ given by $f(A) = (A^2 - I)(A - I)^{-1}$. Does $\lim\_{A \to I} f(A)$ exist? If so, find it. 
+
+:::expandable
+**Solution.** [Click to Expand]
+::::
+
+---------
+**1.5.20.** Set $A = \begin{pmatrix} a & a \\\\ a & a \end{pmatrix}$.
+For which values of $a \in \mathbb{R}$ does the sequence
+$k \mapsto A^k$ converge as $k \to \infty$? What is the limit?
+
+:::expandable
+**Solution.** [Click to Expand]
+::::
+
+---------
+**1.5.23.** Let $A$ be an $n \times n$ matrix. What does it mean to say that
+the following limit exists?
+
+$$
+\lim\_{B \to A} (A - B)^{-1} (A^2 - B^2)
+$$
+
+:::expandable
+**Solution.** [Click to Expand]
+::::
+
+---------
