@@ -116,6 +116,8 @@ $$
 
 :::expandable
 **Solution.** [Click to Expand]
+
+For any given $\epsilon$, there's an open circle centered at the origin with radius $0 < \delta < 1$ such that value of $f$ for all points in that region is in the $(a - \epsilon, a + \epsilon)$ interval.
 ::::
 
 ---------
@@ -127,6 +129,15 @@ $$
 f \begin{pmatrix} x \\\\ y \end{pmatrix} = \dfrac{\sin(x + y)}{\sqrt{x^2 + y^2}}
 $$
 
+:::expandable
+**Solution.** [Click to Expand]
+
+We have $\lim\_{x\to0^-} f \begin{pmatrix} x \\\\ 0 \end{pmatrix} = \lim_{x\to 0^-}\dfrac{sin(x)}{-x} = -1$ and $\lim\_{x\to0^+} f \begin{pmatrix} x \\\\ 0 \end{pmatrix} = \lim_{x\to 0^+}\dfrac{sin(x)}{x} = +1$.
+
+So, the limit of this function at $\mathbf{0}$ doesn't exist.
+
+::::
+
 2.
 $$
 g \begin{pmatrix} x \\\\ y \end{pmatrix} = \left(|x| + |y|\right) \ln(x^2 + y^2)
@@ -134,6 +145,41 @@ $$
 
 :::expandable
 **Solution.** [Click to Expand]
+
+Since this is an even function, we can just focus on $x \ge 0, y \ge 0$.
+
+$\ln(\cdot)$ is a monotonically increasing function. So, in this region
+we have
+
+\begin{align*}
+\ln(x^2+y^2) &\le \ln(x^2+y^2+2xy) \\\\
+&= \ln\left((x+y)^2\right) \\\\
+&=2\ln(x+y)
+\end{align*}
+
+Which implies $g \begin{pmatrix} x \\\\ y \end{pmatrix} \le 2 (x + y) \ln (x + y)$.
+
+We also have $g \begin{pmatrix} x \\\\ y \end{pmatrix} \ge 2x \ln x$.
+
+From one-dimensional calculus we know $lim\_{x\to0^+} x\ln x = 0$.
+
+Then,
+
+$$
+0 = \lim\_{x\to0^+} 2x\ln x \le
+\lim\_{\begin{pmatrix} x \\\\ y \end{pmatrix} \to \begin{pmatrix} 0^+ \\\\ 0^+ \end{pmatrix}} g \begin{pmatrix} x \\\\ y \end{pmatrix}
+\le
+\lim\_{x+y\to0^+} 2(x+y)\ln(x+y) = 0
+$$
+
+So,
+
+$$
+\lim\_{\begin{pmatrix} x \\\\ y \end{pmatrix} \to \begin{pmatrix} 0^+ \\\\ 0^+ \end{pmatrix}} g \begin{pmatrix} x \\\\ y \end{pmatrix} = 0
+$$
+
+And since function is even, the non-directional limit is also 0.
+
 ::::
 
 ---------
