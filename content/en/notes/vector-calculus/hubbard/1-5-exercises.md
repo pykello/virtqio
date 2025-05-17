@@ -48,6 +48,25 @@ for each $i \in \mathbb{N}$. Define $B = \bigcap_{i=0}^{\infty} A_i$. Then $B = 
 :::expandable
 **Solution.** [Click to Expand]
 
+We will show that $\partial A \subset \overline{A} \cap \overline{A^c}$
+and $\overline{A} \cap \overline{A^c} \subset \partial A$, which means
+$\partial A = \overline{A} \cap \overline{A^c}$.
+
+($\implies$) By definition of boundary, $\mathbf{x} \in \partial A$ implies
+
+1. $\forall r > 0$, $B_r({\mathbf{x}}) \cap A \ne \emptyset$, which implies $\mathbf{x} \in \overline{A}$.
+2. $\forall r > 0$, $B_r({\mathbf{x}}) \cap A^c \ne \emptyset$, which implies $\mathbf{x} \in \overline{A^c}$.
+
+Which means $\mathbf{x} \in \overline{A} \cap \overline{A^c}$. So,
+$\partial A \subset \overline{A} \cap \overline{A^c}$.
+
+($\impliedby$) 
+1. $\mathbf{x} \in \overline{A}$ by definition means $\forall r > 0$, $B_r({\mathbf{x}}) \cap A \ne \emptyset$
+2.  $\mathbf{x} \in \overline{A^c}$ by definition means $\forall r > 0$, $B_r({\mathbf{x}}) \cap A^c \ne \emptyset$
+
+So, by definition of boundary, $x \in \partial A$. So, $\overline{A} \cap \overline{A^c} \subset \partial A$.
+
+
 ::::
 
 ---------
