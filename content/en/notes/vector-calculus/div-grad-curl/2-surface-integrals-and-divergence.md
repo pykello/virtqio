@@ -175,4 +175,4 @@ Our strategy is to relate $\Delta S_i$ to the area of its projection on the $xy$
   brd.create('text', [30, -30, 'ΔR_i'], {fontSize:16});
 </script>
 
-This will also us to use ordinary double integrals over $R$, the projection of $S$ on the $xy$-plane.
+This will allow us to use ordinary double integrals over $R$, the projection of $S$ on the $xy$-plane.
