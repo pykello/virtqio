@@ -1,10 +1,11 @@
+# Surface Integrals and Divergence
 <script>
 const offset = -50;
 
 function iso(x, y, z) {
     return [
-        x - y / Math.SQRT2 + offset,
-        -y / Math.SQRT2 + z
+        y - x / Math.SQRT2 + offset,
+        -x / Math.SQRT2 + z
     ];
 }
 
@@ -22,18 +23,21 @@ function initBoard(divId) {
      const unit = vec.map(v => v / len);
      const labelVec = unit.map(v => v * (len + offset));
      const labelPos = iso(...labelVec);
-     brd.create('arrow', [O, end], {strokeWidth:2});
+     brd.create('arrow', [O, end], {
+        strokeWidth:2,
+        strokeColor:'gray',
+        opacity:0.8
+    });
      brd.create('text', [...labelPos, label], {fontSize:14});
   }
 
   axisArrow([140,   0,   0], 'x', 10);
-  axisArrow([  0, 100,   0], 'y', 5);
+  axisArrow([  0, 140,   0], 'y', 5);
   axisArrow([  0,   0, 140], 'z', 10);
 
   return brd;
 }
 </script>
-# Surface Integrals and Divergence
 
 ### Gauss's Law
 Goal: A convenient way to find the **electorstatic field**.
@@ -171,8 +175,200 @@ Our strategy is to relate $\Delta S_i$ to the area of its projection on the $xy$
 
   brd.create('segment', [v3, v6], {strokeWidth:2, dash:2});
   brd.create('segment', [va, vb], {strokeWidth:2, dash:2});
-  brd.create('text', [30, 90, 'ΔS_i'], {fontSize:16});
-  brd.create('text', [30, -30, 'ΔR_i'], {fontSize:16});
+  brd.create('text', [30, 90, '$\\Delta S_i$'], {fontSize:16});
+  brd.create('text', [30, -30, '$\\Delta R_i$'], {fontSize:16});
 </script>
 
 This will allow us to use ordinary double integrals over $R$, the projection of $S$ on the $xy$-plane.
+
+We want to find the relation between the area of rectangle
+and area of its projection in the $xy$-plane.
+
+Assume one pair of sides are parallel to the $xy$-plane, and the other pair makes angle $\theta$ with the $xy$-plane.
+
+<div id="fig14" style="width:90%; max-width: 360px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
+
+<script>
+{
+    const brd2 = initBoard('fig14');
+
+    const boarderColor = '#0077b6';
+    function edge(p1, p2, width= 2, dash=0) {
+        return brd2.create('segment',
+            [p1, p2],
+            {strokeWidth: width, strokeColor: boarderColor, layer: 20, dash: dash}
+        );
+    }
+
+    const fillColor = '#fff3b0';
+    function face(p1, p2, p3, p4) {
+        brd2.create('polygon',
+            [p1, p2, p3, p4],
+            {
+                vertices: {visible: false},
+                borders: {strokeWidth: 2},
+                fillOpacity: 0.8,
+                fillColor: fillColor,
+                layer: 10
+            }
+        );
+    }
+
+    function arc(p1, p2, p3) {
+        brd2.create('arc', [
+            brd2.create('point', p1, {visible: false}),
+            brd2.create('point', p2, {visible: false}),
+            brd2.create('point', p3, {visible: false}),
+        ], {
+            strokeWidth: 2,
+            strokeColor: boarderColor,
+            fillOpacity: 0.8,
+            fillColor: fillColor,
+            layer: 20
+        });
+    }
+
+    function midpoint(p1, p2, r) {
+        return [
+            p2[0] * r + p1[0] * (1 - r),
+            p2[1] * r + p1[1] * (1 - r)
+        ];
+    }
+
+    function add(p1, delta) {
+        return [
+            p1[0] + delta[0],
+            p1[1] + delta[1],
+        ];
+    }
+
+    const x1 = 40;
+    const y1 = 80;
+    const x2 = 130;
+    const y2 = 140;
+    const z1 = 130;
+    const z2 = 80;
+
+    const p1 = iso(x1, y1, z1);
+    const p2 = iso(x1, y2, z1);
+    const p3 = iso(x2, y2, z2);
+    const p4 = iso(x2, y1, z2);
+    const p5 = iso(x1, y1, 0);
+    const p6 = iso(x1, y2, 0);
+    const p7 = iso(x2, y2, 0);
+    const p8 = iso(x2, y1, 0);
+
+    const c1 = iso((x1 + x2) * 0.55, (y1 + y2) / 2, (z1 + z2) / 2);
+    const c2 = iso((x1 + x2) * 0.55, (y1 + y2) / 2, 200);
+    const c3 = iso((x1 + x2) * 0.55 + 30, (y1 + y2) / 2, 200);
+
+    face(p1, p2, p3, p4);
+    face(p2, p6, p7, p3);
+    face(p3, p7, p8, p4);
+
+    edge(p1, p2);
+    edge(p2, p3);
+    edge(p3, p4);
+    edge(p4, p1);
+    edge(p2, p6);
+    edge(p3, p7);
+    edge(p4, p8);
+    edge(p6, p7);
+    edge(p7, p8);
+
+    edge(p1, p5, 1, 2);
+    edge(p5, p6, 1, 2);
+    edge(p5, p8, 1, 2);
+
+    edge(p3, iso(x2 - 60, y2, z2));
+
+    arc(p3, iso(x2 - 40, y2, z2), midpoint(p3, p2, 0.25));
+
+    brd2.create('arrow', [c1, c2], {
+        strokeWidth: 2,
+        strokeColor: boarderColor,
+        fillOpacity: 0.8,
+        fillColor: fillColor,
+        layer: 20
+    });
+    brd2.create('arrow', [c1, c3], {
+        strokeWidth: 2,
+        strokeColor: boarderColor,
+        fillOpacity: 0.8,
+        fillColor: fillColor,
+        layer: 20
+    });
+
+    arc(c1, midpoint(c1, c2, 0.5), midpoint(c1, c3, 0.5));
+
+    brd2.create('text', [26, 30, 'θ'], {fontSize: 16});
+    brd2.create('text', [-17, 100, 'θ'], {fontSize: 16});
+    brd2.create('text', [c2[0] - 2, c2[1] + 8, '$\\hat{\\mathbf{k}}$'], {fontSize: 16});
+    brd2.create('text', [c3[0] - 5, c3[1] + 8, '$\\hat{\\mathbf{n}}$'], {fontSize: 16});
+
+    brd2.create('text', [
+        ...add(midpoint(p4, p1, 0.3), [0, 30])
+        , 'b'], {fontSize: 16});
+
+    brd2.create('text', [
+        ...add(midpoint(p4, p3, 0.5), [0, 10])
+        , 'a'], {fontSize: 16});
+
+    brd2.create('text', [
+        ...add(midpoint(p8, p5, 0.3), [0, 20])
+        , "b'"], {fontSize: 16});
+
+    brd2.create('text', [
+        ...add(midpoint(p8, p7, 0.5), [0, 10])
+        , "a"], {fontSize: 16});
+}
+</script>
+
+We can convince ourselves that $\cos \theta = \hat{\mathbf{k}} \cdot \hat{\mathbf{n}}$, where $\hat{\mathbf{k}}$ is the unit normal vector to the $xy$-plane.
+
+Thus, the area of the rectangle is:
+
+$$
+ab = \frac{ab'}{\cos \theta} = \frac{ab'}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}}
+$$
+
+Each $\Delta S_i$ can be approximated by such rectangles. Thus, we have:
+
+$$
+\Delta S_i = \frac{\Delta R_i}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}}
+$$
+
+So, the surface integral can be written as:
+
+$$
+\int\int_S G(x, y, z) \\, dS = \lim_{\substack{N \to \infty\\\\[0.3em] \text{each } \Delta R_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \frac{\Delta R_i}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}}
+\tag{II-9}
+$$
+
+Where we have replaced each $\Delta S_i \to 0$ with $\Delta R_i \to 0$.
+
+Then, this can be written as a double integral over $R$:
+
+$$
+\int\int_S G(x, y, z) \\, dS = 
+\int\int_R \frac{G(x, y, f(x, y))}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}(x, y, f(x, y))} \\, dx \\, dy
+\tag{II-11}
+$$
+
+Using equation (II-4), we can write:
+
+$$
+\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}(x, y, f(x, y)) = \frac{1}{\sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial y}\right)^2}}
+$$
+
+Thus, we have:
+
+$$
+\begin{align*}
+\int\int_S G(x, y, z) \\, dS =
+&\int\int_R G(x, y, f(x, y)) \cdot
+\\\\[1em]
+&\sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial y}\right)^2} \\, dx \\, dy
+\tag{II-12}
+\end{align*}
+$$
