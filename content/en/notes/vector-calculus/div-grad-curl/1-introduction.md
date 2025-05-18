@@ -51,12 +51,14 @@ charge $q$ is given by
 $$
 \mathbf{E}(\mathbf{r}) = \frac{\mathbf{F}(\mathbf{r})}{q_0}
 = \frac{1}{4 \pi \epsilon_0} \frac{q}{r^2} \hat{\mathbf{u}}
+\tag{I-2}
 $$
 
 Extension of these ideas: Suppose we have a group of $N$ charges $q_1, \ldots, q_N$ at positions $\mathbf{r}_1, \ldots, \mathbf{r}_N$. The force on a charge $q_0$ at position $\mathbf{r}$ is given by
 
 $$
 \mathbf{F}(\mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \sum\_{i=1}^N \frac{q\_0 q\_i}{|\mathbf{r} - \mathbf{r}\_i|^2} \hat{\mathbf{u}}\_{i}
+\tag{I-3}
 $$
 
 where $\hat{\mathbf{u}}_i$ is the unit vector pointing from $\mathbf{r}_i$ to $\mathbf{r}$.
@@ -65,6 +67,7 @@ From this we can define the electrostatic field $\mathbf{E}(\mathbf{r})$ at $\ma
 
 $$
 \mathbf{E}(\mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \sum\_{i=1}^N \frac{q\_i}{|\mathbf{r} - \mathbf{r}\_i|^2} \hat{\mathbf{u}}\_{i}
+\tag{I-4}
 $$
 
 That is, superposition principle applies to the electrostatic field as well.
@@ -80,6 +83,7 @@ Suppose in some region of space of volume $\Delta V$ the total electric charge i
 
 $$
 \overline{\rho}_{\Delta V} = \frac{\Delta Q}{\Delta V}
+\tag{I-5}
 $$
 
 Then charge density at point $(x, y, z)$ is defined as
@@ -87,6 +91,7 @@ Then charge density at point $(x, y, z)$ is defined as
 $$
 \rho(x, y, z) = \lim_{\Delta V \to 0} \frac{\Delta Q}{\Delta V}
 = \lim_{\Delta V \to 0} \overline{\rho}_{\Delta V}
+\tag{I-6}
 $$
 
 Then the electric charge in some region is given by
@@ -101,5 +106,6 @@ $$
 \mathbf{E}(\mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \int\int\int_V \frac{\rho(\mathbf{r'})
 \hat{\mathbf{u}}(\mathbf{r'})
 }{|\mathbf{r} - \mathbf{r'}|^2}  dV'
+\tag{I-7}
 $$
 
