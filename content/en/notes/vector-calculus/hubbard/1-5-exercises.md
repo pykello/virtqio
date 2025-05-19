@@ -49,12 +49,12 @@ $$
 &\implies
 \exists\\,r > 0\quad\text{s.t.}\quad B_r(\mathbf{x}) \subset A \\\\
 &\implies
-\mathbf{x} \in \text{Int}(A)
+\mathbf{x} \in \overset{\circ}{A}
 \end{align*}
 $$
 
-Therefore, $X \subset \text{Int}(A)$. Also, $\text{Int}(A)$ itself is open and contained in $A$. So,
-$\text{Int}(A)$ is the largest open set contained in $A$.
+Therefore, $X \subset \overset{\circ}{A}$. Also, $\overset{\circ}{A}$ itself is open and contained in $A$. So,
+$\overset{\circ}{A}$ is the largest open set contained in $A$.
 
 **2.**
 
