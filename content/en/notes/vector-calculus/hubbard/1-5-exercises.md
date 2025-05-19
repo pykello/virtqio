@@ -68,7 +68,7 @@ We'll use the following lemma in our proof.
 **Lemma.** If $B_r(\mathbf{x}) \cap A = \emptyset$, then
 $B_r(\mathbf{x}) \cap \overline{A} = \emptyset$
 
-We have:
+Using this lemma and the definition of closure, we have:
 
 $$
 \begin{align*}
@@ -88,11 +88,11 @@ $$
 
 Therefore, $\overline{A}^c$ is open and $\overline{A}$ is closed.
 
-**Proof of Lemma.** Assume that there exists $\mathbf{y} \in \overline{A} \cap B_r(\mathbf{x})$. Then by definition of open ball $r' = r - \lVert x - y\rVert > 0$, and by definition of
+**Proof of Lemma.** Assume that there exists $\mathbf{y} \in B_r(\mathbf{x}) \cap \overline{A}$. Then by definition of open ball $r' = r - \lVert x - y\rVert > 0$, and by definition of
 closure $B_{r'}(\mathbf{y}) \cap A \ne \emptyset$. But $B_{r'}(\mathbf{y}) \subset B_{r}(\mathbf{x})$, which means
 $B_{r}(\mathbf{x}) \cap A \ne \emptyset$.
 A contradiction. So, such $\mathbf{y}$ doesn't exist and
-$\overline{A} \cap B_r(\mathbf{x}) = \emptyset$.
+$B_r(\mathbf{x}) \cap \overline{A} = \emptyset$.
 
 **Second, we show that $\overline{A}$ is the smallest
 closed set containing $A$**.
@@ -102,7 +102,7 @@ is not in $X$. Since $X$ is closed, then $X^c$ is open and:
 
 $$
 \begin{align*}
-\mathbf{x} \notin X &\implies \mathbf{x} \in X^c \\\\
+\mathbf{x} \in \overline{A} - X &\implies \mathbf{x} \in X^c \\\\
 &\implies \exists r > 0 \quad \text{s.t.} \quad B_r(\mathbf{x}) \subset X^c
 \\\\
 &\implies \exists r > 0 \quad \text{s.t.} \quad B_r(\mathbf{x}) 
@@ -118,6 +118,20 @@ $$
 Which is a contradiction. So, $\overline{A}$ is the smallest
 closed set containing $A$.
 
+**3.**
+From problem 1.5.6 we have $\partial A = \overline{A} \cap \overline{A^c}$.
+
+Then:
+
+$$
+\begin{align*}
+A \cup \partial A &= A \cup (\overline{A} \cap \overline{A^c}) \\\\
+&= (A \cup \overline{A}) \cap (A \cup \overline{A^c}) \\\\
+&= \overline{A} \cap (A \cup \overline{A^c}) \quad &\text{(since } A \in \overline{A} \text{)} \\\\
+&= \overline{A} \cap \mathbb{R}^n &\text{(since } A^c \subset \overline{A^c} \text{ and } A \cup A^c = \mathbb{R}^n \text{)} \\\\
+&= \overline{A}
+\end{align*}
+$$
 ::::
 
 ---------
