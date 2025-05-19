@@ -39,6 +39,85 @@ for each $i \in \mathbb{N}$. Define $B = \bigcap_{i=0}^{\infty} A_i$. Then $B = 
 :::expandable
 **Solution.** [Click to Expand]
 
+**1.**
+If $X \subset A$ is an open set, then:
+
+$$
+\begin{align*}
+\mathbf{x} \in X &\implies
+\exists\\,r > 0\quad\text{s.t.}\quad B_r(\mathbf{x}) \subset X \\\\
+&\implies
+\exists\\,r > 0\quad\text{s.t.}\quad B_r(\mathbf{x}) \subset A \\\\
+&\implies
+\mathbf{x} \in \text{Int}(A)
+\end{align*}
+$$
+
+Therefore, $X \subset \text{Int}(A)$. Also, $\text{Int}(A)$ itself is open and contained in $A$. So,
+$\text{Int}(A)$ is the largest open set contained in $A$.
+
+**2.**
+
+**First we show that $\overline{A}$ is closed.** To do this,
+we need to show that $\overline{A}^c$ is open. To do this,
+we need to show if $x \in \overline{A}^c$ then there is
+$r > 0$ s.t. $B_r(x) \subset \overline{A}^c$.
+
+We'll use the following lemma in our proof.
+
+**Lemma.** If $B_r(\mathbf{x}) \cap A = \emptyset$, then
+$B_r(\mathbf{x}) \cap \overline{A} = \emptyset$
+
+We have:
+
+$$
+\begin{align*}
+x \in \overline{A}^c &\implies x \notin \overline{A} \\\\
+&\implies \neg (\forall r > 0 \quad \text{s.t.} \quad
+B_r(x) \cap A \ne \emptyset)
+\\\\
+&\implies \exists r > 0 \quad \text{s.t.} \quad
+B_r(x) \cap A = \emptyset \\\\
+&\implies \exists r > 0 \quad \text{s.t.} \quad
+B_r(x) \cap \overline{A} = \emptyset
+\\\\
+&\implies \exists r > 0 \quad \text{s.t.} \quad
+B_r(x) \subset \overline{A}^c.
+\end{align*}
+$$
+
+Therefore, $\overline{A}^c$ is open and $\overline{A}$ is closed.
+
+**Proof of Lemma.** Assume that there exists $\mathbf{y} \in \overline{A} \cap B_r(\mathbf{x})$. Then by definition of open ball $r' = r - \lVert x - y\rVert > 0$, and by definition of
+closure $B_{r'}(\mathbf{y}) \cap A \ne \emptyset$. But $B_{r'}(\mathbf{y}) \subset B_{r}(\mathbf{x})$, which means
+$B_{r}(\mathbf{x}) \cap A \ne \emptyset$.
+A contradiction. So, such $\mathbf{y}$ doesn't exist and
+$\overline{A} \cap B_r(\mathbf{x}) = \emptyset$.
+
+**Second, we show that $\overline{A}$ is the smallest
+closed set containing $A$**.
+
+Assume that there's a smaller closed set $X$ such that $A \subset X$. Then there exists a $\mathbf{x} \in \overline{A}$ which
+is not in $X$. Since $X$ is closed, then $X^c$ is open and:
+
+$$
+\begin{align*}
+\mathbf{x} \notin X &\implies \mathbf{x} \in X^c \\\\
+&\implies \exists r > 0 \quad \text{s.t.} \quad B_r(\mathbf{x}) \subset X^c
+\\\\
+&\implies \exists r > 0 \quad \text{s.t.} \quad B_r(\mathbf{x}) 
+\cap A
+\subset X^c \cap X \quad \text{(since } A \subset X \text{)}
+\\\\
+&\implies \exists r > 0 \quad \text{s.t.} \quad B_r(\mathbf{x}) \cap A = \emptyset
+\\\\
+&\implies \mathbf{x} \notin \overline{A}
+\end{align*}
+$$
+
+Which is a contradiction. So, $\overline{A}$ is the smallest
+closed set containing $A$.
+
 ::::
 
 ---------
