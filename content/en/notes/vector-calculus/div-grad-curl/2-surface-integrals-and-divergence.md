@@ -372,3 +372,16 @@ $$
 \tag{II-12}
 \end{align*}
 $$
+
+### Flux
+The **flux** of $\mathbf{F}$ through the surface $S$:
+
+$$
+\int\int_S \mathbf{F}(x, y, z) \cdot \hat{\mathbf{n}} \\, dS
+\tag{II-14}
+$$
+
+So, Gauss's Law says that the flux of the electrostatic field over a closed surface
+is equal to the total charge inside the surface divided by $\epsilon_0$.
+
+### Using Gauss's Law to Find the Field
