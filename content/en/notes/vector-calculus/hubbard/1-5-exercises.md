@@ -282,13 +282,44 @@ $$
 Since norms are non-negative, then $0 \le \lVert e^A \rVert \le e^{\lVert A \rVert}$.
 
 **2.**
-* $e^{A+B} = e^{A}e^{B}$ is generally not true. For example, let
+**$e^{A+B} = e^{A}e^{B}$ is generally not true.** For example, let
 $A = \begin{pmatrix} 0 & 1 \\\\ 0 & 0 \end{pmatrix}$ and
 $B = \begin{pmatrix} 0 & 0 \\\\ 1 & 0 \end{pmatrix}$.
 Then $A^2 = B^2 = \mathbf{0}$. So,
-$e^A = \begin{pmatrix} 1 & 1 \\\\ 0 & 1\end{pmatrix}$ and
-$e^B = \begin{pmatrix} 1 & 0 \\\\ 1 & 1 \end{pmatrix}$.
-But $e^{A+B} = \begin{pmatrix} \cosh{1} & \sinh{1} \\\\ \sinh{1} & \cosh{1}\end{pmatrix} \ne e^A e^B$.
+$e^A = I + A = \begin{pmatrix} 1 & 1 \\\\ 0 & 1\end{pmatrix}$ and
+$e^B = I + B = \begin{pmatrix} 1 & 0 \\\\ 1 & 1 \end{pmatrix}$.
+
+To calculate $e^{A+B}$, note that:
+
+$$
+(A + B)^k = 
+\begin{pmatrix} 0 & 1 \\\\ 1 & 0\end{pmatrix}^k =
+\begin{cases}
+\begin{pmatrix} 0 & 1 \\\\ 1 & 0\end{pmatrix} \quad \text{when k odd} 
+\\\\
+\begin{pmatrix} 1 & 0 \\\\ 0 & 1\end{pmatrix} \quad \text{when k even} 
+\end{cases}
+$$
+
+So, $(A + B)^k = \begin{pmatrix} (1 + (-1)^k)/2 & (1 - (-1)^k)/2 \\\\
+(1 - (-1)^k)/2 & (1 + (-1)^k)/2 \end{pmatrix}$, and
+
+$$
+\begin{align*}
+e^{A+B} &= \begin{pmatrix}
+\dfrac{1}{2}\left(\sum_{k=0}^{\infty} \dfrac{1}{k!} + \sum_{k=0}^{\infty} \dfrac{(-1)^k}{k!}\right) &
+\dfrac{1}{2}\left(\sum_{k=0}^{\infty} \dfrac{1}{k!} - \sum_{k=0}^{\infty} \dfrac{(-1)^k}{k!}\right) \\\\
+\dfrac{1}{2}\left(\sum_{k=0}^{\infty} \dfrac{1}{k!} - \sum_{k=0}^{\infty} \dfrac{(-1)^k}{k!}\right) &
+\dfrac{1}{2}\left(\sum_{k=0}^{\infty} \dfrac{1}{k!} + \sum_{k=0}^{\infty} \dfrac{(-1)^k}{k!}\right)
+\end{pmatrix}
+\\\\ &= \begin{pmatrix}
+\dfrac{e+e^{-1}}{2} & \dfrac{e-e^{-1}}{2} \\\\
+\dfrac{e-e^{-1}}{2} & \dfrac{e+e^{-1}}{2}
+\end{pmatrix}
+\end{align*}
+$$
+
+So, $e^{A+B} = \begin{pmatrix} \cosh{1} & \sinh{1} \\\\ \sinh{1} & \cosh{1}\end{pmatrix} \ne e^A e^B$.
 
 <!-- * $e^{A+B} = e^{A}e^{B}$ holds when $AB = BA$. -->
 ::::
