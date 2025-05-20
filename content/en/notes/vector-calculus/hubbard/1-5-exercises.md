@@ -428,6 +428,24 @@ $k \mapsto A^k$ converge as $k \to \infty$? What is the limit?
 
 :::expandable
 **Solution.** [Click to Expand]
+
+We have
+
+$$
+A^k = \begin{pmatrix}
+\dfrac{(2a)^k}{2} & \dfrac{(2a)^k}{2} \\\\
+\dfrac{(2a)^k}{2} & \dfrac{(2a)^k}{2}
+\end{pmatrix}
+$$
+
+For $k \mapsto A^k$ to converge, $k \mapsto \dfrac{(2a)^k}{2}$ must converge. Then:
+
+* If $|a| > \dfrac{1}{2}$, $A^k$ doesn't converge.
+* If $|a| < \dfrac{1}{2}$, $A^k$ converges to $\mathbf{0}$.
+* If $a = \dfrac{1}{2}$, $A^k$ converges to $\dfrac{1}{2}
+\begin{pmatrix}1 & 1 \\\\ 1 & 1 \end{pmatrix}$.
+* If $a = -\dfrac{1}{2}$, $A^k = (-1)^k \dfrac{1}{2}
+\begin{pmatrix}1 & 1 \\\\ 1 & 1 \end{pmatrix}$ and doesn't converge.
 ::::
 
 ---------
