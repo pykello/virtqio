@@ -255,16 +255,25 @@
 
   <!-- Mathjax stuff -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
   window.MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
       tags: 'ams',
-    }
+    },
+    loader: {load: ['[tex]/ams']},
+    svg: {
+      fontCache: 'global'
+    },
+    options: {
+      renderActions: {
+        addMenu: []
+      }
+    },
   };
   JXG.Options.text.useMathJax = true;
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
   <title> {% if title %} {{title}} - {% endif %}{{ translate(key="virtq.io") }}</title>
 </head>
