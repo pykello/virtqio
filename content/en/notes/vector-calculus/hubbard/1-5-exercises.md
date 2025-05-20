@@ -301,16 +301,16 @@ $$
 \end{cases}
 $$
 
-So, $(A + B)^k = \begin{pmatrix} (1 + (-1)^k)/2 & (1 - (-1)^k)/2 \\\\
-(1 - (-1)^k)/2 & (1 + (-1)^k)/2 \end{pmatrix}$, and
+So, $(A + B)^k = \begin{pmatrix} \dfrac{1 + (-1)^k}{2} & \dfrac{1 - (-1)^k}{2} \\\\
+\dfrac{1 - (-1)^k}{2} & \dfrac{1 + (-1)^k}{2} \end{pmatrix}$, and
 
 $$
 \begin{align*}
 e^{A+B} &= \begin{pmatrix}
-\dfrac{1}{2}\left(\sum_{k=0}^{\infty} \dfrac{1}{k!} + \sum_{k=0}^{\infty} \dfrac{(-1)^k}{k!}\right) &
-\dfrac{1}{2}\left(\sum_{k=0}^{\infty} \dfrac{1}{k!} - \sum_{k=0}^{\infty} \dfrac{(-1)^k}{k!}\right) \\\\
-\dfrac{1}{2}\left(\sum_{k=0}^{\infty} \dfrac{1}{k!} - \sum_{k=0}^{\infty} \dfrac{(-1)^k}{k!}\right) &
-\dfrac{1}{2}\left(\sum_{k=0}^{\infty} \dfrac{1}{k!} + \sum_{k=0}^{\infty} \dfrac{(-1)^k}{k!}\right)
+\dfrac{1}{2}\sum_{k=0}^{\infty} \left(\dfrac{1}{k!} + \dfrac{(-1)^k}{k!}\right) &
+\dfrac{1}{2} \sum_{k=0}^{\infty} \left(\dfrac{1}{k!} - \dfrac{(-1)^k}{k!}\right) \\\\
+\dfrac{1}{2} \sum_{k=0}^{\infty} \left(\dfrac{1}{k!} - \dfrac{(-1)^k}{k!}\right) &
+\dfrac{1}{2}\sum_{k=0}^{\infty} \left(\dfrac{1}{k!} + \dfrac{(-1)^k}{k!}\right)
 \end{pmatrix}
 \\\\ &= \begin{pmatrix}
 \dfrac{e+e^{-1}}{2} & \dfrac{e-e^{-1}}{2} \\\\
@@ -388,7 +388,7 @@ Which implies $g \begin{pmatrix} x \\\\ y \end{pmatrix} \le 2 (x + y) \ln (x + y
 
 We also have $g \begin{pmatrix} x \\\\ y \end{pmatrix} \ge 2x \ln x$.
 
-From one-dimensional calculus we know $lim\_{x\to0^+} x\ln x = 0$.
+From one-dimensional calculus we know $\lim\_{x\to0^+} x\ln x = 0$.
 
 Then,
 
