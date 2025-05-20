@@ -127,11 +127,50 @@ $$
 \begin{align*}
 A \cup \partial A &= A \cup (\overline{A} \cap \overline{A^c}) \\\\
 &= (A \cup \overline{A}) \cap (A \cup \overline{A^c}) \\\\
-&= \overline{A} \cap (A \cup \overline{A^c}) \quad &\text{(since } A \in \overline{A} \text{)} \\\\
+&= \overline{A} \cap (A \cup \overline{A^c}) \quad &\text{(since } A \subset \overline{A} \text{)} \\\\
 &= \overline{A} \cap \mathbb{R}^n &\text{(since } A^c \subset \overline{A^c} \text{ and } A \cup A^c = \mathbb{R}^n \text{)} \\\\
 &= \overline{A}
 \end{align*}
 $$
+
+**4.**
+
+By definition,
+
+$$
+\mathbf{x} \in \overset{\circ}{A} \Leftrightarrow \exists r > 0 \\,
+B_r(\mathbf{x}) \subset A
+$$
+
+Then:
+
+$$
+\mathbf{x} \in \left(\overset{\circ}{A}\right)^c \Leftrightarrow \forall r > 0 \\,
+B_r(\mathbf{x}) \cap A^c \ne \emptyset
+$$
+
+And since definition of closure is:
+
+$$
+\mathbf{x} \in \overline{A} \Leftrightarrow \forall r > 0 \\, B_r(\mathbf{x}) \cap A \ne \emptyset
+$$
+
+Then
+
+$$
+\mathbf{x} \in \overline{A} \cap \left(\overset{\circ}{A}\right)^c \Leftrightarrow
+\forall r > 0 \\, B_r(\mathbf{x}) \cap A \ne \emptyset
+ \text{ and }
+B_r(\mathbf{x}) \cap A^c \ne \emptyset
+$$
+
+Which means
+
+$$
+\mathbf{x} \in \overline{A} - \overset{\circ}{A} \Leftrightarrow
+\mathbf{x} \in \partial{A}.
+$$
+
 ::::
 
 ---------
