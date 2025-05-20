@@ -209,6 +209,34 @@ $$
 :::expandable
 **Solution.** [Click to Expand]
 
+Proof by induction.
+
+**Base case.**
+It trivially holds for $n=1$: $\lVert \mathbf{x}_1 \rVert \le \lVert \mathbf{x}_1 \rVert$.
+
+**Induction step.** Assume this holds for $n=k$ (Induction Hypothesis):
+
+$$
+\left\lVert \sum\_{i=1}^{k} \mathbf{x}_i \right\rVert \leq \sum\_{i=1}^{k} \lVert \mathbf{x}_i \rVert.
+$$
+
+Then:
+
+$$
+\begin{align*}
+\left\lVert \sum\_{i=1}^{k+1} \mathbf{x}\_i \right\rVert &=
+\left\lVert \left(\sum\_{i=1}^{k} \mathbf{x}\_i\right) +  \mathbf{x}\_{k+1}\right\rVert
+\\\\
+&\le \left\lVert \left(\sum\_{i=1}^{k} \mathbf{x}\_i\right) \right\rVert +
+\left\lVert\mathbf{x}\_{k+1}\right\rVert \quad&\text{(triangle property of norm)}
+\\\\
+&\le \left(\sum\_{i=1}^{k} \lVert \mathbf{x}\_i \rVert\right) +  \lVert\mathbf{x}\_{k+1}\rVert &\text{(induction hypothesis)}
+\\\\
+&= \sum\_{i=1}^{k+1} \lVert \mathbf{x}\_i \rVert
+\end{align*}
+$$
+
+Thus by induction the inequality holds for all $n$.
 ::::
 
 ---------
