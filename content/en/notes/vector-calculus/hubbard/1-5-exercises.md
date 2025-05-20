@@ -257,6 +257,40 @@ $$
 :::expandable
 **Solution.** [Click to Expand]
 
+**1.**
+Since $\lVert A^k \rVert \le \lVert A \rVert^k$, then 
+$\sum_{k=0}^{\infty} \left\lVert\dfrac{A^k}{k!}\right\rVert
+\le \sum_{k=0}^{\infty} \dfrac{\lVert A\rVert^k}{k!}$, which
+by proposition 1.5.36 converges to $e^{\lVert A \rVert}$.
+Using proposition 1.5.35 (absolute convergence), we conclude $e^{A}$ itself converges.
+
+To find a bound for $\lVert e^{A} \rVert$, we note that:
+
+$$
+\begin{align*}
+\lVert e^A \rVert &=
+\left\lVert\sum_{k=0}^{\infty} \frac{A^k}{k!}\right\rVert \\\\
+&\le 
+\sum_{k=0}^{\infty} \left\lVert\frac{A^k}{k!}\right\rVert \quad &\text{(exercise 1.5.9)}
+\\\\
+&\le \sum_{k=0}^{\infty} \frac{\lVert A\rVert^k}{k!} \quad &(\lVert A^k \rVert \le \lVert A \rVert^k)
+\\\\
+&= e^{\lVert A \rVert} \quad &\text{(proposition 1.5.36)}
+\end{align*}
+$$
+
+Since norms are non-negative, then $0 \le \lVert e^A \rVert \le e^{\lVert A \rVert}$.
+
+**2.**
+* $e^{A+B} = e^{A}e^{B}$ is generally not true. For example, let
+$A = \begin{pmatrix} 0 & 1 \\\\ 0 & 0 \end{pmatrix}$ and
+$B = \begin{pmatrix} 0 & 0 \\\\ 1 & 0 \end{pmatrix}$.
+Then $A^2 = B^2 = \mathbf{0}$. So,
+$e^A = \begin{pmatrix} 1 & 1 \\\\ 0 & 1\end{pmatrix}$ and
+$e^B = \begin{pmatrix} 1 & 0 \\\\ 1 & 1 \end{pmatrix}$.
+But $e^{A+B} = \begin{pmatrix} \cosh{1} & \sinh{1} \\\\ \sinh{1} & \cosh{1}\end{pmatrix} \ne e^A e^B$.
+
+<!-- * $e^{A+B} = e^{A}e^{B}$ holds when $AB = BA$. -->
 ::::
 
 ---------
