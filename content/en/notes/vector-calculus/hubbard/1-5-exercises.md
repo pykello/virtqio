@@ -373,39 +373,33 @@ $$
 :::expandable
 **Solution.** [Click to Expand]
 
-Since this is an even function, we can just focus on $x \ge 0, y \ge 0$.
+Let $r = \lVert (x, y) \rVert = \sqrt{x^2 + y^2}$ and
+$s = \lvert x \rvert + \lvert y \rvert$. Then $g = 2s \ln r$.
 
-$\ln(\cdot)$ is a monotonically increasing function. So, in this region
-we have
+Using triangle inequality, we have $r \le s$, and using cauchy-schwarz inequality (with $\mathbf{u}=(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$, $\mathbf{v}=(|x|,|y|)$), we have $\dfrac{s}{\sqrt{2}} \le r$.
 
+When $r < 1$, then $\ln r < 0$. So, near zero:
+
+$$
 \begin{align*}
-\ln(x^2+y^2) &\le \ln(x^2+y^2+2xy) \\\\
-&= \ln\left((x+y)^2\right) \\\\
-&=2\ln(x+y)
+\dfrac{s}{\sqrt{2}} \le r \le s &\implies
+2 \sqrt{2} \\, r \ln r 
+\le 2s \ln r \le
+2r \ln r
+\\\\
+&\implies
+2 \sqrt{2} \\, r \ln r 
+\le g \begin{pmatrix} x \\\\ y \end{pmatrix} \le
+2r \ln r
 \end{align*}
-
-Which implies $g \begin{pmatrix} x \\\\ y \end{pmatrix} \le 2 (x + y) \ln (x + y)$.
-
-We also have $g \begin{pmatrix} x \\\\ y \end{pmatrix} \ge 2x \ln x$.
-
-From one-dimensional calculus we know $\lim\_{x\to0^+} x\ln x = 0$.
-
-Then,
-
-$$
-0 = \lim\_{x\to0^+} 2x\ln x \le
-\lim\_{\begin{pmatrix} x \\\\ y \end{pmatrix} \to \begin{pmatrix} 0^+ \\\\ 0^+ \end{pmatrix}} g \begin{pmatrix} x \\\\ y \end{pmatrix}
-\le
-\lim\_{x+y\to0^+} 2(x+y)\ln(x+y) = 0
 $$
 
-So,
+From one dimensional calculus we know $\lim_{r\to 0} r \ln r = 0$, which
+means:
 
 $$
 \lim\_{\begin{pmatrix} x \\\\ y \end{pmatrix} \to \begin{pmatrix} 0^+ \\\\ 0^+ \end{pmatrix}} g \begin{pmatrix} x \\\\ y \end{pmatrix} = 0
 $$
-
-And since function is even, the non-directional limit is also 0.
 
 ::::
 
