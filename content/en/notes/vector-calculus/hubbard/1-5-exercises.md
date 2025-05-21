@@ -88,7 +88,7 @@ $$
 
 Therefore, $\overline{A}^c$ is open and $\overline{A}$ is closed.
 
-**Proof of Lemma.** Assume that there exists $\mathbf{y} \in B_r(\mathbf{x}) \cap \overline{A}$. Then by definition of open ball $r' = r - \lVert x - y\rVert > 0$, and by definition of
+**Proof of Lemma.** Assume $B_r(\mathbf{x}) \cap A = \emptyset$ but $B_r(\mathbf{x}) \cap \overline{A} \ne \emptyset$. Then there exists $\mathbf{y} \in B_r(\mathbf{x}) \cap \overline{A}$. Then by definition of open ball $r' = r - \lVert x - y\rVert > 0$, and by definition of
 closure $B_{r'}(\mathbf{y}) \cap A \ne \emptyset$. But $B_{r'}(\mathbf{y}) \subset B_{r}(\mathbf{x})$, which means
 $B_{r}(\mathbf{x}) \cap A \ne \emptyset$.
 A contradiction. So, such $\mathbf{y}$ doesn't exist and
@@ -351,6 +351,7 @@ $$
 Where we used $AB=BA$ in step **(*)**.
 
 ---------
+
 $e^{2A} = \left(e^A\right)^2$ holds for all $A$ as a
 corollary of the previous result.
 ::::
