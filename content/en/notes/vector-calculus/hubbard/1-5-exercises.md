@@ -319,9 +319,40 @@ e^{A+B} &= \begin{pmatrix}
 \end{align*}
 $$
 
-So, $e^{A+B} = \begin{pmatrix} \cosh{1} & \sinh{1} \\\\ \sinh{1} & \cosh{1}\end{pmatrix} \ne e^A e^B$.
+So, $e^{A+B} = \begin{pmatrix} \cosh{1} & \sinh{1} \\\\ \sinh{1} & \cosh{1}\end{pmatrix} \ne
+\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \end{pmatrix} =
+ e^A e^B$.
 
-<!-- * $e^{A+B} = e^{A}e^{B}$ holds when $AB = BA$. -->
+------
+
+**$e^{A+B} = e^{A}e^{B}$ holds when $AB = BA$**.
+
+We have:
+
+$$
+\begin{align*}
+e^{A+B} &= \sum\_{k=0}^{\infty} \frac{(A+B)^k}{k!}
+\\\\
+&= \sum\_{k=0}^{\infty} \sum\_{i=0}^{k} \frac{{k \choose i} A^iB^{k-i}}{k!} \quad \text{(\*)}
+\\\\
+&= \sum\_{k=0}^{\infty} \sum\_{i=0}^{k} \frac{A^i B^{k-i}}{i! (k - i)!}
+\\\\
+&= \sum\_{i=0}^{\infty} \sum\_{j=0}^{\infty} \frac{A^i B^j}{i! j!}
+\\\\
+&=
+\left(\sum\_{i=0}^{\infty} \frac{A^i}{i!}\right)
+\left(\sum\_{j=0}^{\infty} \frac{B^j}{j!}\right)
+\\\\
+&=
+e^Ae^B
+\end{align*}
+$$
+
+Where we used $AB=BA$ in step **(*)**.
+
+---------
+$e^{2A} = \left(e^A\right)^2$ holds for all $A$ as a
+corollary of the previous result.
 ::::
 
 ---------
