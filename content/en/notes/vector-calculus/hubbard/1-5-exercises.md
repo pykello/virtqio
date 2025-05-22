@@ -199,48 +199,6 @@ So, by definition of boundary, $x \in \partial A$.
 
 ---------
 
-**1.5.9.** Suppose $\sum_{i=1}^{\infty} \mathbf{x}_i$ is a convergent series
-in $\mathbb{R}^n$. Show that the triangle inequality applies
-
-$$
-\left\lVert \sum\_{i=1}^{n} \mathbf{x}_i \right\rVert \leq \sum\_{i=1}^{n} \lVert \mathbf{x}_i \rVert.
-$$
-
-:::expandable
-**Solution.** [Click to Expand]
-
-Proof by induction.
-
-**Base case.**
-It trivially holds for $n=1$: $\lVert \mathbf{x}_1 \rVert \le \lVert \mathbf{x}_1 \rVert$.
-
-**Induction step.** Assume this holds for $n=k$ (Induction Hypothesis):
-
-$$
-\left\lVert \sum\_{i=1}^{k} \mathbf{x}_i \right\rVert \leq \sum\_{i=1}^{k} \lVert \mathbf{x}_i \rVert.
-$$
-
-Then:
-
-$$
-\begin{align*}
-\left\lVert \sum\_{i=1}^{k+1} \mathbf{x}\_i \right\rVert &=
-\left\lVert \left(\sum\_{i=1}^{k} \mathbf{x}\_i\right) +  \mathbf{x}\_{k+1}\right\rVert
-\\\\
-&\le \left\lVert \left(\sum\_{i=1}^{k} \mathbf{x}\_i\right) \right\rVert +
-\left\lVert\mathbf{x}\_{k+1}\right\rVert \quad&\text{(triangle property of norm)}
-\\\\
-&\le \left(\sum\_{i=1}^{k} \lVert \mathbf{x}\_i \rVert\right) +  \lVert\mathbf{x}\_{k+1}\rVert &\text{(induction hypothesis)}
-\\\\
-&= \sum\_{i=1}^{k+1} \lVert \mathbf{x}\_i \rVert
-\end{align*}
-$$
-
-Thus by induction the inequality holds for all $n$.
-::::
-
----------
-
 **1.5.10.** Let $A$ be an $n \times n$ matrix, and define
 
 $$
@@ -472,18 +430,6 @@ For $k \mapsto A^k$ to converge, $k \mapsto \dfrac{(2a)^k}{2}$ must converge. Th
 \begin{pmatrix}1 & 1 \\\\ 1 & 1 \end{pmatrix}$.
 * If $a = -\dfrac{1}{2}$, $A^k = (-1)^k \dfrac{1}{2}
 \begin{pmatrix}1 & 1 \\\\ 1 & 1 \end{pmatrix}$ and doesn't converge.
-::::
-
----------
-**1.5.23.** Let $A$ be an $n \times n$ matrix. What does it mean to say that
-the following limit exists?
-
-$$
-\lim\_{B \to A} (A - B)^{-1} (A^2 - B^2)
-$$
-
-:::expandable
-**Solution.** [Click to Expand]
 ::::
 
 ---------
