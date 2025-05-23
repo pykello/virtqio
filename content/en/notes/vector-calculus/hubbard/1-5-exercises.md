@@ -394,18 +394,6 @@ $$
 ::::
 
 ---------
-
-**1.5.19.** Let $U \subset \text{Mat}(2,2)$ be the set of matrices $A$ such that
-$I - A$ is invertible.
-
-1. Show that $U$ is open, and find a sequence in $U$ that converges to $I$.
-2. Consider the mapping $f:U \to \text{Mat}(2,2)$ given by $f(A) = (A^2 - I)(A - I)^{-1}$. Does $\lim\_{A \to I} f(A)$ exist? If so, find it. 
-
-:::expandable
-**Solution.** [Click to Expand]
-::::
-
----------
 **1.5.20.** Set $A = \begin{pmatrix} a & a \\\\ a & a \end{pmatrix}$.
 For which values of $a \in \mathbb{R}$ does the sequence
 $k \mapsto A^k$ converge as $k \to \infty$? What is the limit?

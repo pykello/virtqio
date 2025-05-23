@@ -562,6 +562,6 @@ series $e^z = \sum\_{n=0}^{\infty} \dfrac{z^n}{n!}$ converges.
 
 **Proposition 1.5.38.** Let $A$ be a square matrix. If $\lVert A \rVert < 1$, then the series $S = I + A + A^2 + \ldots$ converges to $(I - A)^{-1}$.
 
-**Corollary 1.5.39.** If $\lVert A \rVert < 1$, then $(I - A)^{-1}$ is invertible.
+**Corollary 1.5.39.** If $\lVert A \rVert < 1$, then $(I - A)$ is invertible.
 
 **Corollary 1.5.40.** The set of invertible $n \times n$ matrices is open.
