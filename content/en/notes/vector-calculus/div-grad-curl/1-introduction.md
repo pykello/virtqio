@@ -7,7 +7,7 @@ Entire discussion is based on **finding the elctorstatic field given the charge 
 
 An example of a scalar function: $T(x, y, z)$ which associates the temperature at the point $(x, y, z)$ in space.
 
-A vector function $\mathbf{F}(x, y, z)$ a _magnitude_ and a _direction_ at each point in some region of space. For example, velocity of a fluid $\mathbf{v}(x, y, z)$.
+A vector function $\mathbf{F}(x, y, z)$ has a _magnitude_ and a _direction_ at each point in some region of space. For example, velocity of a fluid $\mathbf{v}(x, y, z)$.
 
 A vector function can be decomposed into its components:
 
