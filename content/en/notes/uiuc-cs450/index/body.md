@@ -5,3 +5,4 @@ Notes while self-studying [UIUC's CS 450](https://relate.cs.illinois.edu/course/
 ### [Lecture 1](lec01.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_gqc9qknj/330048022)
 Well-posed problems, Error Analysis, Condition Number
 
+### [Lecture 2](lec02.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_v5mj7noh/330048022)
