@@ -7,3 +7,5 @@ Well-posed problems, Error Analysis, Condition Number
 
 ### [Lecture 2](lec02.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_v5mj7noh/330048022)
 Accuracy and Stability, Floating Point Arithmetic, Operation Error
+
+### [Lecture 3](lec03.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_rdz5rdf3/330048022)
