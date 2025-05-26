@@ -79,13 +79,20 @@ condition number tells us the worst-case amplification of the error in the input
 
 #### 64-bit Floating Point Numbers
 
-```
 Bit Index (MSB → LSB):
-  63        62 - 52                     51 - 0
-+----+---------------------------+------------------------------+
-| S  |      Exponent (11 bits)   |       Fraction (52 bits)     |
-+----+---------------------------+------------------------------+
-```
+
+  <table style="text-align: center;" >
+    <tr class="bit-header">
+      <td>63</td>
+      <td colspan="11">62 - 52</td>
+      <td colspan="52">51 - 0</td>
+    </tr>
+    <tr class="field-name">
+      <td>S</td>
+      <td colspan="11">Exponent (11 bits)</td>
+      <td colspan="52">Fraction (52 bits)</td>
+    </tr>
+  </table>
 
 Field Breakdown:
 - S: Sign bit (0 = positive, 1 = negative)
