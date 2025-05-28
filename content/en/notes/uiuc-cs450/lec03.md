@@ -125,4 +125,37 @@ $$
 \lVert A \rVert\_p = \max_{x \neq 0} \frac{\lVert Ax \rVert\_p}{\lVert x \rVert\_p} = \max_{x, \lVert x \rVert\_p = 1} \lVert Ax \rVert\_p
 $$
 
-(stopped at 32:26. to be continued ...)
+#### Induced Matrix Norms
+
+We defined $\lVert A \rVert\_2 = \max_{\lVert x \rVert\_2 = 1} \lVert Ax \rVert\_2$.
+
+Now, the question is what is $\min_{\lVert x \rVert\_2 = 1} \lVert Ax \rVert\_2$? If $A$ grows this direction the least, then $A^{-1}$ grows it the most.
+
+So,
+
+$$
+\min_{\lVert x \rVert\_2 = 1} \lVert Ax \rVert\_2 = \frac{1}{\lVert A^{-1} \rVert\_2}
+$$
+
+#### Matrix Condition Number
+
+The **matrix condition number** bounds the worst-case amplification of the error in a matrix-vector product.
+
+Let $x$ be a unit vector, and add some error $\delta x$ to it. In the worst
+case, $x$ is in the direction of the minimum amplification of $A$, and $\delta x$ is in the direction of the maximum amplification of $A$. That is, the solution shrinks and the error grows.
+
+We want the condition number to capture this worst-case amplification of the error. So, we define it as: $\kappa(A) = \lVert A \rVert\ \cdot \lVert A^{-1} \rVert$. That is, the ratio of the maximum amplification to the minimum amplification.
+
+
+By definition, $\kappa(A) \ge 1$.
+
+If $Q$ is square and $\kappa(Q) = 1$ and $\lVert Q \rVert = 1$, then $Q$ is orthogonal. That is, $Q^TQ = I$. If $Q$ is orthogonal, then for all $v$, $\lVert Qv \rVert\_2 = \lVert v \rVert\_2$.
+
+#### Singular Value Decomposition (SVD)
+
+Any matrix $A$ can be decomposed as $A = U \Sigma V^T$, where $U$ and $V$ are orthogonal matrices and $\Sigma$ is a diagonal matrix with non-negative entries.
+
+If $A$ is invertible, then $A^{-1} = V \Sigma^{-1} U^T$.
+
+Let $\sigma\_{max}=\sigma_1, \sigma_2, \ldots, \sigma\_n=\sigma_{min}$ be diagonal entries of $\Sigma$ sorted in descending order. Then $\lVert A \rVert\_2 = \sigma\_{max}$ and $\lVert A^{-1} \rVert\_2 = \dfrac{1}{\sigma\_{min}}$.
+
