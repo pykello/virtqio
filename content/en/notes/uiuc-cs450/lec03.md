@@ -125,6 +125,55 @@ $$
 \lVert A \rVert\_p = \max_{x \neq 0} \frac{\lVert Ax \rVert\_p}{\lVert x \rVert\_p} = \max_{x, \lVert x \rVert\_p = 1} \lVert Ax \rVert\_p
 $$
 
+
+:::card[example]
+
+**Example** (from quiz 3): $\lVert A \rVert\_\infty$ is the maximum 1-norm of the rows of $A$.
+
+**Proof**.
+
+Assume $A$ is $n \times m$. Let $1 \le i \le n$ and $v \in \mathbb{R}^m$ s.t. $\lVert v \rVert\_\infty = 1$.
+Since $\max \\{|v_1|, \ldots, |v_m|\\} = 1$, we have
+
+$$
+|(A \cdot v)\_i| \le \sum_{j=1}^m |A_{i,j}| = \lVert A_i \rVert\_1 \tag{1}
+$$
+
+Therefore,
+
+$$
+\lVert A \rVert\_\infty \le \max\\{\lVert A_1 \rVert\_1, \ldots, \lVert A_n \rVert\_1\\} \tag{2}
+$$
+
+Now, we show that a vector $v$ exists to make the equality happen.
+
+Define vectors $v^1, \ldots, v^n$ such that $v^i\_j = \text{sgn}(A_{i,j})$, where
+
+$$
+\text{sgn}(x) = \begin{cases}
++1 \quad &x \ge 0 \\\\
+-1 \quad &x < 0
+\end{cases}
+$$
+
+Then for all $1 \le i \le n$, $\lVert v^i \rVert\_\infty = 1$ and
+
+$$
+(A \cdot v^i)_i = \sum\_{j=1}^m |A\_{i,j}| = \lVert A_i \rVert\_1 \tag{3}
+$$
+
+Choose $k = \text{argmax}_{i=1}^n \lVert A_i \rVert\_1$. In case there are multiple such $k$, choose any.
+
+Then using (1) and (3),
+
+$$
+\lVert A \cdot v^k \rVert\_\infty = \lVert A_k \rVert\_1 = \max\\{\lVert A_1 \rVert\_1, \ldots, \lVert A_n \rVert\_1\\} \tag{4}
+$$
+
+Using 2 and 4, we conclude that $\lVert A \rVert\_\infty$ is the maximum 1-norm of the rows of $A$.
+
+::::
+
 #### Induced Matrix Norms
 
 We defined $\lVert A \rVert\_2 = \max_{\lVert x \rVert\_2 = 1} \lVert Ax \rVert\_2$.
@@ -150,6 +199,20 @@ We want the condition number to capture this worst-case amplification of the err
 By definition, $\kappa(A) \ge 1$.
 
 If $Q$ is square and $\kappa(Q) = 1$ and $\lVert Q \rVert = 1$, then $Q$ is orthogonal. That is, $Q^TQ = I$. If $Q$ is orthogonal, then for all $v$, $\lVert Qv \rVert\_2 = \lVert v \rVert\_2$.
+
+
+:::card[example]
+**Example** (from quiz 3):
+
+$$
+\begin{align*}
+\kappa(2A) &= \lVert 2A \rVert \cdot \lVert (2A)^{-1} \rVert \\\\
+&= 2 \lVert A \rVert \cdot \frac{1}{2} \lVert A^{-1} \rVert \\\\
+&= \kappa(A)
+\end{align*}
+$$
+
+::::
 
 #### Singular Value Decomposition (SVD)
 
