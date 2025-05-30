@@ -174,6 +174,15 @@ Using 2 and 4, we conclude that $\lVert A \rVert\_\infty$ is the maximum 1-norm 
 
 ::::
 
+:::card[example]
+
+**Example** (from quiz 3):
+
+* $\lVert A \rVert\_1$ is the maximum 1-norm of the columns of $A$.
+* $\lVert A^T \rVert\_1 = \lVert A \rVert\_\infty$.
+
+::::
+
 #### Induced Matrix Norms
 
 We defined $\lVert A \rVert\_2 = \max_{\lVert x \rVert\_2 = 1} \lVert Ax \rVert\_2$.
