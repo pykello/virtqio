@@ -2,6 +2,8 @@
 
 Notes while self-studying [UIUC's CS 450](https://relate.cs.illinois.edu/course/cs450-s24/).
 
+Homeworks are available at [Spring 2021](https://relate.cs.illinois.edu/course/cs450-s21/) edition of the course.
+
 ### [Lecture 1](lec01.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_gqc9qknj/330048022)
 Well-posed problems, Error Analysis, Condition Number
 
