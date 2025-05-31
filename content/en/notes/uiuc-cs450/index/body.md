@@ -14,3 +14,4 @@ Accuracy and Stability, Floating Point Arithmetic, Operation Error
 Vector Norms, Matrix Norms, Matrix Condition Number, SVD
 
 ### [Lecture 4](lec04.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_w7fpz9ns/330048022)
+Conditioning of Linear Systems, Solving Linear Systems, Triangular Matrices

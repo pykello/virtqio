@@ -38,7 +38,7 @@ the maximum relative perturbation of $Ax$.
 We can also show $\kappa(A)$ describes the conditioning of the linear system $Ax = b$.
 That is, if we perturb $b$ by $\delta b$, what's the maximum relative perturbation $\delta x$ in the solution $x$?
 
-If $A(x + \delta x) = b + \delta b$, than how $\dfrac{\lVert \delta b \rVert\_2}{\lVert b \rVert\_2}$ relates to $\dfrac{\lVert \delta x \rVert\_2}{\lVert x \rVert\_2}$?
+If $A(x + \delta x) = b + \delta b$, then how $\dfrac{\lVert \delta b \rVert\_2}{\lVert b \rVert\_2}$ relates to $\dfrac{\lVert \delta x \rVert\_2}{\lVert x \rVert\_2}$?
 
 (In the following, we will use $\lVert \cdot \rVert$ to denote the 2-norm.)
 
@@ -107,4 +107,65 @@ $$
 $$
 
 #### Solving Basic Linear Systems
+
+##### Diagonal Matrices
+
+If we have:
+
+$$
+\begin{pmatrix}
+d\_1 & & \\\\
+& \ddots & \\\\
+& & d\_n \\\\
+\end{pmatrix}
+\begin{pmatrix}
+x\_1 \\\\
+\vdots \\\\
+x\_n \\\\
+\end{pmatrix}
+\=
+\begin{pmatrix}
+b\_1 \\\\
+\vdots \\\\
+b\_n \\\\
+\end{pmatrix}
+$$
+
+Then $x_i = \dfrac{b_i}{d_i}$.
+
+##### Orthogonal Matrices
+
+Solve $Qx = b$ where $Q$ is orthogonal. Then $x = Q^T b$.
+
+##### Given SVD
+
+Given SVD $A = U \Sigma V^T$. Then $A^{-1} = V \Sigma^{-1} U^T$.
+Then $x = V \Sigma^{-1} U^T b$.
+
+##### Solving Triangular Systems
+
+If $Lx = b$ where $L$ is lower triangular, then we can solve by forward substitution:
+
+$$
+\begin{array}{rclcl}
+l_{11} x_1 & = & b_1 & & x_1 = b_1 / l_{11} \\\\
+l_{21} x_1 + l_{22} x_2 & = & b_2 & \Rightarrow & x_2 = (b_2 - l_{21}x_1) / l_{22} \\\\
+l_{31} x_1 + l_{32} x_2 + l_{33} x_3 & = & b_3 & & x_3 = (b_3 - l_{31}x_1 - l_{32}x_2) / l_{33} \\\\
+\vdots & & \vdots & & \vdots
+\end{array}
+$$
+
+The above algorithm can also be formulated recursively by blocks.
+
+Time complexity is $O(n^2)$. In the recursive version, the relation is $T(n) = 2T(n/2) + O(n^2)$.
+
+**Existence of solution.** Solution exists if $l_{ii} \neq 0$ for all $i$.
+If some $l_{ii} = 0$, then solution may not exist.
+
+**Uniqueness of solution.** Even if some $l_{ii} = 0$ and $L^{-1}$ does not exist, the system may have solution, but it will not be unique.
+
+#### Properties of Triangular Matrices
+
+* The product of two triangular matrices is triangular.
+* The inverse of a triangular matrix is triangular (if it exists).
 
