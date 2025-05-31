@@ -15,3 +15,5 @@ Vector Norms, Matrix Norms, Matrix Condition Number, SVD
 
 ### [Lecture 4](lec04.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_w7fpz9ns/330048022)
 Conditioning of Linear Systems, Solving Linear Systems, Triangular Matrices
+
+### [Lecture 5](lec05.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_ancp9rxk/330048022)
