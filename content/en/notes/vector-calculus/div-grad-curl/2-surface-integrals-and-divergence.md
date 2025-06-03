@@ -385,3 +385,42 @@ So, Gauss's Law says that the flux of the electrostatic field over a closed surf
 is equal to the total charge inside the surface divided by $\epsilon_0$.
 
 ### Using Gauss's Law to Find the Field
+
+Consider a point charge $q$ at the origin. Symmetry suggests
+the following about the electric field:
+
+- It must be in the radial direction,
+- It must have the same magnitude at all points on a sphere of radius $r$ centered at the origin.
+
+Thus, Gauss's Law becomes:
+
+$$
+\int\int_S E(r) \hat{\mathbf{e}}_r \cdot \hat{\mathbf{n}} \\, dS = \frac{q}{\epsilon_0}
+$$
+
+On a spherical surface of radius $r$, $\hat{\mathbf{n}} = \hat{\mathbf{e}}_r$. So, $\hat{\mathbf{e}}_r \cdot \hat{\mathbf{n}} = 1$.
+Thus, we have:
+
+$$
+\int\int_S E(r) \\, dS = \frac{q}{\epsilon_0}
+$$
+
+$E(r)$ is constant over the spherical surface, so we get:
+
+$$
+\int\int_S E(r) \\, dS = E(r) \int\int_S dS
+= 4 \pi r^2 E(r) = \frac{q}{\epsilon_0}
+$$
+
+and
+
+$$
+\mathbf{E}(r) = \hat{\mathbf{e}}_r E(r) = \frac{\hat{\mathbf{e}}_r q}{4 \pi \epsilon_0 r^2}
+$$
+
+We can use symmetry and Gauss's Law to find the electric field in the following cases:
+
+- A spherically symmetric charge distribution, 
+- An infinitely long cylindrically symmetric charge distribution, and
+- An infinite slab of charge.
+
