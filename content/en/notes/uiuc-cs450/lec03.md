@@ -231,3 +231,33 @@ If $A$ is invertible, then $A^{-1} = V \Sigma^{-1} U^T$.
 
 Let $\sigma\_{max}=\sigma_1, \sigma_2, \ldots, \sigma\_n=\sigma_{min}$ be diagonal entries of $\Sigma$ sorted in descending order. Then $\lVert A \rVert\_2 = \sigma\_{max}$ and $\lVert A^{-1} \rVert\_2 = \dfrac{1}{\sigma\_{min}}$.
 
+:::card[example]
+**Example.** Prove that if $\kappa\_2(A) = 1$ where $A$ is $n \times n$, then $A=\alpha Q$ for some orthogonal $Q$ and scalar $\alpha$.
+
+**Proof.**
+
+Since $\kappa\_2(A) = 1$, then
+
+$$
+\lVert A \rVert\_2 = \dfrac{1}{\lVert A^{-1} \rVert}\_2 \tag{5}
+$$
+
+Consider the SVD of $A$: $A = U \Sigma V^T$, where $\Sigma = \text{diag}(\sigma_{max}, \ldots, \sigma_{min})$.
+Then $\lVert A \rVert\_2 = \sigma\_{max}$ and $\lVert A^{-1} \rVert\_2 = \dfrac{1}{\sigma\_{min}}$.
+Putting this together with (5), we have $\sigma\_{max} = \sigma\_{min}$.
+Therefore, all singular values are equal. Let $\alpha$ be the value of singular values. Then, $\Sigma = \alpha I$.
+
+Then:
+
+$$
+\begin{align*}
+A &= U \Sigma V^T \\\\
+&= U \cdot (\alpha I) \cdot V^T \\\\
+&= \alpha U V^T
+\end{align*}
+$$
+
+Since $U$ and $V^T$ are orthogonal, then $U V^T$ is also orthogonal. So, $A=\alpha Q$ for some scalar $\alpha$ and orthogonal $Q$.
+
+::::
+
