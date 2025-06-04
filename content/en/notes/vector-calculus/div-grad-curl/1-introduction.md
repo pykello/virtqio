@@ -1,7 +1,7 @@
 # Introduction
 
 This book presents vector calculus in the context of simple electrostatics.
-Entire discussion is based on **finding the elctorstatic field given the charge distribution that produces it**.
+Entire discussion is based on **finding the electrostatic field given the charge distribution that produces it**.
 
 ### Vector Functions
 
