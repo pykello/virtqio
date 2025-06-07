@@ -164,8 +164,9 @@ If all leading principal minors of $A$ are non-zero, then $A$ has an LU factoriz
 > admits an LU factorization **if and only if** all leading principal
 > minors of $A$ are non-zero.
 
-
-As an example, the following matrix does not have an LU factorization:
+We can't necessarily factor a matrix into $LU$, because it may entail
+division by zero. As an example, the following matrix does not have an
+LU factorization:
 
 $$
 \begin{bmatrix}
@@ -210,6 +211,12 @@ So, what we are going to do in general is to compute a factorization of the form
 Then the system $Ax = b$ becomes $PAx = Pb$, and we can solve it using the LU factorization of $PA$.
 
 There are many ways to choose the permutation matrix $P$. The most common one is **partial pivoting**: at each step, we choose the largest absolute value in the column as the pivot.
+
+A row permutation corresponds to an application of a **row permutation matrix**:
+
+$$
+P_{jk} = I - (e_j - e_k)(e_j - e_k)^T
+$$
 
 #### Gaussian Elimination with Partial Pivoting
 
