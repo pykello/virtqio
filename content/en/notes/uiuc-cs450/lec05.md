@@ -13,7 +13,8 @@ An **LU factorization** is decomposition $A = LU$, where:
 - $U$ is an upper triangular matrix.
 
 Unit-diagonal $L$ implies each $L_{ii} = 1$, leaving $\dfrac{n(n-1)}{2}$ 
-unknowns in $L$ and $\dfrac{n(n+1)}{2}$ unknowns in $U$. For a total of $n^2$ unknowns, the same as the size of $A$.
+unknowns in $L$ and $\dfrac{n(n+1)}{2}$ unknowns in $U$. So, we have
+$n^2$ unknowns in total, matching the number of entries in $A$.
 
 :::card[example]
 **Example (LU Factorization).**
@@ -21,24 +22,21 @@ unknowns in $L$ and $\dfrac{n(n+1)}{2}$ unknowns in $U$. For a total of $n^2$ un
 $$
 A =
 \begin{bmatrix}
-2 & 3 & 1 & 5 \\\\
-6 & 13 & 5 & 19 \\\\
-2 & 19 & 10 & 23 \\\\
-4 & 10 & 11 & 31
+2 & 3 & 1 \\\\
+6 & 13 & 5 \\\\
+2 & 19 & 10
 \end{bmatrix}
 \=
 \begin{bmatrix}
-1 & 0 & 0 & 0 \\\\
-3 & 1 & 0 & 0 \\\\
-1 & 4 & 1 & 0 \\\\
-2 & -1 & 2 & 1
+1 & 0 & 0 \\\\
+3 & 1 & 0 \\\\
+1 & 4 & 1
 \end{bmatrix}
 \cdot
 \begin{bmatrix}
-2 & 3 & 1 & 5 \\\\
-0 & 4 & 2 & 4 \\\\
-0 & 0 & 2 & 1 \\\\
-0 & 0 & 0 & 3
+2 & 3 & 1 \\\\
+0 & 4 & 2 \\\\
+0 & 0 & 1
 \end{bmatrix}
 $$
 ::::
@@ -102,7 +100,7 @@ Given an LU factorization $A = LU$, we can solve the linear system $Ax = b$ in t
 
 Computational complexity of this algorithm is $O(n^2)$.
 
-#### The Algorithm
+#### The Recursive Algorithm
 
 Consider the block matrix form:
 
@@ -139,11 +137,35 @@ The computational complexity of this algorithm is $O(n^3)$.
 
 #### Existence of LU Factorization
 
-If only if any leading principal minor of $A$ is singular, then $A$ does not have an LU factorization.
+If all leading principal minors of $A$ are non-zero, then $A$ has an LU factorization.
 
-That is, for all partitionings $\begin{bmatrix} \mathbf{A}\_{11} & \mathbf{A}\_{12} \\\\ \mathbf{A}\_{21} & \mathbf{A}\_{22} \end{bmatrix}$, the determinant of $\mathbf{A}\_{11}$ must be non-zero.
+> [!NOTE]
+> Converse is not true: having an LU factorization does not imply that all leading principal minors are non-zero.
+>
+> For example,
+> $$
+> \begin{bmatrix}
+> 1 & 0 \\\\
+> 0 & 0
+> \end{bmatrix}
+> \=
+> \begin{bmatrix}
+> 1 & 0 \\\\
+> 0 & 1
+> \end{bmatrix}
+> \cdot
+> \begin{bmatrix}
+> 1 & 0 \\\\
+> 0 & 0
+> \end{bmatrix}
+> $$
+>
+> However, if $A \in \mathbb{R}^{n\times n}$ is **invertible**, then it 
+> admits an LU factorization **if and only if** all leading principal
+> minors of $A$ are non-zero.
 
-For example, the following matrix does not have an LU factorization:
+
+As an example, the following matrix does not have an LU factorization:
 
 $$
 \begin{bmatrix}
@@ -177,9 +199,15 @@ $$
 Then we need that $4 = 4 + u_{21}$, so $u_{21} = 0$. But at the
 same time $l_{32} u_{21} = 3$.
 
+Also, if Gaussian elimination can be performed to produce an upper triangular matrix without any row swaps, then the matrix has an LU factorization.
+
+#### $PA = LU$ Factorization
+
 **Permutation of rows** enables us to transform the matrix so that it has an LU factorization.
 
 So, what we are going to do in general is to compute a factorization of the form $PA = LU$, where $P$ is a permutation matrix.
+
+Then the system $Ax = b$ becomes $PAx = Pb$, and we can solve it using the LU factorization of $PA$.
 
 There are many ways to choose the permutation matrix $P$. The most common one is **partial pivoting**: at each step, we choose the largest absolute value in the column as the pivot.
 
