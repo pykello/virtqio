@@ -176,3 +176,13 @@ $$
 
 Then we need that $4 = 4 + u_{21}$, so $u_{21} = 0$. But at the
 same time $l_{32} u_{21} = 3$.
+
+**Permutation of rows** enables us to transform the matrix so that it has an LU factorization.
+
+So, what we are going to do in general is to compute a factorization of the form $PA = LU$, where $P$ is a permutation matrix.
+
+There are many ways to choose the permutation matrix $P$. The most common one is **partial pivoting**: at each step, we choose the largest absolute value in the column as the pivot.
+
+#### Gauss Elimination with Partial Pivoting
+
+51:00
