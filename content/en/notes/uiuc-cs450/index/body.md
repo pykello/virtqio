@@ -19,3 +19,4 @@ Conditioning of Linear Systems, Solving Linear Systems, Triangular Matrices
 ### [Lecture 5](lec05.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_tw0jek7s/330048022)
 LU Factorization, Partial Pivoting
 
+### [Lecture 6](lec06.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_qt6mvjzy/330048022)

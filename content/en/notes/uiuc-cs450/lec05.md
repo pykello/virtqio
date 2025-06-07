@@ -183,6 +183,12 @@ So, what we are going to do in general is to compute a factorization of the form
 
 There are many ways to choose the permutation matrix $P$. The most common one is **partial pivoting**: at each step, we choose the largest absolute value in the column as the pivot.
 
-#### Gauss Elimination with Partial Pivoting
+#### Gaussian Elimination with Partial Pivoting
 
-51:00
+**Partial pivoting** permutes rows to make the absolute value of
+the divisor $u_{ii}$ maximal at each step.
+
+This selection ensures that:
+- We are never forced to divide by zero during Gaussian elimination.
+- The magnitude of the entries in $L$ is at most 1.
+
