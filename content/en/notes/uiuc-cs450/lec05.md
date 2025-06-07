@@ -127,7 +127,7 @@ Where bold-face entries are submatrices: $\mathbf{a}\_{12} \in \mathbb{R}^{1 \ti
 
 Then:
 
-- $\begin{pmatrix} u_{11} & \mathbf{u}\_{12} \end{pmatrix} = \begin{pmatrix} a_{11} & \mathbf{a}\_{12} \end{pmatrix}$.
+- $\begin{bmatrix} u_{11} & \mathbf{u}\_{12} \end{bmatrix} = \begin{bmatrix} a_{11} & \mathbf{a}\_{12} \end{bmatrix}$.
 - $\mathbf{l}\_{21} = \dfrac{\mathbf{a}\_{21}}{u_{11}}$.
 - Obtain $\mathbf{L}\_{22}$ and $\mathbf{U}\_{22}$ recursively computing the LU factorization of the **Schur complement**:
 
@@ -137,4 +137,42 @@ $$
 
 The computational complexity of this algorithm is $O(n^3)$.
 
-43:15
+#### Existence of LU Factorization
+
+If only if any leading principal minor of $A$ is singular, then $A$ does not have an LU factorization.
+
+That is, for all partitionings $\begin{bmatrix} \mathbf{A}\_{11} & \mathbf{A}\_{12} \\\\ \mathbf{A}\_{21} & \mathbf{A}\_{22} \end{bmatrix}$, the determinant of $\mathbf{A}\_{11}$ must be non-zero.
+
+For example, the following matrix does not have an LU factorization:
+
+$$
+\begin{bmatrix}
+3 & 2 \\\\
+6 & 4 \\\\
+0 & 3
+\end{bmatrix}
+$$
+
+Proceeding with Gauss elimination, we obtain:
+
+$$
+\begin{bmatrix}
+3 & 2 \\\\
+6 & 4 \\\\
+0 & 3
+\end{bmatrix}
+\=
+\begin{bmatrix}
+1 & 0 \\\\
+2 & 1 \\\\
+0 & l_{32}
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+3 & 2 \\\\
+0 & u_{21}
+\end{bmatrix}
+$$
+
+Then we need that $4 = 4 + u_{21}$, so $u_{21} = 0$. But at the
+same time $l_{32} u_{21} = 3$.
