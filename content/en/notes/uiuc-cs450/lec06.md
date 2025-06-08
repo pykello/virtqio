@@ -17,7 +17,7 @@ $$
 \text{rank}(A) = \text{rank}(LU) = \text{rank}(U)
 $$
 
-In **partial pivoting**, at each step we peak the largest 
+In **partial pivoting**, at each step we pick the largest 
 absolute value in the column. $P$ is product of $n-1$
 row permutation matrices:
 
@@ -33,9 +33,9 @@ $$
 \text{rank}(A[1:k, 1:k]) = \text{rank}(A[1:n, 1:k])
 $$
 
-**Example.** For all $1 \leq k \leq n - 1$.
+For all $1 \leq k \leq n - 1$.
 
-Consider the matrix:
+**Example.** Consider the matrix:
 
 $$
 A = \begin{bmatrix}
@@ -121,9 +121,95 @@ $$
 
 #### Complete Pivoting
 
-**Complete pivoting** permutes both rows and columns to make divisor $u_{ii}$
-maximal at each step.
+**Complete pivoting** permutes both rows and columns to make absolute value
+of the pivot element as large as possible at each step.
 
 Complete pivoting is noticeably more expensive than partial pivoting.
 
 #### Round-off Error in LU
+
+Consider the following matrix where $\epsilon < \epsilon_{\text{mach}}$:
+
+$$
+A = \begin{bmatrix}
+\epsilon & 1 \\\\
+1 & 1
+\end{bmatrix}
+$$
+
+**Without pivoting.**
+
+* We have $L = \begin{bmatrix}
+1 & 0 \\\\
+1/\epsilon & 1
+\end{bmatrix}$ and $U = \begin{bmatrix}
+\epsilon & 1 \\\\
+0 & 1 - 1/\epsilon
+\end{bmatrix}$.
+* Rounding yields $fl(U) = \begin{bmatrix}
+\epsilon & 1 \\\\
+0 & -1/\epsilon
+\end{bmatrix}$.
+* This leads to $L \\; fl(U) = \begin{bmatrix}
+\epsilon & 1 \\\\
+1 & 0
+\end{bmatrix}$, a backward error of $\begin{bmatrix}0 & 0 \\\\
+0 & -1\end{bmatrix}$.
+
+
+**With partial pivoting.**
+* Partial pivoting gives $PA = \begin{bmatrix}1 & 1 \\\\
+\epsilon & 1\end{bmatrix}$.
+* We have $L = \begin{bmatrix}
+1 & 0 \\\\
+\epsilon & 1
+\end{bmatrix}$ and $U = \begin{bmatrix}
+1 & 1 \\\\
+0 & 1 - \epsilon
+\end{bmatrix}$.
+* Rounding yields $fl(U) = \begin{bmatrix}
+1 & 1 \\\\
+0 & 1
+\end{bmatrix}$.
+* This leads to $L \\; fl(U) = \begin{bmatrix}
+1 & 1 \\\\
+\epsilon & 1 + \epsilon
+\end{bmatrix}$, a backward error of $\begin{bmatrix}0 & 0 \\\\
+0 & \epsilon\end{bmatrix}$.
+
+#### Error Analysis of LU Factorization
+
+When computing in floating-point, absolute backward error $\delta A$ in LU,
+so that $\hat L \hat U = A + \delta A$, is:
+
+$$
+\lvert \delta a_{ij} \rvert \leq \epsilon_{\text{mach}} (\lvert \hat L \rvert \cdot \lvert \hat U \rvert)_{ij}
+$$
+
+#### Helpful Matrix Properties
+
+**Strictly Diagonally Dominant Matrix.** Pivoting is not required if the matrix is strictly diagonally dominant, meaning:
+
+$$
+\lvert a_{ii} \rvert > \sum_{j \neq i} \lvert a_{ij} \rvert
+$$
+
+That is, the absolute value of each diagonal entry is greater than the sum of the absolute values of the other entries in that **row**.
+
+**Symmetric Positive Definite Matrix.** If $A^T = A$ and for all $x \neq 0$ we have $x^T A x > 0$ (or equivalently, all eigenvalues are positive), then $L = U^T$ and pivoting is not required. **Cholesky** algorithm $A = LL^T$ can be used. Note that in Cholesky, $L$ is not necessarily unit-diagonal.
+
+**Symmetric Indefinite Matrix.** If $A^T = A$  and $\lambda(A) < 0$, then
+we can use pivoted **LDL factorization** $P A P^T = L D L^T$, where $L$ is lower triangular and unit-diagonal, and $D$ is block diagonal with 2x2 diagonal or antidiagonal blocks.
+
+**Banded Matrix.** If we have non-zero entries only on the main diagonal and $b$ diagonals above and below it, i.e $a_{ij} = 0$ for $|i - j| > b$, then
+LU without pivoting and Cholesky preserve the band structure and require $O(n b^2)$ operations.
+
+#### Sherman-Morrison-Woodbury Formula
+
+Suppose we have computed $A = LU$ and now want to solve a perturbed system
+$(A - uv^T)x = b$. We can use the **Sherman-Morrison-Woodbury** formula:
+
+$$
+(A - uv^T)^{-1} = A^{-1} + \frac{A^{-1} u v^T A^{-1}}{1 + v^T A^{-1} u}
+$$
+

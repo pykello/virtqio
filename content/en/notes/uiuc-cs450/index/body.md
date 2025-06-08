@@ -20,3 +20,4 @@ Conditioning of Linear Systems, Solving Linear Systems, Triangular Matrices
 LU Factorization, Partial Pivoting
 
 ### [Lecture 6](lec06.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_qt6mvjzy/330048022)
+Partial Pivoting, Error Analysis of LU, Sherman-Morrison-Woodbury Formula
