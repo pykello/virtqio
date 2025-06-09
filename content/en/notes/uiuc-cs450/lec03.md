@@ -128,7 +128,7 @@ $$
 
 :::card[example]
 
-**Example** (from quiz 3): $\lVert A \rVert\_\infty$ is the maximum 1-norm of the rows of $A$.
+**Theorem** (from quiz 3): $\lVert A \rVert\_\infty$ is the maximum 1-norm of the rows of $A$.
 
 **Proof**.
 
@@ -176,12 +176,53 @@ Using 2 and 4, we conclude that $\lVert A \rVert\_\infty$ is the maximum 1-norm 
 
 :::card[example]
 
-**Example** (from quiz 3):
+**Theorem** (from quiz 3):
 
 * $\lVert A \rVert\_1$ is the maximum 1-norm of the columns of $A$.
 * $\lVert A^T \rVert\_1 = \lVert A \rVert\_\infty$.
 
 ::::
+
+
+:::card[note]
+
+**Note.** The following properties hold for norms induced by p-norms, but 
+may or may not hold for more general matrix norms:
+
+- $\lVert AB \rVert\_p \le \lVert A \rVert\_p \cdot \lVert B \rVert\_p$
+- $\lVert Ax \rVert\_p \le \lVert A \rVert\_p \cdot \lVert x \rVert\_p$
+
+::::
+
+**Example.** For the matrix
+
+$$
+A = \begin{bmatrix}
+1 & 0 & 3 \\\\
+-1 & 2 & 0 \\\\
+4 & 0 & 1
+\end{bmatrix}
+$$
+
+we have:
+$$
+\begin{align*}
+\lVert A \rVert\_1 &= \max\\{6, 2, 4\\} = 6 \\\\
+\lVert A \rVert\_\infty &= \max\\{4, 3, 5\\} = 5
+\end{align*}
+$$
+
+2-norm is the largest singular value of $A$. We have:
+
+$$
+A^T A = \begin{bmatrix}
+18 & -2 & 7 \\\\
+-2 & 4 & 0 \\\\
+7 & 0 & 10
+\end{bmatrix}
+$$
+
+Its eigenvalues are $\lambda_1 \approx 22.22698, \lambda_2 \approx 6.33655, \lambda_3 \approx 3.43646$. So, $\lVert A \rVert\_2 = \sqrt{\lambda_1} \approx 4.71$.
 
 #### Induced Matrix Norms
 
