@@ -70,6 +70,13 @@ $$
 \dfrac{\lVert \delta x \rVert}{\lVert x \rVert} \le \lVert A \rVert \cdot \lVert A^{-1} \rVert \cdot \dfrac{\lVert \delta b \rVert}{\lVert b \rVert}
 $$
 
+So, we have:
+
+$$
+\dfrac{\lVert \delta x \rVert}{\lVert x \rVert}
+    \le \kappa(A) \dfrac{\lVert \delta b \rVert}{\lVert b \rVert}
+$$
+
 ---------
 
 Now, consider perturbations to the input coefficients $\hat A = A + \delta A$. 
@@ -105,6 +112,13 @@ So, we have:
 $$
 \dfrac{\lVert \delta x \rVert}{\lVert x \rVert} \le \kappa(A) \dfrac{\lVert \delta A \rVert}{\lVert A \rVert}
 $$
+
+#### Geometric Interpretation
+
+A geometric interpretation of these sensitivity results in 2D is that if
+the lines defined by two equations are close to parallel, then their
+intersection is not sharply defined. On the other hand, if the lines are
+nearly perpendicular, then the intersection is sharply defined.
 
 #### Solving Basic Linear Systems
 
