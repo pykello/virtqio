@@ -94,6 +94,18 @@ board.create('polygon', linfPoints, {
     <span style="color: green;">∞-norm (square)</span>
 </div>
 
+In general, for any vector $v \in \mathbb{R}^n$, we have:
+
+$$
+\lVert v \rVert\_1 \ge \lVert v \rVert\_2 \ge \lVert v \rVert\_\infty
+$$
+
+We also have the following inequalities:
+- $\lVert v \rVert\_1 \le \sqrt{n} \lVert v \rVert\_2$
+- $\lVert v \rVert\_2 \le \sqrt{n} \lVert v \rVert\_\infty$
+
+So, any of these norms differ by at most a factor of a constant.
+
 #### Inner-Product Spaces
 
 **Inner-product** $\langle x, y \rangle$ should satisfy:
