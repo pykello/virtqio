@@ -3,6 +3,10 @@
 * [Lecture Video](https://mediaspace.illinois.edu/media/t/1_rdz5rdf3/330048022)
 * [Slides](https://relate.cs.illinois.edu/course/cs450-s24/f/lectures/02-lecture.pdf)
 
+Some notes and examples are from:
+
+* Heath, M. T. (2018). Scientific computing: An introductory survey (Revised Second Edition). SIAM. https://doi.org/10.1137/1.9781611975581
+
 #### Vector Norms
 
 A **vector norm** should satisfy:
@@ -275,6 +279,33 @@ $$
 $$
 
 ::::
+
+The condition number is a measure of how close a matrix is to being singular. If $\kappa(A)$ is large, then $A$ is close to being singular. Whereas if $\kappa(A)$ is close to 1, then $A$ is far from being singular.
+
+From the definition, $\kappa(A) = \kappa(A^{-1})$. This means that if $A$ is
+close to being singular, then $A^{-1}$ is equally close to being singular.
+
+#### Condition Number Estimation
+
+The matrix norm $\lVert A \rVert$ is easily calculated as the maximum absolute
+column sum or row sum, depending on the norm used. However, calculating $\lVert A^{-1} \rVert$ is more difficult.
+
+If $z$ is a solution to $Az = y$, then
+
+$$
+\lVert z \rVert = \lVert A^{-1} y \rVert \le \lVert A^{-1} \rVert \lVert y \rVert
+$$
+
+Therefore,
+
+$$
+\frac{\lVert z \rVert}{\lVert y \rVert} \le \lVert A^{-1} \rVert
+$$
+
+Thus maximizing $\dfrac{\lVert z \rVert}{\lVert y \rVert}$ gives a reasonable estimate of $\lVert A^{-1} \rVert$.
+
+Finding such a maximum can be expensive. One strategy is to try few random
+vectors and take the maximum $\dfrac{\lVert z \rVert}{\lVert y \rVert}$.
 
 #### Singular Value Decomposition (SVD)
 
