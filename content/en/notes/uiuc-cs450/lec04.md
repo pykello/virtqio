@@ -3,6 +3,10 @@
 * [Lecture Video](https://mediaspace.illinois.edu/media/t/1_w7fpz9ns/330048022)
 * [Slides](https://relate.cs.illinois.edu/course/cs450-s24/f/lectures/02-lecture.pdf)
 
+Some notes and examples are from:
+
+* Heath, M. T. (2018). Scientific computing: An introductory survey (Revised Second Edition). SIAM. https://doi.org/10.1137/1.9781611975581
+
 #### Existence of SVD
 
 Consider the decomposition:

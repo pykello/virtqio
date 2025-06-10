@@ -204,12 +204,26 @@ we can use pivoted **LDL factorization** $P A P^T = L D L^T$, where $L$ is lower
 **Banded Matrix.** If we have non-zero entries only on the main diagonal and $b$ diagonals above and below it, i.e $a_{ij} = 0$ for $|i - j| > b$, then
 LU without pivoting and Cholesky preserve the band structure and require $O(n b^2)$ operations.
 
-#### Sherman-Morrison-Woodbury Formula
+#### Solving Perturbed Systems with Rank-1 Updates
 
 Suppose we have computed $A = LU$ and now want to solve a perturbed system
-$(A - uv^T)x = b$. We can use the **Sherman-Morrison-Woodbury** formula:
+$(A - uv^T)x = b$. That is, we want to find $x = (A - uv^T)^{-1} b$.
+
+From the **Sherman-Morrison-Woodbury** formula we have:
 
 $$
 (A - uv^T)^{-1} = A^{-1} + \frac{A^{-1} u v^T A^{-1}}{1 + v^T A^{-1} u}
 $$
+
+Then:
+
+$$
+x = (A - uv^T)^{-1} \\; b = A^{-1} b + \frac{(A^{-1} u) \\; v^T \\; (A^{-1} b)}{1 + v^T \\; (A^{-1} u)}
+$$
+
+To compute this:
+- Solve $Az = u$ to find $z = A^{-1} u$ using the LU factorization of $A$. Similarly, solve $Ay = b$ to find $y = A^{-1} b$ (cost: $O(n^2)$),
+- Then evaluate $x = y + \dfrac{z (v^T y)}{1 + v^T z}$ (cost: $O(n)$).
+
+Thus, the full solution requires only $O(n^2)$ time.
 
