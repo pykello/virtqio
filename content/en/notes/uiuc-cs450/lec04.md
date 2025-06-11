@@ -126,6 +126,18 @@ nearly perpendicular, then the intersection is sharply defined.
 
 #### Solving Basic Linear Systems
 
+The general strategy is to transform the system into one that:
+- is easier to solve
+- has the same solution
+
+We can premultiply both sides by any non-singular matrix $P$
+without changing the solution. To see this, note that the
+solution to $MAx = Mb$ is given by:
+
+$$
+z = (MA)^{-1} Mb = A^{-1} M^{-1} Mb = A^{-1} b = x
+$$
+
 ##### Diagonal Matrices
 
 If we have:
