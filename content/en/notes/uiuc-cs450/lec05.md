@@ -7,54 +7,6 @@ Some notes and examples are from:
 
 * Heath, M. T. (2018). Scientific computing: An introductory survey (Revised Second Edition). SIAM. https://doi.org/10.1137/1.9781611975581
 
-#### Elementary Elimination Matrices
-
-$$
-M_k a = \begin{bmatrix}
-1 & \cdots & 0 & 0 & \cdots & 0 \\\\
-\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\\\
-0 & \cdots & 1 & 0 & \cdots & 0 \\\\
-0 & \cdots & -m_{k+1} & 1 & \cdots & 0 \\\\
-\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\\\
-0 & \cdots & -m_{n} & 0 & \cdots & 1
-\end{bmatrix}
-\begin{bmatrix}
-a_1 \\\\
-\vdots \\\\
-a_k \\\\
-a_{k+1} \\\\
-\vdots \\\\
-a_n
-\end{bmatrix}
-\=
-\begin{bmatrix}
-a_1 \\\\
-\vdots \\\\
-a_k \\\\
-0 \\\\
-\vdots \\\\
-0
-\end{bmatrix}
-$$
-
-where $m_i = \dfrac{a_i}{a_k}$ for $i = k+1, \ldots, n$.
-
-The divisor $a_k$ is the **pivot**.
-
-This is called an **elementary elimination matrix** or **Gaussian transformation**.
-
-Note the following properties:
-- $M_k$ is lower triangular with unit main diagonal, hence it is non-singular.
-- $M_k = I - \mathbf{m}\_k \mathbf{e}\_k^T$, where $\mathbf{m}\_k = (0, \ldots, 0, m_{k+1}, \ldots, m_n)^T$ and $\mathbf{e}_k$ is the $k$-th column of the identity matrix.
-- $M_k^{-1} = I + \mathbf{m}\_k \mathbf{e}\_k^T$.
-- If $M_j$, $j > k$, is another elementary elimination matrix, then
-
-$$
-M_k M_j = I - \mathbf{m}\_k \mathbf{e}\_k^T - \mathbf{m}\_j \mathbf{e}\_j^T + \mathbf{m}\_k \mathbf{e}_k^T \mathbf{m}\_j \mathbf{e}_j^T = I - \mathbf{m}\_k \mathbf{e}\_k^T - \mathbf{m}\_j \mathbf{e}\_j^T
-$$
-
-This is because $\mathbf{e}\_k^T \mathbf{m}\_j = 0$. Thus their product is essentially their union.
-
 #### LU Factorization
 
 We want to transform a general matrix into product triangular matrices.
@@ -151,6 +103,67 @@ Given an LU factorization $A = LU$, we can solve the linear system $Ax = b$ in t
 2. Solve $Ux = y$ for $x$ using backward substitution.
 
 Computational complexity of this algorithm is $O(n^2)$.
+
+#### Elementary Elimination Matrices
+
+$$
+M_k a = \begin{bmatrix}
+1 & \cdots & 0 & 0 & \cdots & 0 \\\\
+\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\\\
+0 & \cdots & 1 & 0 & \cdots & 0 \\\\
+0 & \cdots & -m_{k+1} & 1 & \cdots & 0 \\\\
+\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\\\
+0 & \cdots & -m_{n} & 0 & \cdots & 1
+\end{bmatrix}
+\begin{bmatrix}
+a_1 \\\\
+\vdots \\\\
+a_k \\\\
+a_{k+1} \\\\
+\vdots \\\\
+a_n
+\end{bmatrix}
+\=
+\begin{bmatrix}
+a_1 \\\\
+\vdots \\\\
+a_k \\\\
+0 \\\\
+\vdots \\\\
+0
+\end{bmatrix}
+$$
+
+where $m_i = \dfrac{a_i}{a_k}$ for $i = k+1, \ldots, n$.
+
+The divisor $a_k$ is the **pivot**.
+
+This is called an **elementary elimination matrix** or **Gaussian transformation**.
+
+Note the following properties:
+- $M_k$ is lower triangular with unit main diagonal, hence it is non-singular.
+- $M_k = I - \mathbf{m}\_k \mathbf{e}\_k^T$, where $\mathbf{m}\_k = (0, \ldots, 0, m_{k+1}, \ldots, m_n)^T$ and $\mathbf{e}_k$ is the $k$-th column of the identity matrix.
+- $M_k^{-1} = I + \mathbf{m}\_k \mathbf{e}\_k^T$.
+- If $M_j$, $j > k$, is another elementary elimination matrix, then
+
+$$
+M_k M_j = I - \mathbf{m}\_k \mathbf{e}\_k^T - \mathbf{m}\_j \mathbf{e}\_j^T + \mathbf{m}\_k \mathbf{e}_k^T \mathbf{m}\_j \mathbf{e}_j^T = I - \mathbf{m}\_k \mathbf{e}\_k^T - \mathbf{m}\_j \mathbf{e}\_j^T
+$$
+
+This is because $\mathbf{e}\_k^T \mathbf{m}\_j = 0$. Thus their product is essentially their union.
+
+#### Gaussian Elimination
+Using elementary elimination matrices, it's easy to transform a matrix into an upper triangular form.
+
+Let $M = M_{n-1} \cdots M_1$ be the product of elementary elimination matrices. Then $M A = U$, where $U$ is upper triangular. As discussed above, $M$ and $M^{-1}$ are lower triangular with ones on the diagonal.
+
+We also saw how to iteratively compute $M^{-1}$.
+
+We can write the LU factorization as:
+
+$$
+A = M^{-1} U = L U
+$$
 
 #### The Recursive Algorithm
 
@@ -253,6 +266,20 @@ Then we need that $4 = 4 + u_{21}$, so $u_{21} = 0$. But at the
 same time $l_{32} u_{21} = 3$.
 
 Also, if Gaussian elimination can be performed to produce an upper triangular matrix without any row swaps, then the matrix has an LU factorization.
+
+> [!NOTE]
+> The potential need for pivoting has nothing to do with 
+> singularity. For example, the matrix
+>
+> $$
+> \begin{bmatrix}
+> 0 & 1 \\\\
+> 1 & 0 \\\\
+> \end{bmatrix}
+> $$
+>
+> is non-singular, but it does not have an LU factorization
+> without row swaps.
 
 #### $PA = LU$ Factorization
 
