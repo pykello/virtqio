@@ -198,8 +198,46 @@ That is, the absolute value of each diagonal entry is greater than the sum of th
 
 **Symmetric Positive Definite Matrix.** If $A^T = A$ and for all $x \neq 0$ we have $x^T A x > 0$ (or equivalently, all eigenvalues are positive), then $L = U^T$ and pivoting is not required. **Cholesky** algorithm $A = LL^T$ can be used. Note that in Cholesky, $L$ is not necessarily unit-diagonal.
 
+:::card[example]
+**Example.** Consider the matrix:
+
+$$
+A = \begin{bmatrix}
+4 & 12 & -16 \\\\
+12 & 37 & -43 \\\\
+-16 & -43 & 98
+\end{bmatrix}
+$$
+
+Here $A^T = A$ and all principal minors are positive, so it is symmetric positive definite.
+Thus, we can use Cholesky factor:
+
+$$
+L = \begin{bmatrix}
+2 & 0 & 0 \\\\
+6 & 1 & 0 \\\\
+-8 & 5 & 3
+\end{bmatrix}
+$$
+
+One can verify that $A = LL^T$.
+::::
+
 **Symmetric Indefinite Matrix.** If $A^T = A$  and $\lambda(A) < 0$, then
 we can use pivoted **LDL factorization** $P A P^T = L D L^T$, where $L$ is lower triangular and unit-diagonal, and $D$ is block diagonal with 2x2 diagonal or antidiagonal blocks.
+
+:::card[example]
+**Example.** Consider the matrix:
+
+$$
+A = \begin{bmatrix}
+2 & 1 & 0 \\[6pt]
+1 & -3 & 1 \\[6pt]
+0 & 1 & 2
+\end{bmatrix}
+$$
+
+
 
 **Banded Matrix.** If we have non-zero entries only on the main diagonal and $b$ diagonals above and below it, i.e $a_{ij} = 0$ for $|i - j| > b$, then
 LU without pivoting and Cholesky preserve the band structure and require $O(n b^2)$ operations.
