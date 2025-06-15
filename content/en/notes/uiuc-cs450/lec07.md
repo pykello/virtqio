@@ -3,7 +3,7 @@
 * [Lecture Video](https://mediaspace.illinois.edu/media/t/1_06ikz8ir/330048022)
 * [Slides](https://relate.cs.illinois.edu/course/cs450-s24/f/lectures/03-lecture.pdf)
 
-## Linear Least Squares
+#### Linear Least Squares
 
 We have more equations than unknowns, and we want to find a solution
 that minimizes $\lVert Ax - b \rVert\_2$. That is, we want to find
@@ -52,7 +52,7 @@ $$
 x^* = A^\dagger b
 $$
 
-## Data Fitting using Least Squares
+#### Data Fitting using Least Squares
 
 Given a set of points $(x_i, y_i)$, we want to find a $n-1$ degree polynomial $p(x)$ that minimizes the residuals:
 
@@ -91,4 +91,40 @@ y_m
 $$
 
 Then we can use the least squares method to find the coefficients $a_i$.
+
+#### Conditioning of Linear Least Squares
+
+Consider a perturbation $\delta b$ to the right-hand side $b$:
+
+$$
+A(x + \delta x) \cong b + \delta b
+$$
+
+The amplification depends on how much of $b$ is in the span of $A$.
+
+$$
+\frac{\lVert \delta x \rVert\_2}{\lVert x \rVert\_2} \leq \kappa(A) \frac{\lVert b \rVert\_2}{\lVert Ax \rVert\_2} \frac{\lVert \delta b \rVert\_2}{\lVert b \rVert\_2}
+$$
+
+#### Normal Equations
+
+To solve the least squares problem, we can use the **normal equations**:
+
+$$
+A^T A x = A^T b
+$$
+
+Using the SVD of $A = U \Sigma V^T$, we have:
+
+$$
+\begin{align*}
+(U \Sigma V^T)^T U \Sigma V^T x &= (U \Sigma V^T)^T b \\\\
+\Sigma^T \Sigma V^T x &= \Sigma^T U^T b \\\\
+V^T x &= (\Sigma^T \Sigma)^{-1} \Sigma^T U^T b = \Sigma^\dagger U^T b \\\\
+x &= V \Sigma^\dagger U^T b = x^\star
+\end{align*}
+$$
+
+However, this method is more ill-conditioned problem than the original least squares problem. Generally, we have $\kappa(A^T A) = \kappa(A)^2$.
+This is easily seen by noting that singular values of $A^T A$ are squares of the singular values of $A$.
 
