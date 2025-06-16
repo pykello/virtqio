@@ -23,4 +23,6 @@ LU Factorization, Partial Pivoting
 Partial Pivoting, Error Analysis of LU, Sherman-Morrison-Woodbury Formula
 
 ### [Lecture 7](lec07.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_06ikz8ir/330048022)
-Linear Least Squares, Normal Equations, QR Factorization
+Linear Least Squares, Normal Equations, QR Factorization, Gram-Schmidt Process
+
+### [Lecture 8](lec08.html) ┊ [Lecture Video](https://mediaspace.illinois.edu/media/t/1_z0k75bpo/330048022)
