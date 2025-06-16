@@ -128,3 +128,38 @@ $$
 However, this method is more ill-conditioned problem than the original least squares problem. Generally, we have $\kappa(A^T A) = \kappa(A)^2$.
 This is easily seen by noting that singular values of $A^T A$ are squares of the singular values of $A$.
 
+#### Solving Normal Equations
+
+If $A$ is full column rank ($\text{rank}(A) = n$), then $A^T A$ is symmetric positive definite (SPD):
+
+- **Symmetric.** $(A^T A)^T = A^T A$.
+- **Positive Definite.**
+  - Since $A^T A = V \Sigma^2 V^T$, we have $\lambda\_i(A^T A) = \sigma\_i(A)^2 > 0$,
+  - or equivalently, $x^T A^T A x = \lVert Ax \rVert\_2^2 > 0$ for all $x \neq 0$.
+
+Since $A^T A$ is SPD, we can use Cholesky factorization to solve the normal equation $A^T A x = A^T b$.
+
+#### QR Factorization
+
+**QR factorization** provides a more stable way to solve the least squares problem.
+
+Given a matrix $A \in \mathbb{R}^{m \times n}$ where $m \geq n$ and $\text{rank}(A) = n$, we can factor it as $A = QR$, where:
+
+- $Q \in \mathbb{R}^{m \times m}$ is an orthogonal matrix (i.e., $Q^T Q = I_m$),
+- $R \in \mathbb{R}^{m \times n}$ is an upper trapezoidal matrix.
+  For $m > n$, first $n$ rows of $R$ are upper triangular with
+  positive diagonal, and the remaining rows are zero.
+
+A **reduced QR factorization** is defined as $A = \hat{Q} \hat{R}$, where:
+- $\hat{Q} \in \mathbb{R}^{m \times n}$ has orthonormal columns,
+- $\hat{R} \in \mathbb{R}^{n \times n}$ is upper triangular.
+
+To solve the least squares problem $Ax \cong b$, we can:
+
+1. Compute the reduced QR factorization $A = \hat{Q} \hat{R}$.
+2. Multiply both sides by $\hat{Q}^T$ to get $\hat{R} x = \hat{Q}^T b$.
+3. Solve the upper triangular system $\hat{R} x = \hat{Q}^T b$ using backward substitution.
+
+This method is more stable than the normal equations, since multiplying
+by an orthogonal matrix doesn't grow the error.
+
