@@ -163,3 +163,40 @@ To solve the least squares problem $Ax \cong b$, we can:
 This method is more stable than the normal equations, since multiplying
 by an orthogonal matrix doesn't grow the error.
 
+#### Gram-Schmidt Orthogonalization
+
+The **Gram-Schmidt process** finds a set of orthonormal vectors with the same span as the columns of $A$.
+
+We can use it to compute the QR factorization of $A$.
+
+The **classical Gram-Schmidt process** for QR factorization:
+
+```
+for i = 1,…,n
+    b_i  = a_i                # start with original column
+    for j = 1,…,i−1
+        r_ji = <q_j, a_i>     # projection coefficient
+        b_i  = b_i − r_ji q_j # subtract projection
+    end
+    r_ii = ||b_i||
+    q_i  = b_i / r_ii
+end
+```
+
+The **modified Gram-Schmidt process** is more numerically stable:
+
+```
+for i = 1,…,n
+    b_i = a_i
+    for j = 1,…,i−1
+        r_ji = <q_j, b_i>
+        b_i = b_i − r_ji q_j
+    end
+    r_ii = ||b_i||
+    q_i = b_i / r_ii
+end
+```
+
+Here, instead of subtracting the projection from the
+original vector, we subtract it from the already 
+orthogonalized vector $b_i$.
