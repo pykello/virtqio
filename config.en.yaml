@@ -18,3 +18,4 @@ theorems:
   - name: "proof"
     label: "Proof"
     numbered: false
+syntax_highlighter_theme: "InspiredGitHub"
