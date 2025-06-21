@@ -170,20 +170,34 @@
     h4 { font-size: 1.4rem !important; }
     h5 { font-size: 1.2rem !important; }
 
-    .card.example {
+    .card {
       padding: 1em 1.25em;
       margin: 1em 0;
       border-left: 4px solid;
       border-radius: 6px;
+    }
+
+    .card h3 {
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .card.example {
       background-color: #f1f8ff;
       border-color: #0969da;
     }
 
+    .card.example h3 {
+      color: #0056b3;
+    }
+
+    .card.section {
+      background-color: #ffffff;
+      border-color: #ced4da;
+    }
+
     .card.note {
-      padding: 1em 1.25em;
-      margin: 1em 0;
-      border-left: 4px solid;
-      border-radius: 6px;
       background-color: #fff8e1;
       border-color: #ffc107;
     }
@@ -202,6 +216,14 @@
       display: flex;
       align-items: center;
       gap: 0.5em;
+    }
+
+    main img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* Note */
