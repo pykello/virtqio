@@ -561,3 +561,20 @@ $$
 \text{div} \\, \mathbf{F} = \frac{1}{r} \frac{\partial}{\partial r} \left(r F_r\right) + \frac{1}{r} \frac{\partial F_\theta}{\partial \theta} + \frac{\partial F_z}{\partial z}
 \tag{II-24}
 $$
+
+#### The Del Notation
+
+We define the **del operator** as:
+
+$$
+\nabla = \mathbf{i} \frac{\partial}{\partial x} + \mathbf{j} \frac{\partial}{\partial y} + \mathbf{k} \frac{\partial}{\partial z}
+$$
+
+Then, the divergence can be written as:
+
+$$
+\text{div} \\, \mathbf{F} = \nabla \cdot \mathbf{F} = \frac{\rho}{\epsilon_0}
+$$
+
+#### The Divergence Theorem
+
