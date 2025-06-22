@@ -513,9 +513,7 @@ It can be shown that the result is independent of the shape of the volume we use
 :::card[note]
 **Summary.** Think of a tiny cube surrounding the point you’re interested in. Measure how much of the vector field flows out of its six faces versus how much flows in; then shrink the cube to zero size.
 
-Divergence is that net out-minus-in flow _per unit volume_—a local “rate of creation” of field lines.
-
-Positive divergence means the point acts like a source (more field leaving than entering), negative divergence means a sink, and zero divergence means the flow just passes through without piling up or emptying out.
+Divergence is that net out-minus-in flow _per unit volume_.
 ::::
 
 #### Differential Form of Gauss's Law
