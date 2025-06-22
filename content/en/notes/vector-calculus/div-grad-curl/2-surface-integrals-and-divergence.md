@@ -424,3 +424,105 @@ We can use symmetry and Gauss's Law to find the electric field in the following 
 - An infinitely long cylindrically symmetric charge distribution, and
 - An infinite slab of charge.
 
+### From Gauss's Law to Divergence
+
+Consider the surface integral of the electric field over closed surfaces centered at $P$:
+
+ ![](fig-II-21.png)
+
+Assuming volume $\Delta V$ and average charge density $\overline{\rho}_{\Delta V}$, we have:
+
+$$
+\int\int_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\overline{\rho}_{\Delta V} \Delta V}{\epsilon_0}
+\tag{II-15}
+$$
+
+As expected, both sides go to zero as $\Delta V \to 0$. To isolate the quantity that does not go to zero, we divide both sides by $\Delta V$:
+
+$$
+\frac{1}{\Delta V} \int\int_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\overline{\rho}_{\Delta V}}{\epsilon_0}
+$$
+
+Taking the limit as $\Delta V \to 0$, we get:
+
+$$
+\lim_{\substack{\Delta V \to 0 \\\\[0.3em] \text{about}\\; (x,y,z)}} \frac{1}{\Delta V} \int\int_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\rho(x, y, z)}{\epsilon_0}
+\tag{II-16}
+$$
+
+#### The Divergence
+
+We define the **divergence** of a vector field $\mathbf{F}$ as:
+
+$$
+\text{div} \\, \mathbf{F} \equiv \lim_{\substack{\Delta V \to 0 \\\\[0.3em] \text{about}\\; (x,y,z)}} \frac{1}{\Delta V} \int\int_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS
+\tag{II-17}
+$$
+
+Then equation (II-16) can be written as:
+
+$$
+\text{div} \\, \mathbf{E} = \frac{\rho}{\epsilon_0}
+\tag{II-18}
+$$
+
+To calculate this, consider a small cube centered at $(x, y, z)$ with side length $\Delta x$, $\Delta y$, and $\Delta z$:
+
+ ![](fig-II-23.png)
+
+$S_1$ is the front face, $S_2$ is the back face. Let $\mathbf{F} \cdot \mathbf{i} = F_x$.
+
+Then the surface integral over $S_1$ is:
+
+$$
+\int\int_{S_1} F_x(x, y, z) \\, dS \approx F_x(x + \frac{\Delta x}{2}, y, z) \Delta y \Delta z
+\tag{II-19}
+$$
+
+Similarly, the surface integral over $S_2$ is:
+
+$$
+\int\int_{S_2} F_x(x, y, z) \\, dS \approx -F_x(x - \frac{\Delta x}{2}, y, z) \Delta y \Delta z
+\tag{II-20}
+$$
+
+Then, adding these two and dividing by $\Delta V$ gives:
+
+$$
+\frac{1}{\Delta V} \int \int_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
+\frac{F_x(x + \frac{\Delta x}{2}, y, z) - F_x(x - \frac{\Delta x}{2}, y, z)}{\Delta x}
+\tag{II-21}
+$$
+
+Taking the limit as $\Delta V \to 0$, we get:
+
+$$
+\lim_{\Delta V \to 0} \frac{1}{\Delta V} \int \int_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \dfrac{\partial F_x}{\partial x}
+$$
+
+Similarly, we can calculate the contributions from the other two pairs of faces. Then adding
+all together, we have:
+
+$$
+\text{div} \\, \mathbf{F} = \dfrac{\partial F_x}{\partial x} + \dfrac{\partial F_y}{\partial y} + \dfrac{\partial F_z}{\partial z}
+\tag{II-22}
+$$
+
+It can be shown that the result is independent of the shape of the volume we used.
+
+:::card[note]
+**Summary.** Think of a tiny cube surrounding the point you’re interested in. Measure how much of the vector field flows out of its six faces versus how much flows in; then shrink the cube to zero size.
+
+Divergence is that net out-minus-in flow _per unit volume_—a local “rate of creation” of field lines.
+
+Positive divergence means the point acts like a source (more field leaving than entering), negative divergence means a sink, and zero divergence means the flow just passes through without piling up or emptying out.
+::::
+
+#### Differential Form of Gauss's Law
+Combining equations (II-18) and (II-22), we get the **differential form of Gauss's Law**:
+
+$$
+\frac{\partial E_x}{\partial x} + \frac{\partial E_y}{\partial y} + \frac{\partial E_z}{\partial z} = \frac{\rho}{\epsilon_0}
+\tag{II-23}
+$$
+
