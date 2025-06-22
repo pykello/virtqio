@@ -524,3 +524,40 @@ $$
 \tag{II-23}
 $$
 
+#### The Divergence in Cylindrical Coordinates
+
+Equation (II-22) is merely the divergence in Cartesian coordinates. We prefer
+to define the divergence as the limit of flux to volume as stated in equation (II-16).
+
+To calculate the divergence in cylindrical coordinates, consider the "cylindrical cuboid" shown below:
+
+ ![](fig-II-24.png)
+
+Center is $(r, \theta, z)$, and volume is $\Delta V = r \Delta r \Delta \theta \Delta z$.
+
+The flux of $\mathbf{F}$ through face 1 is:
+
+$$
+\int\int_{S_1} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
+F_r\left(r + \frac{\Delta r}{2}, \theta, z\right) \left(r + \frac{\Delta r}{2}\right) \Delta \theta \Delta z
+$$
+
+While the flux through face 2 is:
+
+$$
+\int\int_{S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
+-F_r\left(r - \frac{\Delta r}{2}, \theta, z\right) \left(r - \frac{\Delta r}{2}\right) \Delta \theta \Delta z
+$$
+
+Adding these two and dividing by $\Delta V$ gives, and taking the limit as $\Delta V \to 0$ we get:
+
+$$
+\frac{1}{r} \frac{\partial}{\partial r} \left(r F_r\right)
+$$
+
+Arguing similarly for the other two pairs of faces, we get:
+
+$$
+\text{div} \\, \mathbf{F} = \frac{1}{r} \frac{\partial}{\partial r} \left(r F_r\right) + \frac{1}{r} \frac{\partial F_\theta}{\partial \theta} + \frac{\partial F_z}{\partial z}
+\tag{II-24}
+$$
