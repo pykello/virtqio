@@ -578,3 +578,85 @@ $$
 
 #### The Divergence Theorem
 
+The **divergence theorem** states that the flux of a vector field $\mathbf{F}$ through a closed surface $S$ is equal to the integral of the divergence of $\mathbf{F}$ over the volume $V$ enclosed by $S$:
+
+$$
+\int\int_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \int\int\int_V \nabla \cdot \mathbf{F} \\, dV
+\tag{II-30}
+$$
+
+#### An Example
+
+Divergence theorem on the **upper unit hemisphere**. Let
+
+$$
+\mathbf F(x,y,z)=\langle x,\\;y,\\;z\rangle ,
+\quad
+V=\left\\{(x,y,z)\\;\middle|\\;x^{2}+y^{2}+z^{2}\le 1,\\;z\ge 0\right\\}.
+$$
+
+The boundary $S$ has two pieces
+
+* **$S_1$** – the curved spherical cap ($x^{2}+y^{2}+z^{2}=1,\\;z\ge 0$),
+* **$S_2$** – the flat unit disk ($z=0,\\;x^{2}+y^{2}\le 1$).
+
+---
+
+##### 1 . Volume integral of the divergence
+
+$$
+\nabla\\!\cdot\\!\mathbf F = \frac{\partial x}{\partial x} + \frac{\partial y}{\partial y} +
+\frac{\partial z}{\partial z} = 1+1+1 = 3.
+$$
+
+Volume of the hemisphere: $\displaystyle \dfrac12\\!\left(\dfrac{4\pi}{3}\right)=\dfrac{2\pi}{3}$.
+
+$$
+\iiint_{V} (\nabla\\!\cdot\\!\mathbf F)\\,dV
+=3\left(\dfrac{2\pi}{3}\right)
+=\boxed{2\pi }.
+$$
+
+---
+
+##### 2 . Flux through the boundary
+
+**Curved cap $S_1$**
+
+On the unit sphere the outward unit normal is $\hat{\mathbf{n}}=\langle x,y,z\rangle$.
+Hence $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = x^{2}+y^{2}+z^{2}=1$.
+
+Area of the hemispherical cap: $2\pi$.
+
+$$
+\iint_{S_1}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\,dS = 1\cdot 2\pi = 2\pi.
+$$
+
+**Flat disk $S_2$**
+
+Outward normal is $\hat{\mathbf{n}}=-\mathbf k$.
+On $S_2$, $z=0$ so $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = \langle x,y,0\rangle\\!\cdot\\!(-\mathbf k)=0$.
+
+$$
+\iint_{S_2}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS = 0.
+$$
+
+**Total outward flux**
+
+$$
+\iint_{S}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS
+=2\pi + 0 = 2 \pi.
+$$
+
+---
+
+Therefore, we have:
+
+$$
+\boxed{
+\iiint_{V} (\nabla\\!\cdot\\!\mathbf F)\\,dV
+\\;=\\;
+\iint_{S}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS
+\\;=\\;2\pi
+}
+$$
