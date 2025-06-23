@@ -450,7 +450,7 @@ $$
 \tag{II-16}
 $$
 
-#### The Divergence
+### The Divergence
 
 We define the **divergence** of a vector field $\mathbf{F}$ as:
 
@@ -516,7 +516,7 @@ It can be shown that the result is independent of the shape of the volume we use
 Divergence is that net out-minus-in flow _per unit volume_.
 ::::
 
-#### Differential Form of Gauss's Law
+### Differential Form of Gauss's Law
 Combining equations (II-18) and (II-22), we get the **differential form of Gauss's Law**:
 
 $$
@@ -524,7 +524,7 @@ $$
 \tag{II-23}
 $$
 
-#### The Divergence in Cylindrical Coordinates
+### The Divergence in Cylindrical Coordinates
 
 Equation (II-22) is merely the divergence in Cartesian coordinates. We prefer
 to define the divergence as the limit of flux to volume as stated in equation (II-16).
@@ -562,7 +562,7 @@ $$
 \tag{II-24}
 $$
 
-#### The Del Notation
+### The Del Notation
 
 We define the **del operator** as:
 
@@ -576,16 +576,16 @@ $$
 \text{div} \\, \mathbf{F} = \nabla \cdot \mathbf{F} = \frac{\rho}{\epsilon_0}
 $$
 
-#### The Divergence Theorem
+### The Divergence Theorem
 
 The **divergence theorem** states that the flux of a vector field $\mathbf{F}$ through a closed surface $S$ is equal to the integral of the divergence of $\mathbf{F}$ over the volume $V$ enclosed by $S$:
 
 $$
-\int\int_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \int\int\int_V \nabla \cdot \mathbf{F} \\, dV
+\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \iiint_V \nabla \cdot \mathbf{F} \\, dV
 \tag{II-30}
 $$
 
-#### An Example
+### An Example
 
 Divergence theorem on the **upper unit hemisphere**. Let
 
@@ -600,8 +600,6 @@ The boundary $S$ has two pieces
 * **$S_1$** – the curved spherical cap ($x^{2}+y^{2}+z^{2}=1,\\;z\ge 0$),
 * **$S_2$** – the flat unit disk ($z=0,\\;x^{2}+y^{2}\le 1$).
 
----
-
 ##### 1 . Volume integral of the divergence
 
 $$
@@ -614,10 +612,8 @@ Volume of the hemisphere: $\displaystyle \dfrac12\\!\left(\dfrac{4\pi}{3}\right)
 $$
 \iiint_{V} (\nabla\\!\cdot\\!\mathbf F)\\,dV
 =3\left(\dfrac{2\pi}{3}\right)
-=\boxed{2\pi }.
+=2\pi
 $$
-
----
 
 ##### 2 . Flux through the boundary
 
@@ -629,7 +625,7 @@ Hence $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = x^{2}+y^{2}+z^{2}=1$.
 Area of the hemispherical cap: $2\pi$.
 
 $$
-\iint_{S_1}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\,dS = 1\cdot 2\pi = 2\pi.
+\iint_{S_1}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\,dS = 1\cdot 2\pi = 2\pi
 $$
 
 **Flat disk $S_2$**
@@ -638,14 +634,14 @@ Outward normal is $\hat{\mathbf{n}}=-\mathbf k$.
 On $S_2$, $z=0$ so $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = \langle x,y,0\rangle\\!\cdot\\!(-\mathbf k)=0$.
 
 $$
-\iint_{S_2}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS = 0.
+\iint_{S_2}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS = 0
 $$
 
 **Total outward flux**
 
 $$
 \iint_{S}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS
-=2\pi + 0 = 2 \pi.
+=2\pi + 0 = 2 \pi
 $$
 
 ---
@@ -660,3 +656,38 @@ $$
 \\;=\\;2\pi
 }
 $$
+
+### Applications
+
+We want to derive equation (II-18):
+
+$$
+\text{div} \\, \mathbf{E} = \frac{\rho}{\epsilon_0}
+$$
+
+We start with Gauss's Law:
+
+$$
+\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{1}{\epsilon_0} \iiint_V \rho \\, dV
+\tag{II-31}
+$$
+
+We can use the divergence theorem to rewrite the left-hand side:
+
+$$
+\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \iiint_V \nabla \cdot \mathbf{E} \\, dV
+\tag{II-32}
+$$
+
+Combining equations (II-31) and (II-32), we get:
+
+$$
+\iiint_V \nabla \cdot \mathbf{E} \\, dV = \frac{1}{\epsilon_0} \iiint_V \rho \\, dV
+$$
+
+Since this is true for _any_ volume $V$, we can conclude that:
+
+$$
+\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}
+$$
+
