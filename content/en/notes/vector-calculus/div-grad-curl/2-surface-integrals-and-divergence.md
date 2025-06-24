@@ -590,7 +590,7 @@ $$
 Divergence theorem on the **upper unit hemisphere**. Let
 
 $$
-\mathbf F(x,y,z)=\langle x,\\;y,\\;z\rangle ,
+\mathbf F(x,y,z)=\mathbf{i}x+\mathbf{j}y+\mathbf{k}z ,
 \quad
 V=\left\\{(x,y,z)\\;\middle|\\;x^{2}+y^{2}+z^{2}\le 1,\\;z\ge 0\right\\}.
 $$
@@ -619,19 +619,17 @@ $$
 
 **Curved cap $S_1$**
 
-On the unit sphere the outward unit normal is $\hat{\mathbf{n}}=\langle x,y,z\rangle$.
-Hence $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = x^{2}+y^{2}+z^{2}=1$.
-
-Area of the hemispherical cap: $2\pi$.
+On the unit sphere the outward unit normal is $\hat{\mathbf{n}}=\mathbf{i}x + \mathbf{j}y + \mathbf{k}z$.
+So, $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = x^{2}+y^{2}+z^{2}=1.$
 
 $$
-\iint_{S_1}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\,dS = 1\cdot 2\pi = 2\pi
+\iint_{S_1}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS = 1\cdot 2\pi = 2\pi
 $$
 
 **Flat disk $S_2$**
 
 Outward normal is $\hat{\mathbf{n}}=-\mathbf k$.
-On $S_2$, $z=0$ so $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = \langle x,y,0\rangle\\!\cdot\\!(-\mathbf k)=0$.
+On $S_2$, $z=0$. So, $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = 0$.
 
 $$
 \iint_{S_2}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS = 0
@@ -644,17 +642,14 @@ $$
 =2\pi + 0 = 2 \pi
 $$
 
----
 
 Therefore, we have:
 
 $$
-\boxed{
 \iiint_{V} (\nabla\\!\cdot\\!\mathbf F)\\,dV
 \\;=\\;
 \iint_{S}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS
 \\;=\\;2\pi
-}
 $$
 
 ### Applications
