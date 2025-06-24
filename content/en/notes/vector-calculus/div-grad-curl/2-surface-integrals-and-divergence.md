@@ -49,7 +49,7 @@ So, they're not very useful in practice.
 Which brings us to **Gauss's Law**:
 
 $$
-\int\int_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{q}{\epsilon_0}
+\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{q}{\epsilon_0}
 \tag{II-1}
 $$
 
@@ -100,7 +100,7 @@ $$
 The **surface integral of the normal component** of a vector function $\mathbf{F}(x, y, z)$, denoted by
 
 $$
-\int\int_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS
+\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS
 \tag{II-5}
 $$
 
@@ -119,7 +119,7 @@ The surface integral (II-5) is the limit of this sum as the number of pieces
 approaches infinity and the area of each piece approaches zero:
 
 $$
-\int\int_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \lim_{\substack{N \to \infty\\\\[0.3em] \text{each } \Delta S_i \to 0}} \sum_{i=1}^N \mathbf{F}(x_i, y_i, z_i) \cdot \hat{\mathbf{n}}_i \Delta S_i
+\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \lim_{\substack{N \to \infty\\\\[0.3em] \text{each } \Delta S_i \to 0}} \sum_{i=1}^N \mathbf{F}(x_i, y_i, z_i) \cdot \hat{\mathbf{n}}_i \Delta S_i
 \tag{II-6}
 $$
 
@@ -135,14 +135,14 @@ The integral in **Gauss's Law** is taken over a closed surface. In fact, it says
 Sometimes, we are interested in simpler integrals of the form:
 
 $$
-\int\int_S G(x, y, z) \\, dS
+\iint_S G(x, y, z) \\, dS
 \tag{II-7}
 $$
 
 This can be solved similarly:
 
 $$
-\int\int_S G(x, y, z) \\, dS = \lim_{\substack{N \to \infty\\\\[0.3em] \text{each } \Delta S_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \Delta S_i
+\iint_S G(x, y, z) \\, dS = \lim_{\substack{N \to \infty\\\\[0.3em] \text{each } \Delta S_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \Delta S_i
 \tag{II-8}
 $$
 
@@ -151,7 +151,7 @@ $$
 We want to evaluate:
 
 $$
-\int\int_S G(x, y, z) \\, dS
+\iint_S G(x, y, z) \\, dS
 $$
 
 Our strategy is to relate $\Delta S_i$ to the area of its projection on the $xy$-plane, as shown in the figure below.
@@ -341,7 +341,7 @@ $$
 So, the surface integral can be written as:
 
 $$
-\int\int_S G(x, y, z) \\, dS = \lim_{\substack{N \to \infty\\\\[0.3em] \text{each } \Delta R_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \frac{\Delta R_i}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}}
+\iint_S G(x, y, z) \\, dS = \lim_{\substack{N \to \infty\\\\[0.3em] \text{each } \Delta R_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \frac{\Delta R_i}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}}
 \tag{II-9}
 $$
 
@@ -350,8 +350,8 @@ Where we have replaced each $\Delta S_i \to 0$ with $\Delta R_i \to 0$.
 Then, this can be written as a double integral over $R$:
 
 $$
-\int\int_S G(x, y, z) \\, dS = 
-\int\int_R \frac{G(x, y, f(x, y))}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}(x, y, f(x, y))} \\, dx \\, dy
+\iint_S G(x, y, z) \\, dS = 
+\iint_R \frac{G(x, y, f(x, y))}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}(x, y, f(x, y))} \\, dx \\, dy
 \tag{II-11}
 $$
 
@@ -365,19 +365,30 @@ Thus, we have:
 
 $$
 \begin{align*}
-\int\int_S G(x, y, z) \\, dS =
-&\int\int_R G(x, y, f(x, y)) \cdot
+\iint_S G(x, y, z) \\, dS =
+&\iint_R G(x, y, f(x, y)) \cdot
 \\\\[1em]
 &\sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial y}\right)^2} \\, dx \\, dy
 \tag{II-12}
 \end{align*}
 $$
 
+:::card[example]
+**Example.** Find $\iint_S z \\, dS$, where $S$ is the portion of the plane $x + y + z = 1$ in the first octant.
+
+Here $f(x, y) = 1 - x - y$, so we have:
+
+$$
+\iint_S z \\, dS = \int_{0}^{1} \int_{0}^{1 - x} z \left(\sqrt{1 + (-1)^2 + (-1)^2}
+\right) \\, dy \\, dx = \dfrac{\sqrt{3}}{6}
+$$
+::::
+
 ### Flux
 The **flux** of $\mathbf{F}$ through the surface $S$:
 
 $$
-\int\int_S \mathbf{F}(x, y, z) \cdot \hat{\mathbf{n}} \\, dS
+\iint_S \mathbf{F}(x, y, z) \cdot \hat{\mathbf{n}} \\, dS
 \tag{II-14}
 $$
 
@@ -395,20 +406,20 @@ the following about the electric field:
 Thus, Gauss's Law becomes:
 
 $$
-\int\int_S E(r) \hat{\mathbf{e}}_r \cdot \hat{\mathbf{n}} \\, dS = \frac{q}{\epsilon_0}
+\iint_S E(r) \hat{\mathbf{e}}_r \cdot \hat{\mathbf{n}} \\, dS = \frac{q}{\epsilon_0}
 $$
 
 On a spherical surface of radius $r$, $\hat{\mathbf{n}} = \hat{\mathbf{e}}_r$. So, $\hat{\mathbf{e}}_r \cdot \hat{\mathbf{n}} = 1$.
 Thus, we have:
 
 $$
-\int\int_S E(r) \\, dS = \frac{q}{\epsilon_0}
+\iint_S E(r) \\, dS = \frac{q}{\epsilon_0}
 $$
 
 $E(r)$ is constant over the spherical surface, so we get:
 
 $$
-\int\int_S E(r) \\, dS = E(r) \int\int_S dS
+\iint_S E(r) \\, dS = E(r) \iint_S dS
 = 4 \pi r^2 E(r) = \frac{q}{\epsilon_0}
 $$
 
@@ -433,20 +444,20 @@ Consider the surface integral of the electric field over closed surfaces centere
 Assuming volume $\Delta V$ and average charge density $\overline{\rho}_{\Delta V}$, we have:
 
 $$
-\int\int_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\overline{\rho}_{\Delta V} \Delta V}{\epsilon_0}
+\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\overline{\rho}_{\Delta V} \Delta V}{\epsilon_0}
 \tag{II-15}
 $$
 
 As expected, both sides go to zero as $\Delta V \to 0$. To isolate the quantity that does not go to zero, we divide both sides by $\Delta V$:
 
 $$
-\frac{1}{\Delta V} \int\int_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\overline{\rho}_{\Delta V}}{\epsilon_0}
+\frac{1}{\Delta V} \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\overline{\rho}_{\Delta V}}{\epsilon_0}
 $$
 
 Taking the limit as $\Delta V \to 0$, we get:
 
 $$
-\lim_{\substack{\Delta V \to 0 \\\\[0.3em] \text{about}\\; (x,y,z)}} \frac{1}{\Delta V} \int\int_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\rho(x, y, z)}{\epsilon_0}
+\lim_{\substack{\Delta V \to 0 \\\\[0.3em] \text{about}\\; (x,y,z)}} \frac{1}{\Delta V} \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\rho(x, y, z)}{\epsilon_0}
 \tag{II-16}
 $$
 
@@ -455,7 +466,7 @@ $$
 We define the **divergence** of a vector field $\mathbf{F}$ as:
 
 $$
-\text{div} \\, \mathbf{F} \equiv \lim_{\substack{\Delta V \to 0 \\\\[0.3em] \text{about}\\; (x,y,z)}} \frac{1}{\Delta V} \int\int_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS
+\text{div} \\, \mathbf{F} \equiv \lim_{\substack{\Delta V \to 0 \\\\[0.3em] \text{about}\\; (x,y,z)}} \frac{1}{\Delta V} \iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS
 \tag{II-17}
 $$
 
@@ -475,14 +486,14 @@ $S_1$ is the front face, $S_2$ is the back face. Let $\mathbf{F} \cdot \mathbf{i
 Then the surface integral over $S_1$ is:
 
 $$
-\int\int_{S_1} F_x(x, y, z) \\, dS \approx F_x(x + \frac{\Delta x}{2}, y, z) \Delta y \Delta z
+\iint_{S_1} F_x(x, y, z) \\, dS \approx F_x(x + \frac{\Delta x}{2}, y, z) \Delta y \Delta z
 \tag{II-19}
 $$
 
 Similarly, the surface integral over $S_2$ is:
 
 $$
-\int\int_{S_2} F_x(x, y, z) \\, dS \approx -F_x(x - \frac{\Delta x}{2}, y, z) \Delta y \Delta z
+\iint_{S_2} F_x(x, y, z) \\, dS \approx -F_x(x - \frac{\Delta x}{2}, y, z) \Delta y \Delta z
 \tag{II-20}
 $$
 
@@ -538,14 +549,14 @@ Center is $(r, \theta, z)$, and volume is $\Delta V = r \Delta r \Delta \theta \
 The flux of $\mathbf{F}$ through face 1 is:
 
 $$
-\int\int_{S_1} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
+\iint_{S_1} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
 F_r\left(r + \frac{\Delta r}{2}, \theta, z\right) \left(r + \frac{\Delta r}{2}\right) \Delta \theta \Delta z
 $$
 
 While the flux through face 2 is:
 
 $$
-\int\int_{S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
+\iint_{S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
 -F_r\left(r - \frac{\Delta r}{2}, \theta, z\right) \left(r - \frac{\Delta r}{2}\right) \Delta \theta \Delta z
 $$
 
