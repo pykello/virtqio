@@ -521,12 +521,6 @@ $$
 
 It can be shown that the result is independent of the shape of the volume we used.
 
-:::card[note]
-**Summary.** Think of a tiny cube surrounding the point you’re interested in. Measure how much of the vector field flows out of its six faces versus how much flows in; then shrink the cube to zero size.
-
-Divergence is that net out-minus-in flow _per unit volume_.
-::::
-
 ### Differential Form of Gauss's Law
 Combining equations (II-18) and (II-22), we get the **differential form of Gauss's Law**:
 
