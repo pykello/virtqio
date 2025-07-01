@@ -158,3 +158,41 @@ depens on the orientation.
 
 If the curve were parallel to the $xz$-plane, we would get $\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x}$, and if it were parallel to the $yz$-plane, we would get $\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z}$.
 
+Each of these orientations can be identified using the normal vector to the surface containing the curve, when using the right-hand rule:
+
+- Curve parallel to $yz$, Normal vector $\mathbf{i}$: $\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z}$
+- Curve parallel to $xy$, Normal vector $\mathbf{j}$: $\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x}$
+- Curve parallel to $xz$, Normal vector $\mathbf{k}$: $\dfrac{\partial F_y}{\partial x} - \dfrac{\partial F_x}{\partial y}$
+
+Putting these as components of a vector, we have:
+
+$$
+\text{curl} \\, \mathbf{F} = \mathbf{i} \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) + \mathbf{j} \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) + \mathbf{k} \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right)
+$$
+
+:::card[note]
+**Definition of Curl**: Limit of the circulation to area as area shrinks to zero.
+
+To be more precise, let $\oint_{C_n} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds$ be the circulation of $\mathbf{F}$ around a curve whose normal is $\hat{\mathbf{n}}$. Then by definition,
+
+$$
+\mathbf{\hat{n}} \cdot \text{curl} \\, \mathbf{F} = \lim_{\Delta S \to 0} \frac{1}{\Delta S} \oint_{C_n} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds
+$$
+
+:::
+
+This can be written as a determinant:
+
+$$
+\text{curl} \\, \mathbf{F} = \begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\\\[0.5em]
+\dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z} \\\\[0.5em]
+F_x & F_y & F_z
+\end{vmatrix}
+$$
+
+When written in del operator notation:
+
+$$
+\text{curl} \\, \mathbf{F} = \nabla \times \mathbf{F}
+$$
