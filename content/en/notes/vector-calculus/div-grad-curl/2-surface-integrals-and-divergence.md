@@ -1,4 +1,4 @@
-# Surface Integrals and Divergence
+# Surface Integrals and the Divergence
 <script>
 const offset = -50;
 
@@ -500,7 +500,7 @@ $$
 Then, adding these two and dividing by $\Delta V$ gives:
 
 $$
-\frac{1}{\Delta V} \int \int_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
+\frac{1}{\Delta V} \iint_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
 \frac{F_x(x + \frac{\Delta x}{2}, y, z) - F_x(x - \frac{\Delta x}{2}, y, z)}{\Delta x}
 \tag{II-21}
 $$
@@ -508,7 +508,7 @@ $$
 Taking the limit as $\Delta V \to 0$, we get:
 
 $$
-\lim_{\Delta V \to 0} \frac{1}{\Delta V} \int \int_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \dfrac{\partial F_x}{\partial x}
+\lim_{\Delta V \to 0} \frac{1}{\Delta V} \iint_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \dfrac{\partial F_x}{\partial x}
 $$
 
 Similarly, we can calculate the contributions from the other two pairs of faces. Then adding
