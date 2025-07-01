@@ -109,3 +109,52 @@ $$
 $$
 
 The path integral around a closed curve is often called a **circulation**.
+
+### The Curl
+
+Let us consider the circulation of $\mathbf{F}$ around a small rectangle parallel the $xy$
+-plane:
+
+ ![](fig-III-11a.png)
+
+The line integral can be broken into four parts: $C_B$ (bottom), $C_L$ (left), $C_T$ (top), and $C_R$ (right).
+
+ ![](fig-III-11b.png)
+
+Since the rectangle is small, well approximate each integral by $\mathbf{F} \cdot \hat{\mathbf{t}}$ at the center of the segment multiplied by the length of the segment.
+
+Then,
+
+$$
+\begin{align*}
+\int_{C_B} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &\approx F_x \left(x, y - \frac{\Delta y}{2}, z \right) \Delta x
+\\\\[1em]
+\int_{C_T} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &\approx - F_x \left(x, y + \frac{\Delta y}{2}, z \right) \Delta x
+\end{align*}
+$$
+
+The negative sign is because $dx/ds$ is $-1$ over $C_T$.
+
+Then (after few steps):
+
+$$
+\lim_{\Delta S \to 0} \frac{1}{\Delta S} \int_{C_T+C_B} \left( \mathbf{F} \cdot \hat{\mathbf{t}} \right) ds = -\frac{\partial F_x}{\partial y}
+$$
+
+Similarly:
+
+$$
+\lim_{\Delta S \to 0} \frac{1}{\Delta S} \int_{C_L+C_R} \left( \mathbf{F} \cdot \hat{\mathbf{t}} \right) ds = \frac{\partial F_y}{\partial x}
+$$
+
+Combining these results, we have:
+
+$$
+\lim_{\Delta S \to 0} \frac{1}{\Delta S} \oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
+$$
+
+If our curve was an arbitrary shape, the result would still hold. But the result definitely
+depens on the orientation.
+
+If the curve were parallel to the $xz$-plane, we would get $\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x}$, and if it were parallel to the $yz$-plane, we would get $\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z}$.
+
