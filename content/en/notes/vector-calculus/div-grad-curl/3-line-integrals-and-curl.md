@@ -196,3 +196,54 @@ When written in del operator notation:
 $$
 \text{curl} \\, \mathbf{F} = \nabla \times \mathbf{F}
 $$
+
+### The Meaning of the Curl
+
+Suppose some particle moving in a circular path, with $x = r \cos \omega t$, $y = r \sin \omega t$, and $z = 0$.
+
+Then the velocity is:
+
+$$
+\mathbf{v} = - \mathbf{i}\\, r \omega \sin \omega t + \mathbf{j}\\, r \omega \cos \omega t
+= \omega (-\mathbf{i} y + \mathbf{j} x)
+$$
+
+The curl of the velocity is:
+
+$$
+\nabla \times \mathbf{v} = 2 \mathbf{k} \omega
+$$
+
+We observe that the curl is a vector pointing along the axis of rotation, with a magnitude proportional to the angular velocity $\omega$.
+
+To visualize the curl of a vector field at a point, imagine placing a tiny paddlewheel at that location. If the surrounding flow causes the paddlewheel to spin, then the field has a nonzero curl there.
+
+ ![](paddle-wheel.png)
+
+Diagram was taken from: [MIT OCW's 18-02sc, Physical meaning of curl](https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/d18774dd8a3f24001bf3d502fef7f854_MIT18_02SC_MNotes_v4.3.pdf), licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+### Differential Form of the Circulation Law
+
+If $\mathbf{E}$ is an electrostatic field, then for any closed curve $C$:
+
+$$
+\oint_C \mathbf{E} \cdot \hat{\mathbf{t}} \\, ds = 0
+$$
+
+It follows that:
+
+$$
+\hat{\mathbf{n}} \cdot \nabla \times \mathbf{E} = 0
+$$
+
+Since $C$ is arbitrary, we can conclude that:
+
+$$
+\nabla \times \mathbf{E} = 0
+$$
+
+Then the answer to the question "Can a given vector field $F(x,y,z)$ be an electrostatic field?" is:
+
+- If $\nabla \times \mathbf{F} = 0$, then $\mathbf{F}$ can be an electrostatic field.
+- If $\nabla \times \mathbf{F} \neq 0$, then $\mathbf{F}$ cannot be an electrostatic field.
+
