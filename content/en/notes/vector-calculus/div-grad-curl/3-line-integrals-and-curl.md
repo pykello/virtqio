@@ -247,3 +247,14 @@ Then the answer to the question "Can a given vector field $F(x,y,z)$ be an elect
 - If $\nabla \times \mathbf{F} = 0$, then $\mathbf{F}$ can be an electrostatic field.
 - If $\nabla \times \mathbf{F} \neq 0$, then $\mathbf{F}$ cannot be an electrostatic field.
 
+### Stokes' Theorem
+
+Stokes' theorem relates:
+- The **line integral** of a vector field $\mathbf{F}$ around a closed curve $C$.
+- The **surface integral** of the normal component of the curl of $\mathbf{F}$ over
+  any capping surface $S$ of $C$.
+
+$$
+\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = \iint_S \nabla \times \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS
+$$
+
