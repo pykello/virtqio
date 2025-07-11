@@ -8,5 +8,5 @@ Vector Functions, Electrostatics
 ### [Chapter 2. Surface Integrals and the Divergence](2-surface-integrals-and-divergence.html)
 Surface Integrals, Flux, Gauss' Law, Divergence Theorem
 
-### [Chapter 3. Line Integrals and the Curl](3-line-integrals-and-curl.html)
+### [Chapter 3. Line Integrals and the Curl](3-line-integrals-and-curl.html) ┊ [Problems](problems/3.html)
 Line Integrals, Path Independence, Curl, ...
