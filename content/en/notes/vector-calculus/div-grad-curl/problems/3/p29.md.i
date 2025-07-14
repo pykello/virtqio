@@ -162,4 +162,62 @@ $$
 :::expandable
 **Solution.** [Click to Expand]
 
+Expanding $\nabla \times \mathbf{F}$ gives:
+
+$$
+\begin{align*}
+\iiint_V \nabla &\times \mathbf{F} \\, dV = \\\\[1em]
+&\mathbf{i} \iiint_V \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) dV +
+\\\\[1em]
+&\mathbf{j} \iiint_V \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) dV +
+\\\\[1em]
+&\mathbf{k} \iiint_V \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) dV
+\end{align*}
+$$
+
+Which can be rewritten as:
+
+$$
+\begin{align*}
+\iiint_V \nabla \times \mathbf{F} \\, dV &= \\\\[1em]
+&\mathbf{i} \iiint_V \nabla \cdot \left( 0, F_z, -F_y \right) \\, dV +
+\\\\[1em]
+&\mathbf{j} \iiint_V \nabla \cdot \left(-F_z, 0, F_x \right) \\, dV +
+\\\\[1em]
+&\mathbf{k} \iiint_V \nabla \cdot \left( F_y, -F_x, 0 \right) \\, dV
+\end{align*}
+$$
+
+Using the divergence theorem, we have:
+
+$$
+\begin{align*}
+\iiint_V \nabla \times \mathbf{F} \\, dV &= \\\\[1em]
+&\mathbf{i} \iint_S \left( 0, F_z, -F_y \right) \cdot \hat{\mathbf{n}} \\, dS +
+\\\\[1em]
+&\mathbf{j} \iint_S \left(-F_z, 0, F_x \right) \cdot \hat{\mathbf{n}} \\, dS +
+\\\\[1em]
+&\mathbf{k} \iint_S \left( F_y, -F_x, 0 \right) \cdot \hat{\mathbf{n}} \\, dS
+\end{align*}
+$$
+
+which can be rewritten as:
+
+$$
+\begin{align*}
+\iiint_V &\nabla \times \mathbf{F} \\, dV = \\\\[1em]
+&\iint_S \left( \mathbf{i} (F_z \hat{\mathbf{n}}_y - F_y \hat{\mathbf{n}}_z) +
+\\\\[1em]
+\mathbf{j} (-F_z \hat{\mathbf{n}}_x + F_x \hat{\mathbf{n}}_z) +
+\\\\[1em]
+\mathbf{k} (F_y \hat{\mathbf{n}}_x - F_x \hat{\mathbf{n}}_y) \right) \\, dS
+\end{align*}
+$$
+
+So:
+
+$$
+\iint_S \hat{\mathbf{n}} \times \mathbf{F} \\, dS =
+\iiint_V \nabla \times \mathbf{F} \\, dV
+$$
 ::::
