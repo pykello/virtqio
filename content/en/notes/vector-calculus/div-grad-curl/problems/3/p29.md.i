@@ -107,3 +107,59 @@ $$
 $$
 
 ::::
+
+**(b)** Arguing as we did in the text in establishing the divergence theorem,
+use the above expression for the curl to derive the equation
+
+$$
+\iint_S \hat{\mathbf{n}} \times \mathbf{F} \\, dS =
+\iiint_V \nabla \times \mathbf{F} \\, dV
+$$
+
+:::expandable
+**Solution.** [Click to Expand]
+
+Assume we partition the volume $V$ into $N$ small cubes of volume $\Delta V$.
+
+Since normal vector of overlapping sides of two adjacent
+cubes are equal and opposite, then $\hat{\mathbf{n}} \times \mathbf{F}$
+of two overlapping sides of two adjacent cubes will cancel out.
+
+Then, we have:
+
+$$
+\iint_S \hat{\mathbf{n}} \times \mathbf{F} \\, dS =
+\iint_{S_1} \hat{\mathbf{n}} \times \mathbf{F} \\, dS + \ldots +
+\iint_{S_N} \hat{\mathbf{n}} \times \mathbf{F} \\, dS
+$$
+
+where $S_i$ is the surface of the $i$-th cube.
+
+Also, since we have:
+
+$$
+\nabla \times \mathbf{F}(x_i, y_i, z_i) \approx \frac{1}{\Delta V} \iint_{S_i} \hat{\mathbf{n}} \times \mathbf{F} \\, dS
+$$
+
+(where $(x_i, y_i, z_i)$ is the center of the $i$-th cube), then we have:
+
+$$
+(\nabla \times \mathbf{F}(x_i, y_i, z_i)) \Delta V \approx
+\iint_{S_i} \hat{\mathbf{n}} \times \mathbf{F} \\, dS
+$$
+
+Summing over all $N$ cubes and taking the limit as $\Delta V \to 0$, we have:
+
+$$
+\iiint_V \nabla \times \mathbf{F} \\, dV =
+\iint_S \hat{\mathbf{n}} \times \mathbf{F} \\, dS
+$$
+
+::::
+
+**(c)** Derive the equation in part (b) directly from the divergence theorem.
+
+:::expandable
+**Solution.** [Click to Expand]
+
+::::
