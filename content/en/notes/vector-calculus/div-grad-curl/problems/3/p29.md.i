@@ -217,7 +217,7 @@ $$
 So:
 
 $$
-\iint_S \hat{\mathbf{n}} \times \mathbf{F} \\, dS =
-\iiint_V \nabla \times \mathbf{F} \\, dV
+\iiint_V \nabla \times \mathbf{F} \\, dV =
+\iint_S \hat{\mathbf{n}} \times \mathbf{F} \\, dS
 $$
 ::::
