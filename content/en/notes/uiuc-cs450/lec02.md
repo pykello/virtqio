@@ -43,7 +43,7 @@ This means that a given relative change in the input causes a relative change in
 
 #### Stability and Accuracy
 
-An algorithm is **stable** if errors in the input do not grow significantly during the computation. **Stability** measures the sensitivity of an algorithm to to round-off and truncation errors.
+An algorithm is **stable** if errors in the input do not grow significantly during the computation. **Stability** measures the sensitivity of an algorithm to round-off and truncation errors.
 
 Stability (of an algorithm) is analogous to conditioning (of a problem):
 - Similarity: both relate to effects of perturbations.
