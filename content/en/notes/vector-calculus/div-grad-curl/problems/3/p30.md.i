@@ -120,3 +120,39 @@ $$
 \overline{x} = \frac{1}{\Delta S} \iint_R x \\, dx \\, dy, \quad
 \overline{y} = \frac{1}{\Delta S} \iint_R y \\, dx \\, dy
 $$
+
+:::expandable
+**Solution.** [Click to Expand]
+
+We have:
+
+$$
+\begin{align*}
+\lim_{N \to \infty} \sum_{l=1}^N (x_l - x_0) \Delta S_l &=
+\lim_{N \to \infty} \sum_{l=1}^N (x_l \Delta S_l) - x_0 \left(
+  \lim_{N \to \infty} \sum_{l=1}^N \Delta S_l \right) \\\\[1em]
+&= \iint_R x \\, dx \\, dy - x_0 \Delta S \\\\[1em]
+&= \Delta S (\overline{x} - x_0)
+\end{align*}
+$$
+
+Similarly, we can get:
+
+$$
+\lim_{N \to \infty} \sum_{l=1}^N (y_l - y_0) \Delta S_l = \Delta S (\overline{y} - y_0)
+$$
+
+Putting this together, we have:
+
+$$
+\begin{align*}
+\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &=
+\lim_{N \to \infty} \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds
+\\\\[1em]
+&= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\\\[1em]
+&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} +
+\cdots \Bigr) \Delta S
+\end{align*}
+$$
+
+::::
