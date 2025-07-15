@@ -11,7 +11,7 @@ the circulation of $\mathbf{F}$ around $C_2$.
 
 Form $C_3$ by joining $C_1$ and $C_2$ with a segment on $S$ and reversing the direction of $C_1$.
 
-In figure below $a$ and $b$ segments completly overlap but in opposite directions. They concect
+In figure below $a$ and $b$ segments completely overlap but in opposite directions. They connect
 inner and outer parts of the curve by moving along $S$.
 
  ![](III-16b.jpg)

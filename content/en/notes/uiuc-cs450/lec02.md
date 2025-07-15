@@ -166,7 +166,7 @@ $$
 
 #### Rounding Error in Operations
 
-For example, consider a scientfic notation system with 4 digits of precision. We want to add $2.103 \times 10^2$ and $7.620 \times 10^0$:
+For example, consider a scientific notation system with 4 digits of precision. We want to add $2.103 \times 10^2$ and $7.620 \times 10^0$:
 
 * First, we align the decimal points: 
   $2.103 \times 10^2$ and $0.07620 \times 10^2$.

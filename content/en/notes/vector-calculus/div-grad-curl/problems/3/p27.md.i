@@ -27,5 +27,5 @@ $$
 \iiint_V \nabla \cdot \mathbf{G} \\, dV = 0
 $$
 
-Since choice of $S$ and $S'$ is aribtrary, it implies that $\nabla \cdot \mathbf{G} = 0$.
+Since choice of $S$ and $S'$ is arbitrary, it implies that $\nabla \cdot \mathbf{G} = 0$.
 ::::

@@ -548,7 +548,7 @@ $$
 > [!NOTE]
 > This is a very important result. This can be used to prove:
 > * Convergence of Newton's method
-> * Euler's identitiy
+> * Euler's identity
 > * That the geometric series of matrices can be treated like the geometric series of numbers
 
 ### Complex exponentials and trigonometric functions
