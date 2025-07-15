@@ -32,7 +32,7 @@ smaller right triangles:
  ![](III-30d.png)
 
 **Step 2.** Now, we have only right triangles and polygons with sides parallel
-to the axes. Add vertical segments at $\dfrac{3 \pi}{2}$ turns of the polygon to
+to the axes. Add vertical segments at concave 270° corners of the polygon to
 form rectangles:
 
  ![](III-30c.jpg)
@@ -76,13 +76,7 @@ where $(x_l, y_l)$ is the center of the $l$-th patch.
 
 To approximate $C(x_l, y_l)$, we can use the two dimensional Taylor series.
 
-For a general function $F(x, y)$ Taylor series expansion gives:
-
-$$
-F(x_0 + \Delta x, y_0 + \Delta y) = F(x_0, y_0) + \left( \frac{\partial F}{\partial x} \right)\_{x_0, y_0} \Delta x + \left( \frac{\partial F}{\partial y} \right)\_{x_0, y_0} \Delta y + \cdots
-$$
-
-Applying this to $C(x_l, y_l)$ gives:
+Taylor expansion of $C(x_l, y_l)$ gives:
 
 $$
 C(x_l, y_l) \approx C(x_0, y_0) + \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} (x_l - x_0) + \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} (y_l - y_0) + \cdots
@@ -168,7 +162,7 @@ $$
 :::expandable
 **Solution.** [Click to Expand]
 
-As $\Delta S \to 0$, then $(\overline{x}, \overline{y}) \to (x_0, y_0)$, and we have:
+As $\Delta S \to 0$, then $(\overline{x}, \overline{y}) \to (x, y)$, and we have:
 
 $$
 \begin{align*}
