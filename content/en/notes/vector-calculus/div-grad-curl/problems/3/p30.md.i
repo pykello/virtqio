@@ -32,7 +32,7 @@ smaller right triangles:
  ![](III-30d.png)
 
 **Step 2.** Now, we have only right triangles and polygons with sides parallel
-to the axes. Add vertical segments to $\dfrac{3 \pi}{2}$ turns of the polygon to
+to the axes. Add vertical segments at $\dfrac{3 \pi}{2}$ turns of the polygon to
 form rectangles:
 
  ![](III-30c.jpg)
@@ -74,13 +74,15 @@ $$
 
 where $(x_l, y_l)$ is the center of the $l$-th patch.
 
-To approximate $C(x_l, y_l)$, we can use the two dimensional Taylor series:
+To approximate $C(x_l, y_l)$, we can use the two dimensional Taylor series.
+
+For a general function $F(x, y)$ Taylor series expansion gives:
 
 $$
 F(x_0 + \Delta x, y_0 + \Delta y) = F(x_0, y_0) + \left( \frac{\partial F}{\partial x} \right)\_{x_0, y_0} \Delta x + \left( \frac{\partial F}{\partial y} \right)\_{x_0, y_0} \Delta y + \cdots
 $$
 
-which gives:
+Applying this to $C(x_l, y_l)$ gives:
 
 $$
 C(x_l, y_l) \approx C(x_0, y_0) + \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} (x_l - x_0) + \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} (y_l - y_0) + \cdots
@@ -152,6 +154,30 @@ $$
 &= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\\\[1em]
 &\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} +
 \cdots \Bigr) \Delta S
+\end{align*}
+$$
+
+::::
+
+**(d)** Finally, calculate
+
+$$
+(\nabla \times \mathbf{F})_z = \lim\_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds
+$$
+
+:::expandable
+**Solution.** [Click to Expand]
+
+As $\Delta S \to 0$, then $(\overline{x}, \overline{y}) \to (x_0, y_0)$, and we have:
+
+$$
+\begin{align*}
+\lim\_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &=
+\lim\_{\Delta S \to 0} \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\\\[1em]
+&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} +
+\cdots \Bigr) \\\\[1em]
+&= \lim\_{\Delta S \to 0} C(x_l, y_l) \\\\[1em]
+&= \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
 \end{align*}
 $$
 
