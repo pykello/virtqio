@@ -258,3 +258,48 @@ $$
 \oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = \iint_S \nabla \times \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS
 $$
 
+### Ampere's Circuital Law
+
+Setup:
+ - Closed loop $C$ enclosing a current $I$.
+ - Direction of $C$ and $I$: right-hand rule.
+
+Then:
+
+$$
+\oint_C \mathbf{B} \cdot \hat{\mathbf{t}} \, ds = \mu_0 I
+$$
+
+Introduce current density $\mathbf{J}$:
+
+$$
+\Delta I = \mathbf{J} \cdot \hat{\mathbf{n}} \, \Delta S
+$$
+
+Then total current flowing through $S$ is:
+
+$$
+\iint_S \mathbf{J} \cdot \hat{\mathbf{n}} \, dS
+$$
+
+Thus Ampere's circuital law can be written as:
+
+$$
+\oint_C \mathbf{B} \cdot \hat{\mathbf{t}} \, ds = \mu_0 \iint_S \mathbf{J} \cdot \hat{\mathbf{n}} \, dS
+$$
+
+where $S$ is any capping surface of $C$.
+
+Using Stokes' theorem, we can write:
+
+$$
+\iint_C \nabla \times \mathbf{B} \cdot \hat{\mathbf{n}} \, dS = \mu_0 \iint_S \mathbf{J} \cdot \hat{\mathbf{n}} \, dS
+$$
+
+Since this is true for any surface $S$ capping $C$, we can conclude that:
+
+$$
+\nabla \times \mathbf{B} = \mu_0 \mathbf{J}
+$$
+
+This is Ampere's law in differential form.
