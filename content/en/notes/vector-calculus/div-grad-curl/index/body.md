@@ -10,3 +10,6 @@ Surface Integrals, Flux, Gauss' Law, Divergence Theorem
 
 ### [Chapter 3. Line Integrals and the Curl](3-line-integrals-and-curl.html) ┊ [Problems](problems/3.html)
 Line Integrals, Path Independence, Curl, ...
+
+### [Chapter 4. The Gradient](4-gradient.html)
+Gradient, ...
