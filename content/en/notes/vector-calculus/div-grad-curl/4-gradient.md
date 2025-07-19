@@ -132,16 +132,16 @@ $$
 
 It is not very useful, since it is **one equation with three unknowns** ($E_x$, $E_y$, and $E_z$).
 
-Since $\mathbf{E}$ is a gradient of some scalar function, we can define **electrostatic potential** $\phi$ such that:
+Since $\mathbf{E}$ is a gradient of some scalar function, we can define **electrostatic potential** $\Phi$ such that:
 
 $$
-\mathbf{E} = - \nabla \phi
+\mathbf{E} = - \nabla \Phi
 $$
 
 Substituting this into Gauss' Law, we have:
 
 $$
-\frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial y^2} + \frac{\partial^2 \phi}{\partial z^2} = -\frac{\rho}{\epsilon_0}
+\frac{\partial^2 \Phi}{\partial x^2} + \frac{\partial^2 \Phi}{\partial y^2} + \frac{\partial^2 \Phi}{\partial z^2} = -\frac{\rho}{\epsilon_0}
 \tag{IV-5}
 $$
 
@@ -155,16 +155,16 @@ $$
 Then (IV-5) can be written as:
 
 $$
-\nabla^2 \phi = -\frac{\rho}{\epsilon_0}
+\nabla^2 \Phi = -\frac{\rho}{\epsilon_0}
 \tag{IV-7}
 $$
 
-This is called the **Poisson's equation**. It is a linear, second-order partial differential equation in **one unknown**, the scalar function $\phi$.
+This is called the **Poisson's equation**. It is a linear, second-order partial differential equation in **one unknown**, the scalar function $\Phi$.
 
 At any point in space where there is no charge, $\rho = 0$, then (IV-7) becomes:
 
 $$
-\nabla^2 \phi = 0
+\nabla^2 \Phi = 0
 $$
 
 This is called the **Laplace's equation**.
