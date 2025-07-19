@@ -122,3 +122,50 @@ regions are simply connected, then the three conditions are equivalent:
 2. $\nabla \times \mathbf{F} = 0$.
 3. $\mathbf{F} = \nabla \psi$ for some scalar function $\psi$.
 
+### Finding the Electrostatic Field
+
+As we saw, differential form of Gauss' Law is:
+
+$$
+\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}
+$$
+
+It is not very useful, since it is **one equation with three unknowns** ($E_x$, $E_y$, and $E_z$).
+
+Since $\mathbf{E}$ is a gradient of some scalar function, we can define **electrostatic potential** $\phi$ such that:
+
+$$
+\mathbf{E} = - \nabla \phi
+$$
+
+Substituting this into Gauss' Law, we have:
+
+$$
+\frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial y^2} + \frac{\partial^2 \phi}{\partial z^2} = -\frac{\rho}{\epsilon_0}
+\tag{IV-5}
+$$
+
+We define the **Laplacian** operator as:
+
+$$
+\nabla^2 = \nabla \cdot \nabla = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}
+\tag{IV-6}
+$$
+
+Then (IV-5) can be written as:
+
+$$
+\nabla^2 \phi = -\frac{\rho}{\epsilon_0}
+\tag{IV-7}
+$$
+
+This is called the **Poisson's equation**. It is a linear, second-order partial differential equation in **one unknown**, the scalar function $\phi$.
+
+At any point in space where there is no charge, $\rho = 0$, then (IV-7) becomes:
+
+$$
+\nabla^2 \phi = 0
+$$
+
+This is called the **Laplace's equation**.
+
