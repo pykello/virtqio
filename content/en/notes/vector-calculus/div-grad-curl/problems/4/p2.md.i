@@ -106,3 +106,25 @@ $$
 $$
 
 ::::
+
+**(e)** $\nabla \times (f \mathbf{F}) = f \nabla \times \mathbf{F} + (\nabla f) \times \mathbf{F}$
+
+:::expandable
+**Solution.** [Click to Expand]
+
+$$
+\begin{align*}
+\nabla \times (f \mathbf{F}) &= \mathbf{i} \left( \frac{\partial (f F_z)}{\partial y} - \frac{\partial (f F_y)}{\partial z} \right) \\\\[1em]
+&\quad + \mathbf{j} \left( \frac{\partial (f F_x)}{\partial z} - \frac{\partial (f F_z)}{\partial x} \right)\\\\[1em]
+&\quad + \mathbf{k} \left( \frac{\partial (f F_y)}{\partial x} - \frac{\partial (f F_x)}{\partial y} \right) \\\\[1em]
+&= \mathbf{i} \left( f \frac{\partial F_z}{\partial y} + F_z \frac{\partial f}{\partial y} - f \frac{\partial F_y}{\partial z} - F_y \frac{\partial f}{\partial z} \right) \\\\[1em]
+&\quad + \mathbf{j} \left( f \frac{\partial F_x}{\partial z} + F_x \frac{\partial f}{\partial z} - f \frac{\partial F_z}{\partial x} - F_z \frac{\partial f}{\partial x} \right) \\\\[1em]
+&\quad + \mathbf{k} \left( f \frac{\partial F_y}{\partial x} + F_y \frac{\partial f}{\partial x} - f \frac{\partial F_x}{\partial y} - F_x \frac{\partial f}{\partial y} \right) \\\\[1em]
+&= f \left( \mathbf{i} \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) + \mathbf{j} \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) + \mathbf{k} \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \right) \\\\[1em]
+&\quad + \left( \frac{\partial f}{\partial y} F_z - \frac{\partial f}{\partial z} F_y \right) \mathbf{i}
+\+ \left( \frac{\partial f}{\partial z} F_x - \frac{\partial f}{\partial x} F_z \right) \mathbf{j} + \left( \frac{\partial f}{\partial x} F_y - \frac{\partial f}{\partial y} F_x \right) \mathbf{k} \\\\[1em]
+&= f \nabla \times \mathbf{F} + (\nabla f) \times \mathbf{F}
+\end{align*}
+$$
+
+::::
