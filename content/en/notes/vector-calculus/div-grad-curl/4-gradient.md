@@ -178,3 +178,5 @@ $$
 $$
 
 The book gives an argument on how to derive this using the Taylor expansion.
+
+It follows from this that the gradient of a scalar function $f$ is the vector that points in the direction of greatest increase of $f$, and its magnitude is the rate of increase in that direction.
