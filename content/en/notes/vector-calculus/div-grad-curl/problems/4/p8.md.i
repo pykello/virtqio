@@ -8,7 +8,8 @@ flow is _irrotational_. That is, $\nabla \times \mathbf{v} = 0$.
 :::expandable
 **Solution.** [Click to Expand]
 
-Since $\mathbf{J} = \rho \mathbf{v}$ and $\mathbf{J} = -k \nabla \rho$, then:
+Since $\mathbf{J} = \rho \mathbf{v}$ (using the definition at page 52 of the book) and
+$\mathbf{J} = -k \nabla \rho$ (using the equation at the problem statement), then:
 
 $$
 \mathbf{v} = -k \frac{\nabla \rho}{\rho}
