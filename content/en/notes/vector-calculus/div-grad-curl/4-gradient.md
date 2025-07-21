@@ -169,3 +169,12 @@ $$
 
 This is called the **Laplace's equation**.
 
+### Directional Derivatives and the Gradient
+
+The rate of change of the function $f$ in the direction of a unit vector $\hat{\mathbf{u}}$ is given by the **directional derivative**:
+
+$$
+\frac{df}{ds} = \hat{\mathbf{u}} \cdot \nabla f
+$$
+
+The book gives an argument on how to derive this using the Taylor expansion.

@@ -24,7 +24,7 @@ Curl of a gradient is zero, so $A = 0$. For $B$, we have:
 
 $$
 \begin{align*}
-\nabla(\frac{1}{\rho}) &= \mathbf{i} \left( -\frac{1}{\rho^2} \frac{\partial \rho}{\partial x} \right) + \mathbf{j} \left( -\frac{1}{\rho^2} \frac{\partial \rho}{\partial y} \right) + \mathbf{k} \left( -\frac{1}{\rho^2} \frac{\partial \rho}{\partial z} \right) \\\\[1em]
+\nabla\left(\frac{1}{\rho}\right) &= \mathbf{i} \left( -\frac{1}{\rho^2} \frac{\partial \rho}{\partial x} \right) + \mathbf{j} \left( -\frac{1}{\rho^2} \frac{\partial \rho}{\partial y} \right) + \mathbf{k} \left( -\frac{1}{\rho^2} \frac{\partial \rho}{\partial z} \right) \\\\[1em]
 &= -\frac{1}{\rho^2} \nabla \rho
 \end{align*}
 $$
