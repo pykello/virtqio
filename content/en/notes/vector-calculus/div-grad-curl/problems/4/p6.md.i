@@ -41,3 +41,62 @@ $$
 $$
 
 ::::
+
+**(b)** Calculate the flux of the dipole field through a sphere of radius $R$ centered at the origin.
+
+:::expandable
+**Solution.** [Click to Expand]
+
+In a spherical surface, $\hat{\mathbf{n}} = \hat{\mathbf{e}}\_r$. Then:
+
+$$
+\begin{align*}
+\Phi_{\mathbf{E}} &= \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} dS \\\\[1em]
+&= \iint_S \frac{1}{4 \pi \epsilon_0} \frac{2p}{R^3} \cos \phi dS \\\\[1em]
+&= \frac{1}{4 \pi \epsilon_0} \frac{2p}{R^3} \iint_S \cos \phi dS \\\\[1em]
+\end{align*}
+$$
+
+We have $dS = R^2 \sin \phi \\, d\phi \\, d \theta$. Then:
+
+$$
+\begin{align*}
+\Phi_{\mathbf{E}} &= \frac{1}{4 \pi \epsilon_0} \frac{2p}{R^3} \int_{0}^{\pi} \int_{0}^{2\pi} R^2 \cos \phi \sin \phi \\, d\theta \\, d\phi  \\\\[1em]
+&=\frac{1}{\epsilon_0} \frac{p}{R} \int_{0}^{\pi} \cos \phi \sin \phi \\, d\phi \\\\[1em]
+&= 0
+\end{align*}
+$$
+::::
+
+**(c)** What is the flux of the dipole field over any closed surface that doesn't pass through
+the origin?
+
+:::expandable
+**Solution.** [Click to Expand]
+
+Divergence in spherical coordinates is given by:
+
+$$
+\nabla \cdot \mathbf{F} = \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 F_r \right) + \frac{1}{r \sin \phi} \frac{\partial}{\partial \phi} \left( F_\phi \sin \phi \right) + \frac{1}{r \sin{\phi}} \frac{\partial F_\theta}{\partial \theta}
+$$
+
+Then:
+
+$$
+\begin{align*}
+\nabla \cdot \mathbf{E} &= \frac{p}{4 \pi \epsilon_0} \left( \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{2}{r^3} \cos \phi \right) + \frac{1}{r \sin \phi} \frac{\partial}{\partial \phi} \left( \frac{\sin^2 \phi}{r^3} \right) + 0 \right)
+\\\\[1em]
+&= \frac{p}{4 \pi \epsilon_0} \left( \frac{1}{r^2} \left(-\frac{2}{r^2} \cos \phi \right) + \frac{1}{r \sin \phi} \left( \frac{2 \sin \phi \cos \phi}{r^3} \right) \right)
+\\\\[1em]
+&= \frac{p}{4 \pi \epsilon_0} \left( -\frac{2 \cos \phi}{r^4} + \frac{2 \cos \phi}{r^4} \right)
+\\\\[1em]
+&= 0
+\end{align*}
+$$
+
+Now, given any closed surface $S$ that doesn't pass through the origin, there exists a sphere with 
+$R > 0$ inside $S$ centered at the origin. Using part (b), flux of $\mathbf{E}$ over the sphere is 0.
+Using problem II-27, since $\nabla \cdot \mathbf{E} = 0$ then flux of $\mathbf{E}$ over $S$ is
+equal to the flux of $\mathbf{E}$ over the sphere, which is 0.
+
+::::
