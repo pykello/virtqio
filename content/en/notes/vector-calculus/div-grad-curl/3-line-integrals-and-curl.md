@@ -112,8 +112,7 @@ The path integral around a closed curve is often called a **circulation**.
 
 ### The Curl
 
-Let us consider the circulation of $\mathbf{F}$ around a small rectangle parallel the $xy$
--plane:
+Let us consider the circulation of $\mathbf{F}$ around a small rectangle parallel to the $xy$-plane:
 
  ![](fig-III-11a.png)
 

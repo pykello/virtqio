@@ -1,5 +1,5 @@
 **Problem III-1.**
-Use an argument like the one given in the text for the Coloumb force to
+Use an argument like the one given in the text for the Coulomb force to
 show that $\int_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = 0$ is independent
 of path for any central force $\mathbf{F}$.
 

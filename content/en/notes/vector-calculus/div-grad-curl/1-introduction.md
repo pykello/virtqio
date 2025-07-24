@@ -22,7 +22,7 @@ Our discussion is based on three experimental facts:
 
 **1.** **Existence of electric charge.** There are two kinds of electric charge, positive and negative. Every material body contains electric charge. Often, zero net charge.
 
-**2.** **Coulomb's law.** The elctrostatic force between two charged particles is
+**2.** **Coulomb's law.** The electrostatic force between two charged particles is
 proportional to the product of their charges and inversely proportional to the square of their distance.
 
 The force on $q_0$ due to $q$ is given by
