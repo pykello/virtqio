@@ -154,7 +154,7 @@ $$
 $$
 
 If our curve was an arbitrary shape, the result would still hold. But the result definitely
-depens on the orientation.
+depends on the orientation.
 
 If the curve were parallel to the $xz$-plane, we would get $\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x}$, and if it were parallel to the $yz$-plane, we would get $\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z}$.
 
