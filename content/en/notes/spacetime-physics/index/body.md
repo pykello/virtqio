@@ -6,3 +6,5 @@ Notes while self-studying [Spacetime Physics](https://www.eftaylor.com/spacetime
 Units, Events, Intervals, Principle of Invariance
 
 ### [Chapter 2](ch02.html)
+Inertial Frames, Regions of Spacetime, Test Particles
+
