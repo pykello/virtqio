@@ -31,4 +31,52 @@ the observer on the ground, we need **Lorentz coordinate transformation equation
 
 ### L.3 First Steps
 
+**Goal.** Find $t$ and $x$ given $t'$, when $x' = 0$.
+
+Assume we have a rocket moving at speed $v_\text{rel}$ relative to the observer in the lab.
+Take the spatial origins of the two frames to coincide at time $0$.
+
+Let a spark occur at the origin of the rocket frame ($x' = 0$) at time $t$ of the lab frame.
+
+Since the rocket is moving at speed $v_\text{rel}$ relative to the lab frame,
+the spark will occur at position $x = v_\text{rel} t$.
+
+Now, using the invariance of the spacetime interval, we can calculate $t'$,
+
+$$
+t' = t \left( 1 - v_\text{rel}^2 \right)^{1/2}
+$$
+
+Or
+
+$$
+t = \frac{t'}{\left( 1 - v_\text{rel}^2 \right)^{1/2}}
+$$
+
+We define the **time stretch factor** as
+
+$$
+\gamma = \frac{1}{\left( 1 - v_\text{rel}^2 \right)^{1/2}}
+$$
+
+So we have $t = \gamma t'$ (when $x' = 0$).
+
+Then, we have $x = v_\text{rel} \gamma t'$ (when $x' = 0$).
+
+### L.4 Form of the Lorentz Transformation
+
+In this section the book argues that the general form of the transformation must be linear.
+
+That is, the general form should be:
+
+$$
+t = B x' + D t' \\\
+x = G x' + H t'
+$$
+
+Why? since we are free to choose any event as the reference event. See the book for more details.
+
+### L.5 Completing the Derivation
+
 [TODO]
+
