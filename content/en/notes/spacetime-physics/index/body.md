@@ -12,5 +12,6 @@ Inertial Frames, Regions of Spacetime, Test Particles
 Principle of Relativity, Simultaneity, Lorentz Contraction
 
 ### [Special Topic: Lorentz Transformation](lorentz-transformation.html)
+Lorentz Transformation
 
 ### [Chapter 4](ch04.html)
