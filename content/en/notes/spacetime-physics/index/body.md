@@ -15,3 +15,6 @@ Principle of Relativity, Simultaneity, Lorentz Contraction
 Lorentz Transformation
 
 ### [Chapter 4](ch04.html)
+Trip to Canopus
+
+### [Chapter 5](ch05.html)
