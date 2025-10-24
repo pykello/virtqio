@@ -19,3 +19,6 @@ Trip to Canopus
 
 ### [Chapter 5](ch05.html)
 Trekking Through Spacetime
+
+### [Chapter 6](ch06.html)
+Regions of Spacetime
