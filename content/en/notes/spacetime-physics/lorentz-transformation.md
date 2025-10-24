@@ -1,4 +1,4 @@
-# Special Topcic: Lorentz Transformation
+# Special Topic: Lorentz Transformation
 
 Layout of the physical world can be described in two equivalent ways:
 - Using events and intervals between them.
@@ -9,7 +9,7 @@ frame to that of another inertial frame.
 
 ### L.2 Faster than light?
 
-If I fly at 4/5 the speed of light and fire a bullet that observe to fly forward at
+If I fly at 4/5 the speed of light and fire a bullet that I observe to fly forward at
 4/5 the speed of light, isn't the bullet flying at 8/5 the speed of light relative
 to the observer on the ground?
 
