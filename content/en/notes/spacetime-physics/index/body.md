@@ -28,6 +28,3 @@ Momenergy
 
 ### [Chapter 8](ch08.html)
 Collide. Create. Annihilate.
-
-### [Chapter 9](ch09.html)
-Gravity: Curved Spacetime in Action
