@@ -78,7 +78,7 @@ without worrying about the effect of other charges, and (b) calculating the forc
 
 2. The electrostatic field is more basic. Entire classical electromagnetic theory can be codified in terms of four basic equations, called Maxwell's equations, which relate fields to each other and to the charges and currents that produce them.
 
-### Threating charge distribution as a continuous
+### Treating the charge distribution as continuous
 Suppose in some region of space of volume $\Delta V$ the total electric charge is $\Delta Q$. We can define the _average charge density_ in that region as
 
 $$
