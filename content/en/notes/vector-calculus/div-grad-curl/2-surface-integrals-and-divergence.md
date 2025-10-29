@@ -40,7 +40,7 @@ function initBoard(divId) {
 </script>
 
 ### Gauss's Law
-Goal: A convenient way to find the **electorstatic field**.
+Goal: A convenient way to find the **electrostatic field**.
 
 Doesn't equations in last section already solve this? Generally, no. Unless
 we have very few charges and/or they are arrange simply or symmetrically.
@@ -104,7 +104,7 @@ $$
 \tag{II-5}
 $$
 
-Let's approaximate $S$ by a collection of small flat pieces, each of which is
+Let's approximate $S$ by a collection of small flat pieces, each of which is
 tangent to $S$ at some point.
 
 Let's focus on the $i$-th piece. Let $\Delta S_i$ be the area, and $(x_i, y_i, z_i)$ be the coordinate of the tangent point, and $\hat{\mathbf{n}}_i$ be the unit normal vector at that point.
