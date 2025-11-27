@@ -32,10 +32,10 @@ Since path integral of $\mathbf{E}$ is path independent, then:
 
 $$
 \begin{align*}
-\Phi &= - \int_{(r_0, \theta_0, \phi_0)}^{(r, \theta, \phi)} \mathbf{E} \cdot \hat{\mathbf{t}} ds \\\\[1em]
-&= - \left( \int_{(r_0, \theta_0, \phi_0)}^{(r, \theta_0, \phi_0)} \mathbf{E} \cdot \hat{\mathbf{t}} ds + \int_{(r, \theta_0, \phi_0)}^{(r, \theta, \phi_0)} \mathbf{E} \cdot \hat{\mathbf{t}} ds + \int_{(r, \theta, \phi_0)}^{(r, \theta, \phi)} \mathbf{E} \cdot \hat{\mathbf{t}} ds \right) \\\\[1em]
-&= - \frac{p}{4 \pi \epsilon_0} \left( \int_{r_0}^r \frac{2 \cos \phi_0}{r^3} dr + 0 + \int_{\phi_0}^{\phi} \frac{\sin \phi}{r^2} d\phi \right) \\\\[1em]
-&= - \frac{p}{4 \pi \epsilon_0} \left( - \frac{\cos \phi_0}{r^2} +\frac{\cos \phi_0}{r_0^2} - \frac{\cos \phi}{r^2} + \frac{cos \phi_0}{r^2} \right) \\\\[1em]
+\Phi &= - \int_{(r_0, \theta_0, \phi_0)}^{(r, \theta, \phi)} \mathbf{E} \cdot \hat{\mathbf{t}} ds \\[1em]
+&= - \left( \int_{(r_0, \theta_0, \phi_0)}^{(r, \theta_0, \phi_0)} \mathbf{E} \cdot \hat{\mathbf{t}} ds + \int_{(r, \theta_0, \phi_0)}^{(r, \theta, \phi_0)} \mathbf{E} \cdot \hat{\mathbf{t}} ds + \int_{(r, \theta, \phi_0)}^{(r, \theta, \phi)} \mathbf{E} \cdot \hat{\mathbf{t}} ds \right) \\[1em]
+&= - \frac{p}{4 \pi \epsilon_0} \left( \int_{r_0}^r \frac{2 \cos \phi_0}{r^3} dr + 0 + \int_{\phi_0}^{\phi} \frac{\sin \phi}{r^2} d\phi \right) \\[1em]
+&= - \frac{p}{4 \pi \epsilon_0} \left( - \frac{\cos \phi_0}{r^2} +\frac{\cos \phi_0}{r_0^2} - \frac{\cos \phi}{r^2} + \frac{cos \phi_0}{r^2} \right) \\[1em]
 &= \frac{1}{4 \pi \epsilon_0} \frac{p \cos \phi}{r^2} + \text{constant}
 \end{align*}
 $$
@@ -51,9 +51,9 @@ In a spherical surface, $\hat{\mathbf{n}} = \hat{\mathbf{e}}\_r$. Then:
 
 $$
 \begin{align*}
-\Phi_{\mathbf{E}} &= \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} dS \\\\[1em]
-&= \iint_S \frac{1}{4 \pi \epsilon_0} \frac{2p}{R^3} \cos \phi dS \\\\[1em]
-&= \frac{1}{4 \pi \epsilon_0} \frac{2p}{R^3} \iint_S \cos \phi dS \\\\[1em]
+\Phi_{\mathbf{E}} &= \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} dS \\[1em]
+&= \iint_S \frac{1}{4 \pi \epsilon_0} \frac{2p}{R^3} \cos \phi dS \\[1em]
+&= \frac{1}{4 \pi \epsilon_0} \frac{2p}{R^3} \iint_S \cos \phi dS \\[1em]
 \end{align*}
 $$
 
@@ -61,8 +61,8 @@ We have $dS = R^2 \sin \phi \\, d\phi \\, d \theta$. Then:
 
 $$
 \begin{align*}
-\Phi_{\mathbf{E}} &= \frac{1}{4 \pi \epsilon_0} \frac{2p}{R^3} \int_{0}^{\pi} \int_{0}^{2\pi} R^2 \cos \phi \sin \phi \\, d\theta \\, d\phi  \\\\[1em]
-&=\frac{1}{\epsilon_0} \frac{p}{R} \int_{0}^{\pi} \cos \phi \sin \phi \\, d\phi \\\\[1em]
+\Phi_{\mathbf{E}} &= \frac{1}{4 \pi \epsilon_0} \frac{2p}{R^3} \int_{0}^{\pi} \int_{0}^{2\pi} R^2 \cos \phi \sin \phi \, d\theta \, d\phi  \\[1em]
+&=\frac{1}{\epsilon_0} \frac{p}{R} \int_{0}^{\pi} \cos \phi \sin \phi \, d\phi \\[1em]
 &= 0
 \end{align*}
 $$
@@ -85,11 +85,11 @@ Then:
 $$
 \begin{align*}
 \nabla \cdot \mathbf{E} &= \frac{p}{4 \pi \epsilon_0} \left( \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{2}{r^3} \cos \phi \right) + \frac{1}{r \sin \phi} \frac{\partial}{\partial \phi} \left( \frac{\sin^2 \phi}{r^3} \right) + 0 \right)
-\\\\[1em]
+\\[1em]
 &= \frac{p}{4 \pi \epsilon_0} \left( \frac{1}{r^2} \left(-\frac{2}{r^2} \cos \phi \right) + \frac{1}{r \sin \phi} \left( \frac{2 \sin \phi \cos \phi}{r^3} \right) \right)
-\\\\[1em]
+\\[1em]
 &= \frac{p}{4 \pi \epsilon_0} \left( -\frac{2 \cos \phi}{r^4} + \frac{2 \cos \phi}{r^4} \right)
-\\\\[1em]
+\\[1em]
 &= 0
 \end{align*}
 $$

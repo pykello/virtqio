@@ -71,7 +71,7 @@ That is, the general form should be:
 
 $$
 \begin{aligned}
-t &= B x' + D t' \\\\
+t &= B x' + D t' \\
 x &= G x' + H t'
 \end{aligned}
 $$
@@ -84,7 +84,7 @@ Using the special case in section L.3, we can find $D$ and $H$:
 
 $$
 \begin{aligned}
-t &= B x' + \gamma t' \\\\
+t &= B x' + \gamma t' \\
 x &= G x' + v_\text{rel} \gamma t'
 \end{aligned}
 $$
@@ -94,7 +94,7 @@ leads to completed form of the Lorentz transformation:
 
 $$
 \begin{aligned}
-t &= \gamma \left( t' + v_\text{rel} x' \right) \\\\
+t &= \gamma \left( t' + v_\text{rel} x' \right) \\
 x &= \gamma \left( x' + v_\text{rel} t' \right)
 \end{aligned}
 $$
@@ -103,7 +103,7 @@ or
 
 $$
 \begin{aligned}
-t &= \frac{v_\text{rel} x' + t'}{\left( 1 - v_\text{rel}^2 \right)^{1/2}} \\\\[0.5em]
+t &= \frac{v_\text{rel} x' + t'}{\left( 1 - v_\text{rel}^2 \right)^{1/2}} \\[0.5em]
 x &= \frac{x' + v_\text{rel} t'}{\left( 1 - v_\text{rel}^2 \right)^{1/2}}
 \end{aligned}
 $$
@@ -112,7 +112,7 @@ $$
 
 $$
 \begin{aligned}
-t' &= \frac{-v_\text{rel} x + t}{\left( 1 - v_\text{rel}^2 \right)^{1/2}} \\\\[0.5em]
+t' &= \frac{-v_\text{rel} x + t}{\left( 1 - v_\text{rel}^2 \right)^{1/2}} \\[0.5em]
 x' &= \frac{x - v_\text{rel} t}{\left( 1 - v_\text{rel}^2 \right)^{1/2}}
 \end{aligned}
 $$

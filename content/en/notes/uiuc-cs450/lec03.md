@@ -158,7 +158,7 @@ $$
 Therefore,
 
 $$
-\lVert A \rVert\_\infty \le \max\\{\lVert A_1 \rVert\_1, \ldots, \lVert A_n \rVert\_1\\} \tag{2}
+\lVert A \rVert\_\infty \le \max\{\lVert A_1 \rVert\_1, \ldots, \lVert A_n \rVert\_1\} \tag{2}
 $$
 
 Now, we show that a vector $v$ exists to make the equality happen.
@@ -167,7 +167,7 @@ Define vectors $v^1, \ldots, v^n$ such that $v^i\_j = \text{sgn}(A_{i,j})$, wher
 
 $$
 \text{sgn}(x) = \begin{cases}
-+1 \quad &x \ge 0 \\\\
++1 \quad &x \ge 0 \\
 -1 \quad &x < 0
 \end{cases}
 $$
@@ -183,7 +183,7 @@ Choose $k = \text{argmax}_{i=1}^n \lVert A_i \rVert\_1$. In case there are multi
 Then using (1) and (3),
 
 $$
-\lVert A \cdot v^k \rVert\_\infty = \lVert A_k \rVert\_1 = \max\\{\lVert A_1 \rVert\_1, \ldots, \lVert A_n \rVert\_1\\} \tag{4}
+\lVert A \cdot v^k \rVert\_\infty = \lVert A_k \rVert\_1 = \max\{\lVert A_1 \rVert\_1, \ldots, \lVert A_n \rVert\_1\} \tag{4}
 $$
 
 Using 2 and 4, we conclude that $\lVert A \rVert\_\infty$ is the maximum 1-norm of the rows of $A$.
@@ -214,8 +214,8 @@ may or may not hold for more general matrix norms:
 
 $$
 A = \begin{bmatrix}
-1 & 0 & 3 \\\\
--1 & 2 & 0 \\\\
+1 & 0 & 3 \\
+-1 & 2 & 0 \\
 4 & 0 & 1
 \end{bmatrix}
 $$
@@ -223,8 +223,8 @@ $$
 we have:
 $$
 \begin{align*}
-\lVert A \rVert\_1 &= \max\\{6, 2, 4\\} = 6 \\\\
-\lVert A \rVert\_\infty &= \max\\{4, 3, 5\\} = 5
+\lVert A \rVert\_1 &= \max\{6, 2, 4\} = 6 \\
+\lVert A \rVert\_\infty &= \max\{4, 3, 5\} = 5
 \end{align*}
 $$
 
@@ -232,8 +232,8 @@ $$
 
 $$
 A^T A = \begin{bmatrix}
-18 & -2 & 7 \\\\
--2 & 4 & 0 \\\\
+18 & -2 & 7 \\
+-2 & 4 & 0 \\
 7 & 0 & 10
 \end{bmatrix}
 $$
@@ -272,8 +272,8 @@ If $Q$ is square and $\kappa(Q) = 1$ and $\lVert Q \rVert = 1$, then $Q$ is orth
 
 $$
 \begin{align*}
-\kappa(2A) &= \lVert 2A \rVert \cdot \lVert (2A)^{-1} \rVert \\\\
-&= 2 \lVert A \rVert \cdot \frac{1}{2} \lVert A^{-1} \rVert \\\\
+\kappa(2A) &= \lVert 2A \rVert \cdot \lVert (2A)^{-1} \rVert \\
+&= 2 \lVert A \rVert \cdot \frac{1}{2} \lVert A^{-1} \rVert \\
 &= \kappa(A)
 \end{align*}
 $$
@@ -337,8 +337,8 @@ Then:
 
 $$
 \begin{align*}
-A &= U \Sigma V^T \\\\
-&= U \cdot (\alpha I) \cdot V^T \\\\
+A &= U \Sigma V^T \\
+&= U \cdot (\alpha I) \cdot V^T \\
 &= \alpha U V^T
 \end{align*}
 $$

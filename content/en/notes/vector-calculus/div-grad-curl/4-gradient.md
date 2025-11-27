@@ -38,7 +38,7 @@ $$
 then using the Fundamental Theorem of Calculus, we have:
 
 $$
-\int_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = \int_C \frac{d\psi}{ds} \\, ds = \psi(x_1, y_1, z_1) - \psi(x_0, y_0, z_0)
+\int_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = \int_C \frac{d\psi}{ds} \, ds = \psi(x_1, y_1, z_1) - \psi(x_0, y_0, z_0)
 $$
 
 ($\impliedby$) Now, we prove the converse: if line integral is path-independent, then $\mathbf{F}$ is a gradient of some scalar function $\psi$.
@@ -46,7 +46,7 @@ $$
 Fix $(x_0, y_0, z_0)$ and define $\psi(x, y, z)$ as:
 
 $$
-\psi(x, y, z) = \int_{(x_0, y_0, z_0)}^{(x, y, z)} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds
+\psi(x, y, z) = \int_{(x_0, y_0, z_0)}^{(x, y, z)} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds
 $$
 
 Since the line integral is path-independent, we can change the path to:
@@ -57,9 +57,9 @@ Then:
 
 $$
 \begin{align*}
-\psi(x, y, z) &= \int_{P_0}^{P_1} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds + \int_{P_1}^{P} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds
-\\\\
-&= \int_{P_0}^{P_1} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds + \int_{P_1}^{P} F_x(x', y, z) \\, dx'
+\psi(x, y, z) &= \int_{P_0}^{P_1} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds + \int_{P_1}^{P} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds
+\\
+&= \int_{P_0}^{P_1} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds + \int_{P_1}^{P} F_x(x', y, z) \, dx'
 \end{align*}
 $$
 
@@ -83,7 +83,7 @@ This can be written as:
 $$
 \begin{align*}
 \mathbf{F} &= \mathbf{i} \frac{\partial \psi}{\partial x} + \mathbf{j} \frac{\partial \psi}{\partial y} + \mathbf{k} \frac{\partial \psi}{\partial z}
-\\\\[0.5em]
+\\[0.5em]
 &= \left( \mathbf{i} \frac{\partial}{\partial x} + \mathbf{j} \frac{\partial}{\partial y}
 \+ \mathbf{k} \frac{\partial}{\partial z} \right) \psi = \nabla \psi
 \end{align*}
@@ -100,7 +100,7 @@ Similarly, if $\mathbf{F} = \nabla \psi$ under suitable conditions, then $\nabla
 $$
 \begin{align*}
 (\nabla \times \mathbf{F})_x &= \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} = \frac{\partial}{\partial y} \left( \frac{\partial \psi}{\partial z} \right) - \frac{\partial}{\partial z} \left( \frac{\partial \psi}{\partial y} \right)
-\\\\[0.5em]
+\\[0.5em]
 &= \frac{\partial^2 \psi}{\partial y \partial z} - \frac{\partial^2 \psi}{\partial z \partial y} = 0
 \end{align*}
 $$

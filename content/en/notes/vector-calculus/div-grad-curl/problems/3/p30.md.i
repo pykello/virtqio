@@ -44,9 +44,9 @@ use Taylor series to show that for $N$ large and each $\Delta S_l$ small,
 
 $$
 \begin{align*}
-\oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds \\\\[1em]
+\oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds \\[1em]
 &\approx C(x_0, y_0) \Delta A + \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} 
-\sum_{l=1}^N (x_l - x_0) \Delta S_l \\\\[1em]
+\sum_{l=1}^N (x_l - x_0) \Delta S_l \\[1em]
 &\quad + \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} 
 \sum_{l=1}^N (y_l - y_0) \Delta S_l + \cdots
 \end{align*}
@@ -62,14 +62,14 @@ Segments in patches that are not in the perimeter of $P$ are traced twice, and
 in opposite directions, so they cancel out. Thus, we can write:
 
 $$
-\oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds \tag{1}
+\oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds \tag{1}
 $$
 
 We can approximate the circulation around $C_l$ by:
 
 $$
-\oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds \approx
-C(x_l, y_l) \\, \Delta S_l \tag{2}
+\oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds \approx
+C(x_l, y_l) \, \Delta S_l \tag{2}
 $$
 
 where $(x_l, y_l)$ is the center of the $l$-th patch.
@@ -87,10 +87,10 @@ Putting (1), (2), and (3) together, we have:
 
 $$
 \begin{align*}
-\oint_P \mathbf{F} &\cdot \hat{\mathbf{t}} \\, ds \approx 
-\\\\[1em]
+\oint_P \mathbf{F} &\cdot \hat{\mathbf{t}} \, ds \approx 
+\\[1em]
 &C(x_0, y_0) \Delta A + \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} 
-\sum_{l=1}^N (x_l - x_0) \Delta S_l \\\\[1em]
+\sum_{l=1}^N (x_l - x_0) \Delta S_l \\[1em]
 &\quad + \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} 
 \sum_{l=1}^N (y_l - y_0) \Delta S_l + \cdots
 \end{align*}
@@ -102,9 +102,9 @@ $$
 
 $$
 \begin{align*}
-\lim_{N \to \infty} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &=
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds \\\\[1em]
-&\= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\\\[1em]
+\lim_{N \to \infty} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &=
+\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds \\[1em]
+&\= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\[1em]
 &\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} +
 \cdots \Bigr) \Delta S
 \end{align*}
@@ -113,8 +113,8 @@ $$
 where $\Delta S$ is the area of the region $R$ enclosed by $C$ and $(\overline{x}, \overline{y})$ is the centroid of $R$. That is:
 
 $$
-\overline{x} = \frac{1}{\Delta S} \iint_R x \\, dx \\, dy, \quad
-\overline{y} = \frac{1}{\Delta S} \iint_R y \\, dx \\, dy
+\overline{x} = \frac{1}{\Delta S} \iint_R x \, dx \, dy, \quad
+\overline{y} = \frac{1}{\Delta S} \iint_R y \, dx \, dy
 $$
 
 :::expandable
@@ -126,8 +126,8 @@ $$
 \begin{align*}
 \lim_{N \to \infty} \sum_{l=1}^N (x_l - x_0) \Delta S_l &=
 \lim_{N \to \infty} \sum_{l=1}^N (x_l \Delta S_l) - x_0 \left(
-  \lim_{N \to \infty} \sum_{l=1}^N \Delta S_l \right) \\\\[1em]
-&= \iint_R x \\, dx \\, dy - x_0 \Delta S \\\\[1em]
+  \lim_{N \to \infty} \sum_{l=1}^N \Delta S_l \right) \\[1em]
+&= \iint_R x \, dx \, dy - x_0 \Delta S \\[1em]
 &= \Delta S (\overline{x} - x_0)
 \end{align*}
 $$
@@ -142,10 +142,10 @@ Putting this together, we have:
 
 $$
 \begin{align*}
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &=
-\lim_{N \to \infty} \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds
-\\\\[1em]
-&= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\\\[1em]
+\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &=
+\lim_{N \to \infty} \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds
+\\[1em]
+&= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\[1em]
 &\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} +
 \cdots \Bigr) \Delta S
 \end{align*}
@@ -156,7 +156,7 @@ $$
 **(d)** Finally, calculate
 
 $$
-(\nabla \times \mathbf{F})_z = \lim\_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds
+(\nabla \times \mathbf{F})_z = \lim\_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds
 $$
 
 :::expandable
@@ -166,11 +166,11 @@ As $\Delta S \to 0$, then $(\overline{x}, \overline{y}) \to (x, y)$, and we have
 
 $$
 \begin{align*}
-\lim\_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &=
-\lim\_{\Delta S \to 0} \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\\\[1em]
+\lim\_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &=
+\lim\_{\Delta S \to 0} \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\[1em]
 &\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} +
-\cdots \Bigr) \\\\[1em]
-&= \lim\_{\Delta S \to 0} C(x_l, y_l) \\\\[1em]
+\cdots \Bigr) \\[1em]
+&= \lim\_{\Delta S \to 0} C(x_l, y_l) \\[1em]
 &= \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
 \end{align*}
 $$

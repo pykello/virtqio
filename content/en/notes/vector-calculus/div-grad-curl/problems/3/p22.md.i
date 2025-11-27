@@ -12,7 +12,7 @@ using for $V$ and $S$ the volume and surface shown in the diagram.
 In this way obtain the relation
 
 $$
-\oint_C G_x \\, dy - G_y \\, dx = \iint_R \left( \frac{\partial G_x}{\partial x} + \frac{\partial G_y}{\partial y} \right) \\, dx dy
+\oint_C G_x \, dy - G_y \, dx = \iint_R \left( \frac{\partial G_x}{\partial x} + \frac{\partial G_y}{\partial y} \right) \, dx dy
 $$
 
 which is the divergence theorem in two dimensions.
@@ -23,7 +23,7 @@ which is the divergence theorem in two dimensions.
 We'll use the divergence theorem:
 
 $$
-\iint_S \mathbf{G} \cdot \hat{\mathbf{n}} \\, dS = \iiint_V \nabla \cdot \mathbf{G} \\, dV
+\iint_S \mathbf{G} \cdot \hat{\mathbf{n}} \, dS = \iiint_V \nabla \cdot \mathbf{G} \, dV
 \tag{1}
 $$
 
@@ -42,7 +42,7 @@ the value of $\mathbf{G}$ and the normal vector $\hat{\mathbf{n}}$ do not depend
 Then surface integral of the shaded part in the figure will be equal to:
 
 $$
-h \\, \oint_C \mathbf{G} \cdot \hat{\mathbf{n}} \\, ds
+h \, \oint_C \mathbf{G} \cdot \hat{\mathbf{n}} \, ds
 $$
 
 Since $C$ is on the $xy$-plane, then its tangent vector is:
@@ -61,15 +61,15 @@ Then, we have:
 
 $$
 \begin{align*}
-\oint_C \mathbf{G} \cdot \hat{\mathbf{n}} \\, ds &= \oint_C \left( G_x \frac{dy}{ds} - G_y \frac{dx}{ds} \right) \\, ds \\\\[0.8em]
-&= \oint_C G_x \\, dy - G_y \\, dx
+\oint_C \mathbf{G} \cdot \hat{\mathbf{n}} \, ds &= \oint_C \left( G_x \frac{dy}{ds} - G_y \frac{dx}{ds} \right) \, ds \\[0.8em]
+&= \oint_C G_x \, dy - G_y \, dx
 \end{align*}
 $$
 
 and then the total surface integral is:
 
 $$
-\iint_S \mathbf{G} \cdot \hat{\mathbf{n}} \\, dS = h \oint_C G_x \\, dy - G_y \\, dx
+\iint_S \mathbf{G} \cdot \hat{\mathbf{n}} \, dS = h \oint_C G_x \, dy - G_y \, dx
 \tag{2}
 $$
 
@@ -83,9 +83,9 @@ Then, we have:
 
 $$
 \begin{align*}
-\iiint_V \nabla \cdot \mathbf{G} \\, dV &=
-h \iint_R \nabla \cdot \mathbf{G} \\, dS \\\\[0.8em]
-&= h \iint_R \left( \frac{\partial G_x}{\partial x} + \frac{\partial G_y}{\partial y} \right) \\, dx dy
+\iiint_V \nabla \cdot \mathbf{G} \, dV &=
+h \iint_R \nabla \cdot \mathbf{G} \, dS \\[0.8em]
+&= h \iint_R \left( \frac{\partial G_x}{\partial x} + \frac{\partial G_y}{\partial y} \right) \, dx dy
 \tag{3}
 \end{align*}
 $$
@@ -95,7 +95,7 @@ $$
 Finally, putting (1), (2), and (3) together, we have:
 
 $$
-\oint_C G_x \\, dy - G_y \\, dx = \iint_R \left( \frac{\partial G_x}{\partial x} + \frac{\partial G_y}{\partial y} \right) \\, dx dy
+\oint_C G_x \, dy - G_y \, dx = \iint_R \left( \frac{\partial G_x}{\partial x} + \frac{\partial G_y}{\partial y} \right) \, dx dy
 $$
 
 ::::
@@ -110,7 +110,7 @@ using for $C$ a closed curve lying entirely in the $xy$-plane and for $S$ the
 region $R$ of the $xy$-plane enclosed by $C$. In this way obtain the relation
 
 $$
-\oint_C F_x \\, dx + F_y \\, dy = \iint_R \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \\, dx dy
+\oint_C F_x \, dx + F_y \, dy = \iint_R \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \, dx dy
 $$
 
 which is Stokes' theorem in two dimensions.
@@ -131,7 +131,7 @@ $$
 and then:
 
 $$
-\iint_S \nabla \times \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \iint_R \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \\, dx dy \tag{1}
+\iint_S \nabla \times \mathbf{F} \cdot \hat{\mathbf{n}} \, dS = \iint_R \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \, dx dy \tag{1}
 $$
 
 ------------
@@ -139,7 +139,7 @@ $$
 Since $C$ is a closed curve lying entirely in the $xy$-plane, then:
 
 $$
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = \oint_C F_x \\, dx + F_y \\, dy \tag{2}
+\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = \oint_C F_x \, dx + F_y \, dy \tag{2}
 $$
 
 ---------------
@@ -147,14 +147,14 @@ $$
 Then, by Stokes' theorem we have:
 
 $$
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = \iint_S \nabla \times \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \tag{3}
+\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = \iint_S \nabla \times \mathbf{F} \cdot \hat{\mathbf{n}} \, dS \tag{3}
 $$
 
 
 Putting (1), (2), and (3) together, we have:
 
 $$
-\oint_C F_x \\, dx + F_y \\, dy = \iint_R \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \\, dx dy
+\oint_C F_x \, dx + F_y \, dy = \iint_R \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \, dx dy
 $$
 
 ::::

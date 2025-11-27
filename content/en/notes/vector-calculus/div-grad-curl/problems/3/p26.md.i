@@ -7,8 +7,8 @@ around any closed path $C$ is equal to the flux of $\mathbf{B}$ through any surf
 
 $$
 \begin{align*}
-\oint_C \mathbf{A} \cdot \hat{\mathbf{t}} \\, ds &= \iint_S (\nabla \times \mathbf{A}) \cdot \hat{\mathbf{n}} \\, dS \quad \text{(Stokes' Theorem)} \\\\[1em]
-&= \iint_S \mathbf{B} \cdot \hat{\mathbf{n}} \\, dS \\\\[1em]
+\oint_C \mathbf{A} \cdot \hat{\mathbf{t}} \, ds &= \iint_S (\nabla \times \mathbf{A}) \cdot \hat{\mathbf{n}} \, dS \quad \text{(Stokes' Theorem)} \\[1em]
+&= \iint_S \mathbf{B} \cdot \hat{\mathbf{n}} \, dS \\[1em]
 \end{align*}
 $$
 

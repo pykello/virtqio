@@ -4,7 +4,7 @@
 In one dimension, if force $F(x)$ acts from $x=a$ to $x=b$, the work done is:
 
 $$
-\int_a^b F(x) \\, dx
+\int_a^b F(x) \, dx
 $$
 
 To be able to handle more general cases, we introduce the concept of the line integral.
@@ -13,13 +13,13 @@ Suppose we have a curve $C$ in 3-dimensions and $s$ is the arc length from some 
 on the curve. If $f(x,y,z)$ is a function defined on the curve, then the line integral of $f$ along $C$ is:
 
 $$
-\int_C f(x,y,z) \\, ds
+\int_C f(x,y,z) \, ds
 $$
 
 If the curve is parameterized by arc length $s$, then we can express the line integral as:
 
 $$
-\int_C f(x,y,z) \\, ds = \int_{s_1}^{s_2} f(x(s),y(s),z(s)) \\, ds
+\int_C f(x,y,z) \, ds = \int_{s_1}^{s_2} f(x(s),y(s),z(s)) \, ds
 $$
 
 The value of the line integral can depend on the path taken between two points, not just the endpoints.
@@ -35,7 +35,7 @@ acting on the object be given by a vector field $\mathbf{f}(x,y,z)$.
 Let $\hat{\mathbf{t}}$ be the unit tangent vector to the curve at $P$. The component of the force acting along the curve is $\mathbf{f} \cdot \hat{\mathbf{t}}$. Then the work done by the force in moving the object from $s_1$ to $s_2$ along the curve $C$ is:
 
 $$
-W = \int_C \mathbf{f}(x,y,z) \cdot \hat{\mathbf{t}} \\, ds
+W = \int_C \mathbf{f}(x,y,z) \cdot \hat{\mathbf{t}} \, ds
 $$
 
 To evaluate this, we need to be able to find $\hat{\mathbf{t}}$.
@@ -51,7 +51,7 @@ Then the work done can be expressed as:
 
 $$
 \begin{align*}
-W &= \int_C \mathbf{f}(x,y,z) \cdot \left( \mathbf{i} \frac{dx}{ds} + \mathbf{j} \frac{dy}{ds} + \mathbf{k} \frac{dz}{ds} \right) ds \\\\[1em]
+W &= \int_C \mathbf{f}(x,y,z) \cdot \left( \mathbf{i} \frac{dx}{ds} + \mathbf{j} \frac{dy}{ds} + \mathbf{k} \frac{dz}{ds} \right) ds \\[1em]
 &= \int_C \left( f_x dx + f_y dy + f_z dz \right)
 \end{align*}
 $$
@@ -80,13 +80,13 @@ $$
 Since $r^2 = x^2 + y^2 + z^2$, then $dr = x dx + y dy + z dz$, and we have:
 
 $$
-W = \int_C \frac{k q_0 q_1}{r^2} \\, dr
+W = \int_C \frac{k q_0 q_1}{r^2} \, dr
 $$
 
 Then if we move $q_1$ from some point at distance $r_1$ from the origin to some point at distance $r_2$ from the origin, the work done is:
 
 $$
-W = \int_{r_1}^{r_2} \frac{k q_0 q_1}{r^2} \\, dr = k q_0 q_1 \left( \frac{1}{r_1} - \frac{1}{r_2} \right)
+W = \int_{r_1}^{r_2} \frac{k q_0 q_1}{r^2} \, dr = k q_0 q_1 \left( \frac{1}{r_1} - \frac{1}{r_2} \right)
 $$
 
 So, **the work done is independent of the path taken**.
@@ -99,13 +99,13 @@ The path independence is caused by two properties of the Coulomb force:
 As a consequence, if we move the particle in a closed path, the work done is zero:
 
 $$
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = 0
+\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = 0
 $$
 
 It follows that if $\mathbf{E}$ is an electrostatic field, we have:
 
 $$
-\oint_C \mathbf{E} \cdot \hat{\mathbf{t}} \\, ds = 0
+\oint_C \mathbf{E} \cdot \hat{\mathbf{t}} \, ds = 0
 $$
 
 The path integral around a closed curve is often called a **circulation**.
@@ -126,9 +126,9 @@ Then,
 
 $$
 \begin{align*}
-\int_{C_B} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &\approx F_x \left(x, y - \frac{\Delta y}{2}, z \right) \Delta x
-\\\\[1em]
-\int_{C_T} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &\approx - F_x \left(x, y + \frac{\Delta y}{2}, z \right) \Delta x
+\int_{C_B} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &\approx F_x \left(x, y - \frac{\Delta y}{2}, z \right) \Delta x
+\\[1em]
+\int_{C_T} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &\approx - F_x \left(x, y + \frac{\Delta y}{2}, z \right) \Delta x
 \end{align*}
 $$
 
@@ -149,7 +149,7 @@ $$
 Combining these results, we have:
 
 $$
-\lim_{\Delta S \to 0} \frac{1}{\Delta S} \oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
+\lim_{\Delta S \to 0} \frac{1}{\Delta S} \oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
 $$
 
 If our curve was an arbitrary shape, the result would still hold. But the result definitely
@@ -166,7 +166,7 @@ Each of these orientations can be identified using the normal vector to the surf
 Putting these as components of a vector, we have:
 
 $$
-\text{curl} \\, \mathbf{F} = \mathbf{i} \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) + \mathbf{j} \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) + \mathbf{k} \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right)
+\text{curl} \, \mathbf{F} = \mathbf{i} \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) + \mathbf{j} \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) + \mathbf{k} \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right)
 $$
 
 :::card[note]
@@ -175,7 +175,7 @@ $$
 To be more precise, let $\oint_{C_n} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds$ be the circulation of $\mathbf{F}$ around a curve whose normal is $\hat{\mathbf{n}}$. Then by definition,
 
 $$
-\mathbf{\hat{n}} \cdot \text{curl} \\, \mathbf{F} = \lim_{\Delta S \to 0} \frac{1}{\Delta S} \oint_{C_n} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds
+\mathbf{\hat{n}} \cdot \text{curl} \, \mathbf{F} = \lim_{\Delta S \to 0} \frac{1}{\Delta S} \oint_{C_n} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds
 $$
 
 :::
@@ -183,9 +183,9 @@ $$
 This can be written as a determinant:
 
 $$
-\text{curl} \\, \mathbf{F} = \begin{vmatrix}
-\mathbf{i} & \mathbf{j} & \mathbf{k} \\\\[0.5em]
-\dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z} \\\\[0.5em]
+\text{curl} \, \mathbf{F} = \begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\[0.5em]
+\dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z} \\[0.5em]
 F_x & F_y & F_z
 \end{vmatrix}
 $$
@@ -193,7 +193,7 @@ $$
 When written in del operator notation:
 
 $$
-\text{curl} \\, \mathbf{F} = \nabla \times \mathbf{F}
+\text{curl} \, \mathbf{F} = \nabla \times \mathbf{F}
 $$
 
 ### The Meaning of the Curl
@@ -203,7 +203,7 @@ Suppose some particle moving in a circular path, with $x = r \cos \omega t$, $y 
 Then the velocity is:
 
 $$
-\mathbf{v} = - \mathbf{i}\\, r \omega \sin \omega t + \mathbf{j}\\, r \omega \cos \omega t
+\mathbf{v} = - \mathbf{i}\, r \omega \sin \omega t + \mathbf{j}\, r \omega \cos \omega t
 = \omega (-\mathbf{i} y + \mathbf{j} x)
 $$
 
@@ -226,7 +226,7 @@ Diagram was taken from: [MIT OCW's 18-02sc, Physical meaning of curl](https://oc
 If $\mathbf{E}$ is an electrostatic field, then for any closed curve $C$:
 
 $$
-\oint_C \mathbf{E} \cdot \hat{\mathbf{t}} \\, ds = 0
+\oint_C \mathbf{E} \cdot \hat{\mathbf{t}} \, ds = 0
 $$
 
 It follows that:
@@ -254,7 +254,7 @@ Stokes' theorem relates:
   any capping surface $S$ of $C$.
 
 $$
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = \iint_S \nabla \times \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS
+\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = \iint_S \nabla \times \mathbf{F} \cdot \hat{\mathbf{n}} \, dS
 $$
 
 ### Ampere's Circuital Law

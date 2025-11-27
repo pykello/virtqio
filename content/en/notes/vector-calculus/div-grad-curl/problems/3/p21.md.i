@@ -2,7 +2,7 @@
 that in a volume $V$ the amount of electromagnetic energy is
 
 $$
-\iiint_V \rho_E \\, dV
+\iiint_V \rho_E \, dV
 $$
 
 where the energy density is
@@ -33,8 +33,8 @@ Then
 $$
 \begin{align*}
 \nabla \cdot \left( \mathbf{E} \times \mathbf{B} \right) &=
-E_y \frac{\partial B_z}{\partial x} + B_z \frac{\partial E_y}{\partial x}  - E_z \frac{\partial B_y}{\partial x} - B_y \frac{\partial E_z}{\partial x} + \\\\
-&+ E_z \frac{\partial B_x}{\partial y} + B_x \frac{\partial E_z}{\partial y} - E_x \frac{\partial B_z}{\partial y} - B_z \frac{\partial E_x}{\partial y} + \\\\
+E_y \frac{\partial B_z}{\partial x} + B_z \frac{\partial E_y}{\partial x}  - E_z \frac{\partial B_y}{\partial x} - B_y \frac{\partial E_z}{\partial x} + \\
+&+ E_z \frac{\partial B_x}{\partial y} + B_x \frac{\partial E_z}{\partial y} - E_x \frac{\partial B_z}{\partial y} - B_z \frac{\partial E_x}{\partial y} + \\
 &+ E_x \frac{\partial B_y}{\partial z} + B_y \frac{\partial E_x}{\partial z} - E_y \frac{\partial B_x}{\partial z} - B_x \frac{\partial E_y}{\partial z}
 \end{align*}
 $$
@@ -45,9 +45,9 @@ $$
 \begin{align*}
 \nabla \cdot \left( \mathbf{E} \times \mathbf{B} \right) &=
 E_x \left(\frac{\partial B_y}{\partial z} - \frac{\partial B_z}{\partial y}\right) + 
-E_y \left(\frac{\partial B_z}{\partial x} - \frac{\partial B_x}{\partial z}\right) + \\\\
+E_y \left(\frac{\partial B_z}{\partial x} - \frac{\partial B_x}{\partial z}\right) + \\
 &+ E_z \left(\frac{\partial B_x}{\partial y} - \frac{\partial B_y}{\partial x}\right) +
-B_x \left(\frac{\partial E_z}{\partial y} - \frac{\partial E_y}{\partial z}\right) + \\\\
+B_x \left(\frac{\partial E_z}{\partial y} - \frac{\partial E_y}{\partial z}\right) + \\
 &+ B_y \left(\frac{\partial E_x}{\partial z} - \frac{\partial E_z}{\partial x}\right) +
 B_z \left(\frac{\partial E_y}{\partial x} - \frac{\partial E_x}{\partial y}\right)
 \end{align*}
