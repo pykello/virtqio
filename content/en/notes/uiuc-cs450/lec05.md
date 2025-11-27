@@ -55,21 +55,21 @@ $$
  6 & 12\\
 -3 & 1\\
  0 & 8
-\end{bmatrix}}\_{A\in\mathbb{R}^{4\times 2}}
+\end{bmatrix}}_{A\in\mathbb{R}^{4\times 2}}
 \;=\;
 \underbrace{\begin{bmatrix}
  1 & 0 & 0 & 0\\
  2 & 1 & 0 & 0\\
 -1 & 3 & 1 & 0\\
  0 & 4 & 0 & 1
-\end{bmatrix}}\_{L_{\text{full}}\in\mathbb{R}^{4\times 4}}
+\end{bmatrix}}_{L_{\text{full}}\in\mathbb{R}^{4\times 4}}
 \;
 \underbrace{\begin{bmatrix}
  3 & 5\\
  0 & 2\\
  0 & 0\\
  0 & 0
-\end{bmatrix}}\_{U_{\text{full}}\in\mathbb{R}^{4\times 2}}.
+\end{bmatrix}}_{U_{\text{full}}\in\mathbb{R}^{4\times 2}}.
 $$
 
 But it is fully described by a **reduced** LU factorization with lower-trapezoidal $L \in \mathbb{R}^{m \times \min(m, n)}$ and 
@@ -81,19 +81,19 @@ $$
  6 & 12\\
 -3 & 1\\
  0 & 8
-\end{bmatrix}}\_{A\in\mathbb{R}^{4\times 2}}
+\end{bmatrix}}_{A\in\mathbb{R}^{4\times 2}}
 \;=\;
 \underbrace{\begin{bmatrix}
  1 & 0\\
  2 & 1\\
 -1 & 3\\
  0 & 4
-\end{bmatrix}}\_{L\in\mathbb{R}^{4\times 2}}
+\end{bmatrix}}_{L\in\mathbb{R}^{4\times 2}}
 \;
 \underbrace{\begin{bmatrix}
  3 & 5\\
  0 & 2
-\end{bmatrix}}\_{U\in\mathbb{R}^{2\times 2}}.
+\end{bmatrix}}_{U\in\mathbb{R}^{2\times 2}}.
 $$
 
 ##### Solving Linear Systems with LU Factorization
@@ -142,15 +142,15 @@ This is called an **elementary elimination matrix** or **Gaussian transformation
 
 Note the following properties:
 - $M_k$ is lower triangular with unit main diagonal, hence it is non-singular.
-- $M_k = I - \mathbf{m}\_k \mathbf{e}\_k^T$, where $\mathbf{m}\_k = (0, \ldots, 0, m_{k+1}, \ldots, m_n)^T$ and $\mathbf{e}_k$ is the $k$-th column of the identity matrix.
-- $M_k^{-1} = I + \mathbf{m}\_k \mathbf{e}\_k^T$.
+- $M_k = I - \mathbf{m}_k \mathbf{e}_k^T$, where $\mathbf{m}_k = (0, \ldots, 0, m_{k+1}, \ldots, m_n)^T$ and $\mathbf{e}_k$ is the $k$-th column of the identity matrix.
+- $M_k^{-1} = I + \mathbf{m}_k \mathbf{e}_k^T$.
 - If $M_j$, $j > k$, is another elementary elimination matrix, then
 
 $$
-M_k M_j = I - \mathbf{m}\_k \mathbf{e}\_k^T - \mathbf{m}\_j \mathbf{e}\_j^T + \mathbf{m}\_k \mathbf{e}_k^T \mathbf{m}\_j \mathbf{e}_j^T = I - \mathbf{m}\_k \mathbf{e}\_k^T - \mathbf{m}\_j \mathbf{e}\_j^T
+M_k M_j = I - \mathbf{m}_k \mathbf{e}_k^T - \mathbf{m}_j \mathbf{e}_j^T + \mathbf{m}_k \mathbf{e}_k^T \mathbf{m}_j \mathbf{e}_j^T = I - \mathbf{m}_k \mathbf{e}_k^T - \mathbf{m}_j \mathbf{e}_j^T
 $$
 
-This is because $\mathbf{e}\_k^T \mathbf{m}\_j = 0$. Thus their product is essentially their union.
+This is because $\mathbf{e}_k^T \mathbf{m}_j = 0$. Thus their product is essentially their union.
 
 #### Gaussian Elimination
 Using elementary elimination matrices, it's easy to transform a matrix into an upper triangular form.
@@ -171,31 +171,31 @@ Consider the block matrix form:
 
 $$
 \begin{bmatrix}
- a_{11} & \mathbf{a}\_{12} \\
-    \mathbf{a}\_{21} & \mathbf{A}\_{22}
+ a_{11} & \mathbf{a}_{12} \\
+    \mathbf{a}_{21} & \mathbf{A}_{22}
 \end{bmatrix}
 \=
 \begin{bmatrix}
     1 & 0 \\
-    \mathbf{l}\_{21} & \mathbf{L}\_{22}
+    \mathbf{l}_{21} & \mathbf{L}_{22}
 \end{bmatrix}
 \cdot
 \begin{bmatrix}
- u_{11} & \mathbf{u}\_{12} \\
-    0 & \mathbf{U}\_{22}
+ u_{11} & \mathbf{u}_{12} \\
+    0 & \mathbf{U}_{22}
 \end{bmatrix}
 $$
 
-Where bold-face entries are submatrices: $\mathbf{a}\_{12} \in \mathbb{R}^{1 \times n-1}$, $\mathbf{a}\_{21} \in \mathbb{R}^{n-1 \times 1}$, $\mathbf{A}\_{22} \in \mathbb{R}^{(n-1) \times (n-1)}$, etc.
+Where bold-face entries are submatrices: $\mathbf{a}_{12} \in \mathbb{R}^{1 \times n-1}$, $\mathbf{a}_{21} \in \mathbb{R}^{n-1 \times 1}$, $\mathbf{A}_{22} \in \mathbb{R}^{(n-1) \times (n-1)}$, etc.
 
 Then:
 
-- $\begin{bmatrix} u_{11} & \mathbf{u}\_{12} \end{bmatrix} = \begin{bmatrix} a_{11} & \mathbf{a}\_{12} \end{bmatrix}$.
-- $\mathbf{l}\_{21} = \dfrac{\mathbf{a}\_{21}}{u_{11}}$.
-- Obtain $\mathbf{L}\_{22}$ and $\mathbf{U}\_{22}$ recursively computing the LU factorization of the **Schur complement**:
+- $\begin{bmatrix} u_{11} & \mathbf{u}_{12} \end{bmatrix} = \begin{bmatrix} a_{11} & \mathbf{a}_{12} \end{bmatrix}$.
+- $\mathbf{l}_{21} = \dfrac{\mathbf{a}_{21}}{u_{11}}$.
+- Obtain $\mathbf{L}_{22}$ and $\mathbf{U}_{22}$ recursively computing the LU factorization of the **Schur complement**:
 
 $$
-S = \mathbf{A}\_{22} - \mathbf{l}\_{21} \cdot \mathbf{u}\_{12}
+S = \mathbf{A}_{22} - \mathbf{l}_{21} \cdot \mathbf{u}_{12}
 $$
 
 The computational complexity of this algorithm is $O(n^3)$.

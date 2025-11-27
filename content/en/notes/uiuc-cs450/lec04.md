@@ -30,19 +30,19 @@ v_1 & \cdots & v_n \\
 = \sum_{i=1}^n \sigma_i u_i v_i^T
 $$
 
-We want to find $x_1$ such that $\lVert x_1 \rVert\_2 = 1$ and maximizes $\lVert Ax \rVert\_2$. Then $x_1$ is the first right singular vector $v_1$. We can show that $Av_1 = \sigma_1 u_1$, and therefore $u_1 = \dfrac{Av_1}{\lVert Av_1 \rVert\_2} = \dfrac{Av_1}{\sigma_1}$.
+We want to find $x_1$ such that $\lVert x_1 \rVert_2 = 1$ and maximizes $\lVert Ax \rVert_2$. Then $x_1$ is the first right singular vector $v_1$. We can show that $Av_1 = \sigma_1 u_1$, and therefore $u_1 = \dfrac{Av_1}{\lVert Av_1 \rVert_2} = \dfrac{Av_1}{\sigma_1}$.
 
-Similarly, $v_2$ is the vector that maximizes $\lVert (A - \sigma_1 u_1 v_1^T)x \rVert\_2$ subject to $\lVert x \rVert\_2 = 1$, and so on.
+Similarly, $v_2$ is the vector that maximizes $\lVert (A - \sigma_1 u_1 v_1^T)x \rVert_2$ subject to $\lVert x \rVert_2 = 1$, and so on.
 
 #### Conditioning of Linear Systems
 
-We saw previously that $\kappa(A) = \lVert A \rVert\_2 \lVert A^{-1} \rVert\_2$ controls
+We saw previously that $\kappa(A) = \lVert A \rVert_2 \lVert A^{-1} \rVert_2$ controls
 the maximum relative perturbation of $Ax$.
 
 We can also show $\kappa(A)$ describes the conditioning of the linear system $Ax = b$.
 That is, if we perturb $b$ by $\delta b$, what's the maximum relative perturbation $\delta x$ in the solution $x$?
 
-If $A(x + \delta x) = b + \delta b$, then how $\dfrac{\lVert \delta b \rVert\_2}{\lVert b \rVert\_2}$ relates to $\dfrac{\lVert \delta x \rVert\_2}{\lVert x \rVert\_2}$?
+If $A(x + \delta x) = b + \delta b$, then how $\dfrac{\lVert \delta b \rVert_2}{\lVert b \rVert_2}$ relates to $\dfrac{\lVert \delta x \rVert_2}{\lVert x \rVert_2}$?
 
 (In the following, we will use $\lVert \cdot \rVert$ to denote the 2-norm.)
 
@@ -144,20 +144,20 @@ If we have:
 
 $$
 \begin{pmatrix}
-d\_1 & & \\
+d_1 & & \\
 & \ddots & \\
-& & d\_n \\
+& & d_n \\
 \end{pmatrix}
 \begin{pmatrix}
-x\_1 \\
+x_1 \\
 \vdots \\
-x\_n \\
+x_n \\
 \end{pmatrix}
 \=
 \begin{pmatrix}
-b\_1 \\
+b_1 \\
 \vdots \\
-b\_n \\
+b_n \\
 \end{pmatrix}
 $$
 

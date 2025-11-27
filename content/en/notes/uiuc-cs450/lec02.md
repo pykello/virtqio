@@ -60,13 +60,13 @@ An algorithm is **accurate** if $\hat{f}(x) = f(x)$ for all $x$ when computing w
 **Truncation error** concerns errors due to approximations in the algorithm. For example, when using Taylor series to approximate a function, truncation error is the difference between the exact function and the approximation.
 
 $$
-f(x + h) \approx g(h) = \sum\_{i=0}^{k} \frac{f^{(i)}(x)}{i!} h^i
+f(x + h) \approx g(h) = \sum_{i=0}^{k} \frac{f^{(i)}(x)}{i!} h^i
 $$
 
 Then the absolute truncation error of the approximation is given by
 
 $$
-f(x + h) - g(h) = \sum\_{i=k+1}^{\infty} \frac{f^{(i)}(x)}{i!} h^i = \mathcal{O}(h^{k+1}) \text{ as } h \to 0
+f(x + h) - g(h) = \sum_{i=k+1}^{\infty} \frac{f^{(i)}(x)}{i!} h^i = \mathcal{O}(h^{k+1}) \text{ as } h \to 0
 $$
 
 #### Round-off Error
@@ -157,7 +157,7 @@ It is defined as the smallest positive number which, when added to 1.0, gives a 
 The relative error in floating-point arithmetic is at most $\varepsilon_{\text{mach}}$:
 
 $$
-\left\lvert \frac{\text{fl}(x) - x}{x} \right\rvert \leq \varepsilon\_{\text{mach}}
+\left\lvert \frac{\text{fl}(x) - x}{x} \right\rvert \leq \varepsilon_{\text{mach}}
 $$
 
 :::card[example]

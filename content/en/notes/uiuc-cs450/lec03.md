@@ -21,12 +21,12 @@ A norm is uniquely determined by its unit ball, which is the set of all vectors 
 $p$-norms are defined as:
 
 $$
-\lVert x \rVert\_p = \left( \sum\_{i=1}^n |x_i|^p \right)^{1/p}
+\lVert x \rVert_p = \left( \sum_{i=1}^n |x_i|^p \right)^{1/p}
 $$
 
-- 1-norm: $\lVert x \rVert\_1 = \sum\_{i=1}^n |x_i|$. In 2D, the unit ball is a diamond.
-- 2-norm: $\lVert x \rVert\_2 = \sqrt{\sum\_{i=1}^n |x_i|^2}$. In 2D, the unit ball is a circle.
-- $\infty$-norm: $\lVert x \rVert\_\infty = \max\_{i=1}^n |x_i|$. In 2D, the unit ball is a square.
+- 1-norm: $\lVert x \rVert_1 = \sum_{i=1}^n |x_i|$. In 2D, the unit ball is a diamond.
+- 2-norm: $\lVert x \rVert_2 = \sqrt{\sum_{i=1}^n |x_i|^2}$. In 2D, the unit ball is a circle.
+- $\infty$-norm: $\lVert x \rVert_\infty = \max_{i=1}^n |x_i|$. In 2D, the unit ball is a square.
 
 <div id="fig1" style="width:90%; max-width: 360px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
 
@@ -101,12 +101,12 @@ board.create('polygon', linfPoints, {
 In general, for any vector $v \in \mathbb{R}^n$, we have:
 
 $$
-\lVert v \rVert\_1 \ge \lVert v \rVert\_2 \ge \lVert v \rVert\_\infty
+\lVert v \rVert_1 \ge \lVert v \rVert_2 \ge \lVert v \rVert_\infty
 $$
 
 We also have the following inequalities:
-- $\lVert v \rVert\_1 \le \sqrt{n} \lVert v \rVert\_2$
-- $\lVert v \rVert\_2 \le \sqrt{n} \lVert v \rVert\_\infty$
+- $\lVert v \rVert_1 \le \sqrt{n} \lVert v \rVert_2$
+- $\lVert v \rVert_2 \le \sqrt{n} \lVert v \rVert_\infty$
 
 So, any of these norms differ by at most a factor of a constant.
 
@@ -122,7 +122,7 @@ So, any of these norms differ by at most a factor of a constant.
 
 **Cauchy-Schwarz Inequality**: $\lvert \langle x, y \rangle \rvert \le \sqrt{\langle x, x \rangle \langle y, y \rangle}$
 
-For 2-norms, $\lvert x^T y \rvert \le \lVert x \rVert\_2 \lVert y \rVert\_2$.
+For 2-norms, $\lvert x^T y \rvert \le \lVert x \rVert_2 \lVert y \rVert_2$.
 
 #### Matrix Norms
 
@@ -133,37 +133,37 @@ A **matrix norm** should satisfy:
 - $\lVert \alpha A \rVert = |\alpha| \cdot \lVert A \rVert$ for all $\alpha \in \mathbb{R}$
 - $\lVert A + B \rVert \le \lVert A \rVert + \lVert B \rVert$ (triangle inequality)
 
-**Frobenius norm**: $\lVert A \rVert\_F = \sqrt{\sum_{i, j} a_{ij}^2}$
+**Frobenius norm**: $\lVert A \rVert_F = \sqrt{\sum_{i, j} a_{ij}^2}$
 
 **Operator norm**: Maximum amplification of any input vector $x$ to $Ax$:
 
 $$
-\lVert A \rVert\_p = \max_{x \neq 0} \frac{\lVert Ax \rVert\_p}{\lVert x \rVert\_p} = \max_{x, \lVert x \rVert\_p = 1} \lVert Ax \rVert\_p
+\lVert A \rVert_p = \max_{x \neq 0} \frac{\lVert Ax \rVert_p}{\lVert x \rVert_p} = \max_{x, \lVert x \rVert_p = 1} \lVert Ax \rVert_p
 $$
 
 
 :::card[example]
 
-**Theorem** (from quiz 3): $\lVert A \rVert\_\infty$ is the maximum 1-norm of the rows of $A$.
+**Theorem** (from quiz 3): $\lVert A \rVert_\infty$ is the maximum 1-norm of the rows of $A$.
 
 **Proof**.
 
-Assume $A$ is $n \times m$. Let $1 \le i \le n$ and $v \in \mathbb{R}^m$ s.t. $\lVert v \rVert\_\infty = 1$.
+Assume $A$ is $n \times m$. Let $1 \le i \le n$ and $v \in \mathbb{R}^m$ s.t. $\lVert v \rVert_\infty = 1$.
 Since $\max \\{|v_1|, \ldots, |v_m|\\} = 1$, we have
 
 $$
-|(A \cdot v)\_i| \le \sum_{j=1}^m |A_{i,j}| = \lVert A_i \rVert\_1 \tag{1}
+|(A \cdot v)_i| \le \sum_{j=1}^m |A_{i,j}| = \lVert A_i \rVert_1 \tag{1}
 $$
 
 Therefore,
 
 $$
-\lVert A \rVert\_\infty \le \max\{\lVert A_1 \rVert\_1, \ldots, \lVert A_n \rVert\_1\} \tag{2}
+\lVert A \rVert_\infty \le \max\{\lVert A_1 \rVert_1, \ldots, \lVert A_n \rVert_1\} \tag{2}
 $$
 
 Now, we show that a vector $v$ exists to make the equality happen.
 
-Define vectors $v^1, \ldots, v^n$ such that $v^i\_j = \text{sgn}(A_{i,j})$, where
+Define vectors $v^1, \ldots, v^n$ such that $v^i_j = \text{sgn}(A_{i,j})$, where
 
 $$
 \text{sgn}(x) = \begin{cases}
@@ -172,21 +172,21 @@ $$
 \end{cases}
 $$
 
-Then for all $1 \le i \le n$, $\lVert v^i \rVert\_\infty = 1$ and
+Then for all $1 \le i \le n$, $\lVert v^i \rVert_\infty = 1$ and
 
 $$
-(A \cdot v^i)_i = \sum\_{j=1}^m |A\_{i,j}| = \lVert A_i \rVert\_1 \tag{3}
+(A \cdot v^i)_i = \sum_{j=1}^m |A_{i,j}| = \lVert A_i \rVert_1 \tag{3}
 $$
 
-Choose $k = \text{argmax}_{i=1}^n \lVert A_i \rVert\_1$. In case there are multiple such $k$, choose any.
+Choose $k = \text{argmax}_{i=1}^n \lVert A_i \rVert_1$. In case there are multiple such $k$, choose any.
 
 Then using (1) and (3),
 
 $$
-\lVert A \cdot v^k \rVert\_\infty = \lVert A_k \rVert\_1 = \max\{\lVert A_1 \rVert\_1, \ldots, \lVert A_n \rVert\_1\} \tag{4}
+\lVert A \cdot v^k \rVert_\infty = \lVert A_k \rVert_1 = \max\{\lVert A_1 \rVert_1, \ldots, \lVert A_n \rVert_1\} \tag{4}
 $$
 
-Using 2 and 4, we conclude that $\lVert A \rVert\_\infty$ is the maximum 1-norm of the rows of $A$.
+Using 2 and 4, we conclude that $\lVert A \rVert_\infty$ is the maximum 1-norm of the rows of $A$.
 
 ::::
 
@@ -194,8 +194,8 @@ Using 2 and 4, we conclude that $\lVert A \rVert\_\infty$ is the maximum 1-norm 
 
 **Theorem** (from quiz 3):
 
-* $\lVert A \rVert\_1$ is the maximum 1-norm of the columns of $A$.
-* $\lVert A^T \rVert\_1 = \lVert A \rVert\_\infty$.
+* $\lVert A \rVert_1$ is the maximum 1-norm of the columns of $A$.
+* $\lVert A^T \rVert_1 = \lVert A \rVert_\infty$.
 
 ::::
 
@@ -205,8 +205,8 @@ Using 2 and 4, we conclude that $\lVert A \rVert\_\infty$ is the maximum 1-norm 
 **Note.** The following properties hold for norms induced by p-norms, but 
 may or may not hold for more general matrix norms:
 
-- $\lVert AB \rVert\_p \le \lVert A \rVert\_p \cdot \lVert B \rVert\_p$
-- $\lVert Ax \rVert\_p \le \lVert A \rVert\_p \cdot \lVert x \rVert\_p$
+- $\lVert AB \rVert_p \le \lVert A \rVert_p \cdot \lVert B \rVert_p$
+- $\lVert Ax \rVert_p \le \lVert A \rVert_p \cdot \lVert x \rVert_p$
 
 ::::
 
@@ -223,8 +223,8 @@ $$
 we have:
 $$
 \begin{align*}
-\lVert A \rVert\_1 &= \max\{6, 2, 4\} = 6 \\
-\lVert A \rVert\_\infty &= \max\{4, 3, 5\} = 5
+\lVert A \rVert_1 &= \max\{6, 2, 4\} = 6 \\
+\lVert A \rVert_\infty &= \max\{4, 3, 5\} = 5
 \end{align*}
 $$
 
@@ -238,18 +238,18 @@ A^T A = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-Its eigenvalues are $\lambda_1 \approx 22.22698, \lambda_2 \approx 6.33655, \lambda_3 \approx 3.43646$. So, $\lVert A \rVert\_2 = \sqrt{\lambda_1} \approx 4.71$.
+Its eigenvalues are $\lambda_1 \approx 22.22698, \lambda_2 \approx 6.33655, \lambda_3 \approx 3.43646$. So, $\lVert A \rVert_2 = \sqrt{\lambda_1} \approx 4.71$.
 
 #### Induced Matrix Norms
 
-We defined $\lVert A \rVert\_2 = \max_{\lVert x \rVert\_2 = 1} \lVert Ax \rVert\_2$.
+We defined $\lVert A \rVert_2 = \max_{\lVert x \rVert_2 = 1} \lVert Ax \rVert_2$.
 
-Now, the question is what is $\min_{\lVert x \rVert\_2 = 1} \lVert Ax \rVert\_2$? If $A$ grows this direction the least, then $A^{-1}$ grows it the most.
+Now, the question is what is $\min_{\lVert x \rVert_2 = 1} \lVert Ax \rVert_2$? If $A$ grows this direction the least, then $A^{-1}$ grows it the most.
 
 So,
 
 $$
-\min_{\lVert x \rVert\_2 = 1} \lVert Ax \rVert\_2 = \frac{1}{\lVert A^{-1} \rVert\_2}
+\min_{\lVert x \rVert_2 = 1} \lVert Ax \rVert_2 = \frac{1}{\lVert A^{-1} \rVert_2}
 $$
 
 #### Matrix Condition Number
@@ -264,7 +264,7 @@ We want the condition number to capture this worst-case amplification of the err
 
 By definition, $\kappa(A) \ge 1$.
 
-If $Q$ is square and $\kappa(Q) = 1$ and $\lVert Q \rVert = 1$, then $Q$ is orthogonal. That is, $Q^TQ = I$. If $Q$ is orthogonal, then for all $v$, $\lVert Qv \rVert\_2 = \lVert v \rVert\_2$.
+If $Q$ is square and $\kappa(Q) = 1$ and $\lVert Q \rVert = 1$, then $Q$ is orthogonal. That is, $Q^TQ = I$. If $Q$ is orthogonal, then for all $v$, $\lVert Qv \rVert_2 = \lVert v \rVert_2$.
 
 
 :::card[example]
@@ -313,24 +313,24 @@ Any matrix $A$ can be decomposed as $A = U \Sigma V^T$, where $U$ and $V$ are or
 
 If $A$ is invertible, then $A^{-1} = V \Sigma^{-1} U^T$.
 
-Let $\sigma\_{max}=\sigma_1, \sigma_2, \ldots, \sigma\_n=\sigma_{min}$ be diagonal entries of $\Sigma$ sorted in descending order. Then $\lVert A \rVert\_2 = \sigma\_{max}$ and $\lVert A^{-1} \rVert\_2 = \dfrac{1}{\sigma\_{min}}$.
+Let $\sigma_{max}=\sigma_1, \sigma_2, \ldots, \sigma_n=\sigma_{min}$ be diagonal entries of $\Sigma$ sorted in descending order. Then $\lVert A \rVert_2 = \sigma_{max}$ and $\lVert A^{-1} \rVert_2 = \dfrac{1}{\sigma_{min}}$.
 
-Therefore, $\kappa(A) = \dfrac{\sigma\_{max}}{\sigma\_{min}}$.
+Therefore, $\kappa(A) = \dfrac{\sigma_{max}}{\sigma_{min}}$.
 
 :::card[example]
-**Example.** Prove that if $\kappa\_2(A) = 1$ where $A$ is $n \times n$, then $A=\alpha Q$ for some orthogonal $Q$ and scalar $\alpha$.
+**Example.** Prove that if $\kappa_2(A) = 1$ where $A$ is $n \times n$, then $A=\alpha Q$ for some orthogonal $Q$ and scalar $\alpha$.
 
 **Proof.**
 
-Since $\kappa\_2(A) = 1$, then
+Since $\kappa_2(A) = 1$, then
 
 $$
-\lVert A \rVert\_2 = \dfrac{1}{\lVert A^{-1} \rVert}\_2 \tag{5}
+\lVert A \rVert_2 = \dfrac{1}{\lVert A^{-1} \rVert}_2 \tag{5}
 $$
 
 Consider the SVD of $A$: $A = U \Sigma V^T$, where $\Sigma = \text{diag}(\sigma_{max}, \ldots, \sigma_{min})$.
-Then $\lVert A \rVert\_2 = \sigma\_{max}$ and $\lVert A^{-1} \rVert\_2 = \dfrac{1}{\sigma\_{min}}$.
-Putting this together with (5), we have $\sigma\_{max} = \sigma\_{min}$.
+Then $\lVert A \rVert_2 = \sigma_{max}$ and $\lVert A^{-1} \rVert_2 = \dfrac{1}{\sigma_{min}}$.
+Putting this together with (5), we have $\sigma_{max} = \sigma_{min}$.
 Therefore, all singular values are equal. Let $\alpha$ be the value of singular values. Then, $\Sigma = \alpha I$.
 
 Then:

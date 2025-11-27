@@ -57,12 +57,12 @@ $I$ is $\mathbf{B} = (\mu_0 I / 2 \pi r) \hat{\mathbf{e}_\theta}$. Show that $\n
 
 $$
 \begin{align*}
-(\nabla \times \mathbf{B})\_r &= \frac{1}{r} \frac{\partial F_z}{\partial \theta} - \frac{\partial F_\theta}{\partial z} \\[0.8em]
+(\nabla \times \mathbf{B})_r &= \frac{1}{r} \frac{\partial F_z}{\partial \theta} - \frac{\partial F_\theta}{\partial z} \\[0.8em]
 &= - \frac{\partial}{\partial z} \left( \frac{\mu_0 I}{2 \pi r} \right) \\[0.5em]
 &= 0 \\[1.5em]
-(\nabla \times \mathbf{B})\_\theta &= \frac{\partial F_r}{\partial z} - \frac{\partial F_z}{\partial r} \\[0.5em]
+(\nabla \times \mathbf{B})_\theta &= \frac{\partial F_r}{\partial z} - \frac{\partial F_z}{\partial r} \\[0.5em]
 &= 0 \\[1.5em]
-(\nabla \times \mathbf{B})\_z &= \frac{1}{r} \frac{\partial}{\partial r}(r F_\theta) - \frac{\partial F_r}{\partial \theta} \\[1em]
+(\nabla \times \mathbf{B})_z &= \frac{1}{r} \frac{\partial}{\partial r}(r F_\theta) - \frac{\partial F_r}{\partial \theta} \\[1em]
 &= \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\mu_0 I}{2 \pi r} \right)\\[1em]
 &= \frac{1}{r} \frac{\partial}{\partial r} \left( \frac{\mu_0 I}{2 \pi} \right) \\[0.5em]
 &= 0

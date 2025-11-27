@@ -18,7 +18,7 @@ $$
 Then using the identity IV-2e we have:
 
 $$
-\nabla \times \mathbf{v} = -k \left(\underbrace{\frac{1}{\rho} \nabla \times \nabla \rho}\_{A} + \underbrace{\nabla\left(\frac{1}{\rho}\right) \times \nabla \rho}\_{B}\right)
+\nabla \times \mathbf{v} = -k \left(\underbrace{\frac{1}{\rho} \nabla \times \nabla \rho}_{A} + \underbrace{\nabla\left(\frac{1}{\rho}\right) \times \nabla \rho}_{B}\right)
 $$
 
 Curl of a gradient is zero, so $A = 0$. For $B$, we have:
