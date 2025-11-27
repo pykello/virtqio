@@ -39,8 +39,8 @@ For all $1 \leq k \leq n - 1$.
 
 $$
 A = \begin{bmatrix}
-3 & 2 \\\\
-6 & 4 \\\\
+3 & 2 \\
+6 & 4 \\
 0 & 3
 \end{bmatrix}
 $$
@@ -52,29 +52,29 @@ Then:
 
 $$
 \underbrace{\begin{bmatrix}
-0 & 1 & 0 \\\\
-1 & 0 & 0 \\\\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
 0 & 0 & 1
 \end{bmatrix}}\_{P_1}
-\\;
+\;
 \underbrace{\begin{bmatrix}
-3 & 2 \\\\
-6 & 4 \\\\
+3 & 2 \\
+6 & 4 \\
 0 & 3
 \end{bmatrix}}_{A}
 = \begin{bmatrix}
-1 \\\\
-1/2 \\\\
+1 \\
+1/2 \\
 0
 \end{bmatrix}
-\\;
+\;
 \begin{bmatrix}
 6 & 4
 \end{bmatrix}
 +
 \begin{bmatrix}
-0 & 0 \\\\
-0 & 2 - (1/2) \cdot 4 \\\\
+0 & 0 \\
+0 & 2 - (1/2) \cdot 4 \\
 0 & 3 - 0 \cdot 4
 \end{bmatrix}
 $$
@@ -84,16 +84,16 @@ we proceed with pivoted LU:
 
 $$
 \underbrace{\begin{bmatrix}
-0 & 1\\\\
+0 & 1\\
 1 & 0
 \end{bmatrix}}\_{P_2}
 \begin{bmatrix}
-0 \\\\
+0 \\
 3
 \end{bmatrix}
 \=
 \begin{bmatrix}
-1 \\\\
+1 \\
 0
 \end{bmatrix}
 \begin{bmatrix}3\end{bmatrix}
@@ -102,19 +102,19 @@ $$
 Then the overall factorization is given by:
 
 $$
-\begin{bmatrix}1 & \\\\ & P_2\end{bmatrix}
-\\;
+\begin{bmatrix}1 & \\ & P_2\end{bmatrix}
+\;
 P_1
-\\;
+\;
 A
 \= \begin{bmatrix}
-1 &  \\\\
-0 & 1 \\\\
+1 &  \\
+0 & 1 \\
 1/2 & 0
 \end{bmatrix}
 \cdot
 \begin{bmatrix}
-6 & 4 \\\\
+6 & 4 \\
   & 3
 \end{bmatrix}
 $$
@@ -132,7 +132,7 @@ Consider the following matrix where $\epsilon < \epsilon_{\text{mach}}$:
 
 $$
 A = \begin{bmatrix}
-\epsilon & 1 \\\\
+\epsilon & 1 \\
 1 & 1
 \end{bmatrix}
 $$
@@ -203,8 +203,8 @@ That is, the absolute value of each diagonal entry is greater than the sum of th
 
 $$
 A = \begin{bmatrix}
-4 & 12 & -16 \\\\
-12 & 37 & -43 \\\\
+4 & 12 & -16 \\
+12 & 37 & -43 \\
 -16 & -43 & 98
 \end{bmatrix}
 $$
@@ -214,8 +214,8 @@ Thus, we can use Cholesky factor:
 
 $$
 L = \begin{bmatrix}
-2 & 0 & 0 \\\\
-6 & 1 & 0 \\\\
+2 & 0 & 0 \\
+6 & 1 & 0 \\
 -8 & 5 & 3
 \end{bmatrix}
 $$
@@ -243,7 +243,7 @@ $$
 Then:
 
 $$
-x = (A - uv^T)^{-1} \\; b = A^{-1} b + \frac{(A^{-1} u) \\; v^T \\; (A^{-1} b)}{1 + v^T \\; (A^{-1} u)}
+x = (A - uv^T)^{-1} \; b = A^{-1} b + \frac{(A^{-1} u) \; v^T \; (A^{-1} b)}{1 + v^T \; (A^{-1} u)}
 $$
 
 To compute this:

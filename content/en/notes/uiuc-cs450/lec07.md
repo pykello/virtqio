@@ -25,7 +25,7 @@ Given the SVD of $A = U \Sigma V^T$, and since $U^T$ is orthogonal (hence, an is
 $$
 \begin{align*}
 \lVert Ax - b \rVert\_2 &= 
-\lVert U^T (Ax - b) \rVert\_2 \\\\[1em]
+\lVert U^T (Ax - b) \rVert\_2 \\[1em]
 &= \lVert \Sigma V^T x - U^T b \rVert\_2
 \end{align*}
 $$
@@ -70,22 +70,22 @@ We can write this as a linear system:
 
 $$
 \begin{bmatrix}
-1 & x_1 & x_1^2 & \ldots & x_1^{n-1} \\\\
-1 & x_2 & x_2^2 & \ldots & x_2^{n-1} \\\\
-\vdots & \vdots & \vdots & \ddots & \vdots \\\\
+1 & x_1 & x_1^2 & \ldots & x_1^{n-1} \\
+1 & x_2 & x_2^2 & \ldots & x_2^{n-1} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
 1 & x_m & x_m^2 & \ldots & x_m^{n-1}
 \end{bmatrix}
 \begin{bmatrix}
-a_0 \\\\
-a_1 \\\\
-\vdots \\\\
+a_0 \\
+a_1 \\
+\vdots \\
 a_{n-1}
 \end{bmatrix}
 \=
 \begin{bmatrix}
-y_1 \\\\
-y_2 \\\\
-\vdots \\\\
+y_1 \\
+y_2 \\
+\vdots \\
 y_m
 \end{bmatrix}
 $$
@@ -118,9 +118,9 @@ Using the SVD of $A = U \Sigma V^T$, we have:
 
 $$
 \begin{align*}
-(U \Sigma V^T)^T U \Sigma V^T x &= (U \Sigma V^T)^T b \\\\
-\Sigma^T \Sigma V^T x &= \Sigma^T U^T b \\\\
-V^T x &= (\Sigma^T \Sigma)^{-1} \Sigma^T U^T b = \Sigma^\dagger U^T b \\\\
+(U \Sigma V^T)^T U \Sigma V^T x &= (U \Sigma V^T)^T b \\
+\Sigma^T \Sigma V^T x &= \Sigma^T U^T b \\
+V^T x &= (\Sigma^T \Sigma)^{-1} \Sigma^T U^T b = \Sigma^\dagger U^T b \\
 x &= V \Sigma^\dagger U^T b = x^\star
 \end{align*}
 $$

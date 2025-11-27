@@ -12,10 +12,10 @@ For any closed surface $S$ capping $C$ and $S'$ capping $C'$, let $V$ be the vol
 
 $$
 \begin{align*}
-\iiint_V \nabla \cdot \mathbf{G} \\, dV &= \iint_{S+S'} \mathbf{G} \cdot \hat{\mathbf{n}} \\, dS
-&\text{(Divergence Theorem)} \\\\[1em]
-&= \iint_{S+S'} (\nabla \times \mathbf{H}) \cdot \hat{\mathbf{n}} \\, dS \\\\[1em]
-&= \oint_{C + C'} \mathbf{H} \cdot \hat{\mathbf{t}} \\, ds &\text{(Stokes' Theorem)}
+\iiint_V \nabla \cdot \mathbf{G} \, dV &= \iint_{S+S'} \mathbf{G} \cdot \hat{\mathbf{n}} \, dS
+&\text{(Divergence Theorem)} \\[1em]
+&= \iint_{S+S'} (\nabla \times \mathbf{H}) \cdot \hat{\mathbf{n}} \, dS \\[1em]
+&= \oint_{C + C'} \mathbf{H} \cdot \hat{\mathbf{t}} \, ds &\text{(Stokes' Theorem)}
 \end{align*}
 $$
 
@@ -24,7 +24,7 @@ Since $C$ and $C'$ follow the same path but in opposite directions, then the las
 So, for volume bounded by any $S$ and $S'$ capping $C$ and $C'$, we have:
 
 $$
-\iiint_V \nabla \cdot \mathbf{G} \\, dV = 0
+\iiint_V \nabla \cdot \mathbf{G} \, dV = 0
 $$
 
 Since choice of $S$ and $S'$ is arbitrary, it implies that $\nabla \cdot \mathbf{G} = 0$.

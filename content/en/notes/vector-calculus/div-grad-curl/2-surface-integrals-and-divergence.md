@@ -49,7 +49,7 @@ So, they're not very useful in practice.
 Which brings us to **Gauss's Law**:
 
 $$
-\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{q}{\epsilon_0}
+\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \frac{q}{\epsilon_0}
 \tag{II-1}
 $$
 
@@ -86,7 +86,7 @@ $$
 \begin{align*}
 \mathbf{\hat{n}} = \frac{\mathbf{s}_x \times \mathbf{s}_y}{|\mathbf{s}_x \times \mathbf{s}_y|}
 &= \frac{\left(1, 0, \dfrac{\partial f}{\partial x}\right) \times \left(0, 1, \dfrac{\partial f}{\partial y}\right)}{|\mathbf{s}_x \times \mathbf{s}_y|}
-\\\\[1em]
+\\[1em]
 &= \frac{-\mathbf{i}\dfrac{\partial f}{\partial x} + -\mathbf{j}\dfrac{\partial f}{\partial y} + \mathbf{k}}{\sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial y}\right)^2}}
 \tag{II-4}
 \end{align*}
@@ -100,7 +100,7 @@ $$
 The **surface integral of the normal component** of a vector function $\mathbf{F}(x, y, z)$, denoted by
 
 $$
-\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS
+\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \, dS
 \tag{II-5}
 $$
 
@@ -119,7 +119,7 @@ The surface integral (II-5) is the limit of this sum as the number of pieces
 approaches infinity and the area of each piece approaches zero:
 
 $$
-\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \lim_{\substack{N \to \infty\\\\[0.3em] \text{each } \Delta S_i \to 0}} \sum_{i=1}^N \mathbf{F}(x_i, y_i, z_i) \cdot \hat{\mathbf{n}}_i \Delta S_i
+\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \, dS = \lim_{\substack{N \to \infty\\[0.3em] \text{each } \Delta S_i \to 0}} \sum_{i=1}^N \mathbf{F}(x_i, y_i, z_i) \cdot \hat{\mathbf{n}}_i \Delta S_i
 \tag{II-6}
 $$
 
@@ -135,14 +135,14 @@ The integral in **Gauss's Law** is taken over a closed surface. In fact, it says
 Sometimes, we are interested in simpler integrals of the form:
 
 $$
-\iint_S G(x, y, z) \\, dS
+\iint_S G(x, y, z) \, dS
 \tag{II-7}
 $$
 
 This can be solved similarly:
 
 $$
-\iint_S G(x, y, z) \\, dS = \lim_{\substack{N \to \infty\\\\[0.3em] \text{each } \Delta S_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \Delta S_i
+\iint_S G(x, y, z) \, dS = \lim_{\substack{N \to \infty\\[0.3em] \text{each } \Delta S_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \Delta S_i
 \tag{II-8}
 $$
 
@@ -151,7 +151,7 @@ $$
 We want to evaluate:
 
 $$
-\iint_S G(x, y, z) \\, dS
+\iint_S G(x, y, z) \, dS
 $$
 
 Our strategy is to relate $\Delta S_i$ to the area of its projection on the $xy$-plane, as shown in the figure below.
@@ -341,7 +341,7 @@ $$
 So, the surface integral can be written as:
 
 $$
-\iint_S G(x, y, z) \\, dS = \lim_{\substack{N \to \infty\\\\[0.3em] \text{each } \Delta R_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \frac{\Delta R_i}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}}
+\iint_S G(x, y, z) \, dS = \lim_{\substack{N \to \infty\\[0.3em] \text{each } \Delta R_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \frac{\Delta R_i}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}}
 \tag{II-9}
 $$
 
@@ -350,8 +350,8 @@ Where we have replaced each $\Delta S_i \to 0$ with $\Delta R_i \to 0$.
 Then, this can be written as a double integral over $R$:
 
 $$
-\iint_S G(x, y, z) \\, dS = 
-\iint_R \frac{G(x, y, f(x, y))}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}(x, y, f(x, y))} \\, dx \\, dy
+\iint_S G(x, y, z) \, dS = 
+\iint_R \frac{G(x, y, f(x, y))}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}(x, y, f(x, y))} \, dx \, dy
 \tag{II-11}
 $$
 
@@ -365,10 +365,10 @@ Thus, we have:
 
 $$
 \begin{align*}
-\iint_S G(x, y, z) \\, dS =
+\iint_S G(x, y, z) \, dS =
 &\iint_R G(x, y, f(x, y)) \cdot
-\\\\[1em]
-&\sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial y}\right)^2} \\, dx \\, dy
+\\[1em]
+&\sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial y}\right)^2} \, dx \, dy
 \tag{II-12}
 \end{align*}
 $$
@@ -379,8 +379,8 @@ $$
 Here $f(x, y) = 1 - x - y$, so we have:
 
 $$
-\iint_S z \\, dS = \int_{0}^{1} \int_{0}^{1 - x} z \left(\sqrt{1 + (-1)^2 + (-1)^2}
-\right) \\, dy \\, dx = \dfrac{\sqrt{3}}{6}
+\iint_S z \, dS = \int_{0}^{1} \int_{0}^{1 - x} z \left(\sqrt{1 + (-1)^2 + (-1)^2}
+\right) \, dy \, dx = \dfrac{\sqrt{3}}{6}
 $$
 ::::
 
@@ -388,7 +388,7 @@ $$
 The **flux** of $\mathbf{F}$ through the surface $S$:
 
 $$
-\iint_S \mathbf{F}(x, y, z) \cdot \hat{\mathbf{n}} \\, dS
+\iint_S \mathbf{F}(x, y, z) \cdot \hat{\mathbf{n}} \, dS
 \tag{II-14}
 $$
 
@@ -406,20 +406,20 @@ the following about the electric field:
 Thus, Gauss's Law becomes:
 
 $$
-\iint_S E(r) \hat{\mathbf{e}}_r \cdot \hat{\mathbf{n}} \\, dS = \frac{q}{\epsilon_0}
+\iint_S E(r) \hat{\mathbf{e}}_r \cdot \hat{\mathbf{n}} \, dS = \frac{q}{\epsilon_0}
 $$
 
 On a spherical surface of radius $r$, $\hat{\mathbf{n}} = \hat{\mathbf{e}}_r$. So, $\hat{\mathbf{e}}_r \cdot \hat{\mathbf{n}} = 1$.
 Thus, we have:
 
 $$
-\iint_S E(r) \\, dS = \frac{q}{\epsilon_0}
+\iint_S E(r) \, dS = \frac{q}{\epsilon_0}
 $$
 
 $E(r)$ is constant over the spherical surface, so we get:
 
 $$
-\iint_S E(r) \\, dS = E(r) \iint_S dS
+\iint_S E(r) \, dS = E(r) \iint_S dS
 = 4 \pi r^2 E(r) = \frac{q}{\epsilon_0}
 $$
 
@@ -444,20 +444,20 @@ Consider the surface integral of the electric field over closed surfaces centere
 Assuming volume $\Delta V$ and average charge density $\overline{\rho}_{\Delta V}$, we have:
 
 $$
-\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\overline{\rho}_{\Delta V} \Delta V}{\epsilon_0}
+\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \frac{\overline{\rho}_{\Delta V} \Delta V}{\epsilon_0}
 \tag{II-15}
 $$
 
 As expected, both sides go to zero as $\Delta V \to 0$. To isolate the quantity that does not go to zero, we divide both sides by $\Delta V$:
 
 $$
-\frac{1}{\Delta V} \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\overline{\rho}_{\Delta V}}{\epsilon_0}
+\frac{1}{\Delta V} \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \frac{\overline{\rho}_{\Delta V}}{\epsilon_0}
 $$
 
 Taking the limit as $\Delta V \to 0$, we get:
 
 $$
-\lim_{\substack{\Delta V \to 0 \\\\[0.3em] \text{about}\\; (x,y,z)}} \frac{1}{\Delta V} \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{\rho(x, y, z)}{\epsilon_0}
+\lim_{\substack{\Delta V \to 0 \\[0.3em] \text{about}\; (x,y,z)}} \frac{1}{\Delta V} \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \frac{\rho(x, y, z)}{\epsilon_0}
 \tag{II-16}
 $$
 
@@ -466,14 +466,14 @@ $$
 We define the **divergence** of a vector field $\mathbf{F}$ as:
 
 $$
-\text{div} \\, \mathbf{F} \equiv \lim_{\substack{\Delta V \to 0 \\\\[0.3em] \text{about}\\; (x,y,z)}} \frac{1}{\Delta V} \iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS
+\text{div} \, \mathbf{F} \equiv \lim_{\substack{\Delta V \to 0 \\[0.3em] \text{about}\; (x,y,z)}} \frac{1}{\Delta V} \iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \, dS
 \tag{II-17}
 $$
 
 Then equation (II-16) can be written as:
 
 $$
-\text{div} \\, \mathbf{E} = \frac{\rho}{\epsilon_0}
+\text{div} \, \mathbf{E} = \frac{\rho}{\epsilon_0}
 \tag{II-18}
 $$
 
@@ -486,21 +486,21 @@ $S_1$ is the front face, $S_2$ is the back face. Let $\mathbf{F} \cdot \mathbf{i
 Then the surface integral over $S_1$ is:
 
 $$
-\iint_{S_1} F_x(x, y, z) \\, dS \approx F_x(x + \frac{\Delta x}{2}, y, z) \Delta y \Delta z
+\iint_{S_1} F_x(x, y, z) \, dS \approx F_x(x + \frac{\Delta x}{2}, y, z) \Delta y \Delta z
 \tag{II-19}
 $$
 
 Similarly, the surface integral over $S_2$ is:
 
 $$
-\iint_{S_2} F_x(x, y, z) \\, dS \approx -F_x(x - \frac{\Delta x}{2}, y, z) \Delta y \Delta z
+\iint_{S_2} F_x(x, y, z) \, dS \approx -F_x(x - \frac{\Delta x}{2}, y, z) \Delta y \Delta z
 \tag{II-20}
 $$
 
 Then, adding these two and dividing by $\Delta V$ gives:
 
 $$
-\frac{1}{\Delta V} \iint_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
+\frac{1}{\Delta V} \iint_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \, dS \approx
 \frac{F_x(x + \frac{\Delta x}{2}, y, z) - F_x(x - \frac{\Delta x}{2}, y, z)}{\Delta x}
 \tag{II-21}
 $$
@@ -508,14 +508,14 @@ $$
 Taking the limit as $\Delta V \to 0$, we get:
 
 $$
-\lim_{\Delta V \to 0} \frac{1}{\Delta V} \iint_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \dfrac{\partial F_x}{\partial x}
+\lim_{\Delta V \to 0} \frac{1}{\Delta V} \iint_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \, dS = \dfrac{\partial F_x}{\partial x}
 $$
 
 Similarly, we can calculate the contributions from the other two pairs of faces. Then adding
 all together, we have:
 
 $$
-\text{div} \\, \mathbf{F} = \dfrac{\partial F_x}{\partial x} + \dfrac{\partial F_y}{\partial y} + \dfrac{\partial F_z}{\partial z}
+\text{div} \, \mathbf{F} = \dfrac{\partial F_x}{\partial x} + \dfrac{\partial F_y}{\partial y} + \dfrac{\partial F_z}{\partial z}
 \tag{II-22}
 $$
 
@@ -543,14 +543,14 @@ Center is $(r, \theta, z)$, and volume is $\Delta V = r \Delta r \Delta \theta \
 The flux of $\mathbf{F}$ through face 1 is:
 
 $$
-\iint_{S_1} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
+\iint_{S_1} \mathbf{F} \cdot \hat{\mathbf{n}} \, dS \approx
 F_r\left(r + \frac{\Delta r}{2}, \theta, z\right) \left(r + \frac{\Delta r}{2}\right) \Delta \theta \Delta z
 $$
 
 While the flux through face 2 is:
 
 $$
-\iint_{S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS \approx
+\iint_{S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \, dS \approx
 -F_r\left(r - \frac{\Delta r}{2}, \theta, z\right) \left(r - \frac{\Delta r}{2}\right) \Delta \theta \Delta z
 $$
 
@@ -563,7 +563,7 @@ $$
 Arguing similarly for the other two pairs of faces, we get:
 
 $$
-\text{div} \\, \mathbf{F} = \frac{1}{r} \frac{\partial}{\partial r} \left(r F_r\right) + \frac{1}{r} \frac{\partial F_\theta}{\partial \theta} + \frac{\partial F_z}{\partial z}
+\text{div} \, \mathbf{F} = \frac{1}{r} \frac{\partial}{\partial r} \left(r F_r\right) + \frac{1}{r} \frac{\partial F_\theta}{\partial \theta} + \frac{\partial F_z}{\partial z}
 \tag{II-24}
 $$
 
@@ -578,7 +578,7 @@ $$
 Then, the divergence can be written as:
 
 $$
-\text{div} \\, \mathbf{F} = \nabla \cdot \mathbf{F} = \frac{\rho}{\epsilon_0}
+\text{div} \, \mathbf{F} = \nabla \cdot \mathbf{F} = \frac{\rho}{\epsilon_0}
 $$
 
 ### The Divergence Theorem
@@ -586,7 +586,7 @@ $$
 The **divergence theorem** states that the flux of a vector field $\mathbf{F}$ through a closed surface $S$ is equal to the integral of the divergence of $\mathbf{F}$ over the volume $V$ enclosed by $S$:
 
 $$
-\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \\, dS = \iiint_V \nabla \cdot \mathbf{F} \\, dV
+\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \, dS = \iiint_V \nabla \cdot \mathbf{F} \, dV
 \tag{II-30}
 $$
 
@@ -597,7 +597,7 @@ Divergence theorem on the **upper unit hemisphere**. Let
 $$
 \mathbf F(x,y,z)=\mathbf{i}x+\mathbf{j}y+\mathbf{k}z ,
 \quad
-V=\left\\{(x,y,z)\\;\middle|\\;x^{2}+y^{2}+z^{2}\le 1,\\;z\ge 0\right\\}.
+V=\left\{(x,y,z)\;\middle|\;x^{2}+y^{2}+z^{2}\le 1,\;z\ge 0\right\}.
 $$
 
 The boundary $S$ has two pieces
@@ -608,14 +608,14 @@ The boundary $S$ has two pieces
 ##### 1 . Volume integral of the divergence
 
 $$
-\nabla\\!\cdot\\!\mathbf F = \frac{\partial x}{\partial x} + \frac{\partial y}{\partial y} +
+\nabla\!\cdot\!\mathbf F = \frac{\partial x}{\partial x} + \frac{\partial y}{\partial y} +
 \frac{\partial z}{\partial z} = 1+1+1 = 3.
 $$
 
 Volume of the hemisphere: $\displaystyle \dfrac12\\!\left(\dfrac{4\pi}{3}\right)=\dfrac{2\pi}{3}$.
 
 $$
-\iiint_{V} (\nabla\\!\cdot\\!\mathbf F)\\,dV
+\iiint_{V} (\nabla\!\cdot\!\mathbf F)\,dV
 =3\left(\dfrac{2\pi}{3}\right)
 =2\pi
 $$
@@ -628,7 +628,7 @@ On the unit sphere the outward unit normal is $\hat{\mathbf{n}}=\mathbf{i}x + \m
 So, $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = x^{2}+y^{2}+z^{2}=1.$
 
 $$
-\iint_{S_1}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS = 1\cdot 2\pi = 2\pi
+\iint_{S_1}\mathbf F\!\cdot\!\hat{\mathbf{n}}\,dS = 1\cdot 2\pi = 2\pi
 $$
 
 **Flat disk $S_2$**
@@ -637,13 +637,13 @@ Outward normal is $\hat{\mathbf{n}}=-\mathbf k$.
 On $S_2$, $z=0$. So, $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = 0$.
 
 $$
-\iint_{S_2}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS = 0
+\iint_{S_2}\mathbf F\!\cdot\!\hat{\mathbf{n}}\,dS = 0
 $$
 
 **Total outward flux**
 
 $$
-\iint_{S}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS
+\iint_{S}\mathbf F\!\cdot\!\hat{\mathbf{n}}\,dS
 =2\pi + 0 = 2 \pi
 $$
 
@@ -651,10 +651,10 @@ $$
 Therefore, we have:
 
 $$
-\iiint_{V} (\nabla\\!\cdot\\!\mathbf F)\\,dV
-\\;=\\;
-\iint_{S}\mathbf F\\!\cdot\\!\hat{\mathbf{n}}\\,dS
-\\;=\\;2\pi
+\iiint_{V} (\nabla\!\cdot\!\mathbf F)\,dV
+\;=\;
+\iint_{S}\mathbf F\!\cdot\!\hat{\mathbf{n}}\,dS
+\;=\;2\pi
 $$
 
 ### Applications
@@ -662,27 +662,27 @@ $$
 We want to derive equation (II-18):
 
 $$
-\text{div} \\, \mathbf{E} = \frac{\rho}{\epsilon_0}
+\text{div} \, \mathbf{E} = \frac{\rho}{\epsilon_0}
 $$
 
 We start with Gauss's Law:
 
 $$
-\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \frac{1}{\epsilon_0} \iiint_V \rho \\, dV
+\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \frac{1}{\epsilon_0} \iiint_V \rho \, dV
 \tag{II-31}
 $$
 
 We can use the divergence theorem to rewrite the left-hand side:
 
 $$
-\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = \iiint_V \nabla \cdot \mathbf{E} \\, dV
+\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \iiint_V \nabla \cdot \mathbf{E} \, dV
 \tag{II-32}
 $$
 
 Combining equations (II-31) and (II-32), we get:
 
 $$
-\iiint_V \nabla \cdot \mathbf{E} \\, dV = \frac{1}{\epsilon_0} \iiint_V \rho \\, dV
+\iiint_V \nabla \cdot \mathbf{E} \, dV = \frac{1}{\epsilon_0} \iiint_V \rho \, dV
 $$
 
 Since this is true for _any_ volume $V$, we can conclude that:

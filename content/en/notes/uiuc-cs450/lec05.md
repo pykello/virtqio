@@ -26,20 +26,20 @@ $n^2$ unknowns in total, matching the number of entries in $A$.
 $$
 A =
 \begin{bmatrix}
-2 & 3 & 1 \\\\
-6 & 13 & 5 \\\\
+2 & 3 & 1 \\
+6 & 13 & 5 \\
 2 & 19 & 10
 \end{bmatrix}
 \=
 \begin{bmatrix}
-1 & 0 & 0 \\\\
-3 & 1 & 0 \\\\
+1 & 0 & 0 \\
+3 & 1 & 0 \\
 1 & 4 & 1
 \end{bmatrix}
 \cdot
 \begin{bmatrix}
-2 & 3 & 1 \\\\
-0 & 4 & 2 \\\\
+2 & 3 & 1 \\
+0 & 4 & 2 \\
 0 & 0 & 1
 \end{bmatrix}
 $$
@@ -51,23 +51,23 @@ $U \in \mathbb{R}^{\max(m, n) \times n}$:
 
 $$
 \underbrace{\begin{bmatrix}
- 3 & 5\\\\
- 6 & 12\\\\
--3 & 1\\\\
+ 3 & 5\\
+ 6 & 12\\
+-3 & 1\\
  0 & 8
 \end{bmatrix}}\_{A\in\mathbb{R}^{4\times 2}}
-\\;=\\;
+\;=\;
 \underbrace{\begin{bmatrix}
- 1 & 0 & 0 & 0\\\\
- 2 & 1 & 0 & 0\\\\
--1 & 3 & 1 & 0\\\\
+ 1 & 0 & 0 & 0\\
+ 2 & 1 & 0 & 0\\
+-1 & 3 & 1 & 0\\
  0 & 4 & 0 & 1
 \end{bmatrix}}\_{L_{\text{full}}\in\mathbb{R}^{4\times 4}}
-\\;
+\;
 \underbrace{\begin{bmatrix}
- 3 & 5\\\\
- 0 & 2\\\\
- 0 & 0\\\\
+ 3 & 5\\
+ 0 & 2\\
+ 0 & 0\\
  0 & 0
 \end{bmatrix}}\_{U_{\text{full}}\in\mathbb{R}^{4\times 2}}.
 $$
@@ -77,21 +77,21 @@ upper-trapezoidal $U \in \mathbb{R}^{\min(m, n) \times n}$:
 
 $$
 \underbrace{\begin{bmatrix}
- 3 & 5\\\\
- 6 & 12\\\\
--3 & 1\\\\
+ 3 & 5\\
+ 6 & 12\\
+-3 & 1\\
  0 & 8
 \end{bmatrix}}\_{A\in\mathbb{R}^{4\times 2}}
-\\;=\\;
+\;=\;
 \underbrace{\begin{bmatrix}
- 1 & 0\\\\
- 2 & 1\\\\
--1 & 3\\\\
+ 1 & 0\\
+ 2 & 1\\
+-1 & 3\\
  0 & 4
 \end{bmatrix}}\_{L\in\mathbb{R}^{4\times 2}}
-\\;
+\;
 \underbrace{\begin{bmatrix}
- 3 & 5\\\\
+ 3 & 5\\
  0 & 2
 \end{bmatrix}}\_{U\in\mathbb{R}^{2\times 2}}.
 $$
@@ -108,28 +108,28 @@ Computational complexity of this algorithm is $O(n^2)$.
 
 $$
 M_k a = \begin{bmatrix}
-1 & \cdots & 0 & 0 & \cdots & 0 \\\\
-\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\\\
-0 & \cdots & 1 & 0 & \cdots & 0 \\\\
-0 & \cdots & -m_{k+1} & 1 & \cdots & 0 \\\\
-\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\\\
+1 & \cdots & 0 & 0 & \cdots & 0 \\
+\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+0 & \cdots & 1 & 0 & \cdots & 0 \\
+0 & \cdots & -m_{k+1} & 1 & \cdots & 0 \\
+\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
 0 & \cdots & -m_{n} & 0 & \cdots & 1
 \end{bmatrix}
 \begin{bmatrix}
-a_1 \\\\
-\vdots \\\\
-a_k \\\\
-a_{k+1} \\\\
-\vdots \\\\
+a_1 \\
+\vdots \\
+a_k \\
+a_{k+1} \\
+\vdots \\
 a_n
 \end{bmatrix}
 \=
 \begin{bmatrix}
-a_1 \\\\
-\vdots \\\\
-a_k \\\\
-0 \\\\
-\vdots \\\\
+a_1 \\
+\vdots \\
+a_k \\
+0 \\
+\vdots \\
 0
 \end{bmatrix}
 $$
@@ -171,17 +171,17 @@ Consider the block matrix form:
 
 $$
 \begin{bmatrix}
- a_{11} & \mathbf{a}\_{12} \\\\
+ a_{11} & \mathbf{a}\_{12} \\
     \mathbf{a}\_{21} & \mathbf{A}\_{22}
 \end{bmatrix}
 \=
 \begin{bmatrix}
-    1 & 0 \\\\
+    1 & 0 \\
     \mathbf{l}\_{21} & \mathbf{L}\_{22}
 \end{bmatrix}
 \cdot
 \begin{bmatrix}
- u_{11} & \mathbf{u}\_{12} \\\\
+ u_{11} & \mathbf{u}\_{12} \\
     0 & \mathbf{U}\_{22}
 \end{bmatrix}
 $$
@@ -210,17 +210,17 @@ If all leading principal minors of $A$ are non-zero, then $A$ has an LU factoriz
 > For example,
 > $$
 > \begin{bmatrix}
-> 1 & 0 \\\\
+> 1 & 0 \\
 > 0 & 0
 > \end{bmatrix}
 > \=
 > \begin{bmatrix}
-> 1 & 0 \\\\
+> 1 & 0 \\
 > 0 & 1
 > \end{bmatrix}
 > \cdot
 > \begin{bmatrix}
-> 1 & 0 \\\\
+> 1 & 0 \\
 > 0 & 0
 > \end{bmatrix}
 > $$
@@ -235,8 +235,8 @@ LU factorization:
 
 $$
 \begin{bmatrix}
-3 & 2 \\\\
-6 & 4 \\\\
+3 & 2 \\
+6 & 4 \\
 0 & 3
 \end{bmatrix}
 $$
@@ -245,19 +245,19 @@ Proceeding with Gauss elimination, we obtain:
 
 $$
 \begin{bmatrix}
-3 & 2 \\\\
-6 & 4 \\\\
+3 & 2 \\
+6 & 4 \\
 0 & 3
 \end{bmatrix}
 \=
 \begin{bmatrix}
-1 & 0 \\\\
-2 & 1 \\\\
+1 & 0 \\
+2 & 1 \\
 0 & l_{32}
 \end{bmatrix}
 \cdot
 \begin{bmatrix}
-3 & 2 \\\\
+3 & 2 \\
 0 & u_{21}
 \end{bmatrix}
 $$
@@ -273,8 +273,8 @@ Also, if Gaussian elimination can be performed to produce an upper triangular ma
 >
 > $$
 > \begin{bmatrix}
-> 0 & 1 \\\\
-> 1 & 0 \\\\
+> 0 & 1 \\
+> 1 & 0 \\
 > \end{bmatrix}
 > $$
 >

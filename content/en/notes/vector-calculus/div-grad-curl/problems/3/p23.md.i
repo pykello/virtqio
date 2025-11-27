@@ -3,7 +3,7 @@
 function $\mathbf{F}$ satisfy in order that
 
 $$
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = A
+\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = A
 $$
 
 where $A$ is the area enclosed by $C$?
@@ -14,7 +14,7 @@ where $A$ is the area enclosed by $C$?
 Using the 2-dimensional Stokes' theorem, we have:
 
 $$
-\oint_C F_x \\, dx + F_y \\, dy = \iint_R \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \\, dx \\, dy
+\oint_C F_x \, dx + F_y \, dy = \iint_R \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \, dx \, dy
 $$
 
 So, in order for the line integral to be equal to the area enclosed by $C$, we need:
@@ -55,17 +55,17 @@ Then, we have:
 
 $$
 \begin{align*}
-\int_{C_1} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= 0 \\\\[0.8em]
-\int_{C_2} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= \int_{0}^{a} 2 \cdot b \\, dy = 2 a b \\\\[0.8em]
-\int_{C_3} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= \int_{b}^{0} a \\, dx = - a b \\\\[0.8em]
-\int_{C_4} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= 0
+\int_{C_1} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= 0 \\[0.8em]
+\int_{C_2} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \int_{0}^{a} 2 \cdot b \, dy = 2 a b \\[0.8em]
+\int_{C_3} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \int_{b}^{0} a \, dx = - a b \\[0.8em]
+\int_{C_4} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= 0
 \end{align*}
 $$
 
 Putting together, we have:
 
 $$
-\oint_{C_1 + C_2 + C_3 + C_4} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = 2 a b - a b = a b
+\oint_{C_1 + C_2 + C_3 + C_4} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = 2 a b - a b = a b
 $$
 
 ::::
@@ -81,8 +81,8 @@ Then, we have:
 
 $$
 \begin{align*}
-\int_{C_1} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= 0 \\\\[0.8em]
-\int_{C_3} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= 0
+\int_{C_1} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= 0 \\[0.8em]
+\int_{C_3} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= 0
 \end{align*}
 $$
 
@@ -92,10 +92,10 @@ Then, we have:
 
 $$
 \begin{align*}
-\int_{C_2} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= 
-\int_{C_2} (y \\, dx + 2 x \\, dy) \\\\[0.8em]
-&= \int_{0}^{a} \left( \dfrac{b}{a} (a - x) \\, dx - 2 x \dfrac{b}{a} \\, dx \right) \\\\[0.8em]
-&= \int_{0}^{a} \left( \dfrac{b}{a} (a - 3 x) \right) \\, dx \\\\[0.8em]
+\int_{C_2} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= 
+\int_{C_2} (y \, dx + 2 x \, dy) \\[0.8em]
+&= \int_{0}^{a} \left( \dfrac{b}{a} (a - x) \, dx - 2 x \dfrac{b}{a} \, dx \right) \\[0.8em]
+&= \int_{0}^{a} \left( \dfrac{b}{a} (a - 3 x) \right) \, dx \\[0.8em]
 &= \frac{ab}{2}
 \end{align*}
 $$
@@ -111,8 +111,8 @@ Then, we have:
 
 $$
 \begin{align*}
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= \oint_C \left( \frac{r}{2} \right) r \\, d\theta \\\\[0.8em]
-&= \frac{r^2}{2} \int_0^{2\pi}  \\, d\theta = \pi r^2
+\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \oint_C \left( \frac{r}{2} \right) r \, d\theta \\[0.8em]
+&= \frac{r^2}{2} \int_0^{2\pi}  \, d\theta = \pi r^2
 \end{align*}
 $$
 
@@ -121,7 +121,7 @@ $$
 **(d)** Show that the area enclosed by the plane curve $C$ is the magnitude of
 
 $$
-\frac{1}{2} \oint_C \mathbf{r} \times \hat{\mathbf{t}} \\, ds
+\frac{1}{2} \oint_C \mathbf{r} \times \hat{\mathbf{t}} \, ds
 $$
 
 where $\mathbf{r} = \mathbf{i} x + \mathbf{j} y$.
@@ -133,7 +133,7 @@ We have $\hat{\mathbf{t}} = \mathbf{i} \dfrac{dx}{ds} + \mathbf{j} \dfrac{dy}{ds
 
 $$
 \begin{align*}
-\mathbf{r} \times \hat{\mathbf{t}} &= \mathbf{k} \left( x \frac{dy}{ds} - y \frac{dx}{ds} \right) \\\\[0.8em]
+\mathbf{r} \times \hat{\mathbf{t}} &= \mathbf{k} \left( x \frac{dy}{ds} - y \frac{dx}{ds} \right) \\[0.8em]
 &= \mathbf{k} \left( (-y \mathbf{i} + x \mathbf{j}) \cdot \hat{\mathbf{t}} \right)
 \end{align*}
 $$
@@ -141,19 +141,19 @@ $$
 Then, we have:
 
 $$
-\frac{1}{2} \oint_C \mathbf{r} \times \hat{\mathbf{t}} \\, ds = \frac{\mathbf{k}}{2} \oint_C (-y \mathbf{i} + x \mathbf{j}) \cdot \hat{\mathbf{t}} \\, ds
+\frac{1}{2} \oint_C \mathbf{r} \times \hat{\mathbf{t}} \, ds = \frac{\mathbf{k}}{2} \oint_C (-y \mathbf{i} + x \mathbf{j}) \cdot \hat{\mathbf{t}} \, ds
 $$
 
 Since $\nabla \times (-y \mathbf{i} + x \mathbf{j}) = 2 \mathbf{k}$, then by Stokes' theorem we have:
 
 $$
-\oint_C (-y \mathbf{i} + x \mathbf{j}) \cdot \hat{\mathbf{t}} \\, ds = 2 A
+\oint_C (-y \mathbf{i} + x \mathbf{j}) \cdot \hat{\mathbf{t}} \, ds = 2 A
 $$
 
 Then, we have:
 
 $$
-\frac{1}{2} \oint_C \mathbf{r} \times \hat{\mathbf{t}} \\, ds = A \mathbf{k}
+\frac{1}{2} \oint_C \mathbf{r} \times \hat{\mathbf{t}} \, ds = A \mathbf{k}
 $$
 
 which has a magnitude of $A$.

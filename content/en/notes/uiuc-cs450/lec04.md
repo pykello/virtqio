@@ -13,19 +13,19 @@ Consider the decomposition:
 
 $$
 \begin{pmatrix}
-\\\\
-u_1 & \cdots & u_n \\\\
-\\\\
+\\
+u_1 & \cdots & u_n \\
+\\
 \end{pmatrix}
 \begin{pmatrix}
-\sigma_1 & & \\\\
-& \ddots & \\\\
-& & \sigma_n \\\\
+\sigma_1 & & \\
+& \ddots & \\
+& & \sigma_n \\
 \end{pmatrix}
 \begin{pmatrix}
-\\\\
-v_1 & \cdots & v_n \\\\
-\\\\
+\\
+v_1 & \cdots & v_n \\
+\\
 \end{pmatrix}^T
 = \sum_{i=1}^n \sigma_i u_i v_i^T
 $$
@@ -52,10 +52,10 @@ $$
 \begin{align*}
 \delta b = A \delta x &\implies
 \delta x = A^{-1} \delta b
-\\\\[1em]
+\\[1em]
 &\implies
 \lVert \delta x \rVert \le \lVert A^{-1} \rVert \lVert \delta b \rVert
-\\\\[1em]
+\\[1em]
 &\implies
 \dfrac{\lVert \delta x \rVert}{\lVert x \rVert} \le \dfrac{\lVert A^{-1} \rVert \cdot \lVert \delta b \rVert}{\lVert x \rVert}
 \tag{1}
@@ -90,13 +90,13 @@ We want to solve $Ax = b$ and want to know how much the solution changes if we p
 Since $Ax = b$, then:
 
 $$
-\delta A \\, x + A \\, \delta x + \delta A \\, \delta x = 0
+\delta A \, x + A \, \delta x + \delta A \, \delta x = 0
 $$
 
 Since $\delta A \\, \delta x$ is small, we can ignore it. Then we have:
 
 $$
-\delta A \\, x \approx -A \\, \delta x
+\delta A \, x \approx -A \, \delta x
 $$
 
 Then:
@@ -144,20 +144,20 @@ If we have:
 
 $$
 \begin{pmatrix}
-d\_1 & & \\\\
-& \ddots & \\\\
-& & d\_n \\\\
+d\_1 & & \\
+& \ddots & \\
+& & d\_n \\
 \end{pmatrix}
 \begin{pmatrix}
-x\_1 \\\\
-\vdots \\\\
-x\_n \\\\
+x\_1 \\
+\vdots \\
+x\_n \\
 \end{pmatrix}
 \=
 \begin{pmatrix}
-b\_1 \\\\
-\vdots \\\\
-b\_n \\\\
+b\_1 \\
+\vdots \\
+b\_n \\
 \end{pmatrix}
 $$
 
@@ -178,9 +178,9 @@ If $Lx = b$ where $L$ is lower triangular, then we can solve by forward substitu
 
 $$
 \begin{array}{rclcl}
-l_{11} x_1 & = & b_1 & & x_1 = b_1 / l_{11} \\\\
-l_{21} x_1 + l_{22} x_2 & = & b_2 & \Rightarrow & x_2 = (b_2 - l_{21}x_1) / l_{22} \\\\
-l_{31} x_1 + l_{32} x_2 + l_{33} x_3 & = & b_3 & & x_3 = (b_3 - l_{31}x_1 - l_{32}x_2) / l_{33} \\\\
+l_{11} x_1 & = & b_1 & & x_1 = b_1 / l_{11} \\
+l_{21} x_1 + l_{22} x_2 & = & b_2 & \Rightarrow & x_2 = (b_2 - l_{21}x_1) / l_{22} \\
+l_{31} x_1 + l_{32} x_2 + l_{33} x_3 & = & b_3 & & x_3 = (b_3 - l_{31}x_1 - l_{32}x_2) / l_{33} \\
 \vdots & & \vdots & & \vdots
 \end{array}
 $$

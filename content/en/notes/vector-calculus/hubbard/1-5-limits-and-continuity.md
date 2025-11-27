@@ -11,7 +11,7 @@ I've also added some notes and expanded some of the examples to make them cleare
 **Open ball.** For any $\mathbf{x} \in \mathbb{R}^n$ and $r > 0$, the open ball of radius $r$ centered at $\mathbf{x}$ is the subset
 
 $$
-B_r(\mathbf{x}) := \\{\mathbf{y} \in \mathbb{R}^n : \lVert\mathbf{x} - \mathbf{y}\rVert < r\\}.
+B_r(\mathbf{x}) := \{\mathbf{y} \in \mathbb{R}^n : \lVert\mathbf{x} - \mathbf{y}\rVert < r\}.
 $$
 
 **Open set of $\mathbb{R}^n$.** A subset $U \subset \mathbb{R}^n$ is open if for every $x \in U$, there exists $r > 0$ such that $B_r(\mathbf{x}) \subset U$.
@@ -58,13 +58,13 @@ means for any $\epsilon > 0$, there exists $M$ such that for all $m > M$ we have
 
 $$
 \begin{align*}
-&\lVert\mathbf{a}_m - \mathbf{a}\rVert < \epsilon \\\\
+&\lVert\mathbf{a}_m - \mathbf{a}\rVert < \epsilon \\
 \implies &
 \sqrt{
     \left((a_m)_1-a_1\right)^2 + \cdots + \left((a_m)_n-a_n\right)^2
-} < \epsilon \\\\
+} < \epsilon \\
 \implies &
- \left((a_m)_i-a_i\right)^2  < \epsilon^2 \\\\
+ \left((a_m)_i-a_i\right)^2  < \epsilon^2 \\
 \implies &
  \lVert(a_m)_i-a_i\rVert < \epsilon
 \end{align*}
@@ -108,8 +108,8 @@ Then for all $m > \max \\{M_1, M_2\\}$, we have
 
 $$
 \begin{align*}
-\lVert\mathbf{a} - \mathbf{b}\rVert &\le \lVert\mathbf{a} - \mathbf{a}_m\rVert + \lVert\mathbf{b} - \mathbf{a}_m\rVert \quad \text{(triangle inequality)} \\\\
-&< \epsilon_0 + \epsilon_0  \\\\
+\lVert\mathbf{a} - \mathbf{b}\rVert &\le \lVert\mathbf{a} - \mathbf{a}_m\rVert + \lVert\mathbf{b} - \mathbf{a}_m\rVert \quad \text{(triangle inequality)} \\
+&< \epsilon_0 + \epsilon_0  \\
 &= \lVert\mathbf{a} - \mathbf{b}\rVert
 \end{align*}
 $$
@@ -200,7 +200,7 @@ $$
 > For example, limit of $f: \mathbb{R} \to \mathbb{R}$ doesn't exist at $0$:
 > $$
 > f(x) = \begin{cases}
->     1 & \text{if } x \ne 0 \\\\
+>     1 & \text{if } x \ne 0 \\
 >     0 & \text{if } x = 0
 > \end{cases}
 > $$
@@ -234,8 +234,8 @@ Then for all $\mathbf{x} \in X$ such that $\lVert\mathbf{x} - \mathbf{x}_0\rVert
 
 $$
 \begin{align*}
-\lVert\mathbf{a}-\mathbf{b}\rVert &\le \lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert+\lVert\mathbf{f}(\mathbf{x}) - \mathbf{b}\rVert \quad\text{(triangle inequality)} \\\\
-&< \epsilon + \epsilon \\\\
+\lVert\mathbf{a}-\mathbf{b}\rVert &\le \lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert+\lVert\mathbf{f}(\mathbf{x}) - \mathbf{b}\rVert \quad\text{(triangle inequality)} \\
+&< \epsilon + \epsilon \\
 &= \lVert\mathbf{a}-\mathbf{b}\rVert
 \end{align*}
 $$
@@ -282,11 +282,11 @@ which is equivalent to saying $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{
 >
 > $$
 > f(x) = \begin{cases}
->     x \sin\left(\dfrac{1}{x}\right) & \text{if } x \ne 0 \\\\
+>     x \sin\left(\dfrac{1}{x}\right) & \text{if } x \ne 0 \\
 >     0 & \text{if } x = 0
 > \end{cases} \quad\text{and}\quad
 > g(x) = \begin{cases}
->     1 & \text{if } x \ne 0 \\\\
+>     1 & \text{if } x \ne 0 \\
 >     0 & \text{if } x = 0
 > \end{cases}
 > $$
@@ -306,8 +306,8 @@ $$
 U \subset \mathbb{R}^n, \quad
 \mathbf{f} =
 \begin{pmatrix}
-f_1 \\\\
-\vdots \\\\
+f_1 \\
+\vdots \\
 f_m
 \end{pmatrix}
 : U \to \mathbb{R}^m,
@@ -377,12 +377,12 @@ $$
 \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \cdot \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}) &= 
 \sum\_{i=1}^{m} \left(\lim\_{\mathbf{x} \to \mathbf{x}_0}{f_i(\mathbf{x})}\right)
 \left(\lim\_{\mathbf{x} \to \mathbf{x}_0} {g_i(\mathbf{x})}\right)
-\\\\
+\\
 &= \sum\_{i=1}^{m} \lim\_{\mathbf{x} \to \mathbf{x}_0}{f_i(\mathbf{x}) g_i(\mathbf{x})} \tag{using part 2}
-\\\\
+\\
 &=\lim\_{\mathbf{x} \to \mathbf{x}_0} \sum\_{i=1}^{m}{f_i(\mathbf{x}) g_i(\mathbf{x})} 
 \tag{using part 1}
-\\\\
+\\
 &= \lim\_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} \cdot \mathbf{g})(\mathbf{x})
 \end{align*}
 $$
@@ -399,7 +399,7 @@ $\mathbf{f}$ is continuous on $X$ if it is continuous at every point $\mathbf{x}
 >
 > $$
 > f(x, y) = \begin{cases}
->     \dfrac{xy}{x^2 + y^2} & \text{if } (x, y) \ne (0, 0) \\\\
+>     \dfrac{xy}{x^2 + y^2} & \text{if } (x, y) \ne (0, 0) \\
 >     0 & \text{if } (x, y) = (0, 0)
 > \end{cases}
 > $$
@@ -408,7 +408,7 @@ $\mathbf{f}$ is continuous on $X$ if it is continuous at every point $\mathbf{x}
 >
 > $$
 > f(x, y) = \begin{cases}
->     \lVert(x,y)\rVert & \text{if } (x, y) \in \mathbb{Q}^2 \\\\
+>     \lVert(x,y)\rVert & \text{if } (x, y) \in \mathbb{Q}^2 \\
 >     0 & \text{otherwise}
 > \end{cases}
 > $$
@@ -445,7 +445,7 @@ $$
 $$
 \mathbf{x} \mapsto
 \begin{cases}
-h(\mathbf{x}) \mathbf{f}(\mathbf{x}) & \text{for } \mathbf{x} \in U \\\\
+h(\mathbf{x}) \mathbf{f}(\mathbf{x}) & \text{for } \mathbf{x} \in U \\
 0 & \text{if } \mathbf{x} = \mathbf{x}_0
 \end{cases}
 $$
@@ -457,7 +457,7 @@ is continuous at $\mathbf{x}_0$.
 >
 > $$
 > \mathbf{f}(\mathbf{x}) = \begin{cases}
->     x \sin\left(\dfrac{1}{x}\right) & \text{if } x \ne 0 \\\\
+>     x \sin\left(\dfrac{1}{x}\right) & \text{if } x \ne 0 \\
 >     0 & \text{if } x = 0
 > \end{cases}
 > $$
@@ -469,7 +469,7 @@ is continuous at $\mathbf{x}_0$.
 >
 > $$
 > \mathbf{f}(\mathbf{x}) = \begin{cases}
->     x \cdot \dfrac{1}{x} & \text{if } x \ne 0 \\\\
+>     x \cdot \dfrac{1}{x} & \text{if } x \ne 0 \\
 >     0 & \text{if } x = 0
 > \end{cases}
 > $$
@@ -504,8 +504,8 @@ Any linear function has a corresponding matrix $A$ such that $\mathbf{f}(\mathbf
 $$
 \begin{align*}
 \lVert\mathbf{f}(\mathbf{x})-\mathbf{f}(\mathbf{y})\rVert
-&= \lVert A \cdot \mathbf{x} - A \cdot \mathbf{y} \rVert \\\\
-&= \lVert A \cdot (\mathbf{x} - \mathbf{y}) \rVert \\\\
+&= \lVert A \cdot \mathbf{x} - A \cdot \mathbf{y} \rVert \\
+&= \lVert A \cdot (\mathbf{x} - \mathbf{y}) \rVert \\
 &= \lVert A \rVert \cdot \lVert \mathbf{x} - \mathbf{y} \rVert
 \end{align*}
 $$
@@ -519,13 +519,13 @@ $$
 \begin{align*}
 \lVert \mathbf{x} - \mathbf{y} \rVert < \delta &\implies
 \lVert \mathbf{x} - \mathbf{y} \rVert < \dfrac{\epsilon}{\lVert A \rVert + 1 }
-\\\\
+\\
 &\implies
 \left(\lVert A \rVert + 1\right) \lVert \mathbf{x} - \mathbf{y} \rVert < \epsilon
-\\\\
+\\
 &\implies
 \lVert A \rVert \cdot \lVert \mathbf{x} - \mathbf{y} \rVert < \epsilon
-\\\\
+\\
 &\implies
 \lVert\mathbf{f}(\mathbf{x})-\mathbf{f}(\mathbf{y})\rVert < \epsilon
 \end{align*}

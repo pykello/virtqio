@@ -8,8 +8,8 @@ and $C$ is the path
 
 $$
 \begin{cases}
-x = \dfrac{1}{\ln 2} \ln(1 + p), \\\\
-y = \sin\left(\dfrac{\pi p}{2}\right), \\\\
+x = \dfrac{1}{\ln 2} \ln(1 + p), \\
+y = \sin\left(\dfrac{\pi p}{2}\right), \\
 z = \dfrac{1 - e^p}{1 - e},
 \end{cases}
 \quad 0 \leq p \leq 1
@@ -31,16 +31,16 @@ Then we have:
 
 $$
 \begin{align*}
-\int_{C_1} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= \int_{0}^{1} e^0 \\, dx = 1 \\\\[1em]
-\int_{C_2} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= \int_{0}^{1} (1 - e^{-y}) \\, dy = e^{-1} \\\\[1em]
-\int_{C_3} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds &= \int_{0}^{1} (e^{-1} - e^{-z}) \\, dz = 2 e^{-1} - 1
+\int_{C_1} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \int_{0}^{1} e^0 \, dx = 1 \\[1em]
+\int_{C_2} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \int_{0}^{1} (1 - e^{-y}) \, dy = e^{-1} \\[1em]
+\int_{C_3} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \int_{0}^{1} (e^{-1} - e^{-z}) \, dz = 2 e^{-1} - 1
 \end{align*}
 $$
 
 Then, we have:
 
 $$
-\int_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds =  \int_{C_1 + C_2 + C_3} \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = 3 e^{-1}
+\int_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds =  \int_{C_1 + C_2 + C_3} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = 3 e^{-1}
 $$
 
 ::::

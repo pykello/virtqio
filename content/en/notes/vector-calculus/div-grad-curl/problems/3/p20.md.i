@@ -2,9 +2,9 @@
 
 $$
 \begin{align*}
-\nabla \cdot \mathbf{E} &= \frac{\rho}{\varepsilon_0} \tag{M1} \\\\
-\nabla \cdot \mathbf{B} &= 0 \tag{M2} \\\\
-\nabla \times \mathbf{E} &= - \frac{\partial \mathbf{B}}{\partial t} \tag{M3} \\\\
+\nabla \cdot \mathbf{E} &= \frac{\rho}{\varepsilon_0} \tag{M1} \\
+\nabla \cdot \mathbf{B} &= 0 \tag{M2} \\
+\nabla \times \mathbf{E} &= - \frac{\partial \mathbf{B}}{\partial t} \tag{M3} \\
 \nabla \times \mathbf{B} &= \varepsilon_0 \mu_0 \frac{\partial \mathbf{E}}{\partial t} + \mu_0 \mathbf{J} \tag{M4}
 \end{align*}
 $$
@@ -30,8 +30,8 @@ Differentiating with respect to $t$, we have:
 
 $$
 \begin{align*}
-\dfrac{\partial}{\partial t} \left( \nabla \cdot \mathbf{E} \right) &= \dfrac{\partial^2 E_x}{\partial x \partial t} + \dfrac{\partial^2 E_y}{\partial y \partial t} + \dfrac{\partial^2 E_z}{\partial z \partial t} \\\\[1em]
-&= \nabla \cdot \left( \frac{\partial E_x}{\partial t}, \frac{\partial E_y}{\partial t}, \frac{\partial E_z}{\partial t} \right) \\\\[1em]
+\dfrac{\partial}{\partial t} \left( \nabla \cdot \mathbf{E} \right) &= \dfrac{\partial^2 E_x}{\partial x \partial t} + \dfrac{\partial^2 E_y}{\partial y \partial t} + \dfrac{\partial^2 E_z}{\partial z \partial t} \\[1em]
+&= \nabla \cdot \left( \frac{\partial E_x}{\partial t}, \frac{\partial E_y}{\partial t}, \frac{\partial E_z}{\partial t} \right) \\[1em]
 &= \nabla \cdot \left( \frac{\partial \mathbf{E}}{\partial t} \right)
 \end{align*}
 $$

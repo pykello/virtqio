@@ -112,13 +112,13 @@ Special cases:
 - **Normal numbers** have an **implicit leading 1** in the significand and a **non-zero exponent field** (1–2046). They follow the standard form:
 
   $$
-  (\pm)\\,1.\text{fraction} \times 2^{e - 1023}
+  (\pm)\,1.\text{fraction} \times 2^{e - 1023}
   $$
 
 - **Subnormal (denormal) numbers** fill the gap near zero when the exponent field is **all zeros (0)**. They have no implicit leading 1:
 
   $$
-  (\pm)\\,0.\text{fraction} \times 2^{-1022}
+  (\pm)\,0.\text{fraction} \times 2^{-1022}
   $$
 
 This allows gradual underflow toward zero, preserving precision for very small numbers.
@@ -201,8 +201,8 @@ In general if $x + y$ is near 0, then addition is ill-conditioned.
 
 $$
 \begin{align*}
-\text{fl}(\text{fl}(x) \cdot \text{fl}(y)) - x y &\le (1 + \varepsilon)(x(1 + \varepsilon)) \cdot y(1 + \varepsilon) - x  y \\\\
-&= x  y (1 + \varepsilon)^3 - x y \\\\
+\text{fl}(\text{fl}(x) \cdot \text{fl}(y)) - x y &\le (1 + \varepsilon)(x(1 + \varepsilon)) \cdot y(1 + \varepsilon) - x  y \\
+&= x  y (1 + \varepsilon)^3 - x y \\
 &\approx x y (1 + 3 \varepsilon) - x  y
 \end{align*}
 $$

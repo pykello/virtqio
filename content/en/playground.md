@@ -80,10 +80,10 @@ Write the same sum in reverse order and add term‑wise:
 
 $$
 \begin{aligned}
-S & = 1 + 2 + \dots + n,\\\\
-S & = n + (n-1) + \dots + 1,\\\\
+S & = 1 + 2 + \dots + n,\\
+S & = n + (n-1) + \dots + 1,\\
 2S & = (n+1) + (n+1) + \dots + (n+1) 
-     \quad\text{(a total of \(n\) terms)}\\\\
+     \quad\text{(a total of \(n\) terms)}\\
     & = n(n+1).
 \end{aligned}
 $$

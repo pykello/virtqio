@@ -2,7 +2,7 @@
 circulation of the electric field $\mathbf{E}$ around the circuit:
 
 $$
-\mathcal{E} = \oint_C \mathbf{E} \cdot \hat{\mathbf{t}} \\, ds
+\mathcal{E} = \oint_C \mathbf{E} \cdot \hat{\mathbf{t}} \, ds
 $$
 
 Faraday discovered that in a stationary circuit an electromotive force is induced by a 
@@ -15,7 +15,7 @@ $$
 where
 
 $$
-\Phi = \iint_S \mathbf{B} \cdot \hat{\mathbf{n}} \\, dS
+\Phi = \iint_S \mathbf{B} \cdot \hat{\mathbf{n}} \, dS
 $$
 
 $t$ is time (don't confuse it with the tangent vector $\hat{\mathbf{t}}$) and $S$ is
@@ -35,13 +35,13 @@ Since $\mathcal{E} = \oint_C \mathbf{E} \cdot \hat{\mathbf{t}} \\, ds$, then for
 capping surface $S$ of $C$, we have:
 
 $$
-\mathcal{E} = \iint_S \nabla \times \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS \tag{1}
+\mathcal{E} = \iint_S \nabla \times \mathbf{E} \cdot \hat{\mathbf{n}} \, dS \tag{1}
 $$
 
 Differentiating $\Phi = \iint_S \mathbf{B} \cdot \hat{\mathbf{n}} \\, dS$ with respect to $t$, we have:
 
 $$
-\frac{d \Phi}{d t} = \iint_S \frac{\partial \mathbf{B}}{\partial t} \cdot \hat{\mathbf{n}} \\, dS
+\frac{d \Phi}{d t} = \iint_S \frac{\partial \mathbf{B}}{\partial t} \cdot \hat{\mathbf{n}} \, dS
 $$
 
 Where we used the fact that $S$ is stationary, so $\hat{\mathbf{n}}$ does not depend on $t$.
@@ -49,13 +49,13 @@ Where we used the fact that $S$ is stationary, so $\hat{\mathbf{n}}$ does not de
 From the problem statement we know that $\mathcal{E} = - \dfrac{d \Phi}{dt}$. Then, we have:
 
 $$
-\mathcal{E} = - \iint_S \frac{\partial \mathbf{B}}{\partial t} \cdot \hat{\mathbf{n}} \\, dS \tag{2}
+\mathcal{E} = - \iint_S \frac{\partial \mathbf{B}}{\partial t} \cdot \hat{\mathbf{n}} \, dS \tag{2}
 $$
 
 Putting (1) and (2) together, we have:
 
 $$
-\iint_S \nabla \times \mathbf{E} \cdot \hat{\mathbf{n}} \\, dS = - \iint_S \frac{\partial \mathbf{B}}{\partial t} \cdot \hat{\mathbf{n}} \\, dS
+\iint_S \nabla \times \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = - \iint_S \frac{\partial \mathbf{B}}{\partial t} \cdot \hat{\mathbf{n}} \, dS
 $$
 
 Since this is true for any capping surface $S$ of $C$, we have:

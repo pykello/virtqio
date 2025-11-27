@@ -1,7 +1,7 @@
 **Problem III-14.** Use Stokes' theorem to show that
 
 $$
-\oint_C \hat{\mathbf{t}} \\, ds = 0
+\oint_C \hat{\mathbf{t}} \, ds = 0
 $$
 
 :::expandable
@@ -14,8 +14,8 @@ Then, $i$-component of $\oint_C \hat{\mathbf{t}} \\, ds$ is:
 
 $$
 \begin{align*}
-\mathbf{i} \cdot \oint_C \hat{\mathbf{t}} \\, ds &= \oint_C \mathbf{i} \cdot \hat{\mathbf{t}} \\, ds \\\\
-&= \iint_S \nabla \times \mathbf{i} \cdot \hat{\mathbf{n}} \\, dS \\\\
+\mathbf{i} \cdot \oint_C \hat{\mathbf{t}} \, ds &= \oint_C \mathbf{i} \cdot \hat{\mathbf{t}} \, ds \\
+&= \iint_S \nabla \times \mathbf{i} \cdot \hat{\mathbf{n}} \, dS \\
 &= 0
 \end{align*}
 $$
@@ -25,6 +25,6 @@ Similarly, we can show that $j$-component and $k$-component of $\oint_C \hat{\ma
 Then, we have:
 
 $$
-\oint_C \hat{\mathbf{t}} \\, ds = 0
+\oint_C \hat{\mathbf{t}} \, ds = 0
 $$
 ::::
