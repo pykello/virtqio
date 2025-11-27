@@ -97,13 +97,13 @@ $$
 Then the electric charge in some region is given by
 
 $$
-Q = \int\int\int_V \rho(x, y, z) dV
+Q = \iiint_V \rho(x, y, z) dV
 $$
 
 Then
 
 $$
-\mathbf{E}(\mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \int\int\int_V \frac{\rho(\mathbf{r'})
+\mathbf{E}(\mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \iiint_V \frac{\rho(\mathbf{r'})
 \hat{\mathbf{u}}(\mathbf{r'})
 }{|\mathbf{r} - \mathbf{r'}|^2}  dV'
 \tag{I-7}
