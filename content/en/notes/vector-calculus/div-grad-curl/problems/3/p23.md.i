@@ -105,7 +105,7 @@ $$
 :::expandable
 **A Circle.** [Click to Expand]
 
-Let $\mathbf{F} = \hat{\mathbf{e}}\_\theta \dfrac{r}{2}$. We have $ds = r \\, d\theta$ and $\hat{\mathbf{t}} = \hat{\mathbf{e}}\_\theta$.
+Let $\mathbf{F} = \hat{\mathbf{e}}_\theta \dfrac{r}{2}$. We have $ds = r \\, d\theta$ and $\hat{\mathbf{t}} = \hat{\mathbf{e}}_\theta$.
 
 Then, we have:
 

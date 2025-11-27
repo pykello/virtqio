@@ -4,7 +4,7 @@
 in the positive $z$-direction gives rise to the electric field
 
 $$
-\mathbf{E(r, \theta, \phi)} = \frac{1}{4 \pi \epsilon_0} \frac{p}{r^3} \left( 2 \hat{\mathbf{e}}\_r \cos \phi + \hat{\mathbf{e}}\_\phi \sin \phi \right)
+\mathbf{E(r, \theta, \phi)} = \frac{1}{4 \pi \epsilon_0} \frac{p}{r^3} \left( 2 \hat{\mathbf{e}}_r \cos \phi + \hat{\mathbf{e}}_\phi \sin \phi \right)
 $$
 
 Show that the dipole potential is given by
@@ -16,7 +16,7 @@ $$
 In spherical coordinates,
 
 $$
-\hat{\mathbf{t}} = \hat{\mathbf{e}}\_r \frac{dr}{ds} + \hat{\mathbf{e}}\_\phi r \frac{d\phi}{ds} + \hat{\mathbf{e}}\_\theta r \sin \phi \frac{d\theta}{ds}
+\hat{\mathbf{t}} = \hat{\mathbf{e}}_r \frac{dr}{ds} + \hat{\mathbf{e}}_\phi r \frac{d\phi}{ds} + \hat{\mathbf{e}}_\theta r \sin \phi \frac{d\theta}{ds}
 $$
 
 :::expandable
@@ -47,7 +47,7 @@ $$
 :::expandable
 **Solution.** [Click to Expand]
 
-In a spherical surface, $\hat{\mathbf{n}} = \hat{\mathbf{e}}\_r$. Then:
+In a spherical surface, $\hat{\mathbf{n}} = \hat{\mathbf{e}}_r$. Then:
 
 $$
 \begin{align*}

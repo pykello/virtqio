@@ -45,9 +45,9 @@ use Taylor series to show that for $N$ large and each $\Delta S_l$ small,
 $$
 \begin{align*}
 \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds \\[1em]
-&\approx C(x_0, y_0) \Delta A + \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} 
+&\approx C(x_0, y_0) \Delta A + \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} 
 \sum_{l=1}^N (x_l - x_0) \Delta S_l \\[1em]
-&\quad + \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} 
+&\quad + \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} 
 \sum_{l=1}^N (y_l - y_0) \Delta S_l + \cdots
 \end{align*}
 $$
@@ -79,7 +79,7 @@ To approximate $C(x_l, y_l)$, we can use the two dimensional Taylor series.
 Taylor expansion of $C(x_l, y_l)$ gives:
 
 $$
-C(x_l, y_l) \approx C(x_0, y_0) + \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} (x_l - x_0) + \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} (y_l - y_0) + \cdots
+C(x_l, y_l) \approx C(x_0, y_0) + \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} (x_l - x_0) + \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} (y_l - y_0) + \cdots
 \tag{3}
 $$
 
@@ -89,9 +89,9 @@ $$
 \begin{align*}
 \oint_P \mathbf{F} &\cdot \hat{\mathbf{t}} \, ds \approx 
 \\[1em]
-&C(x_0, y_0) \Delta A + \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} 
+&C(x_0, y_0) \Delta A + \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} 
 \sum_{l=1}^N (x_l - x_0) \Delta S_l \\[1em]
-&\quad + \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} 
+&\quad + \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} 
 \sum_{l=1}^N (y_l - y_0) \Delta S_l + \cdots
 \end{align*}
 $$
@@ -104,8 +104,8 @@ $$
 \begin{align*}
 \lim_{N \to \infty} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &=
 \oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds \\[1em]
-&\= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\[1em]
-&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} +
+&\= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} \\[1em]
+&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} +
 \cdots \Bigr) \Delta S
 \end{align*}
 $$
@@ -145,8 +145,8 @@ $$
 \oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &=
 \lim_{N \to \infty} \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds
 \\[1em]
-&= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\[1em]
-&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} +
+&= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} \\[1em]
+&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} +
 \cdots \Bigr) \Delta S
 \end{align*}
 $$
@@ -156,7 +156,7 @@ $$
 **(d)** Finally, calculate
 
 $$
-(\nabla \times \mathbf{F})_z = \lim\_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds
+(\nabla \times \mathbf{F})_z = \lim_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds
 $$
 
 :::expandable
@@ -166,11 +166,11 @@ As $\Delta S \to 0$, then $(\overline{x}, \overline{y}) \to (x, y)$, and we have
 
 $$
 \begin{align*}
-\lim\_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &=
-\lim\_{\Delta S \to 0} \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)\_{x_0, y_0} \\[1em]
-&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)\_{x_0, y_0} +
+\lim_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &=
+\lim_{\Delta S \to 0} \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} \\[1em]
+&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} +
 \cdots \Bigr) \\[1em]
-&= \lim\_{\Delta S \to 0} C(x_l, y_l) \\[1em]
+&= \lim_{\Delta S \to 0} C(x_l, y_l) \\[1em]
 &= \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
 \end{align*}
 $$

@@ -13,7 +13,7 @@ We are interested in well-posed problems. Problems that:
 - the solution depends continuously on the input. That is:
 
 $$
-\lim\_{\hat{x}\to x} f(\hat{x}) = f(x)
+\lim_{\hat{x}\to x} f(\hat{x}) = f(x)
 $$
 
 Otherwise, the problem is ill-posed.

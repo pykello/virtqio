@@ -53,7 +53,7 @@ We call $\mathbf{a}$ the _limit_ of the sequence.
 :::expandable
 **Proof.** [Click to Expand]
 
-1. ($\implies$) Assume $m \mapsto \mathbf{a}\_m$ converges to $\mathbf{a}$. This
+1. ($\implies$) Assume $m \mapsto \mathbf{a}_m$ converges to $\mathbf{a}$. This
 means for any $\epsilon > 0$, there exists $M$ such that for all $m > M$ we have:
 
 $$
@@ -124,31 +124,31 @@ $i \mapsto c_i$ be a sequence of numbers. Then
 1. If $i \mapsto \mathbf{a}_i$ and $i \mapsto \mathbf{b}_i$ both converge, then so does $i \mapsto \mathbf{a}_i + \mathbf{b}_i$, and
 
 $$
-\lim\_{i\to\infty} \left(\mathbf{a}_i + \mathbf{b}_i\right)
-\= \lim\_{i\to\infty} \mathbf{a}\_i
-  \+ \lim\_{i\to\infty} \mathbf{b}\_i \tag{1.5.20}
+\lim_{i\to\infty} \left(\mathbf{a}_i + \mathbf{b}_i\right)
+\= \lim_{i\to\infty} \mathbf{a}_i
+  \+ \lim_{i\to\infty} \mathbf{b}_i \tag{1.5.20}
 $$
 
 2. If $i \mapsto \mathbf{a}_i$ and $i \mapsto c_i$ both converge, then so does $i \mapsto c_i \mathbf{a}_i$, and 
 
 $$
-\lim\_{i\to\infty} c_i \mathbf{a}_i
-\= \left(\lim\_{i\to\infty} c\_i \right)
-  \left( \lim\_{i\to\infty} \mathbf{a}\_i \right) \tag{1.5.21}
+\lim_{i\to\infty} c_i \mathbf{a}_i
+\= \left(\lim_{i\to\infty} c_i \right)
+  \left( \lim_{i\to\infty} \mathbf{a}_i \right) \tag{1.5.21}
 $$
 
 3. If $i \mapsto \mathbf{a}_i$ and $i \mapsto \mathbf{b}_i$ both converge, then so does their dot product $i \mapsto \vec{\mathbf{a}_i} \cdot \vec{\mathbf{b}_i}$, and
 
 $$
-\lim\_{i\to\infty} \left(\vec{\mathbf{a}_i} \cdot \vec{\mathbf{b}_i} \right)
-\= \left(\lim\_{i\to\infty} \vec{\mathbf{a}_i} \right) \cdot
-  \left( \lim\_{i\to\infty} \vec{\mathbf{b}\_i} \right) \tag{1.5.22}
+\lim_{i\to\infty} \left(\vec{\mathbf{a}_i} \cdot \vec{\mathbf{b}_i} \right)
+\= \left(\lim_{i\to\infty} \vec{\mathbf{a}_i} \right) \cdot
+  \left( \lim_{i\to\infty} \vec{\mathbf{b}_i} \right) \tag{1.5.22}
 $$
 
 4. If $i \mapsto \mathbf{a}_i$ is bounded and $i \mapsto c_i$ converges to $0$, then
 
 $$
-\lim\_{i\to\infty} c_i \mathbf{a}_i \= 0 \tag{1.5.23}
+\lim_{i\to\infty} c_i \mathbf{a}_i \= 0 \tag{1.5.23}
 $$
 
 **Proposition 1.5.17 (Sequence in closed set).**
@@ -164,7 +164,7 @@ a point in $C$, then $C$ is closed.
 1. Assume $\mathbf{x} \notin C$. Then $\mathbf{x} \in C^c$ which is open. So, there
 exists $r > 0$ such that $B_r(\mathbf{x}) \subset C^c$. Since all $\mathbf{x}_i \in C$, then $\mathbf{x}_i \notin B_r(\mathbf{x})$, which means for all $i$ we have $\lVert\mathbf{x}_i - \mathbf{x}\rVert \ge r$ for every $i$. Then if we choose $\epsilon = r/2$, we can't find an $M$ such that for $m > M$ we have $\lVert\mathbf{x}_m - \mathbf{x}\rVert < \epsilon$. So, $i \mapsto \mathbf{x}_i$ doesn't converge to $\mathbf{x}$. A contradiction.
 
-2. Assume $C$ is not closed. Choose $\mathbf{x} \in \partial C \notin C$. Since $\mathbf{x} \in \overline{C}$, then for all $r > 0$, $B_r(\mathbf{x}) \cap C \ne \emptyset$. We choose $i \mapsto \mathbf{x}_i$ such that $\mathbf{x}_i \in B\_{1/i}(\mathbf{x}) \cap C$.<br/>
+2. Assume $C$ is not closed. Choose $\mathbf{x} \in \partial C \notin C$. Since $\mathbf{x} \in \overline{C}$, then for all $r > 0$, $B_r(\mathbf{x}) \cap C \ne \emptyset$. We choose $i \mapsto \mathbf{x}_i$ such that $\mathbf{x}_i \in B_{1/i}(\mathbf{x}) \cap C$.<br/>
 This sequence converges to $\mathbf{x}$: For a given $\epsilon > 0$, for all $m > 1/\epsilon$ we have $\lVert\mathbf{x} - \mathbf{x}_m\rVert <  1/m < \epsilon$.<br/>
 Since $\mathbf{x} \not\in C$, this sequence doesn't converge to a point in $C$. A contradiction. Hence, $C$ is closed.
 
@@ -246,7 +246,7 @@ Hence $\lVert\mathbf{a}-\mathbf{b}\rVert < \lVert\mathbf{a}-\mathbf{b}\rVert$, a
 **Theorem 1.5.22 (Limit of a composition).** Let $U \subset \mathbb{R}^n$, $V \subset \mathbb{R}^m$, and $\mathbf{f}: U \to V$  and $\mathbf{g}: V \to \mathbb{R}^k$ be mappings, so that $\mathbf{g} \circ \mathbf{f}$ is defined on $U$. If $\mathbf{x}_0 \in \overline{U}$ and
 
 $$
-\mathbf{y}_0 = \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \quad \text{and} \quad \mathbf{z}\_0 \= \lim\_{\mathbf{y} \to \mathbf{y}_0} \mathbf{g}(\mathbf{y})
+\mathbf{y}_0 = \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \quad \text{and} \quad \mathbf{z}_0 \= \lim_{\mathbf{y} \to \mathbf{y}_0} \mathbf{g}(\mathbf{y})
 $$
 
 both exist, then $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{g} \circ \mathbf{f}\right)(\mathbf{x})$ exists and is equal to $\mathbf{z}_0$.
@@ -254,13 +254,13 @@ both exist, then $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{g} \circ \mat
 :::expandable
 **Proof.** [Click to Expand]
 
-Since $\lim\_{\mathbf{y}\to\mathbf{y}_0} \mathbf{g}(\mathbf{y}) \= \mathbf{z}_0$,
+Since $\lim_{\mathbf{y}\to\mathbf{y}_0} \mathbf{g}(\mathbf{y}) \= \mathbf{z}_0$,
 
 $$
 \forall \epsilon > 0, \exists \eta > 0 \quad\text{s.t.}\quad\lVert \mathbf{y} - \mathbf{y}_0 \rVert < \eta \implies \lVert \mathbf{g}(\mathbf{y}) - \mathbf{z}_0 \rVert < \epsilon
 $$
 
-Since $\lim\_{\mathbf{x}\to\mathbf{x}_0} \mathbf{f}(\mathbf{x}) \= \mathbf{y}_0$,
+Since $\lim_{\mathbf{x}\to\mathbf{x}_0} \mathbf{f}(\mathbf{x}) \= \mathbf{y}_0$,
 
 $$
 \forall \eta > 0, \exists \delta > 0 \quad\text{s.t.}\quad\lVert \mathbf{x} - \mathbf{x}_0 \rVert < \delta \implies \lVert \mathbf{f}(\mathbf{x}) - \mathbf{y}_0 \rVert < \eta
@@ -315,7 +315,7 @@ f_m
 \mathbf{x}_0 \in \overline{U}.
 $$
 
-Then $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \begin{pmatrix}a_1\\\\ \vdots\\\\ a_m \end{pmatrix}$ if and only if $\lim\_{\mathbf{x} \to \mathbf{x}_0} f_i(\mathbf{x}) = a_i$ for all $i = 1, \ldots, m$.
+Then $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \begin{pmatrix}a_1\\\\ \vdots\\\\ a_m \end{pmatrix}$ if and only if $\lim_{\mathbf{x} \to \mathbf{x}_0} f_i(\mathbf{x}) = a_i$ for all $i = 1, \ldots, m$.
 
 :::expandable
 **Proof.** [Click to Expand]
@@ -329,40 +329,40 @@ $\delta_i$ corresponding to $\epsilon/\sqrt{m}$. Then use $\delta=\min\\{\delta_
 
 **Theorem 1.5.26 (Limits of functions).** Let $U \subset \mathbb{R}^n$, and let $\mathbf{f}, \mathbf{g}: U \to \mathbb{R}^m$, $h: U \to \mathbb{R}$.
 
-1. If $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x})$ exist, then
+1. If $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x})$ exist, then
 
 $$
-\lim\_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} + \mathbf{g})(\mathbf{x}) = \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) + \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}).
+\lim_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} + \mathbf{g})(\mathbf{x}) = \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) + \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}).
 $$
 
-2. If $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim\_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x})$ exist, then
+2. If $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x})$ exist, then
 
 $$
-\lim\_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = \lim\_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) \cdot \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}).
+\lim_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = \lim_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) \cdot \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}).
 $$
 
-3. If $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim\_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) \ne 0$ exist, then
+3. If $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) \ne 0$ exist, then
 
 $$
-\lim\_{\mathbf{x} \to \mathbf{x}_0} \left( \frac{\mathbf{f}}{h} \right)(\mathbf{x}) = \frac{\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})}{\lim\_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x})}.
+\lim_{\mathbf{x} \to \mathbf{x}_0} \left( \frac{\mathbf{f}}{h} \right)(\mathbf{x}) = \frac{\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})}{\lim_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x})}.
 $$
 
-4. Define $(\mathbf{f} \cdot \mathbf{g})(\mathbf{x}) := \mathbf{f}(\mathbf{x}) \cdot \mathbf{g}(\mathbf{x})$. If $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x})$ exist, then
+4. Define $(\mathbf{f} \cdot \mathbf{g})(\mathbf{x}) := \mathbf{f}(\mathbf{x}) \cdot \mathbf{g}(\mathbf{x})$. If $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x})$ exist, then
 
 $$
-\lim\_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} \cdot \mathbf{g})(\mathbf{x}) = \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \cdot \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}).
+\lim_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} \cdot \mathbf{g})(\mathbf{x}) = \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \cdot \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}).
 $$
 
-5. If $\mathbf{f}$ is bounded and $\lim\_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) = 0$, then
+5. If $\mathbf{f}$ is bounded and $\lim_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) = 0$, then
 
 $$
-\lim\_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = 0.
+\lim_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = 0.
 $$
 
-6. If $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = 0$ and $h$ is bounded, then
+6. If $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = 0$ and $h$ is bounded, then
 
 $$
-\lim\_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = 0.
+\lim_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = 0.
 $$
 
 :::expandable
@@ -374,23 +374,23 @@ So, we have:
 
 $$
 \begin{align*}
-\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \cdot \lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}) &= 
-\sum\_{i=1}^{m} \left(\lim\_{\mathbf{x} \to \mathbf{x}_0}{f_i(\mathbf{x})}\right)
-\left(\lim\_{\mathbf{x} \to \mathbf{x}_0} {g_i(\mathbf{x})}\right)
+\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \cdot \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}) &= 
+\sum_{i=1}^{m} \left(\lim_{\mathbf{x} \to \mathbf{x}_0}{f_i(\mathbf{x})}\right)
+\left(\lim_{\mathbf{x} \to \mathbf{x}_0} {g_i(\mathbf{x})}\right)
 \\
-&= \sum\_{i=1}^{m} \lim\_{\mathbf{x} \to \mathbf{x}_0}{f_i(\mathbf{x}) g_i(\mathbf{x})} \tag{using part 2}
+&= \sum_{i=1}^{m} \lim_{\mathbf{x} \to \mathbf{x}_0}{f_i(\mathbf{x}) g_i(\mathbf{x})} \tag{using part 2}
 \\
-&=\lim\_{\mathbf{x} \to \mathbf{x}_0} \sum\_{i=1}^{m}{f_i(\mathbf{x}) g_i(\mathbf{x})} 
+&=\lim_{\mathbf{x} \to \mathbf{x}_0} \sum_{i=1}^{m}{f_i(\mathbf{x}) g_i(\mathbf{x})} 
 \tag{using part 1}
 \\
-&= \lim\_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} \cdot \mathbf{g})(\mathbf{x})
+&= \lim_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} \cdot \mathbf{g})(\mathbf{x})
 \end{align*}
 $$
 ::::
 
 ### Continuous Functions
 
-**Continuous function.** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is _continuous_ at $\mathbf{x}\_0 \in X$ if $\lim\_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \mathbf{f}(\mathbf{x}_0)$.
+**Continuous function.** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is _continuous_ at $\mathbf{x}_0 \in X$ if $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \mathbf{f}(\mathbf{x}_0)$.
 
 $\mathbf{f}$ is continuous on $X$ if it is continuous at every point $\mathbf{x}_0 \in X$.
 
@@ -416,7 +416,7 @@ $\mathbf{f}$ is continuous on $X$ if it is continuous at every point $\mathbf{x}
 **Proposition 1.5.28 (Criterion for continuity).** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is continuous at $\mathbf{x}_0 \in X$ if and only if for every sequence $i \mapsto \mathbf{x}_i$ in $X$ converging to $\mathbf{x}_0$, we have
 
 $$
-\lim\_{i\to\infty} \mathbf{f}(\mathbf{x}_i) = \mathbf{f}(\mathbf{x}_0).
+\lim_{i\to\infty} \mathbf{f}(\mathbf{x}_i) = \mathbf{f}(\mathbf{x}_0).
 $$
 
 :::expandable
@@ -536,14 +536,14 @@ which means $\mathbf{f}$ is uniformly continuous.
 
 ### Series of Vectors
 
-**Convergent series of vectors.** A series $\sum\_{i=1}^{\infty} \vec{\mathbf{a}_i}$ 
-is _convergent_ if the sequence of partial sums $n \mapsto \vec{\mathbf{s}\_n} = \sum\_{i=1}^{n} \vec{\mathbf{a}_i}$ is convergent. The limit of the series is defined as
+**Convergent series of vectors.** A series $\sum_{i=1}^{\infty} \vec{\mathbf{a}_i}$ 
+is _convergent_ if the sequence of partial sums $n \mapsto \vec{\mathbf{s}_n} = \sum_{i=1}^{n} \vec{\mathbf{a}_i}$ is convergent. The limit of the series is defined as
 
 $$
-\sum\_{i=1}^{\infty} \vec{\mathbf{a}_i} = \lim\_{n \to \infty} \vec{\mathbf{s}_n}
+\sum_{i=1}^{\infty} \vec{\mathbf{a}_i} = \lim_{n \to \infty} \vec{\mathbf{s}_n}
 $$
 
-**Proposition 1.5.35 (Absolute convergence).** If $\sum\_{i=1}^{\infty} \lVert \vec{\mathbf{a}_i} \rVert$ converges, then $\sum\_{i=1}^{\infty} \vec{\mathbf{a}_i}$ converges.
+**Proposition 1.5.35 (Absolute convergence).** If $\sum_{i=1}^{\infty} \lVert \vec{\mathbf{a}_i} \rVert$ converges, then $\sum_{i=1}^{\infty} \vec{\mathbf{a}_i}$ converges.
 
 > [!NOTE]
 > This is a very important result. This can be used to prove:
@@ -554,7 +554,7 @@ $$
 ### Complex exponentials and trigonometric functions
 
 **Proposition 1.5.36 (Complex exponentials).** For any complex number $z$, the
-series $e^z = \sum\_{n=0}^{\infty} \dfrac{z^n}{n!}$ converges.
+series $e^z = \sum_{n=0}^{\infty} \dfrac{z^n}{n!}$ converges.
 
 **Proposition 1.5.37.** For any real number $t$ we have $e^{it} = \cos(t) + i \sin(t)$.
 

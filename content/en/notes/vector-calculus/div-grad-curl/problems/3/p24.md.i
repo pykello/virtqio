@@ -48,27 +48,27 @@ As a direct consequence, we have:
 
 $$
 \begin{align*}
-(\nabla \times \mathbf{H})\_y &= G_y(x, y, z) \\[1em]
-(\nabla \times \mathbf{H})\_z &= G_z(x, y, z)
+(\nabla \times \mathbf{H})_y &= G_y(x, y, z) \\[1em]
+(\nabla \times \mathbf{H})_z &= G_z(x, y, z)
 \end{align*}
 $$
 
-To calculate $(\nabla \times \mathbf{H})\_x$, we have:
+To calculate $(\nabla \times \mathbf{H})_x$, we have:
 
 $$
-(\nabla \times \mathbf{H})\_x = \int_{x_0}^{x} \left( - \frac{\partial G_y(x', y, z)}{\partial y} - \frac{\partial G_z(x', y, z)}{\partial z} \right) \, dx' + G_x(x_0, y, z)
+(\nabla \times \mathbf{H})_x = \int_{x_0}^{x} \left( - \frac{\partial G_y(x', y, z)}{\partial y} - \frac{\partial G_z(x', y, z)}{\partial z} \right) \, dx' + G_x(x_0, y, z)
 $$
 
 Using (1), we have:
 
 $$
-(\nabla \times \mathbf{H})\_x = \int_{x_0}^{x} \frac{\partial G_x(x', y, z)}{\partial x} \, dx' + G_x(x_0, y, z)
+(\nabla \times \mathbf{H})_x = \int_{x_0}^{x} \frac{\partial G_x(x', y, z)}{\partial x} \, dx' + G_x(x_0, y, z)
 $$
 
 Then using the fundamental theorem of calculus, we have:
 
 $$
-(\nabla \times \mathbf{H})\_x = G_x(x, y, z) - G_x(x_0, y, z) + G_x(x_0, y, z) = G_x(x, y, z)
+(\nabla \times \mathbf{H})_x = G_x(x, y, z) - G_x(x_0, y, z) + G_x(x_0, y, z) = G_x(x, y, z)
 $$
 
 ::::

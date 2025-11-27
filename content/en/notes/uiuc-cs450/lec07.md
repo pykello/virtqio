@@ -6,10 +6,10 @@
 #### Linear Least Squares
 
 We have more equations than unknowns, and we want to find a solution
-that minimizes $\lVert Ax - b \rVert\_2$. That is, we want to find
+that minimizes $\lVert Ax - b \rVert_2$. That is, we want to find
 
 $$
-x^* = \arg\min_{x \in \mathbb{R}^n} \lVert Ax - b \rVert\_2
+x^* = \arg\min_{x \in \mathbb{R}^n} \lVert Ax - b \rVert_2
 $$
 
 where $A \in \mathbb{R}^{m \times n}$ and $b \in \mathbb{R}^m$.
@@ -24,14 +24,14 @@ Given the SVD of $A = U \Sigma V^T$, and since $U^T$ is orthogonal (hence, an is
 
 $$
 \begin{align*}
-\lVert Ax - b \rVert\_2 &= 
-\lVert U^T (Ax - b) \rVert\_2 \\[1em]
-&= \lVert \Sigma V^T x - U^T b \rVert\_2
+\lVert Ax - b \rVert_2 &= 
+\lVert U^T (Ax - b) \rVert_2 \\[1em]
+&= \lVert \Sigma V^T x - U^T b \rVert_2
 \end{align*}
 $$
 
 Letting $y = V^T x$ and $d = U^T b$, then we need to find $y^*$ such that
-$\lVert \Sigma y - d \rVert\_2$ is minimized.
+$\lVert \Sigma y - d \rVert_2$ is minimized.
 
 The minimizer of this reduced problem is given by:
 
@@ -103,7 +103,7 @@ $$
 The amplification depends on how much of $b$ is in the span of $A$.
 
 $$
-\frac{\lVert \delta x \rVert\_2}{\lVert x \rVert\_2} \leq \kappa(A) \frac{\lVert b \rVert\_2}{\lVert Ax \rVert\_2} \frac{\lVert \delta b \rVert\_2}{\lVert b \rVert\_2}
+\frac{\lVert \delta x \rVert_2}{\lVert x \rVert_2} \leq \kappa(A) \frac{\lVert b \rVert_2}{\lVert Ax \rVert_2} \frac{\lVert \delta b \rVert_2}{\lVert b \rVert_2}
 $$
 
 #### Normal Equations
@@ -134,8 +134,8 @@ If $A$ is full column rank ($\text{rank}(A) = n$), then $A^T A$ is symmetric pos
 
 - **Symmetric.** $(A^T A)^T = A^T A$.
 - **Positive Definite.**
-  - Since $A^T A = V \Sigma^2 V^T$, we have $\lambda\_i(A^T A) = \sigma\_i(A)^2 > 0$,
-  - or equivalently, $x^T A^T A x = \lVert Ax \rVert\_2^2 > 0$ for all $x \neq 0$.
+  - Since $A^T A = V \Sigma^2 V^T$, we have $\lambda_i(A^T A) = \sigma_i(A)^2 > 0$,
+  - or equivalently, $x^T A^T A x = \lVert Ax \rVert_2^2 > 0$ for all $x \neq 0$.
 
 Since $A^T A$ is SPD, we can use Cholesky factorization to solve the normal equation $A^T A x = A^T b$.
 

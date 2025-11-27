@@ -57,7 +57,7 @@ $$
 Extension of these ideas: Suppose we have a group of $N$ charges $q_1, \ldots, q_N$ at positions $\mathbf{r}_1, \ldots, \mathbf{r}_N$. The force on a charge $q_0$ at position $\mathbf{r}$ is given by
 
 $$
-\mathbf{F}(\mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \sum\_{i=1}^N \frac{q\_0 q\_i}{|\mathbf{r} - \mathbf{r}\_i|^2} \hat{\mathbf{u}}\_{i}
+\mathbf{F}(\mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \sum_{i=1}^N \frac{q_0 q_i}{|\mathbf{r} - \mathbf{r}_i|^2} \hat{\mathbf{u}}_{i}
 \tag{I-3}
 $$
 
@@ -66,7 +66,7 @@ where $\hat{\mathbf{u}}_i$ is the unit vector pointing from $\mathbf{r}_i$ to $\
 From this we can define the electrostatic field $\mathbf{E}(\mathbf{r})$ at $\mathbf{r}$ due to the group of charges:
 
 $$
-\mathbf{E}(\mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \sum\_{i=1}^N \frac{q\_i}{|\mathbf{r} - \mathbf{r}\_i|^2} \hat{\mathbf{u}}\_{i}
+\mathbf{E}(\mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \sum_{i=1}^N \frac{q_i}{|\mathbf{r} - \mathbf{r}_i|^2} \hat{\mathbf{u}}_{i}
 \tag{I-4}
 $$
 
