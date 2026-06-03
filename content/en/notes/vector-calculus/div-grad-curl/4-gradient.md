@@ -131,22 +131,19 @@ v{E} = - \nabla Phi
 Substituting this into Gauss' Law, we have:
 
 :::math
-pd(\partial^2 Phi, x^2) + pd(\partial^2 Phi, y^2) + pd(\partial^2 Phi, z^2) = -\frac{rho}{eps_0}
-\qquad\text{(IV-5)}
+pd(\partial^2 Phi, x^2) + pd(\partial^2 Phi, y^2) + pd(\partial^2 Phi, z^2) = -\frac{rho}{eps_0} #tag IV-5
 :::
 
 We define the **Laplacian** operator as:
 
 :::math
-\nabla^2 = \nabla dot \nabla = pd(\partial^2, x^2) + pd(\partial^2, y^2) + pd(\partial^2, z^2)
-\qquad\text{(IV-6)}
+\nabla^2 = \nabla dot \nabla = pd(\partial^2, x^2) + pd(\partial^2, y^2) + pd(\partial^2, z^2) #tag IV-6
 :::
 
 Then (IV-5) can be written as:
 
 :::math
-\nabla^2 Phi = -\frac{rho}{eps_0}
-\qquad\text{(IV-7)}
+\nabla^2 Phi = -\frac{rho}{eps_0} #tag IV-7
 :::
 
 This is called the **Poisson's equation**. It is a linear, second-order partial differential equation in **one unknown**, the scalar function $Phi$.

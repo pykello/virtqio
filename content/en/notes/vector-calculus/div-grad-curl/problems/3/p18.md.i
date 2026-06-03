@@ -35,7 +35,7 @@ Since $cal{E} = oint[C] v{E} dot unit{t} \, ds$, then for any
 capping surface $S$ of $C$, we have:
 
 :::math
-cal{E} = iint[S] \nabla cross v{E} dot unit{n} \, dS \qquad\text{(1)}
+cal{E} = iint[S] \nabla cross v{E} dot unit{n} \, dS #tag 1
 :::
 
 Differentiating $Phi = iint[S] v{B} dot unit{n} \, dS$ with respect to $t$, we have:
@@ -49,7 +49,7 @@ Where we used the fact that $S$ is stationary, so $unit{n}$ does not depend on $
 From the problem statement we know that $cal{E} = - dd(Phi, t)$. Then, we have:
 
 :::math
-cal{E} = - iint[S] pd(v{B}, t) dot unit{n} \, dS \qquad\text{(2)}
+cal{E} = - iint[S] pd(v{B}, t) dot unit{n} \, dS #tag 2
 :::
 
 Putting (1) and (2) together, we have:

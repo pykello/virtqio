@@ -29,13 +29,13 @@ oint[C_3] v{F} dot unit{t} \, ds = iint[S] \nabla cross v{F} dot unit{n} \, dS
 Since $\nabla cross v{F} = 0$, we have:
 
 :::math
-oint[C_3] v{F} dot unit{t} \, ds = 0 \qquad\text{(1)}
+oint[C_3] v{F} dot unit{t} \, ds = 0 #tag 1
 :::
 
 Since we have reversed the direction of $C_1$ and line integrals along $a$ and $b$ cancel each other, we have:
 
 :::math
-oint[C_3] v{F} dot unit{t} \, ds = -oint[C_1] v{F} dot unit{t} \, ds + oint[C_2] v{F} dot unit{t} \, ds \qquad\text{(2)}
+oint[C_3] v{F} dot unit{t} \, ds = -oint[C_1] v{F} dot unit{t} \, ds + oint[C_2] v{F} dot unit{t} \, ds #tag 2
 :::
 
 Putting (1) and (2) together, we have:

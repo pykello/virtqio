@@ -62,14 +62,14 @@ Segments in patches that are not in the perimeter of $P$ are traced twice, and
 in opposite directions, so they cancel out. Thus, we can write:
 
 :::math
-oint[P] v{F} dot unit{t} \, ds = sum[l=1..N] oint[C_l] v{F} dot unit{t} \, ds \qquad\text{(1)}
+oint[P] v{F} dot unit{t} \, ds = sum[l=1..N] oint[C_l] v{F} dot unit{t} \, ds #tag 1
 :::
 
 We can approximate the circulation around $C_l$ by:
 
 :::math
 oint[C_l] v{F} dot unit{t} \, ds \approx
-C(x_l, y_l) \, Delta S_l \qquad\text{(2)}
+C(x_l, y_l) \, Delta S_l #tag 2
 :::
 
 where $(x_l, y_l)$ is the center of the $l$-th patch.
@@ -79,8 +79,7 @@ To approximate $C(x_l, y_l)$, we can use the two dimensional Taylor series.
 Taylor expansion of $C(x_l, y_l)$ gives:
 
 :::math
-C(x_l, y_l) \approx C(x_0, y_0) + ( pd(C, x) )_{x_0, y_0} (x_l - x_0) + ( pd(C, y) )_{x_0, y_0} (y_l - y_0) + ...
-\qquad\text{(3)}
+C(x_l, y_l) \approx C(x_0, y_0) + ( pd(C, x) )_{x_0, y_0} (x_l - x_0) + ( pd(C, y) )_{x_0, y_0} (y_l - y_0) + ... #tag 3
 :::
 
 Putting (1), (2), and (3) together, we have:

@@ -18,7 +18,7 @@ where $x_0$ and $y_0$ are arbitrary constants. Show by direct calculation that i
 Since $\nabla dot v{G} = 0$, then:
 
 :::math
-pd(G_x, x) = - pd(G_y, y) - pd(G_z, z) \qquad\text{(1)}
+pd(G_x, x) = - pd(G_y, y) - pd(G_z, z) #tag 1
 :::
 
 We have:

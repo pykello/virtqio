@@ -51,14 +51,14 @@ Which can be rewritten as $B dot ( \nabla cross v{E} ) - E dot ( \nabla cross v{
 Inner product of sides of (M3) by $v{B}$ on the left gives:
 
 :::math
-v{B} dot (\nabla cross v{E}) = - v{B} dot pd(v{B}, t) \qquad\text{(1)}
+v{B} dot (\nabla cross v{E}) = - v{B} dot pd(v{B}, t) #tag 1
 :::
 
 Inner product of sides of (M4) by $E$ on the left gives:
 
 :::math
 v{E} dot (\nabla cross v{B}) = eps_0 mu_0 v{E} dot
-pd(v{E}, t) + mu_0 v{E} dot v{J} \qquad\text{(2)}
+pd(v{E}, t) + mu_0 v{E} dot v{J} #tag 2
 :::
 
 Putting the lemma with (1) and (2) gives:
@@ -67,14 +67,14 @@ Putting the lemma with (1) and (2) gives:
 \nabla ( \frac{v{E} cross v{B}}{mu_0} ) =
 -\frac{1}{mu_0} v{B} dot pd(v{B}, t) -
 eps_0 v{E} dot pd(v{E}, t) -
-v{E} dot v{J} \qquad\text{(3)}
+v{E} dot v{J} #tag 3
 :::
 
 On the other hand, differentiating sides of $rho_E = \dfrac{1}{2}(eps_0 v{E} dot v{E} + v{B} dot v{B} / mu_0)$ with respect to $t$ gives:
 
 :::math
 pd(rho_E, t) = \frac{1}{mu_0} pd(v{B}, t)
-v{B} + eps_0 pd(v{E}, t) v{E} \qquad\text{(4)}
+v{B} + eps_0 pd(v{E}, t) v{E} #tag 4
 :::
 
 Putting (3) and (4) together we get:

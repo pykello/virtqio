@@ -50,15 +50,13 @@ charge $q$ is given by
 
 :::math
 v{E}(v{r}) = \frac{v{F}(v{r})}{q_0}
-= \frac{1}{4 pi eps_0} \frac{q}{r^2} unit{u}
-\qquad\text{(I-2)}
+= \frac{1}{4 pi eps_0} \frac{q}{r^2} unit{u} #tag I-2
 :::
 
 Extension of these ideas: Suppose we have a group of $N$ charges $q_1, ..., q_N$ at positions $v{r}_1, ..., v{r}_N$. The force on a charge $q_0$ at position $v{r}$ is given by
 
 :::math
-v{F}(v{r}) = \frac{1}{4 pi eps_0} sum[i=1..N] \frac{q_0 q_i}{|v{r} - v{r}_i|^2} unit{u}_{i}
-\qquad\text{(I-3)}
+v{F}(v{r}) = \frac{1}{4 pi eps_0} sum[i=1..N] \frac{q_0 q_i}{|v{r} - v{r}_i|^2} unit{u}_{i} #tag I-3
 :::
 
 where $unit{u}_i$ is the unit vector pointing from $v{r}_i$ to $v{r}$.
@@ -66,8 +64,7 @@ where $unit{u}_i$ is the unit vector pointing from $v{r}_i$ to $v{r}$.
 From this we can define the electrostatic field $v{E}(v{r})$ at $v{r}$ due to the group of charges:
 
 :::math
-v{E}(v{r}) = \frac{1}{4 pi eps_0} sum[i=1..N] \frac{q_i}{|v{r} - v{r}_i|^2} unit{u}_{i}
-\qquad\text{(I-4)}
+v{E}(v{r}) = \frac{1}{4 pi eps_0} sum[i=1..N] \frac{q_i}{|v{r} - v{r}_i|^2} unit{u}_{i} #tag I-4
 :::
 
 That is, superposition principle applies to the electrostatic field as well.
@@ -82,16 +79,14 @@ without worrying about the effect of other charges, and (b) calculating the forc
 Suppose in some region of space of volume $Delta V$ the total electric charge is $Delta Q$. We can define the _average charge density_ in that region as
 
 :::math
-\overline{rho}_{Delta V} = \frac{Delta Q}{Delta V}
-\qquad\text{(I-5)}
+\overline{rho}_{Delta V} = \frac{Delta Q}{Delta V} #tag I-5
 :::
 
 Then charge density at point $(x, y, z)$ is defined as
 
 :::math
 rho(x, y, z) = lim[Delta V -> 0] \frac{Delta Q}{Delta V}
-= lim[Delta V -> 0] \overline{rho}_{Delta V}
-\qquad\text{(I-6)}
+= lim[Delta V -> 0] \overline{rho}_{Delta V} #tag I-6
 :::
 
 Then the electric charge in some region is given by
@@ -105,7 +100,6 @@ Then
 :::math
 v{E}(v{r}) = \frac{1}{4 pi eps_0} iiint[V] \frac{rho(v{r'})
 unit{u}(v{r'})
-}{|v{r} - v{r'}|^2}  dV'
-\qquad\text{(I-7)}
+}{|v{r} - v{r'}|^2}  dV' #tag I-7
 :::
 
