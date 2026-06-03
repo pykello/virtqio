@@ -12,18 +12,18 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" />
   <script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
 
-  <!-- Custom Styles -->
+  <!-- Local styles are inlined so rebuilt pages cannot serve stale cached CSS. -->
   <style>
     @font-face {
-        font-family: NotoSans;
-        src: url('/static/Noto_Sans/NotoSans-VariableFont_wdth\,wght.ttf') format('truetype');
-        font-style: normal;
+      font-family: NotoSans;
+      src: url('/static/Noto_Sans/NotoSans-VariableFont_wdth\,wght.ttf') format('truetype');
+      font-style: normal;
     }
 
     @font-face {
-        font-family: NotoSans;
-        src: url('/static/Noto_Sans/NotoSans-Italic-VariableFont_wdth\,wght.ttf') format('truetype');
-        font-style: italic;
+      font-family: NotoSans;
+      src: url('/static/Noto_Sans/NotoSans-Italic-VariableFont_wdth\,wght.ttf') format('truetype');
+      font-style: italic;
     }
 
     @font-face {
@@ -33,142 +33,339 @@
     }
 
     @font-face {
-        font-family: Sahel;
-        src: url('/static/Sahel/Sahel.ttf') format('truetype');
-        font-weight: normal;
+      font-family: Sahel;
+      src: url('/static/Sahel/Sahel.ttf') format('truetype');
+      font-weight: normal;
     }
 
     @font-face {
-        font-family: Sahel;
-        src: url('/static/Sahel/Sahel-Bold.ttf') format('truetype');
-        font-weight: bold;
+      font-family: Sahel;
+      src: url('/static/Sahel/Sahel-Bold.ttf') format('truetype');
+      font-weight: bold;
     }
 
     @font-face {
-        font-family: Sahel;
-        src: url('/static/Sahel/Sahel-Light.ttf') format('truetype');
-        font-weight: 300;
+      font-family: Sahel;
+      src: url('/static/Sahel/Sahel-Light.ttf') format('truetype');
+      font-weight: 300;
     }
 
     @font-face {
-        font-family: Sahel;
-        src: url('/static/Sahel/Sahel-SemiBold.ttf') format('truetype');
-        font-weight: 600;
+      font-family: Sahel;
+      src: url('/static/Sahel/Sahel-SemiBold.ttf') format('truetype');
+      font-weight: 600;
     }
 
     @font-face {
-        font-family: Sahel;
-        src: url('/static/Sahel/Sahel-Black.ttf') format('truetype');
-        font-weight: 900;
+      font-family: Sahel;
+      src: url('/static/Sahel/Sahel-Black.ttf') format('truetype');
+      font-weight: 900;
     }
 
     @font-face {
-        font-family: Vazirmatn;
-        src: url('/static/Vazirmatn/Vazirmatn-VariableFont_wght.ttf') format('truetype');
-        font-style: normal;
+      font-family: Vazirmatn;
+      src: url('/static/Vazirmatn/Vazirmatn-VariableFont_wght.ttf') format('truetype');
+      font-style: normal;
     }
 
     :root {
-      --bg-main: #eef4fb;        /* misty blue */
-      --bg-card: #ffffff;
-      --text-muted: #6c757d;
-      --accent: #2776e2;         /* gentle blue accent */
+      --bg-main: #f4f7f0;
+      --bg-card: #fffffb;
+      --ink: #20251d;
+      --ink-soft: #66715f;
+      --line: #d7dfcf;
+      --accent: #2f7d57;
+      --accent-strong: #225f42;
+      --accent-soft: #e7f2e8;
+      --measure: 920px;
+    }
+
+    html {
+      background: var(--bg-main);
+      text-rendering: optimizeLegibility;
     }
 
     body {
-      background: var(--bg-main);
+      background:
+        radial-gradient(circle at top left, rgba(47, 125, 87, 0.1), transparent 340px),
+        var(--bg-main);
+      color: var(--ink);
+      font-family: NotoSans, sans-serif;
+      font-size: 17.5px;
+      line-height: 1.78;
     }
 
-    /* top bar */
-    nav {
-      background: var(--bg-card);
-      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    html[dir="rtl"] body {
+      font-family: Vazirmatn, sans-serif;
+      font-size: 19px;
+      line-height: 1.92;
     }
-    nav a.nav-link, nav .navbar-brand {
-      color: #333 !important;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      color: #172114;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: FunnelDisplay, NotoSans, sans-serif;
+      font-weight: 600;
+    }
+
+    html[dir="rtl"] h1,
+    html[dir="rtl"] h2,
+    html[dir="rtl"] h3,
+    html[dir="rtl"] h4 {
+      font-family: Sahel, Vazirmatn, sans-serif;
+    }
+
+    h1 {
+      font-size: 2.42rem !important;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.78rem !important;
+      margin-top: 2.4rem;
+    }
+
+    h3 {
+      font-size: 1.38rem !important;
+      margin-top: 1.9rem;
+    }
+
+    h4 {
+      font-size: 1.2rem !important;
+    }
+
+    h5 {
+      font-size: 1.08rem !important;
+    }
+
+    nav.navbar {
+      max-width: var(--measure) !important;
+      margin-top: 18px;
+      background: rgba(255, 255, 251, 0.94);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 14px 34px rgba(50, 75, 45, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    nav a.nav-link,
+    nav .navbar-brand,
+    .social-link {
+      color: var(--ink) !important;
       font-weight: 500;
     }
+
+    nav .navbar-brand {
+      font-family: FunnelDisplay, NotoSans, sans-serif;
+      font-size: 1.05rem;
+    }
+
+    nav a.nav-link {
+      border-radius: 6px;
+      padding-inline: 0.72rem !important;
+    }
+
     nav a.nav-link:hover,
-    nav .social-link:hover { color: var(--accent) !important; }
+    nav .social-link:hover {
+      color: var(--accent-strong) !important;
+      background: var(--accent-soft);
+      text-decoration: none;
+    }
+
     nav i {
       margin-top: 2px;
       margin-left: 3px;
       margin-right: 3px;
     }
 
-    main li {
-      margin-top: 0.5rem;
+    main.container {
+      max-width: var(--measure) !important;
+      padding-top: 2.45rem !important;
+      padding-bottom: 4rem !important;
     }
 
-    main td {
-      padding: 0.5rem;
-      border: 1px solid #374151;
+    article.bg-white,
+    .post-card,
+    .toc-wrapper {
+      background: var(--bg-card) !important;
+      border: 1px solid var(--line);
+      border-radius: 8px !important;
+      box-shadow: 0 14px 34px rgba(50, 75, 45, 0.07) !important;
+      padding: 2.25rem 2.35rem !important;
     }
-    main th {
-      padding: 0.5rem;
-      border: 1px solid #374151;
-      font-weight: bold;
+
+    .post-card {
+      position: relative;
+      overflow: hidden;
     }
-    main table {
-      border-collapse: collapse;
-      width: 100%;
-      margin-bottom: 1rem;
+
+    .post-card::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: linear-gradient(#2f7d57, #8fbf74);
+    }
+
+    main p {
+      margin-bottom: 1.12rem;
+    }
+
+    main li {
+      margin-top: 0.36rem;
+    }
+
+    main ul,
+    main ol {
+      padding-inline-start: 1.35rem;
     }
 
     a {
-      color: #024CAA; /* slate gray (Tailwind's slate-600) */
-      text-decoration: none;
+      color: var(--accent-strong);
+      text-decoration: underline;
+      text-decoration-color: rgba(47, 125, 87, 0.28);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
     }
 
     a:hover {
-      color: #374151; /* slightly darker on hover */
-      text-decoration: underline;
+      color: #163f2b;
+      text-decoration-color: currentColor;
+    }
+
+    .post-title a {
+      color: #172114;
+      text-decoration: none;
+    }
+
+    .post-title a:hover {
+      color: var(--accent-strong);
+    }
+
+    .post-meta,
+    .text-muted,
+    .toc-wrapper h3 + p {
+      color: var(--ink-soft) !important;
+    }
+
+    .tag,
+    .badge.tag {
+      background: var(--accent-soft) !important;
+      color: #225f42 !important;
+      border: 1px solid #c8ddc7;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25em;
+      vertical-align: middle;
+      font-size: 0.8rem;
+      font-weight: 650;
+      padding: 0.35em 0.6em;
+    }
+
+    hr {
+      border-color: var(--line);
+      opacity: 1;
+    }
+
+    blockquote {
+      margin: 1.5rem 0;
+      padding: 0.25rem 0 0.25rem 1rem;
+      border-inline-start: 4px solid #8fbf74;
+      color: var(--ink-soft);
     }
 
     pre {
-        direction: ltr;
-        border: 1px solid black;
+      direction: ltr;
+      background: #1f291f;
+      color: #f4f8ee;
+      border: 0;
+      border-radius: 8px;
+      overflow: auto;
     }
 
     pre code {
-        display: block;
-        padding: 1rem;
+      display: block;
+      padding: 1rem;
     }
 
-    /* blog cards */
-    .post-card {
-      background: var(--bg-card);
-      border: 0;
-      border-radius: .75rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,.08);
-      transition: transform .15s;
-    }
-    .post-title { color: #212529; }
-    .post-meta { font-size: .875rem; color: var(--text-muted); }
-    .tag {
-        font-size: 0.9rem;
-        font-weight: 500;
-        padding: 0.35em 0.6em;
-        background-color: #f3f4f6;
-        color: #4b5563;
-        border-radius: 0.3rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.25em;
-        vertical-align: middle;
+    code {
+      color: #276749;
     }
 
-    .post-body img {
+    main table {
+      width: 100%;
+      margin-bottom: 1rem;
+      background: #fffffb;
+      border: 1px solid var(--line);
+      border-collapse: collapse;
+    }
+
+    main td,
+    main th {
+      padding: 0.5rem;
+      border: 1px solid var(--line);
+    }
+
+    main th {
+      background: #e7f2e8;
+      font-weight: bold;
+    }
+
+    main img {
+      max-width: 100%;
+      height: auto;
       display: block;
       margin-left: auto;
       margin-right: auto;
     }
 
-    h1 { font-size: 2.1rem !important; }
-    h2 { font-size: 1.8rem !important; }
-    h3 { font-size: 1.6rem !important; }
-    h4 { font-size: 1.4rem !important; }
-    h5 { font-size: 1.2rem !important; }
+    .toc-item {
+      margin-bottom: 1rem;
+    }
+
+    .toc-wrapper h2 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 1.5rem !important;
+      font-weight: 600;
+    }
+
+    .toc-wrapper h3 {
+      margin-bottom: 0;
+      font-size: 1rem !important;
+      font-weight: 400;
+    }
+
+    .toc-wrapper h3 a {
+      color: var(--accent-strong);
+      font-size: 1.25rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .toc-wrapper h3 a:hover {
+      text-decoration: underline;
+    }
+
+    .toc-wrapper h3 + p {
+      font-size: 0.9rem;
+    }
 
     .card {
       padding: 1em 1.25em;
@@ -183,13 +380,15 @@
       border-bottom: 1px solid #e0e0e0;
     }
 
-    .card.example {
+    .card.example,
+    .markdown-alert-note {
       background-color: #f1f8ff;
       border-color: #0969da;
     }
 
-    .card.example h3 {
-      color: #0056b3;
+    .card.example h3,
+    .markdown-alert-note .markdown-alert-title {
+      color: #0969da;
     }
 
     .card.section {
@@ -197,9 +396,10 @@
       border-color: #ced4da;
     }
 
-    .card.note {
-      background-color: #fff8e1;
-      border-color: #ffc107;
+    .card.note,
+    .markdown-alert-warning {
+      background-color: #fff8c5;
+      border-color: #e3b341;
     }
 
     .markdown-alert {
@@ -218,27 +418,10 @@
       gap: 0.5em;
     }
 
-    main img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Note */
-    .markdown-alert-note {
-      background-color: #f1f8ff;
-      border-color: #0969da;
-    }
     .markdown-alert-note .markdown-alert-title::before {
       content: "📝";
     }
-    .markdown-alert-note .markdown-alert-title {
-      color: #0969da;
-    }
 
-    /* Tip */
     .markdown-alert-tip {
       background-color: #e8f5e9;
       border-color: #1b873f;
@@ -250,11 +433,6 @@
       color: #1b873f;
     }
 
-    /* Warning */
-    .markdown-alert-warning {
-      background-color: #fff8c5;
-      border-color: #e3b341;
-    }
     .markdown-alert-warning .markdown-alert-title::before {
       content: "⚠️";
     }
@@ -262,7 +440,6 @@
       color: #9a6700;
     }
 
-    /* Important */
     .markdown-alert-important {
       background-color: #fff3e6;
       border-color: #c75100;
@@ -274,7 +451,6 @@
       color: #a04100;
     }
 
-    /* Caution */
     .markdown-alert-caution {
       background-color: #ffeef0;
       border-color: #d73a49;
@@ -285,32 +461,29 @@
     .markdown-alert-caution .markdown-alert-title {
       color: #cb2431;
     }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 16.5px;
+        line-height: 1.72;
+      }
+
+      html[dir="rtl"] body {
+        font-size: 18px;
+        line-height: 1.86;
+      }
+
+      main.container {
+        padding-top: 1.4rem !important;
+      }
+
+      article.bg-white,
+      .post-card,
+      .toc-wrapper {
+        padding: 1.2rem 1rem !important;
+      }
+    }
   </style>
-
-  {% if language == "en" %}
-    <style>
-        body {
-            font-family: 'NotoSans';
-        }
-        h1, h2, h3, h4 {
-            font-family: 'FunnelDisplay';
-            font-weight: 600;
-        }
-    </style>
-  {% else %}
-    <style>
-        body {
-            font-family: 'Vazirmatn';
-            font-size: 1.1rem;
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Sahel';
-            font-weight: 600;
-        }
-    </style>
-  {% endif %}
-
-  <link href="/static/site.css" rel="stylesheet">
 
   {% block head %}
   {% endblock %}
@@ -341,13 +514,13 @@
 </head>
 <body>
 
-<!-- ▸ Top bar -->
-<nav class="navbar navbar-expand-lg sticky-top px-3 container" style="max-width: 820px;">
+<!-- Top bar -->
+<nav class="navbar navbar-expand-lg sticky-top px-3 container">
   <a class="navbar-brand d-flex align-items-center gap-2" href="/{{ language }}">
     <i class="bi bi-pencil-square"></i> {{ translate(key="virtq.io") }}
   </a>
 
-  <!-- collapsed menu button (mobile) -->
+  <!-- Collapsed menu button on mobile -->
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
       <span class="navbar-toggler-icon"></span>
   </button>
@@ -385,7 +558,7 @@
   </div>
 </nav>
 
-<main class="container py-5" style="max-width: 820px;">
+<main class="container py-5">
     {% block content %}
     {% endblock %}
 </main>
