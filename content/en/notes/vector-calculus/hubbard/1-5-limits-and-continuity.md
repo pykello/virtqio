@@ -86,7 +86,7 @@ For $m > M$, $\lVert\mathbf{a} - \mathbf{a}_m\rVert < \sqrt{n \cdot \left(\dfrac
 :::expandable
 **Proof.** [Click to Expand]
 
-$lim_{\epsilon \to 0} u(\epsilon) = 0$ means that for every $\delta > 0$ there exists $\epsilon_0$ such that $u(\epsilon) < \delta$ for all $\epsilon < \epsilon_0$.
+$\lim_{\epsilon \to 0} u(\epsilon) = 0$ means that for every $\delta > 0$ there exists $\epsilon_0$ such that $u(\epsilon) < \delta$ for all $\epsilon < \epsilon_0$.
 
 [TODO]
 
