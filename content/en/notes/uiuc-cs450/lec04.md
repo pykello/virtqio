@@ -43,13 +43,13 @@ By linearity, we can write:
 :::math align
 del b = A del x &=> del x = A^{-1} del b
 &=> norm(del x) <= norm(A^{-1}) norm(del b)
-&=> \dfrac{norm(del x)}{norm(x)} <= \dfrac{norm(A^{-1}) dot norm(del b)}{norm(x)} \tag{1}
+&=> \dfrac{norm(del x)}{norm(x)} <= \dfrac{norm(A^{-1}) dot norm(del b)}{norm(x)} \qquad\text{(1)}
 :::
 
 Since $x$ is in the denominator, we are interested in lower bounding it. Since $Ax = b$, we have:
 
 :::math
-norm(x) >= \frac{norm(b)}{norm(A)} \tag{2}
+norm(x) >= \frac{norm(b)}{norm(A)} \qquad\text{(2)}
 :::
 
 Then putting (2) and (1) together, we get:

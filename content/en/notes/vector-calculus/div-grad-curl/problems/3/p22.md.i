@@ -24,7 +24,7 @@ We'll use the divergence theorem:
 
 :::math
 iint[S] v{G} dot unit{n} \, dS = iiint[V] \nabla dot v{G} \, dV
-\tag{1}
+\qquad\text{(1)}
 :::
 
 **Calculating the surface integral.**
@@ -68,7 +68,7 @@ and then the total surface integral is:
 
 :::math
 iint[S] v{G} dot unit{n} \, dS = h oint[C] G_x \, dy - G_y \, dx
-\tag{2}
+\qquad\text{(2)}
 :::
 
 **Calculating the volume integral.**
@@ -81,7 +81,7 @@ Then, we have:
 
 :::math align
 iiint[V] \nabla dot v{G} \, dV &= h iint[R] \nabla dot v{G} \, dS
-&= h iint[R] ( pd(G_x, x) + pd(G_y, y) ) \, dx dy \tag{3}
+&= h iint[R] ( pd(G_x, x) + pd(G_y, y) ) \, dx dy \qquad\text{(3)}
 :::
 
 ------------------
@@ -125,7 +125,7 @@ Since $\nabla cross v{F} = v{k} ( pd(F_y, x) - pd(F_x, y) )$, we have:
 and then:
 
 :::math
-iint[S] \nabla cross v{F} dot unit{n} \, dS = iint[R] ( pd(F_y, x) - pd(F_x, y) ) \, dx dy \tag{1}
+iint[S] \nabla cross v{F} dot unit{n} \, dS = iint[R] ( pd(F_y, x) - pd(F_x, y) ) \, dx dy \qquad\text{(1)}
 :::
 
 ------------
@@ -133,7 +133,7 @@ iint[S] \nabla cross v{F} dot unit{n} \, dS = iint[R] ( pd(F_y, x) - pd(F_x, y) 
 Since $C$ is a closed curve lying entirely in the $xy$-plane, then:
 
 :::math
-oint[C] v{F} dot unit{t} \, ds = oint[C] F_x \, dx + F_y \, dy \tag{2}
+oint[C] v{F} dot unit{t} \, ds = oint[C] F_x \, dx + F_y \, dy \qquad\text{(2)}
 :::
 
 ---------------
@@ -141,7 +141,7 @@ oint[C] v{F} dot unit{t} \, ds = oint[C] F_x \, dx + F_y \, dy \tag{2}
 Then, by Stokes' theorem we have:
 
 :::math
-oint[C] v{F} dot unit{t} \, ds = iint[S] \nabla cross v{F} dot unit{n} \, dS \tag{3}
+oint[C] v{F} dot unit{t} \, ds = iint[S] \nabla cross v{F} dot unit{n} \, dS \qquad\text{(3)}
 :::
 
 

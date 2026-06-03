@@ -117,7 +117,7 @@ $i \mapsto c_i$ be a sequence of numbers. Then
 :::math
 lim[i -> inf] (v{a}_i + v{b}_i)
 = lim[i -> inf] v{a}_i
-  + lim[i -> inf] v{b}_i \tag{1.5.20}
+  + lim[i -> inf] v{b}_i \qquad\text{(1.5.20)}
 :::
 
 2. If $i \mapsto v{a}_i$ and $i \mapsto c_i$ both converge, then so does $i \mapsto c_i v{a}_i$, and
@@ -125,7 +125,7 @@ lim[i -> inf] (v{a}_i + v{b}_i)
 :::math
 lim[i-> inf] c_i v{a}_i
 = (lim[i-> inf] c_i )
-  ( lim[i-> inf] v{a}_i ) \tag{1.5.21}
+  ( lim[i-> inf] v{a}_i ) \qquad\text{(1.5.21)}
 :::
 
 3. If $i \mapsto v{a}_i$ and $i \mapsto v{b}_i$ both converge, then so does their dot product $i \mapsto \vec{v{a}_i} dot \vec{v{b}_i}$, and
@@ -133,13 +133,13 @@ lim[i-> inf] c_i v{a}_i
 :::math
 lim[i-> inf] (\vec{v{a}_i} dot \vec{v{b}_i} )
 = (lim[i-> inf] \vec{v{a}_i} ) dot
-  ( lim[i-> inf] \vec{v{b}_i} ) \tag{1.5.22}
+  ( lim[i-> inf] \vec{v{b}_i} ) \qquad\text{(1.5.22)}
 :::
 
 4. If $i \mapsto v{a}_i$ is bounded and $i \mapsto c_i$ converges to $0$, then
 
 :::math
-lim[i-> inf] c_i v{a}_i = 0 \tag{1.5.23}
+lim[i-> inf] c_i v{a}_i = 0 \qquad\text{(1.5.23)}
 :::
 
 **Proposition 1.5.17 (Sequence in closed set).**
@@ -359,8 +359,8 @@ So, we have:
 
 :::math align
 lim[v{x} -> v{x}_0] v{f}(v{x}) dot lim[v{x} -> v{x}_0] v{g}(v{x}) &= sum[i=1..m] (lim[v{x} -> v{x}_0]{f_i(v{x})}) (lim[v{x} -> v{x}_0] {g_i(v{x})})
-&= sum[i=1..m] lim[v{x} -> v{x}_0]{f_i(v{x}) g_i(v{x})} \tag{using part 2}
-&=lim[v{x} -> v{x}_0] sum[i=1..m]{f_i(v{x}) g_i(v{x})} \tag{using part 1}
+&= sum[i=1..m] lim[v{x} -> v{x}_0]{f_i(v{x}) g_i(v{x})} \qquad\text{(using part 2)}
+&=lim[v{x} -> v{x}_0] sum[i=1..m]{f_i(v{x}) g_i(v{x})} \qquad\text{(using part 1)}
 &= lim[v{x} -> v{x}_0] (v{f} dot v{g})(v{x})
 :::
 ::::

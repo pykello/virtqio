@@ -1,10 +1,10 @@
 **Problem III-20.** Maxwell's equations are:
 
 :::math align
-\nabla dot v{E} &= \frac{rho}{eps_0} \tag{M1}
-\nabla dot v{B} &= 0 \tag{M2}
-\nabla cross v{E} &= - pd(v{B}, t) \tag{M3}
-\nabla cross v{B} &= eps_0 mu_0 pd(v{E}, t) + mu_0 v{J} \tag{M4}
+\nabla dot v{E} &= \frac{rho}{eps_0} \qquad\text{(M1)}
+\nabla dot v{B} &= 0 \qquad\text{(M2)}
+\nabla cross v{E} &= - pd(v{B}, t) \qquad\text{(M3)}
+\nabla cross v{B} &= eps_0 mu_0 pd(v{E}, t) + mu_0 v{J} \qquad\text{(M4)}
 :::
 
 where $v{E}$ is the electric field, $v{B}$ is the magnetic field, $rho$ is the charge density, and $v{J}$ is the current density. Use Maxwell's equations to derive the continuity equation
@@ -53,7 +53,7 @@ mu_0 ( \nabla dot v{J} ) = - eps_0 mu_0 \nabla dot pd(v{E}, t)
 which means:
 
 :::math
-\nabla dot v{J} = - eps_0 \nabla dot pd(v{E}, t) \tag{1}
+\nabla dot v{J} = - eps_0 \nabla dot pd(v{E}, t) \qquad\text{(1)}
 :::
 
 Differentiating (M1) with respect to $t$, we have:
@@ -65,7 +65,7 @@ pd(\partial, t) ( \nabla dot v{E} ) = \frac{1}{eps_0} pd(rho, t)
 Using the lemma, we have:
 
 :::math
-\nabla dot pd(v{E}, t) = \frac{1}{eps_0} pd(rho, t) \tag{2}
+\nabla dot pd(v{E}, t) = \frac{1}{eps_0} pd(rho, t) \qquad\text{(2)}
 :::
 
 Putting (1) and (2) together, we have:

@@ -58,14 +58,14 @@ Segments in patches that are not in the perimeter of $P$ are traced twice, and
 in opposite directions, so they cancel out. Thus, we can write:
 
 :::math
-oint[P] v{F} dot unit{t} \, ds = sum[l=1..N] oint[C_l] v{F} dot unit{t} \, ds \tag{1}
+oint[P] v{F} dot unit{t} \, ds = sum[l=1..N] oint[C_l] v{F} dot unit{t} \, ds \qquad\text{(1)}
 :::
 
 We can approximate the circulation around $C_l$ by:
 
 :::math
 oint[C_l] v{F} dot unit{t} \, ds \approx
-C(x_l, y_l) \, Delta S_l \tag{2}
+C(x_l, y_l) \, Delta S_l \qquad\text{(2)}
 :::
 
 where $(x_l, y_l)$ is the center of the $l$-th patch.
@@ -76,14 +76,13 @@ Taylor expansion of $C(x_l, y_l)$ gives:
 
 :::math
 C(x_l, y_l) \approx C(x_0, y_0) + ( pd(C, x) )_{x_0, y_0} (x_l - x_0) + ( pd(C, y) )_{x_0, y_0} (y_l - y_0) + ...
-\tag{3}
+\qquad\text{(3)}
 :::
 
 Putting (1), (2), and (3) together, we have:
 
 :::math align
-oint[P] v{F} &dot unit{t} \, ds \approx
-&C(x_0, y_0) Delta A + ( pd(C, x) )_{x_0, y_0} sum[l=1..N] (x_l - x_0) Delta S_l
+oint[P] v{F} dot unit{t} \, ds &\approx C(x_0, y_0) Delta A + ( pd(C, x) )_{x_0, y_0} sum[l=1..N] (x_l - x_0) Delta S_l
 &\quad + ( pd(C, y) )_{x_0, y_0} sum[l=1..N] (y_l - y_0) Delta S_l + ...
 :::
 
@@ -93,8 +92,7 @@ oint[P] v{F} &dot unit{t} \, ds \approx
 
 :::math align
 lim[N -> inf] oint[P] v{F} dot unit{t} \, ds &= oint[C] v{F} dot unit{t} \, ds
-&= ( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0}
-&+ (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... ) Delta S
+&= ( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0} + (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... ) Delta S
 :::
 
 where $Delta S$ is the area of the region $R$ enclosed by $C$ and $(\overline{x}, \overline{y})$ is the centroid of $R$. That is:
@@ -125,8 +123,7 @@ Putting this together, we have:
 
 :::math align
 oint[C] v{F} dot unit{t} \, ds &= lim[N -> inf] sum[l=1..N] oint[C_l] v{F} dot unit{t} \, ds
-&= ( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0}
-&+ (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... ) Delta S
+&= ( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0} + (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... ) Delta S
 :::
 
 ::::
@@ -143,8 +140,7 @@ oint[C] v{F} dot unit{t} \, ds &= lim[N -> inf] sum[l=1..N] oint[C_l] v{F} dot u
 As $Delta S -> 0$, then $(\overline{x}, \overline{y}) -> (x, y)$, and we have:
 
 :::math align
-lim[Delta S -> 0] \frac{1}{Delta S} oint[P] v{F} dot unit{t} \, ds &= lim[Delta S -> 0] ( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0}
-&+ (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... )
+lim[Delta S -> 0] \frac{1}{Delta S} oint[P] v{F} dot unit{t} \, ds &= lim[Delta S -> 0] ( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0} + (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... )
 &= lim[Delta S -> 0] C(x_l, y_l)
 &= pd(F_y, x) - pd(F_x, y)
 :::

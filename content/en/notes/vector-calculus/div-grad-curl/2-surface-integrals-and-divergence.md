@@ -50,7 +50,7 @@ Which brings us to **Gauss's Law**:
 
 :::math
 iint[S] v{E} dot unit{n} \, dS = \frac{q}{eps_0}
-\tag{II-1}
+\qquad\text{(II-1)}
 :::
 
 Here we are doing a **surface integral**, where integrand is the dot product
@@ -84,7 +84,7 @@ Thus, the unit normal vector is given by:
 
 :::math align
 unit{n} = \frac{v{s}_x cross v{s}_y}{|v{s}_x cross v{s}_y|} &= \frac{(1, 0, pd(f, x)) cross (0, 1, pd(f, y))}{|v{s}_x cross v{s}_y|}
-&= \frac{-v{i}pd(f, x) + -v{j}pd(f, y) + v{k}}{\sqrt{1 + (pd(f, x))^2 + (pd(f, y))^2}} \tag{II-4}
+&= \frac{-v{i}pd(f, x) + -v{j}pd(f, y) + v{k}}{\sqrt{1 + (pd(f, x))^2 + (pd(f, y))^2}} \qquad\text{(II-4)}
 :::
 
 > [!WARNING]
@@ -96,7 +96,7 @@ The **surface integral of the normal component** of a vector function $v{F}(x, y
 
 :::math
 iint[S] v{F} dot unit{n} \, dS
-\tag{II-5}
+\qquad\text{(II-5)}
 :::
 
 Let's approximate $S$ by a collection of small flat pieces, each of which is
@@ -115,7 +115,7 @@ approaches infinity and the area of each piece approaches zero:
 
 :::math plain
 iint[S] v{F} dot unit{n} \, dS = \lim_{\substack{N -> inf\\[0.3em] \text{each } Delta S_i -> 0}} sum[i=1..N] v{F}(x_i, y_i, z_i) dot unit{n}_i Delta S_i
-\tag{II-6}
+\qquad\text{(II-6)}
 :::
 
 The surface over which we integrate can be:
@@ -131,14 +131,14 @@ Sometimes, we are interested in simpler integrals of the form:
 
 :::math
 iint[S] G(x, y, z) \, dS
-\tag{II-7}
+\qquad\text{(II-7)}
 :::
 
 This can be solved similarly:
 
 :::math plain
 iint[S] G(x, y, z) \, dS = \lim_{\substack{N -> inf\\[0.3em] \text{each } Delta S_i -> 0}} sum[i=1..N] G(x_i, y_i, z_i) Delta S_i
-\tag{II-8}
+\qquad\text{(II-8)}
 :::
 
 ### Evaluating Surface Integrals
@@ -298,8 +298,8 @@ Assume one pair of sides are parallel to the $xy$-plane, and the other pair make
 
     brd2.create('text', [26, 30, 'θ'], {fontSize: 16});
     brd2.create('text', [-17, 100, 'θ'], {fontSize: 16});
-    brd2.create('text', [c2[0] - 2, c2[1] + 8, '$\\hat{\v{k}}$'], {fontSize: 16});
-    brd2.create('text', [c3[0] - 5, c3[1] + 8, '$\\hat{\v{n}}$'], {fontSize: 16});
+    brd2.create('text', [c2[0] - 2, c2[1] + 8, '$\\hat{\\mathbf{k}}$'], {fontSize: 16});
+    brd2.create('text', [c3[0] - 5, c3[1] + 8, '$\\hat{\\mathbf{n}}$'], {fontSize: 16});
 
     brd2.create('text', [
         ...add(midpoint(p4, p1, 0.3), [0, 30])
@@ -337,7 +337,7 @@ So, the surface integral can be written as:
 
 :::math plain
 iint[S] G(x, y, z) \, dS = \lim_{\substack{N -> inf\\[0.3em] \text{each } Delta R_i -> 0}} sum[i=1..N] G(x_i, y_i, z_i) \frac{Delta R_i}{unit{k} dot unit{n}}
-\tag{II-9}
+\qquad\text{(II-9)}
 :::
 
 Where we have replaced each $Delta S_i -> 0$ with $Delta R_i -> 0$.
@@ -347,7 +347,7 @@ Then, this can be written as a double integral over $R$:
 :::math
 iint[S] G(x, y, z) \, dS =
 iint[R] \frac{G(x, y, f(x, y))}{unit{k} dot unit{n}(x, y, f(x, y))} \, dx \, dy
-\tag{II-11}
+\qquad\text{(II-11)}
 :::
 
 Using equation (II-4), we can write:
@@ -360,7 +360,7 @@ Thus, we have:
 
 :::math align
 iint[S] G(x, y, z) \, dS = &iint[R] G(x, y, f(x, y)) dot
-&\sqrt{1 + (pd(f, x))^2 + (pd(f, y))^2} \, dx \, dy \tag{II-12}
+&\sqrt{1 + (pd(f, x))^2 + (pd(f, y))^2} \, dx \, dy \qquad\text{(II-12)}
 :::
 
 :::card[example]
@@ -379,7 +379,7 @@ The **flux** of $v{F}$ through the surface $S$:
 
 :::math
 iint[S] v{F}(x, y, z) dot unit{n} \, dS
-\tag{II-14}
+\qquad\text{(II-14)}
 :::
 
 So, Gauss's Law says that the flux of the electrostatic field over a closed surface
@@ -435,7 +435,7 @@ Assuming volume $Delta V$ and average charge density $\overline{rho}_{Delta V}$,
 
 :::math
 iint[S] v{E} dot unit{n} \, dS = \frac{\overline{rho}_{Delta V} Delta V}{eps_0}
-\tag{II-15}
+\qquad\text{(II-15)}
 :::
 
 As expected, both sides go to zero as $Delta V -> 0$. To isolate the quantity that does not go to zero, we divide both sides by $Delta V$:
@@ -448,7 +448,7 @@ Taking the limit as $Delta V -> 0$, we get:
 
 :::math plain
 \lim_{\substack{Delta V -> 0 \\[0.3em] \text{about}\; (x,y,z)}} \frac{1}{Delta V} iint[S] v{E} dot unit{n} \, dS = \frac{rho(x, y, z)}{eps_0}
-\tag{II-16}
+\qquad\text{(II-16)}
 :::
 
 ### The Divergence
@@ -457,14 +457,14 @@ We define the **divergence** of a vector field $v{F}$ as:
 
 :::math plain
 \text{div} \, v{F} \equiv \lim_{\substack{Delta V -> 0 \\[0.3em] \text{about}\; (x,y,z)}} \frac{1}{Delta V} iint[S] v{F} dot unit{n} \, dS
-\tag{II-17}
+\qquad\text{(II-17)}
 :::
 
 Then equation (II-16) can be written as:
 
 :::math
 \text{div} \, v{E} = \frac{rho}{eps_0}
-\tag{II-18}
+\qquad\text{(II-18)}
 :::
 
 To calculate this, consider a small cube centered at $(x, y, z)$ with side length $Delta x$, $Delta y$, and $Delta z$:
@@ -477,14 +477,14 @@ Then the surface integral over $S_1$ is:
 
 :::math
 iint[S_1] F_x(x, y, z) \, dS \approx F_x(x + \frac{Delta x}{2}, y, z) Delta y Delta z
-\tag{II-19}
+\qquad\text{(II-19)}
 :::
 
 Similarly, the surface integral over $S_2$ is:
 
 :::math
 iint[S_2] F_x(x, y, z) \, dS \approx -F_x(x - \frac{Delta x}{2}, y, z) Delta y Delta z
-\tag{II-20}
+\qquad\text{(II-20)}
 :::
 
 Then, adding these two and dividing by $Delta V$ gives:
@@ -492,7 +492,7 @@ Then, adding these two and dividing by $Delta V$ gives:
 :::math
 \frac{1}{Delta V} iint[S_1 + S_2] v{F} dot unit{n} \, dS \approx
 \frac{F_x(x + \frac{Delta x}{2}, y, z) - F_x(x - \frac{Delta x}{2}, y, z)}{Delta x}
-\tag{II-21}
+\qquad\text{(II-21)}
 :::
 
 Taking the limit as $Delta V -> 0$, we get:
@@ -506,7 +506,7 @@ all together, we have:
 
 :::math
 \text{div} \, v{F} = pd(F_x, x) + pd(F_y, y) + pd(F_z, z)
-\tag{II-22}
+\qquad\text{(II-22)}
 :::
 
 It can be shown that the result is independent of the shape of the volume we used.
@@ -516,7 +516,7 @@ Combining equations (II-18) and (II-22), we get the **differential form of Gauss
 
 :::math
 pd(E_x, x) + pd(E_y, y) + pd(E_z, z) = \frac{rho}{eps_0}
-\tag{II-23}
+\qquad\text{(II-23)}
 :::
 
 ### The Divergence in Cylindrical Coordinates
@@ -554,7 +554,7 @@ Arguing similarly for the other two pairs of faces, we get:
 
 :::math
 \text{div} \, v{F} = \frac{1}{r} pd(\partial, r) (r F_r) + \frac{1}{r} pd(F_theta, theta) + pd(F_z, z)
-\tag{II-24}
+\qquad\text{(II-24)}
 :::
 
 ### The Del Notation
@@ -577,7 +577,7 @@ The **divergence theorem** states that the flux of a vector field $v{F}$ through
 
 :::math
 iint[S] v{F} dot unit{n} \, dS = iiint[V] \nabla dot v{F} \, dV
-\tag{II-30}
+\qquad\text{(II-30)}
 :::
 
 ### An Example
@@ -659,14 +659,14 @@ We start with Gauss's Law:
 
 :::math
 iint[S] v{E} dot unit{n} \, dS = \frac{1}{eps_0} iiint[V] rho \, dV
-\tag{II-31}
+\qquad\text{(II-31)}
 :::
 
 We can use the divergence theorem to rewrite the left-hand side:
 
 :::math
 iint[S] v{E} dot unit{n} \, dS = iiint[V] \nabla dot v{E} \, dV
-\tag{II-32}
+\qquad\text{(II-32)}
 :::
 
 Combining equations (II-31) and (II-32), we get:

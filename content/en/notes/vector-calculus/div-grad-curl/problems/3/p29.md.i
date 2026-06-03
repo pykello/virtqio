@@ -64,7 +64,7 @@ Then:
 :::math align
 \frac{1}{Delta V} iint[S_1+S_2] &unit{n} cross v{F} \, dS \approx
 & v{i} \frac{F_z(x, y + \frac{Delta y}{2}, z) - F_z(x, y - \frac{Delta y}{2}, z)}{Delta y}
-- &v{k} \frac{F_x(x, y + \frac{Delta y}{2}, z) - F_x(x, y - \frac{Delta y}{2}, z)}{Delta y}
+&- v{k} \frac{F_x(x, y + \frac{Delta y}{2}, z) - F_x(x, y - \frac{Delta y}{2}, z)}{Delta y}
 :::
 
 which means:
