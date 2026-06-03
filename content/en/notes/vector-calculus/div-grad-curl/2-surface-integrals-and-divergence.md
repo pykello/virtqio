@@ -49,77 +49,77 @@ So, they're not very useful in practice.
 Which brings us to **Gauss's Law**:
 
 $$
-\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \frac{q}{\epsilon_0}
+\iint_S v{E} \cdot unit{n} \, dS = \frac{q}{eps_0}
 \tag{II-1}
 $$
 
 Here we are doing a **surface integral**, where integrand is the dot product
-of the electric field $\mathbf{E}$ and the unit normal vector $\hat{\mathbf{n}}$.
+of the electric field $v{E}$ and the unit normal vector $unit{n}$.
 
 We'll discuss these in the following sections.
 
 ### The Unit Normal Vector
-Let $\mathbf{u}$ and $\mathbf{v}$ be two non-collinear tangent vectors to a surface $S$ at a point $P$. A vector $\mathbf{N}$ perpendicular to both $\mathbf{u}$ and $\mathbf{v}$ is called a **normal vector** to $S$ at $P$.
+Let $v{u}$ and $v{v}$ be two non-collinear tangent vectors to a surface $S$ at a point $P$. A vector $v{N}$ perpendicular to both $v{u}$ and $v{v}$ is called a **normal vector** to $S$ at $P$.
 
-Cross product of $\mathbf{u}$ and $\mathbf{v}$ has this property. Thus:
+Cross product of $v{u}$ and $v{v}$ has this property. Thus:
 
 $$
-\mathbf{\hat{n}} = \frac{\mathbf{N}}{|\mathbf{N}|} 
-= \frac{\mathbf{u} \times \mathbf{v}}{|\mathbf{u} \times \mathbf{v}|}
+unit{n} = \frac{v{N}}{|v{N}|}
+= \frac{v{u} \times v{v}}{|v{u} \times v{v}|}
 $$
 
 Assume $S$ is given by the equation $z = f(x, y)$. Then parametric equation
-of $S$ is $\mathbf{s}(x, y) = (x, y, f(x, y))$.
+of $S$ is $v{s}(x, y) = (x, y, f(x, y))$.
 
 Let $x$-curve be given when we hold $y$ constant and vary $x$:
-$\mathbf{s}(x, y_0) = (x, y_0, f(x, y_0))$.
+$v{s}(x, y_0) = (x, y_0, f(x, y_0))$.
 Let $y$-curve be given when we hold $x$ constant and vary $y$:
-$\mathbf{s}(x_0, y) = (x_0, y, f(x_0, y))$.
+$v{s}(x_0, y) = (x_0, y, f(x_0, y))$.
 
-Then the tangent at point $P$ to the $x$-curve is $\mathbf{s}_x = \dfrac{\partial \mathbf{s}}{\partial x} = (1, 0, \dfrac{\partial f}{\partial x})$, and the tangent at point $P$ to the $y$-curve is $\mathbf{s}_y = \dfrac{\partial \mathbf{s}}{\partial y} = (0, 1, \dfrac{\partial f}{\partial y})$.
+Then the tangent at point $P$ to the $x$-curve is $v{s}_x = \dfrac{\partial v{s}}{\partial x} = (1, 0, \dfrac{\partial f}{\partial x})$, and the tangent at point $P$ to the $y$-curve is $v{s}_y = \dfrac{\partial v{s}}{\partial y} = (0, 1, \dfrac{\partial f}{\partial y})$.
 
-The normal vector is given by $\mathbf{N} = \mathbf{s}_x \times \mathbf{s}_y$.
+The normal vector is given by $v{N} = v{s}_x \times v{s}_y$.
 
 Thus, the unit normal vector is given by:
 
 $$
 \begin{align*}
-\mathbf{\hat{n}} = \frac{\mathbf{s}_x \times \mathbf{s}_y}{|\mathbf{s}_x \times \mathbf{s}_y|}
-&= \frac{\left(1, 0, \dfrac{\partial f}{\partial x}\right) \times \left(0, 1, \dfrac{\partial f}{\partial y}\right)}{|\mathbf{s}_x \times \mathbf{s}_y|}
+unit{n} = \frac{v{s}_x \times v{s}_y}{|v{s}_x \times v{s}_y|}
+&= \frac{(1, 0, \dfrac{\partial f}{\partial x}) \times (0, 1, \dfrac{\partial f}{\partial y})}{|v{s}_x \times v{s}_y|}
 \\[1em]
-&= \frac{-\mathbf{i}\dfrac{\partial f}{\partial x} + -\mathbf{j}\dfrac{\partial f}{\partial y} + \mathbf{k}}{\sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial y}\right)^2}}
+&= \frac{-v{i}\dfrac{\partial f}{\partial x} + -v{j}\dfrac{\partial f}{\partial y} + v{k}}{\sqrt{1 + (\dfrac{\partial f}{\partial x})^2 + (\dfrac{\partial f}{\partial y})^2}}
 \tag{II-4}
 \end{align*}
 $$
 
 > [!WARNING]
-> My derivation is a bit different from the book, but the steps are 
+> My derivation is a bit different from the book, but the steps are
 > equivalent and the final result is the same.
 
 ### Definition of Surface Integrals
-The **surface integral of the normal component** of a vector function $\mathbf{F}(x, y, z)$, denoted by
+The **surface integral of the normal component** of a vector function $v{F}(x, y, z)$, denoted by
 
 $$
-\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \, dS
+\iint_S v{F} \cdot unit{n} \, dS
 \tag{II-5}
 $$
 
 Let's approximate $S$ by a collection of small flat pieces, each of which is
 tangent to $S$ at some point.
 
-Let's focus on the $i$-th piece. Let $\Delta S_i$ be the area, and $(x_i, y_i, z_i)$ be the coordinate of the tangent point, and $\hat{\mathbf{n}}_i$ be the unit normal vector at that point.
+Let's focus on the $i$-th piece. Let $\Delta S_i$ be the area, and $(x_i, y_i, z_i)$ be the coordinate of the tangent point, and $unit{n}_i$ be the unit normal vector at that point.
 
 Then summing over all pieces, we have:
 
 $$
-\sum_{i=1}^N \mathbf{F}(x_i, y_i, z_i) \cdot \hat{\mathbf{n}}_i \Delta S_i
+\sum_{i=1}^N v{F}(x_i, y_i, z_i) \cdot unit{n}_i \Delta S_i
 $$
 
 The surface integral (II-5) is the limit of this sum as the number of pieces
 approaches infinity and the area of each piece approaches zero:
 
 $$
-\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \, dS = \lim_{\substack{N \to \infty\\[0.3em] \text{each } \Delta S_i \to 0}} \sum_{i=1}^N \mathbf{F}(x_i, y_i, z_i) \cdot \hat{\mathbf{n}}_i \Delta S_i
+\iint_S v{F} \cdot unit{n} \, dS = \lim_{\substack{N -> inf\\[0.3em] \text{each } \Delta S_i -> 0}} \sum_{i=1}^N v{F}(x_i, y_i, z_i) \cdot unit{n}_i \Delta S_i
 \tag{II-6}
 $$
 
@@ -130,7 +130,7 @@ The surface over which we integrate can be:
 
 In the case of an open surface, the unit normal vector can point in either direction, and it should be specified. In the case of a closed surface, the agreement is that the unit normal vector points outward from the surface.
 
-The integral in **Gauss's Law** is taken over a closed surface. In fact, it says that the surface integral of the electric field over a closed surface is equal to the total charge inside the surface divided by $\epsilon_0$.
+The integral in **Gauss's Law** is taken over a closed surface. In fact, it says that the surface integral of the electric field over a closed surface is equal to the total charge inside the surface divided by $eps_0$.
 
 Sometimes, we are interested in simpler integrals of the form:
 
@@ -142,7 +142,7 @@ $$
 This can be solved similarly:
 
 $$
-\iint_S G(x, y, z) \, dS = \lim_{\substack{N \to \infty\\[0.3em] \text{each } \Delta S_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \Delta S_i
+\iint_S G(x, y, z) \, dS = \lim_{\substack{N -> inf\\[0.3em] \text{each } \Delta S_i -> 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \Delta S_i
 \tag{II-8}
 $$
 
@@ -159,7 +159,7 @@ Our strategy is to relate $\Delta S_i$ to the area of its projection on the $xy$
 <div id="fig12" style="width:90%; max-width: 360px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
 
 <script>
-  const brd = initBoard('fig12');    
+  const brd = initBoard('fig12');
 
   const va = [0, 90];
   const v1 = [12, 90];
@@ -324,41 +324,41 @@ Assume one pair of sides are parallel to the $xy$-plane, and the other pair make
 }
 </script>
 
-We can convince ourselves that $\cos \theta = \hat{\mathbf{k}} \cdot \hat{\mathbf{n}}$, where $\hat{\mathbf{k}}$ is the unit normal vector to the $xy$-plane.
+We can convince ourselves that $\cos \theta = unit{k} \cdot unit{n}$, where $unit{k}$ is the unit normal vector to the $xy$-plane.
 
 Thus, the area of the rectangle is:
 
 $$
-ab = \frac{ab'}{\cos \theta} = \frac{ab'}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}}
+ab = \frac{ab'}{\cos \theta} = \frac{ab'}{unit{k} \cdot unit{n}}
 $$
 
 Each $\Delta S_i$ can be approximated by such rectangles. Thus, we have:
 
 $$
-\Delta S_i = \frac{\Delta R_i}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}}
+\Delta S_i = \frac{\Delta R_i}{unit{k} \cdot unit{n}}
 $$
 
 So, the surface integral can be written as:
 
 $$
-\iint_S G(x, y, z) \, dS = \lim_{\substack{N \to \infty\\[0.3em] \text{each } \Delta R_i \to 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \frac{\Delta R_i}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}}
+\iint_S G(x, y, z) \, dS = \lim_{\substack{N -> inf\\[0.3em] \text{each } \Delta R_i -> 0}} \sum_{i=1}^N G(x_i, y_i, z_i) \frac{\Delta R_i}{unit{k} \cdot unit{n}}
 \tag{II-9}
 $$
 
-Where we have replaced each $\Delta S_i \to 0$ with $\Delta R_i \to 0$.
+Where we have replaced each $\Delta S_i -> 0$ with $\Delta R_i -> 0$.
 
 Then, this can be written as a double integral over $R$:
 
 $$
-\iint_S G(x, y, z) \, dS = 
-\iint_R \frac{G(x, y, f(x, y))}{\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}(x, y, f(x, y))} \, dx \, dy
+\iint_S G(x, y, z) \, dS =
+\iint_R \frac{G(x, y, f(x, y))}{unit{k} \cdot unit{n}(x, y, f(x, y))} \, dx \, dy
 \tag{II-11}
 $$
 
 Using equation (II-4), we can write:
 
 $$
-\hat{\mathbf{k}} \cdot \hat{\mathbf{n}}(x, y, f(x, y)) = \frac{1}{\sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial y}\right)^2}}
+unit{k} \cdot unit{n}(x, y, f(x, y)) = \frac{1}{\sqrt{1 + (\dfrac{\partial f}{\partial x})^2 + (\dfrac{\partial f}{\partial y})^2}}
 $$
 
 Thus, we have:
@@ -368,7 +368,7 @@ $$
 \iint_S G(x, y, z) \, dS =
 &\iint_R G(x, y, f(x, y)) \cdot
 \\[1em]
-&\sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial y}\right)^2} \, dx \, dy
+&\sqrt{1 + (\dfrac{\partial f}{\partial x})^2 + (\dfrac{\partial f}{\partial y})^2} \, dx \, dy
 \tag{II-12}
 \end{align*}
 $$
@@ -379,21 +379,21 @@ $$
 Here $f(x, y) = 1 - x - y$, so we have:
 
 $$
-\iint_S z \, dS = \int_{0}^{1} \int_{0}^{1 - x} z \left(\sqrt{1 + (-1)^2 + (-1)^2}
-\right) \, dy \, dx = \dfrac{\sqrt{3}}{6}
+\iint_S z \, dS = \int_{0}^{1} \int_{0}^{1 - x} z (\sqrt{1 + (-1)^2 + (-1)^2}
+) \, dy \, dx = \dfrac{\sqrt{3}}{6}
 $$
 ::::
 
 ### Flux
-The **flux** of $\mathbf{F}$ through the surface $S$:
+The **flux** of $v{F}$ through the surface $S$:
 
 $$
-\iint_S \mathbf{F}(x, y, z) \cdot \hat{\mathbf{n}} \, dS
+\iint_S v{F}(x, y, z) \cdot unit{n} \, dS
 \tag{II-14}
 $$
 
 So, Gauss's Law says that the flux of the electrostatic field over a closed surface
-is equal to the total charge inside the surface divided by $\epsilon_0$.
+is equal to the total charge inside the surface divided by $eps_0$.
 
 ### Using Gauss's Law to Find the Field
 
@@ -406,32 +406,32 @@ the following about the electric field:
 Thus, Gauss's Law becomes:
 
 $$
-\iint_S E(r) \hat{\mathbf{e}}_r \cdot \hat{\mathbf{n}} \, dS = \frac{q}{\epsilon_0}
+\iint_S E(r) unit{e}_r \cdot unit{n} \, dS = \frac{q}{eps_0}
 $$
 
-On a spherical surface of radius $r$, $\hat{\mathbf{n}} = \hat{\mathbf{e}}_r$. So, $\hat{\mathbf{e}}_r \cdot \hat{\mathbf{n}} = 1$.
+On a spherical surface of radius $r$, $unit{n} = unit{e}_r$. So, $unit{e}_r \cdot unit{n} = 1$.
 Thus, we have:
 
 $$
-\iint_S E(r) \, dS = \frac{q}{\epsilon_0}
+\iint_S E(r) \, dS = \frac{q}{eps_0}
 $$
 
 $E(r)$ is constant over the spherical surface, so we get:
 
 $$
 \iint_S E(r) \, dS = E(r) \iint_S dS
-= 4 \pi r^2 E(r) = \frac{q}{\epsilon_0}
+= 4 \pi r^2 E(r) = \frac{q}{eps_0}
 $$
 
 and
 
 $$
-\mathbf{E}(r) = \hat{\mathbf{e}}_r E(r) = \frac{\hat{\mathbf{e}}_r q}{4 \pi \epsilon_0 r^2}
+v{E}(r) = unit{e}_r E(r) = \frac{unit{e}_r q}{4 \pi eps_0 r^2}
 $$
 
 We can use symmetry and Gauss's Law to find the electric field in the following cases:
 
-- A spherically symmetric charge distribution, 
+- A spherically symmetric charge distribution,
 - An infinitely long cylindrically symmetric charge distribution, and
 - An infinite slab of charge.
 
@@ -444,36 +444,36 @@ Consider the surface integral of the electric field over closed surfaces centere
 Assuming volume $\Delta V$ and average charge density $\overline{\rho}_{\Delta V}$, we have:
 
 $$
-\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \frac{\overline{\rho}_{\Delta V} \Delta V}{\epsilon_0}
+\iint_S v{E} \cdot unit{n} \, dS = \frac{\overline{\rho}_{\Delta V} \Delta V}{eps_0}
 \tag{II-15}
 $$
 
-As expected, both sides go to zero as $\Delta V \to 0$. To isolate the quantity that does not go to zero, we divide both sides by $\Delta V$:
+As expected, both sides go to zero as $\Delta V -> 0$. To isolate the quantity that does not go to zero, we divide both sides by $\Delta V$:
 
 $$
-\frac{1}{\Delta V} \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \frac{\overline{\rho}_{\Delta V}}{\epsilon_0}
+\frac{1}{\Delta V} \iint_S v{E} \cdot unit{n} \, dS = \frac{\overline{\rho}_{\Delta V}}{eps_0}
 $$
 
-Taking the limit as $\Delta V \to 0$, we get:
+Taking the limit as $\Delta V -> 0$, we get:
 
 $$
-\lim_{\substack{\Delta V \to 0 \\[0.3em] \text{about}\; (x,y,z)}} \frac{1}{\Delta V} \iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \frac{\rho(x, y, z)}{\epsilon_0}
+\lim_{\substack{\Delta V -> 0 \\[0.3em] \text{about}\; (x,y,z)}} \frac{1}{\Delta V} \iint_S v{E} \cdot unit{n} \, dS = \frac{\rho(x, y, z)}{eps_0}
 \tag{II-16}
 $$
 
 ### The Divergence
 
-We define the **divergence** of a vector field $\mathbf{F}$ as:
+We define the **divergence** of a vector field $v{F}$ as:
 
 $$
-\text{div} \, \mathbf{F} \equiv \lim_{\substack{\Delta V \to 0 \\[0.3em] \text{about}\; (x,y,z)}} \frac{1}{\Delta V} \iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \, dS
+\text{div} \, v{F} \equiv \lim_{\substack{\Delta V -> 0 \\[0.3em] \text{about}\; (x,y,z)}} \frac{1}{\Delta V} \iint_S v{F} \cdot unit{n} \, dS
 \tag{II-17}
 $$
 
 Then equation (II-16) can be written as:
 
 $$
-\text{div} \, \mathbf{E} = \frac{\rho}{\epsilon_0}
+\text{div} \, v{E} = \frac{\rho}{eps_0}
 \tag{II-18}
 $$
 
@@ -481,7 +481,7 @@ To calculate this, consider a small cube centered at $(x, y, z)$ with side lengt
 
  ![](fig-II-23.png)
 
-$S_1$ is the front face, $S_2$ is the back face. Let $\mathbf{F} \cdot \mathbf{i} = F_x$.
+$S_1$ is the front face, $S_2$ is the back face. Let $v{F} \cdot v{i} = F_x$.
 
 Then the surface integral over $S_1$ is:
 
@@ -500,22 +500,22 @@ $$
 Then, adding these two and dividing by $\Delta V$ gives:
 
 $$
-\frac{1}{\Delta V} \iint_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \, dS \approx
+\frac{1}{\Delta V} \iint_{S_1 + S_2} v{F} \cdot unit{n} \, dS \approx
 \frac{F_x(x + \frac{\Delta x}{2}, y, z) - F_x(x - \frac{\Delta x}{2}, y, z)}{\Delta x}
 \tag{II-21}
 $$
 
-Taking the limit as $\Delta V \to 0$, we get:
+Taking the limit as $\Delta V -> 0$, we get:
 
 $$
-\lim_{\Delta V \to 0} \frac{1}{\Delta V} \iint_{S_1 + S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \, dS = \dfrac{\partial F_x}{\partial x}
+\lim_{\Delta V -> 0} \frac{1}{\Delta V} \iint_{S_1 + S_2} v{F} \cdot unit{n} \, dS = \dfrac{\partial F_x}{\partial x}
 $$
 
 Similarly, we can calculate the contributions from the other two pairs of faces. Then adding
 all together, we have:
 
 $$
-\text{div} \, \mathbf{F} = \dfrac{\partial F_x}{\partial x} + \dfrac{\partial F_y}{\partial y} + \dfrac{\partial F_z}{\partial z}
+\text{div} \, v{F} = \dfrac{\partial F_x}{\partial x} + \dfrac{\partial F_y}{\partial y} + \dfrac{\partial F_z}{\partial z}
 \tag{II-22}
 $$
 
@@ -525,7 +525,7 @@ It can be shown that the result is independent of the shape of the volume we use
 Combining equations (II-18) and (II-22), we get the **differential form of Gauss's Law**:
 
 $$
-\frac{\partial E_x}{\partial x} + \frac{\partial E_y}{\partial y} + \frac{\partial E_z}{\partial z} = \frac{\rho}{\epsilon_0}
+\frac{\partial E_x}{\partial x} + \frac{\partial E_y}{\partial y} + \frac{\partial E_z}{\partial z} = \frac{\rho}{eps_0}
 \tag{II-23}
 $$
 
@@ -540,30 +540,30 @@ To calculate the divergence in cylindrical coordinates, consider the "cylindrica
 
 Center is $(r, \theta, z)$, and volume is $\Delta V = r \Delta r \Delta \theta \Delta z$.
 
-The flux of $\mathbf{F}$ through face 1 is:
+The flux of $v{F}$ through face 1 is:
 
 $$
-\iint_{S_1} \mathbf{F} \cdot \hat{\mathbf{n}} \, dS \approx
-F_r\left(r + \frac{\Delta r}{2}, \theta, z\right) \left(r + \frac{\Delta r}{2}\right) \Delta \theta \Delta z
+\iint_{S_1} v{F} \cdot unit{n} \, dS \approx
+F_r(r + \frac{\Delta r}{2}, \theta, z) (r + \frac{\Delta r}{2}) \Delta \theta \Delta z
 $$
 
 While the flux through face 2 is:
 
 $$
-\iint_{S_2} \mathbf{F} \cdot \hat{\mathbf{n}} \, dS \approx
--F_r\left(r - \frac{\Delta r}{2}, \theta, z\right) \left(r - \frac{\Delta r}{2}\right) \Delta \theta \Delta z
+\iint_{S_2} v{F} \cdot unit{n} \, dS \approx
+-F_r(r - \frac{\Delta r}{2}, \theta, z) (r - \frac{\Delta r}{2}) \Delta \theta \Delta z
 $$
 
-Adding these two and dividing by $\Delta V$ gives, and taking the limit as $\Delta V \to 0$ we get:
+Adding these two and dividing by $\Delta V$ gives, and taking the limit as $\Delta V -> 0$ we get:
 
 $$
-\frac{1}{r} \frac{\partial}{\partial r} \left(r F_r\right)
+\frac{1}{r} \frac{\partial}{\partial r} (r F_r)
 $$
 
 Arguing similarly for the other two pairs of faces, we get:
 
 $$
-\text{div} \, \mathbf{F} = \frac{1}{r} \frac{\partial}{\partial r} \left(r F_r\right) + \frac{1}{r} \frac{\partial F_\theta}{\partial \theta} + \frac{\partial F_z}{\partial z}
+\text{div} \, v{F} = \frac{1}{r} \frac{\partial}{\partial r} (r F_r) + \frac{1}{r} \frac{\partial F_\theta}{\partial \theta} + \frac{\partial F_z}{\partial z}
 \tag{II-24}
 $$
 
@@ -572,21 +572,21 @@ $$
 We define the **del operator** as:
 
 $$
-\nabla = \mathbf{i} \frac{\partial}{\partial x} + \mathbf{j} \frac{\partial}{\partial y} + \mathbf{k} \frac{\partial}{\partial z}
+\nabla = v{i} \frac{\partial}{\partial x} + v{j} \frac{\partial}{\partial y} + v{k} \frac{\partial}{\partial z}
 $$
 
 Then, the divergence can be written as:
 
 $$
-\text{div} \, \mathbf{F} = \nabla \cdot \mathbf{F} = \frac{\rho}{\epsilon_0}
+\text{div} \, v{F} = \nabla \cdot v{F} = \frac{\rho}{eps_0}
 $$
 
 ### The Divergence Theorem
 
-The **divergence theorem** states that the flux of a vector field $\mathbf{F}$ through a closed surface $S$ is equal to the integral of the divergence of $\mathbf{F}$ over the volume $V$ enclosed by $S$:
+The **divergence theorem** states that the flux of a vector field $v{F}$ through a closed surface $S$ is equal to the integral of the divergence of $v{F}$ over the volume $V$ enclosed by $S$:
 
 $$
-\iint_S \mathbf{F} \cdot \hat{\mathbf{n}} \, dS = \iiint_V \nabla \cdot \mathbf{F} \, dV
+\iint_S v{F} \cdot unit{n} \, dS = \iiint_V \nabla \cdot v{F} \, dV
 \tag{II-30}
 $$
 
@@ -595,15 +595,15 @@ $$
 Divergence theorem on the **upper unit hemisphere**. Let
 
 $$
-\mathbf F(x,y,z)=\mathbf{i}x+\mathbf{j}y+\mathbf{k}z ,
+\mathbf F(x,y,z)=v{i}x+v{j}y+v{k}z ,
 \quad
-V=\left\{(x,y,z)\;\middle|\;x^{2}+y^{2}+z^{2}\le 1,\;z\ge 0\right\}.
+V=set((x,y,z) | x^{2}+y^{2}+z^{2} <= 1, z >= 0).
 $$
 
 The boundary $S$ has two pieces
 
-* **$S_1$** – the curved spherical cap ($x^{2}+y^{2}+z^{2}=1,\\;z\ge 0$),
-* **$S_2$** – the flat unit disk ($z=0,\\;x^{2}+y^{2}\le 1$).
+* **$S_1$** – the curved spherical cap ($x^{2}+y^{2}+z^{2}=1,\\;z>= 0$),
+* **$S_2$** – the flat unit disk ($z=0,\\;x^{2}+y^{2}<= 1$).
 
 ##### 1 . Volume integral of the divergence
 
@@ -612,11 +612,11 @@ $$
 \frac{\partial z}{\partial z} = 1+1+1 = 3.
 $$
 
-Volume of the hemisphere: $\displaystyle \dfrac12\\!\left(\dfrac{4\pi}{3}\right)=\dfrac{2\pi}{3}$.
+Volume of the hemisphere: $\displaystyle \dfrac12\\!(\dfrac{4\pi}{3})=\dfrac{2\pi}{3}$.
 
 $$
 \iiint_{V} (\nabla\!\cdot\!\mathbf F)\,dV
-=3\left(\dfrac{2\pi}{3}\right)
+=3(\dfrac{2\pi}{3})
 =2\pi
 $$
 
@@ -624,26 +624,26 @@ $$
 
 **Curved cap $S_1$**
 
-On the unit sphere the outward unit normal is $\hat{\mathbf{n}}=\mathbf{i}x + \mathbf{j}y + \mathbf{k}z$.
-So, $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = x^{2}+y^{2}+z^{2}=1.$
+On the unit sphere the outward unit normal is $unit{n}=v{i}x + v{j}y + v{k}z$.
+So, $\mathbf F\\!\cdot\\!unit{n} = x^{2}+y^{2}+z^{2}=1.$
 
 $$
-\iint_{S_1}\mathbf F\!\cdot\!\hat{\mathbf{n}}\,dS = 1\cdot 2\pi = 2\pi
+\iint_{S_1}\mathbf F\!\cdot\!unit{n}\,dS = 1\cdot 2\pi = 2\pi
 $$
 
 **Flat disk $S_2$**
 
-Outward normal is $\hat{\mathbf{n}}=-\mathbf k$.
-On $S_2$, $z=0$. So, $\mathbf F\\!\cdot\\!\hat{\mathbf{n}} = 0$.
+Outward normal is $unit{n}=-\mathbf k$.
+On $S_2$, $z=0$. So, $\mathbf F\\!\cdot\\!unit{n} = 0$.
 
 $$
-\iint_{S_2}\mathbf F\!\cdot\!\hat{\mathbf{n}}\,dS = 0
+\iint_{S_2}\mathbf F\!\cdot\!unit{n}\,dS = 0
 $$
 
 **Total outward flux**
 
 $$
-\iint_{S}\mathbf F\!\cdot\!\hat{\mathbf{n}}\,dS
+\iint_{S}\mathbf F\!\cdot\!unit{n}\,dS
 =2\pi + 0 = 2 \pi
 $$
 
@@ -653,7 +653,7 @@ Therefore, we have:
 $$
 \iiint_{V} (\nabla\!\cdot\!\mathbf F)\,dV
 \;=\;
-\iint_{S}\mathbf F\!\cdot\!\hat{\mathbf{n}}\,dS
+\iint_{S}\mathbf F\!\cdot\!unit{n}\,dS
 \;=\;2\pi
 $$
 
@@ -662,32 +662,31 @@ $$
 We want to derive equation (II-18):
 
 $$
-\text{div} \, \mathbf{E} = \frac{\rho}{\epsilon_0}
+\text{div} \, v{E} = \frac{\rho}{eps_0}
 $$
 
 We start with Gauss's Law:
 
 $$
-\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \frac{1}{\epsilon_0} \iiint_V \rho \, dV
+\iint_S v{E} \cdot unit{n} \, dS = \frac{1}{eps_0} \iiint_V \rho \, dV
 \tag{II-31}
 $$
 
 We can use the divergence theorem to rewrite the left-hand side:
 
 $$
-\iint_S \mathbf{E} \cdot \hat{\mathbf{n}} \, dS = \iiint_V \nabla \cdot \mathbf{E} \, dV
+\iint_S v{E} \cdot unit{n} \, dS = \iiint_V \nabla \cdot v{E} \, dV
 \tag{II-32}
 $$
 
 Combining equations (II-31) and (II-32), we get:
 
 $$
-\iiint_V \nabla \cdot \mathbf{E} \, dV = \frac{1}{\epsilon_0} \iiint_V \rho \, dV
+\iiint_V \nabla \cdot v{E} \, dV = \frac{1}{eps_0} \iiint_V \rho \, dV
 $$
 
 Since this is true for _any_ volume $V$, we can conclude that:
 
 $$
-\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}
+\nabla \cdot v{E} = \frac{\rho}{eps_0}
 $$
-

@@ -30,34 +30,34 @@ v_1 & \cdots & v_n \\
 = \sum_{i=1}^n \sigma_i u_i v_i^T
 $$
 
-We want to find $x_1$ such that $\lVert x_1 \rVert_2 = 1$ and maximizes $\lVert Ax \rVert_2$. Then $x_1$ is the first right singular vector $v_1$. We can show that $Av_1 = \sigma_1 u_1$, and therefore $u_1 = \dfrac{Av_1}{\lVert Av_1 \rVert_2} = \dfrac{Av_1}{\sigma_1}$.
+We want to find $x_1$ such that $norm(x_1)_2 = 1$ and maximizes $norm(Ax)_2$. Then $x_1$ is the first right singular vector $v_1$. We can show that $Av_1 = \sigma_1 u_1$, and therefore $u_1 = \dfrac{Av_1}{norm(Av_1)_2} = \dfrac{Av_1}{\sigma_1}$.
 
-Similarly, $v_2$ is the vector that maximizes $\lVert (A - \sigma_1 u_1 v_1^T)x \rVert_2$ subject to $\lVert x \rVert_2 = 1$, and so on.
+Similarly, $v_2$ is the vector that maximizes $norm((A - \sigma_1 u_1 v_1^T)x)_2$ subject to $norm(x)_2 = 1$, and so on.
 
 #### Conditioning of Linear Systems
 
-We saw previously that $\kappa(A) = \lVert A \rVert_2 \lVert A^{-1} \rVert_2$ controls
+We saw previously that $\kappa(A) = norm(A)_2 norm(A^{-1})_2$ controls
 the maximum relative perturbation of $Ax$.
 
 We can also show $\kappa(A)$ describes the conditioning of the linear system $Ax = b$.
-That is, if we perturb $b$ by $\delta b$, what's the maximum relative perturbation $\delta x$ in the solution $x$?
+That is, if we perturb $b$ by $del b$, what's the maximum relative perturbation $del x$ in the solution $x$?
 
-If $A(x + \delta x) = b + \delta b$, then how $\dfrac{\lVert \delta b \rVert_2}{\lVert b \rVert_2}$ relates to $\dfrac{\lVert \delta x \rVert_2}{\lVert x \rVert_2}$?
+If $A(x + del x) = b + del b$, then how $\dfrac{norm(del b)_2}{norm(b)_2}$ relates to $\dfrac{norm(del x)_2}{norm(x)_2}$?
 
-(In the following, we will use $\lVert \cdot \rVert$ to denote the 2-norm.)
+(In the following, we will use $norm(\cdot)$ to denote the 2-norm.)
 
 By linearity, we can write:
 
 $$
 \begin{align*}
-\delta b = A \delta x &\implies
-\delta x = A^{-1} \delta b
+del b = A del x &=>
+del x = A^{-1} del b
 \\[1em]
-&\implies
-\lVert \delta x \rVert \le \lVert A^{-1} \rVert \lVert \delta b \rVert
+&=>
+norm(del x) <= norm(A^{-1}) norm(del b)
 \\[1em]
-&\implies
-\dfrac{\lVert \delta x \rVert}{\lVert x \rVert} \le \dfrac{\lVert A^{-1} \rVert \cdot \lVert \delta b \rVert}{\lVert x \rVert}
+&=>
+\dfrac{norm(del x)}{norm(x)} <= \dfrac{norm(A^{-1}) \cdot norm(del b)}{norm(x)}
 \tag{1}
 \end{align*}
 $$
@@ -65,56 +65,56 @@ $$
 Since $x$ is in the denominator, we are interested in lower bounding it. Since $Ax = b$, we have:
 
 $$
-\lVert x \rVert \ge \frac{\lVert b \rVert}{\lVert A \rVert} \tag{2}
+norm(x) >= \frac{norm(b)}{norm(A)} \tag{2}
 $$
 
 Then putting (2) and (1) together, we get:
 
 $$
-\dfrac{\lVert \delta x \rVert}{\lVert x \rVert} \le \lVert A \rVert \cdot \lVert A^{-1} \rVert \cdot \dfrac{\lVert \delta b \rVert}{\lVert b \rVert}
+\dfrac{norm(del x)}{norm(x)} <= norm(A) \cdot norm(A^{-1}) \cdot \dfrac{norm(del b)}{norm(b)}
 $$
 
 So, we have:
 
 $$
-\dfrac{\lVert \delta x \rVert}{\lVert x \rVert}
-    \le \kappa(A) \dfrac{\lVert \delta b \rVert}{\lVert b \rVert}
+\dfrac{norm(del x)}{norm(x)}
+    <= \kappa(A) \dfrac{norm(del b)}{norm(b)}
 $$
 
 ---------
 
-Now, consider perturbations to the input coefficients $\hat A = A + \delta A$. 
+Now, consider perturbations to the input coefficients $\hat A = A + del A$.
 
-We want to solve $Ax = b$ and want to know how much the solution changes if we perturb the coefficients: $(A + \delta A)(x + \delta x) = b$. That is, we want to understand the relationship between $\dfrac{\lVert \delta A \rVert}{\lVert A \rVert}$ and $\dfrac{\lVert \delta x \rVert}{\lVert x \rVert}$.
+We want to solve $Ax = b$ and want to know how much the solution changes if we perturb the coefficients: $(A + del A)(x + del x) = b$. That is, we want to understand the relationship between $\dfrac{norm(del A)}{norm(A)}$ and $\dfrac{norm(del x)}{norm(x)}$.
 
 Since $Ax = b$, then:
 
 $$
-\delta A \, x + A \, \delta x + \delta A \, \delta x = 0
+del A \, x + A \, del x + del A \, del x = 0
 $$
 
-Since $\delta A \\, \delta x$ is small, we can ignore it. Then we have:
+Since $del A \\, del x$ is small, we can ignore it. Then we have:
 
 $$
-\delta A \, x \approx -A \, \delta x
+del A \, x \approx -A \, del x
 $$
 
 Then:
 
 $$
-\lVert \delta x \rVert \le \lVert A^{-1} \rVert \lVert \delta A \rVert \lVert x \rVert
+norm(del x) <= norm(A^{-1}) norm(del A) norm(x)
 $$
 
 Which means:
 
 $$
-\dfrac{\lVert \delta x \rVert}{\lVert x \rVert} \le \lVert A^{-1} \rVert \lVert \delta A \rVert = \lVert A^{-1} \rVert \lVert A \rVert \dfrac{\lVert \delta A \rVert}{\lVert A \rVert}
+\dfrac{norm(del x)}{norm(x)} <= norm(A^{-1}) norm(del A) = norm(A^{-1}) norm(A) \dfrac{norm(del A)}{norm(A)}
 $$
 
 So, we have:
 
 $$
-\dfrac{\lVert \delta x \rVert}{\lVert x \rVert} \le \kappa(A) \dfrac{\lVert \delta A \rVert}{\lVert A \rVert}
+\dfrac{norm(del x)}{norm(x)} <= \kappa(A) \dfrac{norm(del A)}{norm(A)}
 $$
 
 #### Geometric Interpretation
@@ -189,7 +189,7 @@ The above algorithm can also be formulated recursively by blocks.
 
 Time complexity is $O(n^2)$. In the recursive version, the relation is $T(n) = 2T(n/2) + O(n^2)$.
 
-**Existence of solution.** Solution exists if $l_{ii} \neq 0$ for all $i$.
+**Existence of solution.** Solution exists if $l_{ii} != 0$ for all $i$.
 If some $l_{ii} = 0$, then solution may not exist.
 
 **Uniqueness of solution.** Even if some $l_{ii} = 0$ and $L^{-1}$ does not exist, the system may have solution, but it will not be unique.

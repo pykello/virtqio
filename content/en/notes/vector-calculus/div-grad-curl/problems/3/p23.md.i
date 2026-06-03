@@ -1,9 +1,9 @@
-**Problem III-23.** 
+**Problem III-23.**
 **(a)** Let $C$ be a closed curve lying in the $xy$-plane. What condition must the
-function $\mathbf{F}$ satisfy in order that
+function $v{F}$ satisfy in order that
 
 $$
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = A
+\oint_C v{F} \cdot unit{t} \, ds = A
 $$
 
 where $A$ is the area enclosed by $C$?
@@ -14,7 +14,7 @@ where $A$ is the area enclosed by $C$?
 Using the 2-dimensional Stokes' theorem, we have:
 
 $$
-\oint_C F_x \, dx + F_y \, dy = \iint_R \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \, dx \, dy
+\oint_C F_x \, dx + F_y \, dy = \iint_R ( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} ) \, dx \, dy
 $$
 
 So, in order for the line integral to be equal to the area enclosed by $C$, we need:
@@ -26,17 +26,17 @@ $$
 or equivalently:
 
 $$
-\nabla \times \mathbf{F} = \mathbf{k}
+\nabla \times v{F} = v{k}
 $$
 ::::
 
-**(b)** Give some examples of functions $\mathbf{F}$ having the property described in part (a).
+**(b)** Give some examples of functions $v{F}$ having the property described in part (a).
 
 :::expandable
 **Solution.** [Click to Expand]
 
-- $\mathbf{F} = \mathbf{i} y + 2 \mathbf{j} x$
-- $\mathbf{F} = \hat{\mathbf{e}}_\theta \dfrac{r}{2}$ (cylendrical coordinates)
+- $v{F} = v{i} y + 2 v{j} x$
+- $v{F} = unit{e}_\theta \dfrac{r}{2}$ (cylendrical coordinates)
 ::::
 
 **(c)** Use line integrals to find formulas for the area of
@@ -47,7 +47,7 @@ $$
 :::expandable
 **A Rectangle.** [Click to Expand]
 
-Let $\mathbf{F} = \mathbf{i} y + 2 \mathbf{j} x$ and consider the rectangle below:
+Let $v{F} = v{i} y + 2 v{j} x$ and consider the rectangle below:
 
  ![](III-23a.png)
 
@@ -55,17 +55,17 @@ Then, we have:
 
 $$
 \begin{align*}
-\int_{C_1} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= 0 \\[0.8em]
-\int_{C_2} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \int_{0}^{a} 2 \cdot b \, dy = 2 a b \\[0.8em]
-\int_{C_3} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \int_{b}^{0} a \, dx = - a b \\[0.8em]
-\int_{C_4} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= 0
+\int_{C_1} v{F} \cdot unit{t} \, ds &= 0 \\[0.8em]
+\int_{C_2} v{F} \cdot unit{t} \, ds &= \int_{0}^{a} 2 \cdot b \, dy = 2 a b \\[0.8em]
+\int_{C_3} v{F} \cdot unit{t} \, ds &= \int_{b}^{0} a \, dx = - a b \\[0.8em]
+\int_{C_4} v{F} \cdot unit{t} \, ds &= 0
 \end{align*}
 $$
 
 Putting together, we have:
 
 $$
-\oint_{C_1 + C_2 + C_3 + C_4} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = 2 a b - a b = a b
+\oint_{C_1 + C_2 + C_3 + C_4} v{F} \cdot unit{t} \, ds = 2 a b - a b = a b
 $$
 
 ::::
@@ -73,7 +73,7 @@ $$
 :::expandable
 **A Right Triangle.** [Click to Expand]
 
-Let $\mathbf{F} = \mathbf{i} y + 2 \mathbf{j} x$ and consider the right triangle below:
+Let $v{F} = v{i} y + 2 v{j} x$ and consider the right triangle below:
 
  ![](III-23b.jpg)
 
@@ -81,8 +81,8 @@ Then, we have:
 
 $$
 \begin{align*}
-\int_{C_1} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= 0 \\[0.8em]
-\int_{C_3} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= 0
+\int_{C_1} v{F} \cdot unit{t} \, ds &= 0 \\[0.8em]
+\int_{C_3} v{F} \cdot unit{t} \, ds &= 0
 \end{align*}
 $$
 
@@ -92,10 +92,10 @@ Then, we have:
 
 $$
 \begin{align*}
-\int_{C_2} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= 
+\int_{C_2} v{F} \cdot unit{t} \, ds &=
 \int_{C_2} (y \, dx + 2 x \, dy) \\[0.8em]
-&= \int_{0}^{a} \left( \dfrac{b}{a} (a - x) \, dx - 2 x \dfrac{b}{a} \, dx \right) \\[0.8em]
-&= \int_{0}^{a} \left( \dfrac{b}{a} (a - 3 x) \right) \, dx \\[0.8em]
+&= \int_{0}^{a} ( \dfrac{b}{a} (a - x) \, dx - 2 x \dfrac{b}{a} \, dx ) \\[0.8em]
+&= \int_{0}^{a} ( \dfrac{b}{a} (a - 3 x) ) \, dx \\[0.8em]
 &= \frac{ab}{2}
 \end{align*}
 $$
@@ -105,13 +105,13 @@ $$
 :::expandable
 **A Circle.** [Click to Expand]
 
-Let $\mathbf{F} = \hat{\mathbf{e}}_\theta \dfrac{r}{2}$. We have $ds = r \\, d\theta$ and $\hat{\mathbf{t}} = \hat{\mathbf{e}}_\theta$.
+Let $v{F} = unit{e}_\theta \dfrac{r}{2}$. We have $ds = r \\, d\theta$ and $unit{t} = unit{e}_\theta$.
 
 Then, we have:
 
 $$
 \begin{align*}
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \oint_C \left( \frac{r}{2} \right) r \, d\theta \\[0.8em]
+\oint_C v{F} \cdot unit{t} \, ds &= \oint_C ( \frac{r}{2} ) r \, d\theta \\[0.8em]
 &= \frac{r^2}{2} \int_0^{2\pi}  \, d\theta = \pi r^2
 \end{align*}
 $$
@@ -121,39 +121,39 @@ $$
 **(d)** Show that the area enclosed by the plane curve $C$ is the magnitude of
 
 $$
-\frac{1}{2} \oint_C \mathbf{r} \times \hat{\mathbf{t}} \, ds
+\frac{1}{2} \oint_C v{r} \times unit{t} \, ds
 $$
 
-where $\mathbf{r} = \mathbf{i} x + \mathbf{j} y$.
+where $v{r} = v{i} x + v{j} y$.
 
 :::expandable
 **Solution.** [Click to Expand]
 
-We have $\hat{\mathbf{t}} = \mathbf{i} \dfrac{dx}{ds} + \mathbf{j} \dfrac{dy}{ds}$, then:
+We have $unit{t} = v{i} \dfrac{dx}{ds} + v{j} \dfrac{dy}{ds}$, then:
 
 $$
 \begin{align*}
-\mathbf{r} \times \hat{\mathbf{t}} &= \mathbf{k} \left( x \frac{dy}{ds} - y \frac{dx}{ds} \right) \\[0.8em]
-&= \mathbf{k} \left( (-y \mathbf{i} + x \mathbf{j}) \cdot \hat{\mathbf{t}} \right)
+v{r} \times unit{t} &= v{k} ( x \frac{dy}{ds} - y \frac{dx}{ds} ) \\[0.8em]
+&= v{k} ( (-y v{i} + x v{j}) \cdot unit{t} )
 \end{align*}
 $$
 
 Then, we have:
 
 $$
-\frac{1}{2} \oint_C \mathbf{r} \times \hat{\mathbf{t}} \, ds = \frac{\mathbf{k}}{2} \oint_C (-y \mathbf{i} + x \mathbf{j}) \cdot \hat{\mathbf{t}} \, ds
+\frac{1}{2} \oint_C v{r} \times unit{t} \, ds = \frac{v{k}}{2} \oint_C (-y v{i} + x v{j}) \cdot unit{t} \, ds
 $$
 
-Since $\nabla \times (-y \mathbf{i} + x \mathbf{j}) = 2 \mathbf{k}$, then by Stokes' theorem we have:
+Since $\nabla \times (-y v{i} + x v{j}) = 2 v{k}$, then by Stokes' theorem we have:
 
 $$
-\oint_C (-y \mathbf{i} + x \mathbf{j}) \cdot \hat{\mathbf{t}} \, ds = 2 A
+\oint_C (-y v{i} + x v{j}) \cdot unit{t} \, ds = 2 A
 $$
 
 Then, we have:
 
 $$
-\frac{1}{2} \oint_C \mathbf{r} \times \hat{\mathbf{t}} \, ds = A \mathbf{k}
+\frac{1}{2} \oint_C v{r} \times unit{t} \, ds = A v{k}
 $$
 
 which has a magnitude of $A$.

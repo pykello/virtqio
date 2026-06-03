@@ -1,16 +1,16 @@
 **Problem III-1.**
 Use an argument like the one given in the text for the Coulomb force to
-show that $\int_C \mathbf{F} \cdot \hat{\mathbf{t}} \\, ds = 0$ is independent
-of path for any central force $\mathbf{F}$.
+show that $\int_C v{F} \cdot unit{t} \\, ds = 0$ is independent
+of path for any central force $v{F}$.
 
 :::expandable
 **Solution.** [Click to Expand]
 
-If $\mathbf{F}$ is a central force, then for any point $P$ in space, the force is in
+If $v{F}$ is a central force, then for any point $P$ in space, the force is in
 the radial direction and its magnitude depends only on the distance $r$ from the origin:
 
 $$
-\mathbf{F} = F_r(r) \hat{\mathbf{e}}_r
+v{F} = F_r(r) unit{e}_r
 $$
 
 Then we have:
@@ -63,14 +63,14 @@ $$
 On page 68 we saw that:
 
 $$
-\int_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = \int_C (F_x \, dx + F_y \, dy + F_z \, dz) 
+\int_C v{F} \cdot unit{t} \, ds = \int_C (F_x \, dx + F_y \, dy + F_z \, dz)
 $$
 
 Thus, we have:
 
 $$
 \begin{align*}
-\int_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \int_C F_r(r) \, dr \\
+\int_C v{F} \cdot unit{t} \, ds &= \int_C F_r(r) \, dr \\
  &= \int_{r_1}^{r_2} F_r(r) \, dr
 \end{align*}
 $$

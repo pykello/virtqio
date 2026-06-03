@@ -3,15 +3,15 @@
 The result
 
 $$
-(\nabla \times \mathbf{F})_z = \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
+(\nabla \times v{F})_z = \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
 $$
 
-has been established by calculating the circulation of $\mathbf{F}$ around
+has been established by calculating the circulation of $v{F}$ around
 a rectangle and around a right triangle. In this problem we will show that
 the result holds when the circulation is calculated around any closed curve
 lying in the $xy$-plane.
 
-**(a)** Approximate an arbitrary closed curve $C$ lying in the $xy$-plane by 
+**(a)** Approximate an arbitrary closed curve $C$ lying in the $xy$-plane by
 a polygonal $P$ as shown in the figure. Subdivide the area enclosed by $P$
 into $N$ patches of which the $l$-th has area $\Delta S_l$.
 Convince yourself by means of a sketch that this subdivision can be made
@@ -44,10 +44,10 @@ use Taylor series to show that for $N$ large and each $\Delta S_l$ small,
 
 $$
 \begin{align*}
-\oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &= \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds \\[1em]
-&\approx C(x_0, y_0) \Delta A + \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} 
+\oint_P v{F} \cdot unit{t} \, ds &= \sum_{l=1}^N \oint_{C_l} v{F} \cdot unit{t} \, ds \\[1em]
+&\approx C(x_0, y_0) \Delta A + ( \frac{\partial C}{\partial x} )_{x_0, y_0}
 \sum_{l=1}^N (x_l - x_0) \Delta S_l \\[1em]
-&\quad + \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} 
+&\quad + ( \frac{\partial C}{\partial y} )_{x_0, y_0}
 \sum_{l=1}^N (y_l - y_0) \Delta S_l + \cdots
 \end{align*}
 $$
@@ -62,13 +62,13 @@ Segments in patches that are not in the perimeter of $P$ are traced twice, and
 in opposite directions, so they cancel out. Thus, we can write:
 
 $$
-\oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds = \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds \tag{1}
+\oint_P v{F} \cdot unit{t} \, ds = \sum_{l=1}^N \oint_{C_l} v{F} \cdot unit{t} \, ds \tag{1}
 $$
 
 We can approximate the circulation around $C_l$ by:
 
 $$
-\oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds \approx
+\oint_{C_l} v{F} \cdot unit{t} \, ds \approx
 C(x_l, y_l) \, \Delta S_l \tag{2}
 $$
 
@@ -79,7 +79,7 @@ To approximate $C(x_l, y_l)$, we can use the two dimensional Taylor series.
 Taylor expansion of $C(x_l, y_l)$ gives:
 
 $$
-C(x_l, y_l) \approx C(x_0, y_0) + \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} (x_l - x_0) + \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} (y_l - y_0) + \cdots
+C(x_l, y_l) \approx C(x_0, y_0) + ( \frac{\partial C}{\partial x} )_{x_0, y_0} (x_l - x_0) + ( \frac{\partial C}{\partial y} )_{x_0, y_0} (y_l - y_0) + \cdots
 \tag{3}
 $$
 
@@ -87,11 +87,11 @@ Putting (1), (2), and (3) together, we have:
 
 $$
 \begin{align*}
-\oint_P \mathbf{F} &\cdot \hat{\mathbf{t}} \, ds \approx 
+\oint_P v{F} &\cdot unit{t} \, ds \approx
 \\[1em]
-&C(x_0, y_0) \Delta A + \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} 
+&C(x_0, y_0) \Delta A + ( \frac{\partial C}{\partial x} )_{x_0, y_0}
 \sum_{l=1}^N (x_l - x_0) \Delta S_l \\[1em]
-&\quad + \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} 
+&\quad + ( \frac{\partial C}{\partial y} )_{x_0, y_0}
 \sum_{l=1}^N (y_l - y_0) \Delta S_l + \cdots
 \end{align*}
 $$
@@ -102,10 +102,10 @@ $$
 
 $$
 \begin{align*}
-\lim_{N \to \infty} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &=
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds \\[1em]
-&\= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} \\[1em]
-&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} +
+\lim_{N -> inf} \oint_P v{F} \cdot unit{t} \, ds &=
+\oint_C v{F} \cdot unit{t} \, ds \\[1em]
+&\= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) ( \frac{\partial C}{\partial x} )_{x_0, y_0} \\[1em]
+&\+ (\overline{y} - y_0) ( \frac{\partial C}{\partial y} )_{x_0, y_0} +
 \cdots \Bigr) \Delta S
 \end{align*}
 $$
@@ -124,9 +124,9 @@ We have:
 
 $$
 \begin{align*}
-\lim_{N \to \infty} \sum_{l=1}^N (x_l - x_0) \Delta S_l &=
-\lim_{N \to \infty} \sum_{l=1}^N (x_l \Delta S_l) - x_0 \left(
-  \lim_{N \to \infty} \sum_{l=1}^N \Delta S_l \right) \\[1em]
+\lim_{N -> inf} \sum_{l=1}^N (x_l - x_0) \Delta S_l &=
+\lim_{N -> inf} \sum_{l=1}^N (x_l \Delta S_l) - x_0 (
+  \lim_{N -> inf} \sum_{l=1}^N \Delta S_l ) \\[1em]
 &= \iint_R x \, dx \, dy - x_0 \Delta S \\[1em]
 &= \Delta S (\overline{x} - x_0)
 \end{align*}
@@ -135,18 +135,18 @@ $$
 Similarly, we can get:
 
 $$
-\lim_{N \to \infty} \sum_{l=1}^N (y_l - y_0) \Delta S_l = \Delta S (\overline{y} - y_0)
+\lim_{N -> inf} \sum_{l=1}^N (y_l - y_0) \Delta S_l = \Delta S (\overline{y} - y_0)
 $$
 
 Putting this together, we have:
 
 $$
 \begin{align*}
-\oint_C \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &=
-\lim_{N \to \infty} \sum_{l=1}^N \oint_{C_l} \mathbf{F} \cdot \hat{\mathbf{t}} \, ds
+\oint_C v{F} \cdot unit{t} \, ds &=
+\lim_{N -> inf} \sum_{l=1}^N \oint_{C_l} v{F} \cdot unit{t} \, ds
 \\[1em]
-&= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} \\[1em]
-&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} +
+&= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) ( \frac{\partial C}{\partial x} )_{x_0, y_0} \\[1em]
+&\+ (\overline{y} - y_0) ( \frac{\partial C}{\partial y} )_{x_0, y_0} +
 \cdots \Bigr) \Delta S
 \end{align*}
 $$
@@ -156,21 +156,21 @@ $$
 **(d)** Finally, calculate
 
 $$
-(\nabla \times \mathbf{F})_z = \lim_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds
+(\nabla \times v{F})_z = \lim_{\Delta S -> 0} \frac{1}{\Delta S} \oint_P v{F} \cdot unit{t} \, ds
 $$
 
 :::expandable
 **Solution.** [Click to Expand]
 
-As $\Delta S \to 0$, then $(\overline{x}, \overline{y}) \to (x, y)$, and we have:
+As $\Delta S -> 0$, then $(\overline{x}, \overline{y}) -> (x, y)$, and we have:
 
 $$
 \begin{align*}
-\lim_{\Delta S \to 0} \frac{1}{\Delta S} \oint_P \mathbf{F} \cdot \hat{\mathbf{t}} \, ds &=
-\lim_{\Delta S \to 0} \Bigl( C(x_0, y_0) + (\overline{x} - x_0) \left( \frac{\partial C}{\partial x} \right)_{x_0, y_0} \\[1em]
-&\+ (\overline{y} - y_0) \left( \frac{\partial C}{\partial y} \right)_{x_0, y_0} +
+\lim_{\Delta S -> 0} \frac{1}{\Delta S} \oint_P v{F} \cdot unit{t} \, ds &=
+\lim_{\Delta S -> 0} \Bigl( C(x_0, y_0) + (\overline{x} - x_0) ( \frac{\partial C}{\partial x} )_{x_0, y_0} \\[1em]
+&\+ (\overline{y} - y_0) ( \frac{\partial C}{\partial y} )_{x_0, y_0} +
 \cdots \Bigr) \\[1em]
-&= \lim_{\Delta S \to 0} C(x_l, y_l) \\[1em]
+&= \lim_{\Delta S -> 0} C(x_l, y_l) \\[1em]
 &= \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
 \end{align*}
 $$

@@ -14,18 +14,18 @@ Conditioning is a property of the problem, not the algorithm. An inaccurate solu
 **Well-conditioned** or **insensitive** problems are those for which small relative changes in the input produce small relative changes in the output.
 In **ill-conditioned** or **sensitive** problems, small relative changes in the input produce large relative changes in the output.
 
-**(Relative) Condition Number** is the relative change in the output divided by the relative change in the input. 
+**(Relative) Condition Number** is the relative change in the output divided by the relative change in the input.
 
 **Absolute Condition Number**
 
 $$
-\kappa_{abs}(f, x) = \lvert f'(x) \rvert
+\kappa_{abs}(f, x) = abs(f'(x))
 $$
 
 **Relative Condition Number**
 
 $$
-\kappa_{rel}(f, x) = \left\lvert \frac{x f'(x)}{f(x)} \right\rvert
+\kappa_{rel}(f, x) = abs(\frac{x f'(x)}{f(x)})
 $$
 
 Condition number of an ill-posed problem is infinite. That is, $f$ is not
@@ -35,7 +35,7 @@ differentiable for some input.
 **Example (Condition Number).** Let $f(x) = \sqrt{x}$. Since $f'(x) = \dfrac{1}{2\sqrt{x}}$, we have:
 
 $$
-\kappa_{rel}(f, x) = \left\lvert \frac{x f'(x)}{f(x)} \right\rvert = \left\lvert \frac{x/(2\sqrt{x})}{\sqrt{x}} \right\rvert = \frac{1}{2}
+\kappa_{rel}(f, x) = abs(\frac{x f'(x)}{f(x)}) = abs(\frac{x/(2\sqrt{x})}{\sqrt{x}}) = \frac{1}{2}
 $$
 
 This means that a given relative change in the input causes a relative change in the output of about half as much.
@@ -53,7 +53,7 @@ Stability (of an algorithm) is analogous to conditioning (of a problem):
 
 From the viewpoint of _backward error analysis_, an algorithm is stable if it produces a result that is close to the exact solution of a nearby problem.
 
-An algorithm is **accurate** if $\hat{f}(x) = f(x)$ for all $x$ when computing with infinite precision. In other words, truncation error is zero.
+An algorithm is **accurate** if $hat{f}(x) = f(x)$ for all $x$ when computing with infinite precision. In other words, truncation error is zero.
 
 #### Truncation Error
 
@@ -66,15 +66,15 @@ $$
 Then the absolute truncation error of the approximation is given by
 
 $$
-f(x + h) - g(h) = \sum_{i=k+1}^{\infty} \frac{f^{(i)}(x)}{i!} h^i = \mathcal{O}(h^{k+1}) \text{ as } h \to 0
+f(x + h) - g(h) = \sum_{i=k+1}^{inf} \frac{f^{(i)}(x)}{i!} h^i = cal{O}(h^{k+1}) \text{ as } h -> 0
 $$
 
 #### Round-off Error
 
-**Round-off error** concerns errors due to inexact representations of numbers. 
+**Round-off error** concerns errors due to inexact representations of numbers.
 
 To study the propagation of round-off errors, we can use the notion of conditioning. The
-condition number tells us the worst-case amplification of the error in the input to the error in the output. We usually want to consider the point of maximum amplification: $\kappa(f) = \max_{x \in \mathcal{X}} \kappa_{rel}(f, x)$.
+condition number tells us the worst-case amplification of the error in the input to the error in the output. We usually want to consider the point of maximum amplification: $\kappa(f) = \max_{x \in cal{X}} \kappa_{rel}(f, x)$.
 
 
 #### 64-bit Floating Point Numbers
@@ -157,7 +157,7 @@ It is defined as the smallest positive number which, when added to 1.0, gives a 
 The relative error in floating-point arithmetic is at most $\varepsilon_{\text{mach}}$:
 
 $$
-\left\lvert \frac{\text{fl}(x) - x}{x} \right\rvert \leq \varepsilon_{\text{mach}}
+abs(\frac{\text{fl}(x) - x}{x}) <= \varepsilon_{\text{mach}}
 $$
 
 :::card[example]
@@ -168,7 +168,7 @@ $$
 
 For example, consider a scientific notation system with 4 digits of precision. We want to add $2.103 \times 10^2$ and $7.620 \times 10^0$:
 
-* First, we align the decimal points: 
+* First, we align the decimal points:
   $2.103 \times 10^2$ and $0.07620 \times 10^2$.
 * Then we add: $2.103 + 0.07620 = 2.17920 \times 10^2$.
 * Finally, we round to 4 digits: $2.179 \times 10^2$.
@@ -181,7 +181,7 @@ $10^9$ times. Then we ignore all of these small changes, which add up to a large
 **Example.** We know that the harmonic series diverges:
 
 $$
-\sum_{i=1}^{n} \frac{1}{i} \to \infty
+\sum_{i=1}^{n} \frac{1}{i} -> inf
 $$
 
 But if we compute it using 32-bit floating point numbers, it converges to approximately $15.4037$.
@@ -201,11 +201,11 @@ In general if $x + y$ is near 0, then addition is ill-conditioned.
 
 $$
 \begin{align*}
-\text{fl}(\text{fl}(x) \cdot \text{fl}(y)) - x y &\le (1 + \varepsilon)(x(1 + \varepsilon)) \cdot y(1 + \varepsilon) - x  y \\
+\text{fl}(\text{fl}(x) \cdot \text{fl}(y)) - x y &<= (1 + \varepsilon)(x(1 + \varepsilon)) \cdot y(1 + \varepsilon) - x  y \\
 &= x  y (1 + \varepsilon)^3 - x y \\
 &\approx x y (1 + 3 \varepsilon) - x  y
 \end{align*}
 $$
 
-So the relative error is at most $3 \varepsilon$. That is, $\kappa(x \cdot y) \leq 3$.
+So the relative error is at most $3 \varepsilon$. That is, $\kappa(x \cdot y) <= 3$.
 

@@ -44,19 +44,19 @@ the spark will occur at position $x = v_\text{rel} t$.
 Now, using the invariance of the spacetime interval, we can calculate $t'$,
 
 $$
-t' = t \left( 1 - v_\text{rel}^2 \right)^{1/2}
+t' = t ( 1 - v_\text{rel}^2 )^{1/2}
 $$
 
 Or
 
 $$
-t = \frac{t'}{\left( 1 - v_\text{rel}^2 \right)^{1/2}}
+t = \frac{t'}{( 1 - v_\text{rel}^2 )^{1/2}}
 $$
 
 We define the **time stretch factor** as
 
 $$
-\gamma = \frac{1}{\left( 1 - v_\text{rel}^2 \right)^{1/2}}
+\gamma = \frac{1}{( 1 - v_\text{rel}^2 )^{1/2}}
 $$
 
 So we have $t = \gamma t'$ (when $x' = 0$).
@@ -94,8 +94,8 @@ leads to completed form of the Lorentz transformation:
 
 $$
 \begin{aligned}
-t &= \gamma \left( t' + v_\text{rel} x' \right) \\
-x &= \gamma \left( x' + v_\text{rel} t' \right)
+t &= \gamma ( t' + v_\text{rel} x' ) \\
+x &= \gamma ( x' + v_\text{rel} t' )
 \end{aligned}
 $$
 
@@ -103,8 +103,8 @@ or
 
 $$
 \begin{aligned}
-t &= \frac{v_\text{rel} x' + t'}{\left( 1 - v_\text{rel}^2 \right)^{1/2}} \\[0.5em]
-x &= \frac{x' + v_\text{rel} t'}{\left( 1 - v_\text{rel}^2 \right)^{1/2}}
+t &= \frac{v_\text{rel} x' + t'}{( 1 - v_\text{rel}^2 )^{1/2}} \\[0.5em]
+x &= \frac{x' + v_\text{rel} t'}{( 1 - v_\text{rel}^2 )^{1/2}}
 \end{aligned}
 $$
 
@@ -112,8 +112,8 @@ $$
 
 $$
 \begin{aligned}
-t' &= \frac{-v_\text{rel} x + t}{\left( 1 - v_\text{rel}^2 \right)^{1/2}} \\[0.5em]
-x' &= \frac{x - v_\text{rel} t}{\left( 1 - v_\text{rel}^2 \right)^{1/2}}
+t' &= \frac{-v_\text{rel} x + t}{( 1 - v_\text{rel}^2 )^{1/2}} \\[0.5em]
+x' &= \frac{x - v_\text{rel} t}{( 1 - v_\text{rel}^2 )^{1/2}}
 \end{aligned}
 $$
 

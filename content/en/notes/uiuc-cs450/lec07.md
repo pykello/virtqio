@@ -6,13 +6,13 @@
 #### Linear Least Squares
 
 We have more equations than unknowns, and we want to find a solution
-that minimizes $\lVert Ax - b \rVert_2$. That is, we want to find
+that minimizes $norm(Ax - b)_2$. That is, we want to find
 
 $$
-x^* = \arg\min_{x \in \mathbb{R}^n} \lVert Ax - b \rVert_2
+x^* = \arg\min_{x \in bb{R}^n} norm(Ax - b)_2
 $$
 
-where $A \in \mathbb{R}^{m \times n}$ and $b \in \mathbb{R}^m$.
+where $A \in bb{R}^{m \times n}$ and $b \in bb{R}^m$.
 
 We usually write this as $Ax \cong b$, meaning $x$ is the vector that
 minimizes the 2-norm of the **residual** $Ax - b$.
@@ -24,14 +24,14 @@ Given the SVD of $A = U \Sigma V^T$, and since $U^T$ is orthogonal (hence, an is
 
 $$
 \begin{align*}
-\lVert Ax - b \rVert_2 &= 
-\lVert U^T (Ax - b) \rVert_2 \\[1em]
-&= \lVert \Sigma V^T x - U^T b \rVert_2
+norm(Ax - b)_2 &=
+norm(U^T (Ax - b))_2 \\[1em]
+&= norm(\Sigma V^T x - U^T b)_2
 \end{align*}
 $$
 
 Letting $y = V^T x$ and $d = U^T b$, then we need to find $y^*$ such that
-$\lVert \Sigma y - d \rVert_2$ is minimized.
+$norm(\Sigma y - d)_2$ is minimized.
 
 The minimizer of this reduced problem is given by:
 
@@ -43,7 +43,7 @@ where $r = \text{rank}(A)$.
 Remember that inverse of a non-singular matrix $A$ is given by $A^{-1} = V \Sigma^{-1} U^T$. Similarly, the **pseudoinverse** is given by $A^\dagger = V \Sigma^\dagger U^T$, where $\Sigma^\dagger$ is the diagonal matrix with the reciprocals of the non-zero singular values of $A$ on the diagonal, and zeros elsewhere:
 
 $$
-\Sigma^\dagger = \text{diag}\left(\dfrac{1}{\sigma_1}, \ldots, \dfrac{1}{\sigma_r}, 0, \ldots, 0\right)
+\Sigma^\dagger = \text{diag}(\dfrac{1}{\sigma_1}, \ldots, \dfrac{1}{\sigma_r}, 0, \ldots, 0)
 $$
 
 Then, $y^* = \Sigma^\dagger d$, and we can recover $x^*$ as:
@@ -94,16 +94,16 @@ Then we can use the least squares method to find the coefficients $a_i$.
 
 #### Conditioning of Linear Least Squares
 
-Consider a perturbation $\delta b$ to the right-hand side $b$:
+Consider a perturbation $del b$ to the right-hand side $b$:
 
 $$
-A(x + \delta x) \cong b + \delta b
+A(x + del x) \cong b + del b
 $$
 
 The amplification depends on how much of $b$ is in the span of $A$.
 
 $$
-\frac{\lVert \delta x \rVert_2}{\lVert x \rVert_2} \leq \kappa(A) \frac{\lVert b \rVert_2}{\lVert Ax \rVert_2} \frac{\lVert \delta b \rVert_2}{\lVert b \rVert_2}
+\frac{norm(del x)_2}{norm(x)_2} <= \kappa(A) \frac{norm(b)_2}{norm(Ax)_2} \frac{norm(del b)_2}{norm(b)_2}
 $$
 
 #### Normal Equations
@@ -135,7 +135,7 @@ If $A$ is full column rank ($\text{rank}(A) = n$), then $A^T A$ is symmetric pos
 - **Symmetric.** $(A^T A)^T = A^T A$.
 - **Positive Definite.**
   - Since $A^T A = V \Sigma^2 V^T$, we have $\lambda_i(A^T A) = \sigma_i(A)^2 > 0$,
-  - or equivalently, $x^T A^T A x = \lVert Ax \rVert_2^2 > 0$ for all $x \neq 0$.
+  - or equivalently, $x^T A^T A x = norm(Ax)_2^2 > 0$ for all $x != 0$.
 
 Since $A^T A$ is SPD, we can use Cholesky factorization to solve the normal equation $A^T A x = A^T b$.
 
@@ -143,22 +143,22 @@ Since $A^T A$ is SPD, we can use Cholesky factorization to solve the normal equa
 
 **QR factorization** provides a more stable way to solve the least squares problem.
 
-Given a matrix $A \in \mathbb{R}^{m \times n}$ where $m \geq n$ and $\text{rank}(A) = n$, we can factor it as $A = QR$, where:
+Given a matrix $A \in bb{R}^{m \times n}$ where $m >= n$ and $\text{rank}(A) = n$, we can factor it as $A = QR$, where:
 
-- $Q \in \mathbb{R}^{m \times m}$ is an orthogonal matrix (i.e., $Q^T Q = I_m$),
-- $R \in \mathbb{R}^{m \times n}$ is an upper trapezoidal matrix.
+- $Q \in bb{R}^{m \times m}$ is an orthogonal matrix (i.e., $Q^T Q = I_m$),
+- $R \in bb{R}^{m \times n}$ is an upper trapezoidal matrix.
   For $m > n$, first $n$ rows of $R$ are upper triangular with
   positive diagonal, and the remaining rows are zero.
 
-A **reduced QR factorization** is defined as $A = \hat{Q} \hat{R}$, where:
-- $\hat{Q} \in \mathbb{R}^{m \times n}$ has orthonormal columns,
-- $\hat{R} \in \mathbb{R}^{n \times n}$ is upper triangular.
+A **reduced QR factorization** is defined as $A = hat{Q} hat{R}$, where:
+- $hat{Q} \in bb{R}^{m \times n}$ has orthonormal columns,
+- $hat{R} \in bb{R}^{n \times n}$ is upper triangular.
 
 To solve the least squares problem $Ax \cong b$, we can:
 
-1. Compute the reduced QR factorization $A = \hat{Q} \hat{R}$.
-2. Multiply both sides by $\hat{Q}^T$ to get $\hat{R} x = \hat{Q}^T b$.
-3. Solve the upper triangular system $\hat{R} x = \hat{Q}^T b$ using backward substitution.
+1. Compute the reduced QR factorization $A = hat{Q} hat{R}$.
+2. Multiply both sides by $hat{Q}^T$ to get $hat{R} x = hat{Q}^T b$.
+3. Solve the upper triangular system $hat{R} x = hat{Q}^T b$ using backward substitution.
 
 This method is more stable than the normal equations, since multiplying
 by an orthogonal matrix doesn't grow the error.
@@ -198,5 +198,5 @@ end
 ```
 
 Here, instead of subtracting the projection from the
-original vector, we subtract it from the already 
+original vector, we subtract it from the already
 orthogonalized vector $b_i$.

@@ -17,7 +17,7 @@ $$
 \text{rank}(A) = \text{rank}(LU) = \text{rank}(U)
 $$
 
-In **partial pivoting**, at each step we pick the largest 
+In **partial pivoting**, at each step we pick the largest
 absolute value in the column. $P$ is product of $n-1$
 row permutation matrices:
 
@@ -33,7 +33,7 @@ $$
 \text{rank}(A[1:k, 1:k]) = \text{rank}(A[1:n, 1:k])
 $$
 
-For all $1 \leq k \leq n - 1$.
+For all $1 <= k <= n - 1$.
 
 **Example.** Consider the matrix:
 
@@ -128,11 +128,11 @@ Complete pivoting is noticeably more expensive than partial pivoting.
 
 #### Round-off Error in LU
 
-Consider the following matrix where $\epsilon < \epsilon_{\text{mach}}$:
+Consider the following matrix where $eps < \epsilon_{\text{mach}}$:
 
 $$
 A = \begin{bmatrix}
-\epsilon & 1 \\
+eps & 1 \\
 1 & 1
 \end{bmatrix}
 $$
@@ -141,17 +141,17 @@ $$
 
 * We have $L = \begin{bmatrix}
 1 & 0 \\\\
-1/\epsilon & 1
+1/eps & 1
 \end{bmatrix}$ and $U = \begin{bmatrix}
-\epsilon & 1 \\\\
-0 & 1 - 1/\epsilon
+eps & 1 \\\\
+0 & 1 - 1/eps
 \end{bmatrix}$.
 * Rounding yields $fl(U) = \begin{bmatrix}
-\epsilon & 1 \\\\
-0 & -1/\epsilon
+eps & 1 \\\\
+0 & -1/eps
 \end{bmatrix}$.
 * This leads to $L \\; fl(U) = \begin{bmatrix}
-\epsilon & 1 \\\\
+eps & 1 \\\\
 1 & 0
 \end{bmatrix}$, a backward error of $\begin{bmatrix}0 & 0 \\\\
 0 & -1\end{bmatrix}$.
@@ -159,13 +159,13 @@ $$
 
 **With partial pivoting.**
 * Partial pivoting gives $PA = \begin{bmatrix}1 & 1 \\\\
-\epsilon & 1\end{bmatrix}$.
+eps & 1\end{bmatrix}$.
 * We have $L = \begin{bmatrix}
 1 & 0 \\\\
-\epsilon & 1
+eps & 1
 \end{bmatrix}$ and $U = \begin{bmatrix}
 1 & 1 \\\\
-0 & 1 - \epsilon
+0 & 1 - eps
 \end{bmatrix}$.
 * Rounding yields $fl(U) = \begin{bmatrix}
 1 & 1 \\\\
@@ -173,17 +173,17 @@ $$
 \end{bmatrix}$.
 * This leads to $L \\; fl(U) = \begin{bmatrix}
 1 & 1 \\\\
-\epsilon & 1 + \epsilon
+eps & 1 + eps
 \end{bmatrix}$, a backward error of $\begin{bmatrix}0 & 0 \\\\
-0 & \epsilon\end{bmatrix}$.
+0 & eps\end{bmatrix}$.
 
 #### Error Analysis of LU Factorization
 
-When computing in floating-point, absolute backward error $\delta A$ in LU,
-so that $\hat L \hat U = A + \delta A$, is:
+When computing in floating-point, absolute backward error $del A$ in LU,
+so that $\hat L \hat U = A + del A$, is:
 
 $$
-\lvert \delta a_{ij} \rvert \leq \epsilon_{\text{mach}} (\lvert \hat L \rvert \cdot \lvert \hat U \rvert)_{ij}
+abs(del a_{ij}) <= \epsilon_{\text{mach}} (abs(\hat L) \cdot abs(\hat U))_{ij}
 $$
 
 #### Helpful Matrix Properties
@@ -191,12 +191,12 @@ $$
 **Strictly Diagonally Dominant Matrix.** Pivoting is not required if the matrix is strictly diagonally dominant, meaning:
 
 $$
-\lvert a_{ii} \rvert > \sum_{j \neq i} \lvert a_{ij} \rvert
+abs(a_{ii}) > \sum_{j != i} abs(a_{ij})
 $$
 
 That is, the absolute value of each diagonal entry is greater than the sum of the absolute values of the other entries in that **row**.
 
-**Symmetric Positive Definite Matrix.** If $A^T = A$ and for all $x \neq 0$ we have $x^T A x > 0$ (or equivalently, all eigenvalues are positive), then $L = U^T$ and pivoting is not required. **Cholesky** algorithm $A = LL^T$ can be used. Note that in Cholesky, $L$ is not necessarily unit-diagonal.
+**Symmetric Positive Definite Matrix.** If $A^T = A$ and for all $x != 0$ we have $x^T A x > 0$ (or equivalently, all eigenvalues are positive), then $L = U^T$ and pivoting is not required. **Cholesky** algorithm $A = LL^T$ can be used. Note that in Cholesky, $L$ is not necessarily unit-diagonal.
 
 :::card[example]
 **Example.** Consider the matrix:

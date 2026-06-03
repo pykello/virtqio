@@ -11,22 +11,22 @@ Some notes and examples are from:
 
 A **vector norm** should satisfy:
 
-- $\lVert x \rVert \ge 0$
-- $\lVert x \rVert = 0$ if and only if $x = 0$
-- $\lVert \alpha x \rVert = |\alpha| \lVert x \rVert$ for all $\alpha \in \mathbb{R}$
-- $\lVert x + y \rVert \le \lVert x \rVert + \lVert y \rVert$ (triangle inequality)
+- $norm(x) >= 0$
+- $norm(x) = 0$ if and only if $x = 0$
+- $norm(\alpha x) = |\alpha| norm(x)$ for all $\alpha \in bb{R}$
+- $norm(x + y) <= norm(x) + norm(y)$ (triangle inequality)
 
-A norm is uniquely determined by its unit ball, which is the set of all vectors $x$ such that $\lVert x \rVert = 1$.
+A norm is uniquely determined by its unit ball, which is the set of all vectors $x$ such that $norm(x) = 1$.
 
 $p$-norms are defined as:
 
 $$
-\lVert x \rVert_p = \left( \sum_{i=1}^n |x_i|^p \right)^{1/p}
+norm(x)_p = ( \sum_{i=1}^n |x_i|^p )^{1/p}
 $$
 
-- 1-norm: $\lVert x \rVert_1 = \sum_{i=1}^n |x_i|$. In 2D, the unit ball is a diamond.
-- 2-norm: $\lVert x \rVert_2 = \sqrt{\sum_{i=1}^n |x_i|^2}$. In 2D, the unit ball is a circle.
-- $\infty$-norm: $\lVert x \rVert_\infty = \max_{i=1}^n |x_i|$. In 2D, the unit ball is a square.
+- 1-norm: $norm(x)_1 = \sum_{i=1}^n |x_i|$. In 2D, the unit ball is a diamond.
+- 2-norm: $norm(x)_2 = \sqrt{\sum_{i=1}^n |x_i|^2}$. In 2D, the unit ball is a circle.
+- $inf$-norm: $norm(x)_\infty = \max_{i=1}^n |x_i|$. In 2D, the unit ball is a square.
 
 <div id="fig1" style="width:90%; max-width: 360px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
 
@@ -92,21 +92,21 @@ board.create('polygon', linfPoints, {
 </script>
 
 <div style="text-align: center; margin-top: 10px; margin-bottom: 30px;">
-    Unit balls: 
+    Unit balls:
     <span style="color: red;">1-norm (diamond)</span> |
     <span style="color: blue;">2-norm (circle)</span> |
     <span style="color: green;">∞-norm (square)</span>
 </div>
 
-In general, for any vector $v \in \mathbb{R}^n$, we have:
+In general, for any vector $v \in bb{R}^n$, we have:
 
 $$
-\lVert v \rVert_1 \ge \lVert v \rVert_2 \ge \lVert v \rVert_\infty
+norm(v)_1 >= norm(v)_2 >= norm(v)_\infty
 $$
 
 We also have the following inequalities:
-- $\lVert v \rVert_1 \le \sqrt{n} \lVert v \rVert_2$
-- $\lVert v \rVert_2 \le \sqrt{n} \lVert v \rVert_\infty$
+- $norm(v)_1 <= \sqrt{n} norm(v)_2$
+- $norm(v)_2 <= \sqrt{n} norm(v)_\infty$
 
 So, any of these norms differ by at most a factor of a constant.
 
@@ -114,51 +114,51 @@ So, any of these norms differ by at most a factor of a constant.
 
 **Inner-product** $\langle x, y \rangle$ should satisfy:
 
-- $\langle x, x \rangle \ge 0$
+- $\langle x, x \rangle >= 0$
 - $\langle x, x \rangle = 0$ if and only if $x = 0$
 - $\langle x, y \rangle = \langle y, x \rangle$
 - $\langle x, y + z \rangle = \langle x, y \rangle + \langle x, z \rangle$
-- $\langle \alpha x, y \rangle = \alpha \langle x, y \rangle$ for all $\alpha \in \mathbb{R}$
+- $\langle \alpha x, y \rangle = \alpha \langle x, y \rangle$ for all $\alpha \in bb{R}$
 
-**Cauchy-Schwarz Inequality**: $\lvert \langle x, y \rangle \rvert \le \sqrt{\langle x, x \rangle \langle y, y \rangle}$
+**Cauchy-Schwarz Inequality**: $abs(\langle x, y \rangle) <= \sqrt{\langle x, x \rangle \langle y, y \rangle}$
 
-For 2-norms, $\lvert x^T y \rvert \le \lVert x \rVert_2 \lVert y \rVert_2$.
+For 2-norms, $abs(x^T y) <= norm(x)_2 norm(y)_2$.
 
 #### Matrix Norms
 
 A **matrix norm** should satisfy:
 
-- $\lVert A \rVert \ge 0$
-- $\lVert A \rVert = 0$ if and only if $A = 0$
-- $\lVert \alpha A \rVert = |\alpha| \cdot \lVert A \rVert$ for all $\alpha \in \mathbb{R}$
-- $\lVert A + B \rVert \le \lVert A \rVert + \lVert B \rVert$ (triangle inequality)
+- $norm(A) >= 0$
+- $norm(A) = 0$ if and only if $A = 0$
+- $norm(\alpha A) = |\alpha| \cdot norm(A)$ for all $\alpha \in bb{R}$
+- $norm(A + B) <= norm(A) + norm(B)$ (triangle inequality)
 
-**Frobenius norm**: $\lVert A \rVert_F = \sqrt{\sum_{i, j} a_{ij}^2}$
+**Frobenius norm**: $norm(A)_F = \sqrt{\sum_{i, j} a_{ij}^2}$
 
 **Operator norm**: Maximum amplification of any input vector $x$ to $Ax$:
 
 $$
-\lVert A \rVert_p = \max_{x \neq 0} \frac{\lVert Ax \rVert_p}{\lVert x \rVert_p} = \max_{x, \lVert x \rVert_p = 1} \lVert Ax \rVert_p
+norm(A)_p = \max_{x != 0} \frac{norm(Ax)_p}{norm(x)_p} = \max_{x, norm(x)_p = 1} norm(Ax)_p
 $$
 
 
 :::card[example]
 
-**Theorem** (from quiz 3): $\lVert A \rVert_\infty$ is the maximum 1-norm of the rows of $A$.
+**Theorem** (from quiz 3): $norm(A)_\infty$ is the maximum 1-norm of the rows of $A$.
 
 **Proof**.
 
-Assume $A$ is $n \times m$. Let $1 \le i \le n$ and $v \in \mathbb{R}^m$ s.t. $\lVert v \rVert_\infty = 1$.
+Assume $A$ is $n \times m$. Let $1 <= i <= n$ and $v \in bb{R}^m$ s.t. $norm(v)_\infty = 1$.
 Since $\max \\{|v_1|, \ldots, |v_m|\\} = 1$, we have
 
 $$
-|(A \cdot v)_i| \le \sum_{j=1}^m |A_{i,j}| = \lVert A_i \rVert_1 \tag{1}
+|(A \cdot v)_i| <= \sum_{j=1}^m |A_{i,j}| = norm(A_i)_1 \tag{1}
 $$
 
 Therefore,
 
 $$
-\lVert A \rVert_\infty \le \max\{\lVert A_1 \rVert_1, \ldots, \lVert A_n \rVert_1\} \tag{2}
+norm(A)_\infty <= \max\{norm(A_1)_1, \ldots, norm(A_n)_1\} \tag{2}
 $$
 
 Now, we show that a vector $v$ exists to make the equality happen.
@@ -167,26 +167,26 @@ Define vectors $v^1, \ldots, v^n$ such that $v^i_j = \text{sgn}(A_{i,j})$, where
 
 $$
 \text{sgn}(x) = \begin{cases}
-+1 \quad &x \ge 0 \\
++1 \quad &x >= 0 \\
 -1 \quad &x < 0
 \end{cases}
 $$
 
-Then for all $1 \le i \le n$, $\lVert v^i \rVert_\infty = 1$ and
+Then for all $1 <= i <= n$, $norm(v^i)_\infty = 1$ and
 
 $$
-(A \cdot v^i)_i = \sum_{j=1}^m |A_{i,j}| = \lVert A_i \rVert_1 \tag{3}
+(A \cdot v^i)_i = \sum_{j=1}^m |A_{i,j}| = norm(A_i)_1 \tag{3}
 $$
 
-Choose $k = \text{argmax}_{i=1}^n \lVert A_i \rVert_1$. In case there are multiple such $k$, choose any.
+Choose $k = \text{argmax}_{i=1}^n norm(A_i)_1$. In case there are multiple such $k$, choose any.
 
 Then using (1) and (3),
 
 $$
-\lVert A \cdot v^k \rVert_\infty = \lVert A_k \rVert_1 = \max\{\lVert A_1 \rVert_1, \ldots, \lVert A_n \rVert_1\} \tag{4}
+norm(A \cdot v^k)_\infty = norm(A_k)_1 = \max\{norm(A_1)_1, \ldots, norm(A_n)_1\} \tag{4}
 $$
 
-Using 2 and 4, we conclude that $\lVert A \rVert_\infty$ is the maximum 1-norm of the rows of $A$.
+Using 2 and 4, we conclude that $norm(A)_\infty$ is the maximum 1-norm of the rows of $A$.
 
 ::::
 
@@ -194,19 +194,19 @@ Using 2 and 4, we conclude that $\lVert A \rVert_\infty$ is the maximum 1-norm o
 
 **Theorem** (from quiz 3):
 
-* $\lVert A \rVert_1$ is the maximum 1-norm of the columns of $A$.
-* $\lVert A^T \rVert_1 = \lVert A \rVert_\infty$.
+* $norm(A)_1$ is the maximum 1-norm of the columns of $A$.
+* $norm(A^T)_1 = norm(A)_\infty$.
 
 ::::
 
 
 :::card[note]
 
-**Note.** The following properties hold for norms induced by p-norms, but 
+**Note.** The following properties hold for norms induced by p-norms, but
 may or may not hold for more general matrix norms:
 
-- $\lVert AB \rVert_p \le \lVert A \rVert_p \cdot \lVert B \rVert_p$
-- $\lVert Ax \rVert_p \le \lVert A \rVert_p \cdot \lVert x \rVert_p$
+- $norm(AB)_p <= norm(A)_p \cdot norm(B)_p$
+- $norm(Ax)_p <= norm(A)_p \cdot norm(x)_p$
 
 ::::
 
@@ -223,8 +223,8 @@ $$
 we have:
 $$
 \begin{align*}
-\lVert A \rVert_1 &= \max\{6, 2, 4\} = 6 \\
-\lVert A \rVert_\infty &= \max\{4, 3, 5\} = 5
+norm(A)_1 &= \max\{6, 2, 4\} = 6 \\
+norm(A)_\infty &= \max\{4, 3, 5\} = 5
 \end{align*}
 $$
 
@@ -238,33 +238,33 @@ A^T A = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-Its eigenvalues are $\lambda_1 \approx 22.22698, \lambda_2 \approx 6.33655, \lambda_3 \approx 3.43646$. So, $\lVert A \rVert_2 = \sqrt{\lambda_1} \approx 4.71$.
+Its eigenvalues are $\lambda_1 \approx 22.22698, \lambda_2 \approx 6.33655, \lambda_3 \approx 3.43646$. So, $norm(A)_2 = \sqrt{\lambda_1} \approx 4.71$.
 
 #### Induced Matrix Norms
 
-We defined $\lVert A \rVert_2 = \max_{\lVert x \rVert_2 = 1} \lVert Ax \rVert_2$.
+We defined $norm(A)_2 = \max_{norm(x)_2 = 1} norm(Ax)_2$.
 
-Now, the question is what is $\min_{\lVert x \rVert_2 = 1} \lVert Ax \rVert_2$? If $A$ grows this direction the least, then $A^{-1}$ grows it the most.
+Now, the question is what is $\min_{norm(x)_2 = 1} norm(Ax)_2$? If $A$ grows this direction the least, then $A^{-1}$ grows it the most.
 
 So,
 
 $$
-\min_{\lVert x \rVert_2 = 1} \lVert Ax \rVert_2 = \frac{1}{\lVert A^{-1} \rVert_2}
+\min_{norm(x)_2 = 1} norm(Ax)_2 = \frac{1}{norm(A^{-1})_2}
 $$
 
 #### Matrix Condition Number
 
 The **matrix condition number** bounds the worst-case amplification of the error in a matrix-vector product.
 
-Let $x$ be a unit vector, and add some error $\delta x$ to it. In the worst
-case, $x$ is in the direction of the minimum amplification of $A$, and $\delta x$ is in the direction of the maximum amplification of $A$. That is, the solution shrinks and the error grows.
+Let $x$ be a unit vector, and add some error $del x$ to it. In the worst
+case, $x$ is in the direction of the minimum amplification of $A$, and $del x$ is in the direction of the maximum amplification of $A$. That is, the solution shrinks and the error grows.
 
-We want the condition number to capture this worst-case amplification of the error. So, we define it as: $\kappa(A) = \lVert A \rVert\ \cdot \lVert A^{-1} \rVert$. That is, the ratio of the maximum amplification to the minimum amplification.
+We want the condition number to capture this worst-case amplification of the error. So, we define it as: $\kappa(A) = norm(A)\ \cdot norm(A^{-1})$. That is, the ratio of the maximum amplification to the minimum amplification.
 
 
-By definition, $\kappa(A) \ge 1$.
+By definition, $\kappa(A) >= 1$.
 
-If $Q$ is square and $\kappa(Q) = 1$ and $\lVert Q \rVert = 1$, then $Q$ is orthogonal. That is, $Q^TQ = I$. If $Q$ is orthogonal, then for all $v$, $\lVert Qv \rVert_2 = \lVert v \rVert_2$.
+If $Q$ is square and $\kappa(Q) = 1$ and $norm(Q) = 1$, then $Q$ is orthogonal. That is, $Q^TQ = I$. If $Q$ is orthogonal, then for all $v$, $norm(Qv)_2 = norm(v)_2$.
 
 
 :::card[example]
@@ -272,8 +272,8 @@ If $Q$ is square and $\kappa(Q) = 1$ and $\lVert Q \rVert = 1$, then $Q$ is orth
 
 $$
 \begin{align*}
-\kappa(2A) &= \lVert 2A \rVert \cdot \lVert (2A)^{-1} \rVert \\
-&= 2 \lVert A \rVert \cdot \frac{1}{2} \lVert A^{-1} \rVert \\
+\kappa(2A) &= norm(2A) \cdot norm((2A)^{-1}) \\
+&= 2 norm(A) \cdot \frac{1}{2} norm(A^{-1}) \\
 &= \kappa(A)
 \end{align*}
 $$
@@ -287,25 +287,25 @@ close to being singular, then $A^{-1}$ is equally close to being singular.
 
 #### Condition Number Estimation
 
-The matrix norm $\lVert A \rVert$ is easily calculated as the maximum absolute
-column sum or row sum, depending on the norm used. However, calculating $\lVert A^{-1} \rVert$ is more difficult.
+The matrix norm $norm(A)$ is easily calculated as the maximum absolute
+column sum or row sum, depending on the norm used. However, calculating $norm(A^{-1})$ is more difficult.
 
 If $z$ is a solution to $Az = y$, then
 
 $$
-\lVert z \rVert = \lVert A^{-1} y \rVert \le \lVert A^{-1} \rVert \lVert y \rVert
+norm(z) = norm(A^{-1} y) <= norm(A^{-1}) norm(y)
 $$
 
 Therefore,
 
 $$
-\frac{\lVert z \rVert}{\lVert y \rVert} \le \lVert A^{-1} \rVert
+\frac{norm(z)}{norm(y)} <= norm(A^{-1})
 $$
 
-Thus maximizing $\dfrac{\lVert z \rVert}{\lVert y \rVert}$ gives a reasonable estimate of $\lVert A^{-1} \rVert$.
+Thus maximizing $\dfrac{norm(z)}{norm(y)}$ gives a reasonable estimate of $norm(A^{-1})$.
 
 Finding such a maximum can be expensive. One strategy is to try few random
-vectors and take the maximum $\dfrac{\lVert z \rVert}{\lVert y \rVert}$.
+vectors and take the maximum $\dfrac{norm(z)}{norm(y)}$.
 
 #### Singular Value Decomposition (SVD)
 
@@ -313,7 +313,7 @@ Any matrix $A$ can be decomposed as $A = U \Sigma V^T$, where $U$ and $V$ are or
 
 If $A$ is invertible, then $A^{-1} = V \Sigma^{-1} U^T$.
 
-Let $\sigma_{max}=\sigma_1, \sigma_2, \ldots, \sigma_n=\sigma_{min}$ be diagonal entries of $\Sigma$ sorted in descending order. Then $\lVert A \rVert_2 = \sigma_{max}$ and $\lVert A^{-1} \rVert_2 = \dfrac{1}{\sigma_{min}}$.
+Let $\sigma_{max}=\sigma_1, \sigma_2, \ldots, \sigma_n=\sigma_{min}$ be diagonal entries of $\Sigma$ sorted in descending order. Then $norm(A)_2 = \sigma_{max}$ and $norm(A^{-1})_2 = \dfrac{1}{\sigma_{min}}$.
 
 Therefore, $\kappa(A) = \dfrac{\sigma_{max}}{\sigma_{min}}$.
 
@@ -325,11 +325,11 @@ Therefore, $\kappa(A) = \dfrac{\sigma_{max}}{\sigma_{min}}$.
 Since $\kappa_2(A) = 1$, then
 
 $$
-\lVert A \rVert_2 = \dfrac{1}{\lVert A^{-1} \rVert}_2 \tag{5}
+norm(A)_2 = \dfrac{1}{norm(A^{-1})}_2 \tag{5}
 $$
 
 Consider the SVD of $A$: $A = U \Sigma V^T$, where $\Sigma = \text{diag}(\sigma_{max}, \ldots, \sigma_{min})$.
-Then $\lVert A \rVert_2 = \sigma_{max}$ and $\lVert A^{-1} \rVert_2 = \dfrac{1}{\sigma_{min}}$.
+Then $norm(A)_2 = \sigma_{max}$ and $norm(A^{-1})_2 = \dfrac{1}{\sigma_{min}}$.
 Putting this together with (5), we have $\sigma_{max} = \sigma_{min}$.
 Therefore, all singular values are equal. Let $\alpha$ be the value of singular values. Then, $\Sigma = \alpha I$.
 

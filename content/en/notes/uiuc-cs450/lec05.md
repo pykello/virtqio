@@ -16,7 +16,7 @@ An **LU factorization** is decomposition $A = LU$, where:
 - $L$ is a lower triangular matrix with ones on the diagonal.
 - $U$ is an upper triangular matrix.
 
-Unit-diagonal $L$ implies each $L_{ii} = 1$, leaving $\dfrac{n(n-1)}{2}$ 
+Unit-diagonal $L$ implies each $L_{ii} = 1$, leaving $\dfrac{n(n-1)}{2}$
 unknowns in $L$ and $\dfrac{n(n+1)}{2}$ unknowns in $U$. So, we have
 $n^2$ unknowns in total, matching the number of entries in $A$.
 
@@ -45,9 +45,9 @@ A =
 $$
 ::::
 
-For a rectangular matrix $A \in \mathbb{R}^{m \times n}$, we can consider a
-**full** LU factorization with $L \in \mathbb{R}^{m \times \max(m, n)}$ and
-$U \in \mathbb{R}^{\max(m, n) \times n}$:
+For a rectangular matrix $A \in bb{R}^{m \times n}$, we can consider a
+**full** LU factorization with $L \in bb{R}^{m \times \max(m, n)}$ and
+$U \in bb{R}^{\max(m, n) \times n}$:
 
 $$
 \underbrace{\begin{bmatrix}
@@ -55,25 +55,25 @@ $$
  6 & 12\\
 -3 & 1\\
  0 & 8
-\end{bmatrix}}_{A\in\mathbb{R}^{4\times 2}}
+\end{bmatrix}}_{A\in bb{R}^{4\times 2}}
 \;=\;
 \underbrace{\begin{bmatrix}
  1 & 0 & 0 & 0\\
  2 & 1 & 0 & 0\\
 -1 & 3 & 1 & 0\\
  0 & 4 & 0 & 1
-\end{bmatrix}}_{L_{\text{full}}\in\mathbb{R}^{4\times 4}}
+\end{bmatrix}}_{L_{\text{full}}\in bb{R}^{4\times 4}}
 \;
 \underbrace{\begin{bmatrix}
  3 & 5\\
  0 & 2\\
  0 & 0\\
  0 & 0
-\end{bmatrix}}_{U_{\text{full}}\in\mathbb{R}^{4\times 2}}.
+\end{bmatrix}}_{U_{\text{full}}\in bb{R}^{4\times 2}}.
 $$
 
-But it is fully described by a **reduced** LU factorization with lower-trapezoidal $L \in \mathbb{R}^{m \times \min(m, n)}$ and 
-upper-trapezoidal $U \in \mathbb{R}^{\min(m, n) \times n}$:
+But it is fully described by a **reduced** LU factorization with lower-trapezoidal $L \in bb{R}^{m \times \min(m, n)}$ and
+upper-trapezoidal $U \in bb{R}^{\min(m, n) \times n}$:
 
 $$
 \underbrace{\begin{bmatrix}
@@ -81,19 +81,19 @@ $$
  6 & 12\\
 -3 & 1\\
  0 & 8
-\end{bmatrix}}_{A\in\mathbb{R}^{4\times 2}}
+\end{bmatrix}}_{A\in bb{R}^{4\times 2}}
 \;=\;
 \underbrace{\begin{bmatrix}
  1 & 0\\
  2 & 1\\
 -1 & 3\\
  0 & 4
-\end{bmatrix}}_{L\in\mathbb{R}^{4\times 2}}
+\end{bmatrix}}_{L\in bb{R}^{4\times 2}}
 \;
 \underbrace{\begin{bmatrix}
  3 & 5\\
  0 & 2
-\end{bmatrix}}_{U\in\mathbb{R}^{2\times 2}}.
+\end{bmatrix}}_{U\in bb{R}^{2\times 2}}.
 $$
 
 ##### Solving Linear Systems with LU Factorization
@@ -142,15 +142,15 @@ This is called an **elementary elimination matrix** or **Gaussian transformation
 
 Note the following properties:
 - $M_k$ is lower triangular with unit main diagonal, hence it is non-singular.
-- $M_k = I - \mathbf{m}_k \mathbf{e}_k^T$, where $\mathbf{m}_k = (0, \ldots, 0, m_{k+1}, \ldots, m_n)^T$ and $\mathbf{e}_k$ is the $k$-th column of the identity matrix.
-- $M_k^{-1} = I + \mathbf{m}_k \mathbf{e}_k^T$.
+- $M_k = I - v{m}_k v{e}_k^T$, where $v{m}_k = (0, \ldots, 0, m_{k+1}, \ldots, m_n)^T$ and $v{e}_k$ is the $k$-th column of the identity matrix.
+- $M_k^{-1} = I + v{m}_k v{e}_k^T$.
 - If $M_j$, $j > k$, is another elementary elimination matrix, then
 
 $$
-M_k M_j = I - \mathbf{m}_k \mathbf{e}_k^T - \mathbf{m}_j \mathbf{e}_j^T + \mathbf{m}_k \mathbf{e}_k^T \mathbf{m}_j \mathbf{e}_j^T = I - \mathbf{m}_k \mathbf{e}_k^T - \mathbf{m}_j \mathbf{e}_j^T
+M_k M_j = I - v{m}_k v{e}_k^T - v{m}_j v{e}_j^T + v{m}_k v{e}_k^T v{m}_j v{e}_j^T = I - v{m}_k v{e}_k^T - v{m}_j v{e}_j^T
 $$
 
-This is because $\mathbf{e}_k^T \mathbf{m}_j = 0$. Thus their product is essentially their union.
+This is because $v{e}_k^T v{m}_j = 0$. Thus their product is essentially their union.
 
 #### Gaussian Elimination
 Using elementary elimination matrices, it's easy to transform a matrix into an upper triangular form.
@@ -171,31 +171,31 @@ Consider the block matrix form:
 
 $$
 \begin{bmatrix}
- a_{11} & \mathbf{a}_{12} \\
-    \mathbf{a}_{21} & \mathbf{A}_{22}
+ a_{11} & v{a}_{12} \\
+    v{a}_{21} & v{A}_{22}
 \end{bmatrix}
 \=
 \begin{bmatrix}
     1 & 0 \\
-    \mathbf{l}_{21} & \mathbf{L}_{22}
+    v{l}_{21} & v{L}_{22}
 \end{bmatrix}
 \cdot
 \begin{bmatrix}
- u_{11} & \mathbf{u}_{12} \\
-    0 & \mathbf{U}_{22}
+ u_{11} & v{u}_{12} \\
+    0 & v{U}_{22}
 \end{bmatrix}
 $$
 
-Where bold-face entries are submatrices: $\mathbf{a}_{12} \in \mathbb{R}^{1 \times n-1}$, $\mathbf{a}_{21} \in \mathbb{R}^{n-1 \times 1}$, $\mathbf{A}_{22} \in \mathbb{R}^{(n-1) \times (n-1)}$, etc.
+Where bold-face entries are submatrices: $v{a}_{12} \in bb{R}^{1 \times n-1}$, $v{a}_{21} \in bb{R}^{n-1 \times 1}$, $v{A}_{22} \in bb{R}^{(n-1) \times (n-1)}$, etc.
 
 Then:
 
-- $\begin{bmatrix} u_{11} & \mathbf{u}_{12} \end{bmatrix} = \begin{bmatrix} a_{11} & \mathbf{a}_{12} \end{bmatrix}$.
-- $\mathbf{l}_{21} = \dfrac{\mathbf{a}_{21}}{u_{11}}$.
-- Obtain $\mathbf{L}_{22}$ and $\mathbf{U}_{22}$ recursively computing the LU factorization of the **Schur complement**:
+- $\begin{bmatrix} u_{11} & v{u}_{12} \end{bmatrix} = \begin{bmatrix} a_{11} & v{a}_{12} \end{bmatrix}$.
+- $v{l}_{21} = \dfrac{v{a}_{21}}{u_{11}}$.
+- Obtain $v{L}_{22}$ and $v{U}_{22}$ recursively computing the LU factorization of the **Schur complement**:
 
 $$
-S = \mathbf{A}_{22} - \mathbf{l}_{21} \cdot \mathbf{u}_{12}
+S = v{A}_{22} - v{l}_{21} \cdot v{u}_{12}
 $$
 
 The computational complexity of this algorithm is $O(n^3)$.
@@ -225,7 +225,7 @@ If all leading principal minors of $A$ are non-zero, then $A$ has an LU factoriz
 > \end{bmatrix}
 > $$
 >
-> However, if $A \in \mathbb{R}^{n\times n}$ is **invertible**, then it 
+> However, if $A \in bb{R}^{n\times n}$ is **invertible**, then it
 > admits an LU factorization **if and only if** all leading principal
 > minors of $A$ are non-zero.
 
@@ -268,7 +268,7 @@ same time $l_{32} u_{21} = 3$.
 Also, if Gaussian elimination can be performed to produce an upper triangular matrix without any row swaps, then the matrix has an LU factorization.
 
 > [!NOTE]
-> The potential need for pivoting has nothing to do with 
+> The potential need for pivoting has nothing to do with
 > singularity. For example, the matrix
 >
 > $$

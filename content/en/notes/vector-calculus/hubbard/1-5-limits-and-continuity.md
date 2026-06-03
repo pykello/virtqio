@@ -27,7 +27,7 @@ $$
 Often, we deal with sets that are neither open or closed. But every set is contained
 in a smallest closed set, called its _closure_, and largest open set, called its _interior_.
 
-**Closure.** The _closure_ of $A \subset bb{R}^n$, denoted $\overline{A}$, is the set of $v{x} \in bb{R}^n$ such that for every $r > 0$, $B_r(v{x}) \cap A \neq \emptyset$.
+**Closure.** The _closure_ of $A \subset bb{R}^n$, denoted $\overline{A}$, is the set of $v{x} \in bb{R}^n$ such that for every $r > 0$, $B_r(v{x}) \cap A != \emptyset$.
 
 **Interior.** The _interior_ of $A \subset bb{R}^n$, denoted $\overset{\circ}{A}$, is the set of $v{x} \in bb{R}^n$ such that there exists $r > 0$ with $B_r(v{x}) \subset A$.
 
@@ -48,80 +48,80 @@ $$
 
 We call $v{a}$ the _limit_ of the sequence.
 
-**Proposition 1.5.13 (Convergence in terms of coordinates).** A sequence $m \mapsto \mathbf{a}_m \in \mathbb{R}^n$ converges to $\mathbf{a} \in \mathbb{R}^n$ if and only if each coordinate converges.
+**Proposition 1.5.13 (Convergence in terms of coordinates).** A sequence $m \mapsto v{a}_m \in bb{R}^n$ converges to $v{a} \in bb{R}^n$ if and only if each coordinate converges.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-1. ($\implies$) Assume $m \mapsto \mathbf{a}_m$ converges to $\mathbf{a}$. This
-means for any $\epsilon > 0$, there exists $M$ such that for all $m > M$ we have:
+1. ($=>$) Assume $m \mapsto v{a}_m$ converges to $v{a}$. This
+means for any $eps > 0$, there exists $M$ such that for all $m > M$ we have:
 
 $$
 \begin{align*}
-&\lVert\mathbf{a}_m - \mathbf{a}\rVert < \epsilon \\
-\implies &
+&norm(v{a}_m - v{a}) < eps \\
+=> &
 \sqrt{
-    \left((a_m)_1-a_1\right)^2 + \cdots + \left((a_m)_n-a_n\right)^2
-} < \epsilon \\
-\implies &
- \left((a_m)_i-a_i\right)^2  < \epsilon^2 \\
-\implies &
- \lVert(a_m)_i-a_i\rVert < \epsilon
+    ((a_m)_1-a_1)^2 + \cdots + ((a_m)_n-a_n)^2
+} < eps \\
+=> &
+ ((a_m)_i-a_i)^2  < eps^2 \\
+=> &
+ norm((a_m)_i-a_i) < eps
 \end{align*}
 $$
 
 Which means $m \mapsto (a_m)_i$ converges to $a_i$.
 
-2. ($\impliedby$) Fix $\epsilon$. For each $a_i$ we find corresponding $M_i$ for
-$\epsilon_i = \epsilon / \sqrt{n}$. Then we choose $M = \max\\{M_1,...,M_n\\}$.
-For $m > M$, $\lVert\mathbf{a} - \mathbf{a}_m\rVert < \sqrt{n \cdot \left(\dfrac{\epsilon}{\sqrt{n}}\right)^2} = \epsilon$. Which means $m \mapsto \mathbf{a}_m$ converges to $\mathbf{a}$.
+2. ($\impliedby$) Fix $eps$. For each $a_i$ we find corresponding $M_i$ for
+$eps_i = eps / \sqrt{n}$. Then we choose $M = \max\\{M_1,...,M_n\\}$.
+For $m > M$, $norm(v{a} - v{a}_m) < \sqrt{n \cdot (\dfrac{eps}{\sqrt{n}})^2} = eps$. Which means $m \mapsto v{a}_m$ converges to $v{a}$.
 
 ::::
 
-**Proposition 1.5.14 (Elegance is not required).** Let $u$ be such that $u(\epsilon) \to 0$ as $\epsilon \to 0$. Then a sequence $i \mapsto \mathbf{a}_i$ converges to $\mathbf{a}$ if either of the following equivalent statements hold:
+**Proposition 1.5.14 (Elegance is not required).** Let $u$ be such that $u(eps) -> 0$ as $eps -> 0$. Then a sequence $i \mapsto v{a}_i$ converges to $v{a}$ if either of the following equivalent statements hold:
 
-1. For every $\epsilon > 0$, there exists $M$ such that for all $m > M$, $\lVert\mathbf{a}_m - \mathbf{a}\rVert < u(\epsilon)$.
-2. For every $\epsilon > 0$, there exists $M$ such that for all $m > M$, $\lVert\mathbf{a}_m - \mathbf{a}\rVert < \epsilon$.
+1. For every $eps > 0$, there exists $M$ such that for all $m > M$, $norm(v{a}_m - v{a}) < u(eps)$.
+2. For every $eps > 0$, there exists $M$ such that for all $m > M$, $norm(v{a}_m - v{a}) < eps$.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-$\lim_{\epsilon \to 0} u(\epsilon) = 0$ means that for every $\delta > 0$ there exists $\epsilon_0$ such that $u(\epsilon) < \delta$ for all $\epsilon < \epsilon_0$.
+$\lim_{eps -> 0} u(eps) = 0$ means that for every $del > 0$ there exists $eps_0$ such that $u(eps) < del$ for all $eps < eps_0$.
 
 [TODO]
 
 ::::
 
 **Proposition 1.5.15 (Limit of sequence is unique).** If the sequence
-$i \mapsto \mathbf{a}_i$ of points in $\mathbb{R}^n$ converges to $\mathbf{a}$
-and $\mathbf{b}$, then $\mathbf{a} = \mathbf{b}$.
+$i \mapsto v{a}_i$ of points in $bb{R}^n$ converges to $v{a}$
+and $v{b}$, then $v{a} = v{b}$.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-Assume $\mathbf{a} \ne \mathbf{b}$. Then $\epsilon_0 = \dfrac{\lVert\mathbf{a}-\mathbf{b}\rVert}{2} > 0$.
+Assume $v{a} != v{b}$. Then $eps_0 = \dfrac{norm(v{a}-v{b})}{2} > 0$.
 
 By definition of convergence, there exists $M_1$ such that for all $m > M_1$,
-$\lVert\mathbf{a} - \mathbf{a}_m\rVert < \epsilon_0$. Similar $M_2$ exists for $\mathbf{b}$.
+$norm(v{a} - v{a}_m) < eps_0$. Similar $M_2$ exists for $v{b}$.
 
 Then for all $m > \max \\{M_1, M_2\\}$, we have
 
 $$
 \begin{align*}
-\lVert\mathbf{a} - \mathbf{b}\rVert &\le \lVert\mathbf{a} - \mathbf{a}_m\rVert + \lVert\mathbf{b} - \mathbf{a}_m\rVert \quad \text{(triangle inequality)} \\
-&< \epsilon_0 + \epsilon_0  \\
-&= \lVert\mathbf{a} - \mathbf{b}\rVert
+norm(v{a} - v{b}) &<= norm(v{a} - v{a}_m) + norm(v{b} - v{a}_m) \quad \text{(triangle inequality)} \\
+&< eps_0 + eps_0  \\
+&= norm(v{a} - v{b})
 \end{align*}
 $$
 
-Hence $\lVert\mathbf{a} - \mathbf{b}\rVert < \lVert\mathbf{a} - \mathbf{b}\rVert$, a contradiction. So, $\mathbf{a} = \mathbf{b}$.
+Hence $norm(v{a} - v{b}) < norm(v{a} - v{b})$, a contradiction. So, $v{a} = v{b}$.
 
 ::::
 
-**Theorem 1.5.16 (The arithmetic of limits of sequence).** Let $i \mapsto \mathbf{a}_i$ and $i \mapsto \mathbf{b}_i$ be two sequences of points in $\mathbb{R}^n$, and let
+**Theorem 1.5.16 (The arithmetic of limits of sequence).** Let $i \mapsto v{a}_i$ and $i \mapsto v{b}_i$ be two sequences of points in $bb{R}^n$, and let
 $i \mapsto c_i$ be a sequence of numbers. Then
 
-1. If $i \mapsto \mathbf{a}_i$ and $i \mapsto \mathbf{b}_i$ both converge, then so does $i \mapsto \mathbf{a}_i + \mathbf{b}_i$, and
+1. If $i \mapsto v{a}_i$ and $i \mapsto v{b}_i$ both converge, then so does $i \mapsto v{a}_i + v{b}_i$, and
 
 :::align
 lim[i -> inf] (v{a}_i + v{b}_i)
@@ -129,44 +129,44 @@ lim[i -> inf] (v{a}_i + v{b}_i)
   + lim[i -> inf] v{b}_i \tag{1.5.20}
 :::
 
-2. If $i \mapsto \mathbf{a}_i$ and $i \mapsto c_i$ both converge, then so does $i \mapsto c_i \mathbf{a}_i$, and 
+2. If $i \mapsto v{a}_i$ and $i \mapsto c_i$ both converge, then so does $i \mapsto c_i v{a}_i$, and
 
 $$
-\lim_{i\to\infty} c_i \mathbf{a}_i
-\= \left(\lim_{i\to\infty} c_i \right)
-  \left( \lim_{i\to\infty} \mathbf{a}_i \right) \tag{1.5.21}
+\lim_{i-> inf} c_i v{a}_i
+\= (\lim_{i-> inf} c_i )
+  ( \lim_{i-> inf} v{a}_i ) \tag{1.5.21}
 $$
 
-3. If $i \mapsto \mathbf{a}_i$ and $i \mapsto \mathbf{b}_i$ both converge, then so does their dot product $i \mapsto \vec{\mathbf{a}_i} \cdot \vec{\mathbf{b}_i}$, and
+3. If $i \mapsto v{a}_i$ and $i \mapsto v{b}_i$ both converge, then so does their dot product $i \mapsto \vec{v{a}_i} \cdot \vec{v{b}_i}$, and
 
 $$
-\lim_{i\to\infty} \left(\vec{\mathbf{a}_i} \cdot \vec{\mathbf{b}_i} \right)
-\= \left(\lim_{i\to\infty} \vec{\mathbf{a}_i} \right) \cdot
-  \left( \lim_{i\to\infty} \vec{\mathbf{b}_i} \right) \tag{1.5.22}
+\lim_{i-> inf} (\vec{v{a}_i} \cdot \vec{v{b}_i} )
+\= (\lim_{i-> inf} \vec{v{a}_i} ) \cdot
+  ( \lim_{i-> inf} \vec{v{b}_i} ) \tag{1.5.22}
 $$
 
-4. If $i \mapsto \mathbf{a}_i$ is bounded and $i \mapsto c_i$ converges to $0$, then
+4. If $i \mapsto v{a}_i$ is bounded and $i \mapsto c_i$ converges to $0$, then
 
 $$
-\lim_{i\to\infty} c_i \mathbf{a}_i \= 0 \tag{1.5.23}
+\lim_{i-> inf} c_i v{a}_i \= 0 \tag{1.5.23}
 $$
 
 **Proposition 1.5.17 (Sequence in closed set).**
 
-1. Let $i \mapsto \mathbf{x}_i$ be a sequence in a closed set $C \subset \mathbb{R}^n$
-converging to $\mathbf{x} \in \mathbb{R}^n$. Then $\mathbf{x} \in C$.
-2. Conversely, if every convergent sequence in $C \subset \mathbb{R}^n$ converges to 
+1. Let $i \mapsto v{x}_i$ be a sequence in a closed set $C \subset bb{R}^n$
+converging to $v{x} \in bb{R}^n$. Then $v{x} \in C$.
+2. Conversely, if every convergent sequence in $C \subset bb{R}^n$ converges to
 a point in $C$, then $C$ is closed.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-1. Assume $\mathbf{x} \notin C$. Then $\mathbf{x} \in C^c$ which is open. So, there
-exists $r > 0$ such that $B_r(\mathbf{x}) \subset C^c$. Since all $\mathbf{x}_i \in C$, then $\mathbf{x}_i \notin B_r(\mathbf{x})$, which means for all $i$ we have $\lVert\mathbf{x}_i - \mathbf{x}\rVert \ge r$ for every $i$. Then if we choose $\epsilon = r/2$, we can't find an $M$ such that for $m > M$ we have $\lVert\mathbf{x}_m - \mathbf{x}\rVert < \epsilon$. So, $i \mapsto \mathbf{x}_i$ doesn't converge to $\mathbf{x}$. A contradiction.
+1. Assume $v{x} \notin C$. Then $v{x} \in C^c$ which is open. So, there
+exists $r > 0$ such that $B_r(v{x}) \subset C^c$. Since all $v{x}_i \in C$, then $v{x}_i \notin B_r(v{x})$, which means for all $i$ we have $norm(v{x}_i - v{x}) >= r$ for every $i$. Then if we choose $eps = r/2$, we can't find an $M$ such that for $m > M$ we have $norm(v{x}_m - v{x}) < eps$. So, $i \mapsto v{x}_i$ doesn't converge to $v{x}$. A contradiction.
 
-2. Assume $C$ is not closed. Choose $\mathbf{x} \in \partial C \notin C$. Since $\mathbf{x} \in \overline{C}$, then for all $r > 0$, $B_r(\mathbf{x}) \cap C \ne \emptyset$. We choose $i \mapsto \mathbf{x}_i$ such that $\mathbf{x}_i \in B_{1/i}(\mathbf{x}) \cap C$.<br/>
-This sequence converges to $\mathbf{x}$: For a given $\epsilon > 0$, for all $m > 1/\epsilon$ we have $\lVert\mathbf{x} - \mathbf{x}_m\rVert <  1/m < \epsilon$.<br/>
-Since $\mathbf{x} \not\in C$, this sequence doesn't converge to a point in $C$. A contradiction. Hence, $C$ is closed.
+2. Assume $C$ is not closed. Choose $v{x} \in \partial C \notin C$. Since $v{x} \in \overline{C}$, then for all $r > 0$, $B_r(v{x}) \cap C != \emptyset$. We choose $i \mapsto v{x}_i$ such that $v{x}_i \in B_{1/i}(v{x}) \cap C$.<br/>
+This sequence converges to $v{x}$: For a given $eps > 0$, for all $m > 1/eps$ we have $norm(v{x} - v{x}_m) <  1/m < eps$.<br/>
+Since $v{x} \not\in C$, this sequence doesn't converge to a point in $C$. A contradiction. Hence, $C$ is closed.
 
 :::
 
@@ -175,32 +175,32 @@ Since $\mathbf{x} \not\in C$, this sequence doesn't converge to a point in $C$. 
 **Subsequence.** $j \mapsto a_{i(j)}$ where $i(k) > i(j)$ when $k > j$.
 
 **Proposition 1.5.19 (Subsequence of convergent sequence converges).**
-If a sequence $k \mapsto \mathbf{a}_k$ converges to $\mathbf{a}$, then any
-subsequence of the sequence converges to the same limit $\mathbf{a}$.
+If a sequence $k \mapsto v{a}_k$ converges to $v{a}$, then any
+subsequence of the sequence converges to the same limit $v{a}$.
 
 ### Limits of Functions
 
-**Limit of a function.** Let $X$ be a subset of $\mathbb{R}^n$ and $\mathbf{x}_0$ a point in $\overline{X}$. A function $\mathbf{f}: X \to \mathbb{R}^p$ has the _limit_ $\mathbf{a}$ at $\mathbf{x}_0$:
+**Limit of a function.** Let $X$ be a subset of $bb{R}^n$ and $v{x}_0$ a point in $\overline{X}$. A function $v{f}: X -> bb{R}^p$ has the _limit_ $v{a}$ at $v{x}_0$:
 
 $$
-\lim_{\mathbf{x}\to\mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \mathbf{a}
+\lim_{v{x}-> v{x}_0} v{f}(v{x}) = v{a}
 $$
 
-if for all $\epsilon > 0$ there exists $\delta > 0$ such that for all $\mathbf{x} \in X$,
+if for all $eps > 0$ there exists $del > 0$ such that for all $v{x} \in X$,
 
 $$
-\lVert\mathbf{x} - \mathbf{x}_0\rVert < \delta \implies \lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert < \epsilon
+norm(v{x} - v{x}_0) < del => norm(v{f}(v{x}) - v{a}) < eps
 $$
 
 > [!NOTE]
-> With this definition, $\mathbf{x}_0$ need not be in $X$. It only needs to be in the
-> closure of $X$. But if $\mathbf{x}_0$ is in $X$, then $\mathbf{f}(\mathbf{x}_0)$
-> must be equal to $\mathbf{a}$.
+> With this definition, $v{x}_0$ need not be in $X$. It only needs to be in the
+> closure of $X$. But if $v{x}_0$ is in $X$, then $v{f}(v{x}_0)$
+> must be equal to $v{a}$.
 >
-> For example, limit of $f: \mathbb{R} \to \mathbb{R}$ doesn't exist at $0$:
+> For example, limit of $f: bb{R} -> bb{R}$ doesn't exist at $0$:
 > $$
 > f(x) = \begin{cases}
->     1 & \text{if } x \ne 0 \\
+>     1 & \text{if } x != 0 \\
 >     0 & \text{if } x = 0
 > \end{cases}
 > $$
@@ -208,198 +208,198 @@ $$
 > Contrast this with the usual 1-dimensional definition of limit:
 >
 > **Definition (From Zorich, Mathematical Analysis I).** We shall say (following
-> Cauchy) that the function $f: E \to \mathbb{R}$ tends to $A$ as $x$ tends to $a$,
-> or that $A$ is the limit of $f$ as $x$ tends to $a$, if for every $\epsilon > 0$
-> there exists $\delta > 0$ such that $\lvert f(x) - A \rvert < \epsilon$ for
-> every $x \in E$ such that $0 < \lvert x - a \rvert < \delta$.
+> Cauchy) that the function $f: E -> bb{R}$ tends to $A$ as $x$ tends to $a$,
+> or that $A$ is the limit of $f$ as $x$ tends to $a$, if for every $eps > 0$
+> there exists $del > 0$ such that $abs(f(x) - A) < eps$ for
+> every $x \in E$ such that $0 < abs(x - a) < del$.
 >
-> The difference is the "greater than 0": $0 < \lvert x - a \rvert < \delta$
-> instead of $\lVert\mathbf{x} - \mathbf{x}_0\rVert < \delta$.
+> The difference is the "greater than 0": $0 < abs(x - a) < del$
+> instead of $norm(v{x} - v{x}_0) < del$.
 
 
-**Proposition 1.5.21 (Limit of function is unique).** Let $f: X \to \mathbb{R}^n$ be
-a function. If $f$ has a limit at $\mathbf{x}_0 \in \overline{X}$, the limit is unique.
+**Proposition 1.5.21 (Limit of function is unique).** Let $f: X -> bb{R}^n$ be
+a function. If $f$ has a limit at $v{x}_0 \in \overline{X}$, the limit is unique.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-Assume it's not unique and $\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{f}(\mathbf{x})$ takes two values of $\mathbf{a} \ne \mathbf{b}$. Let
-$\epsilon = \dfrac{\lVert\mathbf{a} - \mathbf{b}\rVert}{2} > 0$.
+Assume it's not unique and $\lim_{v{x}-> v{x}_0}v{f}(v{x})$ takes two values of $v{a} != v{b}$. Let
+$eps = \dfrac{norm(v{a} - v{b})}{2} > 0$.
 
-Since $\mathbf{a}$ is a limit, then there exists $\delta_a$ such that for all
-$\mathbf{x} \in X$, $\lVert\mathbf{x} - \mathbf{x}_0\rVert < \delta_a$ implies
-$\lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert < \epsilon$. Similar $\delta_b$ exists for $\mathbf{b}$.
+Since $v{a}$ is a limit, then there exists $del_a$ such that for all
+$v{x} \in X$, $norm(v{x} - v{x}_0) < del_a$ implies
+$norm(v{f}(v{x}) - v{a}) < eps$. Similar $del_b$ exists for $v{b}$.
 
-Then for all $\mathbf{x} \in X$ such that $\lVert\mathbf{x} - \mathbf{x}_0\rVert < \min\\{\delta_a, \delta_b\\}$, we have:
+Then for all $v{x} \in X$ such that $norm(v{x} - v{x}_0) < \min\\{del_a, del_b\\}$, we have:
 
 $$
 \begin{align*}
-\lVert\mathbf{a}-\mathbf{b}\rVert &\le \lVert\mathbf{f}(\mathbf{x}) - \mathbf{a}\rVert+\lVert\mathbf{f}(\mathbf{x}) - \mathbf{b}\rVert \quad\text{(triangle inequality)} \\
-&< \epsilon + \epsilon \\
-&= \lVert\mathbf{a}-\mathbf{b}\rVert
+norm(v{a}-v{b}) &<= norm(v{f}(v{x}) - v{a})+norm(v{f}(v{x}) - v{b}) \quad\text{(triangle inequality)} \\
+&< eps + eps \\
+&= norm(v{a}-v{b})
 \end{align*}
 $$
 
-Hence $\lVert\mathbf{a}-\mathbf{b}\rVert < \lVert\mathbf{a}-\mathbf{b}\rVert$, a contradiction. So, $\mathbf{a} = \mathbf{b}$
+Hence $norm(v{a}-v{b}) < norm(v{a}-v{b})$, a contradiction. So, $v{a} = v{b}$
 ::::
 
-**Theorem 1.5.22 (Limit of a composition).** Let $U \subset \mathbb{R}^n$, $V \subset \mathbb{R}^m$, and $\mathbf{f}: U \to V$  and $\mathbf{g}: V \to \mathbb{R}^k$ be mappings, so that $\mathbf{g} \circ \mathbf{f}$ is defined on $U$. If $\mathbf{x}_0 \in \overline{U}$ and
+**Theorem 1.5.22 (Limit of a composition).** Let $U \subset bb{R}^n$, $V \subset bb{R}^m$, and $v{f}: U -> V$  and $v{g}: V -> bb{R}^k$ be mappings, so that $v{g} \circ v{f}$ is defined on $U$. If $v{x}_0 \in \overline{U}$ and
 
 $$
-\mathbf{y}_0 = \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \quad \text{and} \quad \mathbf{z}_0 \= \lim_{\mathbf{y} \to \mathbf{y}_0} \mathbf{g}(\mathbf{y})
+v{y}_0 = \lim_{v{x} -> v{x}_0} v{f}(v{x}) \quad \text{and} \quad v{z}_0 \= \lim_{v{y} -> v{y}_0} v{g}(v{y})
 $$
 
-both exist, then $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{g} \circ \mathbf{f}\right)(\mathbf{x})$ exists and is equal to $\mathbf{z}_0$.
+both exist, then $\lim_{v{x} -> v{x}_0} (v{g} \circ v{f})(v{x})$ exists and is equal to $v{z}_0$.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-Since $\lim_{\mathbf{y}\to\mathbf{y}_0} \mathbf{g}(\mathbf{y}) \= \mathbf{z}_0$,
+Since $\lim_{v{y}-> v{y}_0} v{g}(v{y}) \= v{z}_0$,
 
 $$
-\forall \epsilon > 0, \exists \eta > 0 \quad\text{s.t.}\quad\lVert \mathbf{y} - \mathbf{y}_0 \rVert < \eta \implies \lVert \mathbf{g}(\mathbf{y}) - \mathbf{z}_0 \rVert < \epsilon
+forall eps > 0, exists \eta > 0 \quad\text{s.t.}\quad norm(v{y} - v{y}_0) < \eta => norm(v{g}(v{y}) - v{z}_0) < eps
 $$
 
-Since $\lim_{\mathbf{x}\to\mathbf{x}_0} \mathbf{f}(\mathbf{x}) \= \mathbf{y}_0$,
+Since $\lim_{v{x}-> v{x}_0} v{f}(v{x}) \= v{y}_0$,
 
 $$
-\forall \eta > 0, \exists \delta > 0 \quad\text{s.t.}\quad\lVert \mathbf{x} - \mathbf{x}_0 \rVert < \delta \implies \lVert \mathbf{f}(\mathbf{x}) - \mathbf{y}_0 \rVert < \eta
+forall \eta > 0, exists del > 0 \quad\text{s.t.}\quad norm(v{x} - v{x}_0) < del => norm(v{f}(v{x}) - v{y}_0) < \eta
 $$
 
 Combining these, we get
 
 $$
-\forall \epsilon > 0, \exists \delta > 0 \quad\text{s.t.}\quad\lVert \mathbf{x} - \mathbf{x}_0 \rVert < \delta \implies \lVert \mathbf{g}(\mathbf{f}(\mathbf{x})) - \mathbf{z}_0 \rVert < \epsilon
+forall eps > 0, exists del > 0 \quad\text{s.t.}\quad norm(v{x} - v{x}_0) < del => norm(v{g}(v{f}(v{x})) - v{z}_0) < eps
 $$
 
-which is equivalent to saying $\lim_{\mathbf{x} \to \mathbf{x}_0} \left(\mathbf{g} \circ \mathbf{f}\right)(\mathbf{x}) = \mathbf{z}_0$.
+which is equivalent to saying $\lim_{v{x} -> v{x}_0} (v{g} \circ v{f})(v{x}) = v{z}_0$.
 ::::
 
 
 > [!NOTE]
 > With the standard definition of limit of real functions (see the previous note),
-> this theorem is not true. For example, consider $f, g: \mathbb{R} \to \mathbb{R}$
+> this theorem is not true. For example, consider $f, g: bb{R} -> bb{R}$
 >
 > $$
 > f(x) = \begin{cases}
->     x \sin\left(\dfrac{1}{x}\right) & \text{if } x \ne 0 \\
+>     x \sin(\dfrac{1}{x}) & \text{if } x != 0 \\
 >     0 & \text{if } x = 0
 > \end{cases} \quad\text{and}\quad
 > g(x) = \begin{cases}
->     1 & \text{if } x \ne 0 \\
+>     1 & \text{if } x != 0 \\
 >     0 & \text{if } x = 0
 > \end{cases}
 > $$
 >
-> Then using the standard definition of limit, we have $\lim_{x \to 0} f(x) = 0$ and
-> $\lim_{x \to 0} g(x) = 1$. But $\lim_{x \to 0} (g \circ f)(x)$
-> does not exist: $\sin(1/x) = 0$ for $x = 1/(k \pi)$, $k \in \mathbb{Z}$. So, in
+> Then using the standard definition of limit, we have $\lim_{x -> 0} f(x) = 0$ and
+> $\lim_{x -> 0} g(x) = 1$. But $\lim_{x -> 0} (g \circ f)(x)$
+> does not exist: $\sin(1/x) = 0$ for $x = 1/(k \pi)$, $k \in bb{Z}$. So, in
 > any radius $r > 0$ of $0$, we have infinitely many points where $f(x) = 0$ and
-> infinitely many points where $f(x) \ne 0$. Hence, the limit of $(g \circ f)(x)$
+> infinitely many points where $f(x) != 0$. Hence, the limit of $(g \circ f)(x)$
 > does not exist.
 >
-> With our definition, $\lim_{y \to 0} g(y)$ does not exist.
+> With our definition, $\lim_{y -> 0} g(y)$ does not exist.
 
 **Proposition 1.5.25 (Convergence by coordinates).** Suppose
 
 $$
-U \subset \mathbb{R}^n, \quad
-\mathbf{f} =
+U \subset bb{R}^n, \quad
+v{f} =
 \begin{pmatrix}
 f_1 \\
 \vdots \\
 f_m
 \end{pmatrix}
-: U \to \mathbb{R}^m,
+: U -> bb{R}^m,
 \quad \text{and} \quad
-\mathbf{x}_0 \in \overline{U}.
+v{x}_0 \in \overline{U}.
 $$
 
-Then $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \begin{pmatrix}a_1\\\\ \vdots\\\\ a_m \end{pmatrix}$ if and only if $\lim_{\mathbf{x} \to \mathbf{x}_0} f_i(\mathbf{x}) = a_i$ for all $i = 1, \ldots, m$.
+Then $\lim_{v{x} -> v{x}_0} v{f}(v{x}) = \begin{pmatrix}a_1\\\\ \vdots\\\\ a_m \end{pmatrix}$ if and only if $\lim_{v{x} -> v{x}_0} f_i(v{x}) = a_i$ for all $i = 1, \ldots, m$.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-1. ($\implies$) Since $\forall i \in \\{1,\ldots,m\\}$ we have $\lVert\mathbf{f}(\mathbf{x})-\mathbf{f}(\mathbf{y})\rVert\ge\lvert f_i(\mathbf{x})-f_i(\mathbf{y}) \rvert$, then for each $\epsilon$ the same $\delta$ that works for the limit of vector 
+1. ($=>$) Since $forall i \in \\{1,\ldots,m\\}$ we have $norm(v{f}(v{x})-v{f}(v{y}))>= abs(f_i(v{x})-f_i(v{y}))$, then for each $eps$ the same $del$ that works for the limit of vector
 function works also for the limit of each coordinate function.
 
-2. ($\impliedby$) Fix $\epsilon$, and for each coordinate function $f_i$ find the 
-$\delta_i$ corresponding to $\epsilon/\sqrt{m}$. Then use $\delta=\min\\{\delta_1,\ldots,\delta_m\\}$ for the vector function.
+2. ($\impliedby$) Fix $eps$, and for each coordinate function $f_i$ find the
+$del_i$ corresponding to $eps/\sqrt{m}$. Then use $del=\min\\{del_1,\ldots,del_m\\}$ for the vector function.
 ::::
 
-**Theorem 1.5.26 (Limits of functions).** Let $U \subset \mathbb{R}^n$, and let $\mathbf{f}, \mathbf{g}: U \to \mathbb{R}^m$, $h: U \to \mathbb{R}$.
+**Theorem 1.5.26 (Limits of functions).** Let $U \subset bb{R}^n$, and let $v{f}, v{g}: U -> bb{R}^m$, $h: U -> bb{R}$.
 
-1. If $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x})$ exist, then
-
-$$
-\lim_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} + \mathbf{g})(\mathbf{x}) = \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) + \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}).
-$$
-
-2. If $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x})$ exist, then
+1. If $\lim_{v{x} -> v{x}_0} v{f}(v{x})$ and $\lim_{v{x} -> v{x}_0} v{g}(v{x})$ exist, then
 
 $$
-\lim_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = \lim_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) \cdot \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}).
+\lim_{v{x} -> v{x}_0} (v{f} + v{g})(v{x}) = \lim_{v{x} -> v{x}_0} v{f}(v{x}) + \lim_{v{x} -> v{x}_0} v{g}(v{x}).
 $$
 
-3. If $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) \ne 0$ exist, then
+2. If $\lim_{v{x} -> v{x}_0} v{f}(v{x})$ and $\lim_{v{x} -> v{x}_0} h(v{x})$ exist, then
 
 $$
-\lim_{\mathbf{x} \to \mathbf{x}_0} \left( \frac{\mathbf{f}}{h} \right)(\mathbf{x}) = \frac{\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})}{\lim_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x})}.
+\lim_{v{x} -> v{x}_0} (h v{f})(v{x}) = \lim_{v{x} -> v{x}_0} h(v{x}) \cdot \lim_{v{x} -> v{x}_0} v{f}(v{x}).
 $$
 
-4. Define $(\mathbf{f} \cdot \mathbf{g})(\mathbf{x}) := \mathbf{f}(\mathbf{x}) \cdot \mathbf{g}(\mathbf{x})$. If $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x})$ and $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x})$ exist, then
+3. If $\lim_{v{x} -> v{x}_0} v{f}(v{x})$ and $\lim_{v{x} -> v{x}_0} h(v{x}) != 0$ exist, then
 
 $$
-\lim_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} \cdot \mathbf{g})(\mathbf{x}) = \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \cdot \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}).
+\lim_{v{x} -> v{x}_0} ( \frac{v{f}}{h} )(v{x}) = \frac{\lim_{v{x} -> v{x}_0} v{f}(v{x})}{\lim_{v{x} -> v{x}_0} h(v{x})}.
 $$
 
-5. If $\mathbf{f}$ is bounded and $\lim_{\mathbf{x} \to \mathbf{x}_0} h(\mathbf{x}) = 0$, then
+4. Define $(v{f} \cdot v{g})(v{x}) := v{f}(v{x}) \cdot v{g}(v{x})$. If $\lim_{v{x} -> v{x}_0} v{f}(v{x})$ and $\lim_{v{x} -> v{x}_0} v{g}(v{x})$ exist, then
 
 $$
-\lim_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = 0.
+\lim_{v{x} -> v{x}_0} (v{f} \cdot v{g})(v{x}) = \lim_{v{x} -> v{x}_0} v{f}(v{x}) \cdot \lim_{v{x} -> v{x}_0} v{g}(v{x}).
 $$
 
-6. If $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = 0$ and $h$ is bounded, then
+5. If $v{f}$ is bounded and $\lim_{v{x} -> v{x}_0} h(v{x}) = 0$, then
 
 $$
-\lim_{\mathbf{x} \to \mathbf{x}_0} (h \mathbf{f})(\mathbf{x}) = 0.
+\lim_{v{x} -> v{x}_0} (h v{f})(v{x}) = 0.
+$$
+
+6. If $\lim_{v{x} -> v{x}_0} v{f}(v{x}) = 0$ and $h$ is bounded, then
+
+$$
+\lim_{v{x} -> v{x}_0} (h v{f})(v{x}) = 0.
 $$
 
 :::expandable
 **Proof of 4.** [Click to Expand]
 
-Using **1.5.25**, since limit of $\mathbf{f}$ exists, then limit of each coordinate function $f_i$ exits. Part 1 and 2 apply also when the target space is one-dimensional. Induction on part 1 implies similar result for finite-sums.
+Using **1.5.25**, since limit of $v{f}$ exists, then limit of each coordinate function $f_i$ exits. Part 1 and 2 apply also when the target space is one-dimensional. Induction on part 1 implies similar result for finite-sums.
 
 So, we have:
 
 $$
 \begin{align*}
-\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) \cdot \lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{g}(\mathbf{x}) &= 
-\sum_{i=1}^{m} \left(\lim_{\mathbf{x} \to \mathbf{x}_0}{f_i(\mathbf{x})}\right)
-\left(\lim_{\mathbf{x} \to \mathbf{x}_0} {g_i(\mathbf{x})}\right)
+\lim_{v{x} -> v{x}_0} v{f}(v{x}) \cdot \lim_{v{x} -> v{x}_0} v{g}(v{x}) &=
+\sum_{i=1}^{m} (\lim_{v{x} -> v{x}_0}{f_i(v{x})})
+(\lim_{v{x} -> v{x}_0} {g_i(v{x})})
 \\
-&= \sum_{i=1}^{m} \lim_{\mathbf{x} \to \mathbf{x}_0}{f_i(\mathbf{x}) g_i(\mathbf{x})} \tag{using part 2}
+&= \sum_{i=1}^{m} \lim_{v{x} -> v{x}_0}{f_i(v{x}) g_i(v{x})} \tag{using part 2}
 \\
-&=\lim_{\mathbf{x} \to \mathbf{x}_0} \sum_{i=1}^{m}{f_i(\mathbf{x}) g_i(\mathbf{x})} 
+&=\lim_{v{x} -> v{x}_0} \sum_{i=1}^{m}{f_i(v{x}) g_i(v{x})}
 \tag{using part 1}
 \\
-&= \lim_{\mathbf{x} \to \mathbf{x}_0} (\mathbf{f} \cdot \mathbf{g})(\mathbf{x})
+&= \lim_{v{x} -> v{x}_0} (v{f} \cdot v{g})(v{x})
 \end{align*}
 $$
 ::::
 
 ### Continuous Functions
 
-**Continuous function.** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is _continuous_ at $\mathbf{x}_0 \in X$ if $\lim_{\mathbf{x} \to \mathbf{x}_0} \mathbf{f}(\mathbf{x}) = \mathbf{f}(\mathbf{x}_0)$.
+**Continuous function.** Let $X \subset bb{R}^n$. A function $v{f}: X -> bb{R}^m$ is _continuous_ at $v{x}_0 \in X$ if $\lim_{v{x} -> v{x}_0} v{f}(v{x}) = v{f}(v{x}_0)$.
 
-$\mathbf{f}$ is continuous on $X$ if it is continuous at every point $\mathbf{x}_0 \in X$.
+$v{f}$ is continuous on $X$ if it is continuous at every point $v{x}_0 \in X$.
 
 > [!NOTE]
 > An example of a two-variable function that is continuous only at the origin:
 >
 > $$
 > f(x, y) = \begin{cases}
->     \dfrac{xy}{x^2 + y^2} & \text{if } (x, y) \ne (0, 0) \\
+>     \dfrac{xy}{x^2 + y^2} & \text{if } (x, y) != (0, 0) \\
 >     0 & \text{if } (x, y) = (0, 0)
 > \end{cases}
 > $$
@@ -408,15 +408,15 @@ $\mathbf{f}$ is continuous on $X$ if it is continuous at every point $\mathbf{x}
 >
 > $$
 > f(x, y) = \begin{cases}
->     \lVert(x,y)\rVert & \text{if } (x, y) \in \mathbb{Q}^2 \\
+>     norm((x,y)) & \text{if } (x, y) \in bb{Q}^2 \\
 >     0 & \text{otherwise}
 > \end{cases}
 > $$
 
-**Proposition 1.5.28 (Criterion for continuity).** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is continuous at $\mathbf{x}_0 \in X$ if and only if for every sequence $i \mapsto \mathbf{x}_i$ in $X$ converging to $\mathbf{x}_0$, we have
+**Proposition 1.5.28 (Criterion for continuity).** Let $X \subset bb{R}^n$. A function $v{f}: X -> bb{R}^m$ is continuous at $v{x}_0 \in X$ if and only if for every sequence $i \mapsto v{x}_i$ in $X$ converging to $v{x}_0$, we have
 
 $$
-\lim_{i\to\infty} \mathbf{f}(\mathbf{x}_i) = \mathbf{f}(\mathbf{x}_0).
+\lim_{i-> inf} v{f}(v{x}_i) = v{f}(v{x}_0).
 $$
 
 :::expandable
@@ -426,124 +426,124 @@ $$
 ::::
 
 **Theorem 1.5.29 (Combining continuous mappings).**
-Let $U$ be a subset of $\mathbb{R}^n$, $\mathbf{f}$ and $\mathbf{g}$ mappings $U \to \mathbb{R}^m$, and $h$ a function $U \to \mathbb{R}$.
+Let $U$ be a subset of $bb{R}^n$, $v{f}$ and $v{g}$ mappings $U -> bb{R}^m$, and $h$ a function $U -> bb{R}$.
 
-1. If $\mathbf{f}$ and $\mathbf{g}$ are continuous at $\mathbf{x}_0 \in U$, so is $\mathbf{f} + \mathbf{g}$.
+1. If $v{f}$ and $v{g}$ are continuous at $v{x}_0 \in U$, so is $v{f} + v{g}$.
 
-2. If $\mathbf{f}$ and $h$ are continuous at $\mathbf{x}_0 \in U$, so is $h \mathbf{f}$.
+2. If $v{f}$ and $h$ are continuous at $v{x}_0 \in U$, so is $h v{f}$.
 
-3. If $\mathbf{f}$ and $h$ are continuous at $\mathbf{x}_0 \in U$, and $h(\mathbf{x}_0) \ne 0$, so is $\dfrac{\mathbf{f}}{h}$.
+3. If $v{f}$ and $h$ are continuous at $v{x}_0 \in U$, and $h(v{x}_0) != 0$, so is $\dfrac{v{f}}{h}$.
 
-4. If $\mathbf{f}$ and $\mathbf{g}$ are continuous at $\mathbf{x}_0 \in U$, so is $\mathbf{f} \cdot \mathbf{g}$.
+4. If $v{f}$ and $v{g}$ are continuous at $v{x}_0 \in U$, so is $v{f} \cdot v{g}$.
 
-5. If $h$ is defined and continuous at $\mathbf{x}_0 \in \overline{U}$ with $h(\mathbf{x}_0) = 0$, and there exist $C, \delta > 0$ such that 
+5. If $h$ is defined and continuous at $v{x}_0 \in \overline{U}$ with $h(v{x}_0) = 0$, and there exist $C, del > 0$ such that
 
 $$
-|\mathbf{\mathbf{f}}(\mathbf{x})| \le C \quad \text{for } \mathbf{x} \in U, \quad |\mathbf{x} - \mathbf{x}_0| < \delta,
+|v{f}(v{x})| <= C \quad \text{for } v{x} \in U, \quad |v{x} - v{x}_0| < del,
 $$
-(i.e. $\mathbf{f}$ is bounded near $\mathbf{x}_0$), then the map
+(i.e. $v{f}$ is bounded near $v{x}_0$), then the map
 $$
-\mathbf{x} \mapsto
+v{x} \mapsto
 \begin{cases}
-h(\mathbf{x}) \mathbf{f}(\mathbf{x}) & \text{for } \mathbf{x} \in U \\
-0 & \text{if } \mathbf{x} = \mathbf{x}_0
+h(v{x}) v{f}(v{x}) & \text{for } v{x} \in U \\
+0 & \text{if } v{x} = v{x}_0
 \end{cases}
 $$
 
-is continuous at $\mathbf{x}_0$.
+is continuous at $v{x}_0$.
 
 > [!NOTE]
 > An example for part 5:
 >
 > $$
-> \mathbf{f}(\mathbf{x}) = \begin{cases}
->     x \sin\left(\dfrac{1}{x}\right) & \text{if } x \ne 0 \\
+> v{f}(v{x}) = \begin{cases}
+>     x \sin(\dfrac{1}{x}) & \text{if } x != 0 \\
 >     0 & \text{if } x = 0
 > \end{cases}
 > $$
 >
-> Here $\lvert\sin(1/x)\rvert \le 1$ for all $x \ne 0$ and value of $h(x)=x$ at $0$
-> is $0$. So, $\mathbf{f}$ is continuous at $0$.
+> Here $abs(\sin(1/x)) <= 1$ for all $x != 0$ and value of $h(x)=x$ at $0$
+> is $0$. So, $v{f}$ is continuous at $0$.
 >
 > A discontinuous example in which the boundedness condition is not satisfied:
 >
 > $$
-> \mathbf{f}(\mathbf{x}) = \begin{cases}
->     x \cdot \dfrac{1}{x} & \text{if } x \ne 0 \\
+> v{f}(v{x}) = \begin{cases}
+>     x \cdot \dfrac{1}{x} & \text{if } x != 0 \\
 >     0 & \text{if } x = 0
 > \end{cases}
 > $$
 >
-> Then $g(x) = 1$ for all $x \ne 0$, but $g(0) = 0$, so $g$ is discontinuous at $x = 0$.
+> Then $g(x) = 1$ for all $x != 0$, but $g(0) = 0$, so $g$ is discontinuous at $x = 0$.
 
 
-**Theorem 1.5.30 (Composition of continuous functions).** Let $U \subset \mathbb{R}^n$, $V \subset \mathbb{R}^m$, and $\mathbf{f}: U \to V$ and $\mathbf{g}: V \to \mathbb{R}^p$ be mappings, so that $\mathbf{g} \circ \mathbf{f}$ is defined on $U$. If $\mathbf{f}$ is continuous at $\mathbf{x}_0 \in U$ and $\mathbf{g}$ is continuous at $\mathbf{f}(\mathbf{x}_0)$, then $\mathbf{g} \circ \mathbf{f}$ is continuous at $\mathbf{x}_0$.
+**Theorem 1.5.30 (Composition of continuous functions).** Let $U \subset bb{R}^n$, $V \subset bb{R}^m$, and $v{f}: U -> V$ and $v{g}: V -> bb{R}^p$ be mappings, so that $v{g} \circ v{f}$ is defined on $U$. If $v{f}$ is continuous at $v{x}_0 \in U$ and $v{g}$ is continuous at $v{f}(v{x}_0)$, then $v{g} \circ v{f}$ is continuous at $v{x}_0$.
 
-**Corollary 1.5.31 (Continuity of polynomials and rational functions).** 
-1. Any polynomial function $\mathbf{f}: \mathbb{R}^n \to \mathbb{R}$ is continuous on all of $\mathbb{R}^n$.
-2. Any rational function $\mathbf{f}: \mathbb{R}^n \to \mathbb{R}$ is continuous on all of $\mathbb{R}^n$ except at points where the denominator is $0$.
+**Corollary 1.5.31 (Continuity of polynomials and rational functions).**
+1. Any polynomial function $v{f}: bb{R}^n -> bb{R}$ is continuous on all of $bb{R}^n$.
+2. Any rational function $v{f}: bb{R}^n -> bb{R}$ is continuous on all of $bb{R}^n$ except at points where the denominator is $0$.
 
 (A _rational function_ is a ratio of two polynomials.)
 
 ### Uniform Continuity
 
-**Uniformly continuous function.** Let $X \subset \mathbb{R}^n$. A function $\mathbf{f}: X \to \mathbb{R}^m$ is _uniformly continuous_ on $X$ if for every $\epsilon > 0$ there exists $\delta > 0$ such that for all $\mathbf{x}, \mathbf{y} \in X$, if $\lVert\mathbf{x} - \mathbf{y}\rVert < \delta$, then $\lVert\mathbf{f}(\mathbf{x}) - \mathbf{f}(\mathbf{y})\rVert < \epsilon$.
+**Uniformly continuous function.** Let $X \subset bb{R}^n$. A function $v{f}: X -> bb{R}^m$ is _uniformly continuous_ on $X$ if for every $eps > 0$ there exists $del > 0$ such that for all $v{x}, v{y} \in X$, if $norm(v{x} - v{y}) < del$, then $norm(v{f}(v{x}) - v{f}(v{y})) < eps$.
 
 > [!NOTE]
 > The difference between continuity and uniform continuity is that in the latter
-> the $\delta$ is independent of the point $\mathbf{x}_0 \in X$. For example,
-> $f(x) = x^2$ is continuous on $\mathbb{R}$, but not uniformly continuous.
+> the $del$ is independent of the point $v{x}_0 \in X$. For example,
+> $f(x) = x^2$ is continuous on $bb{R}$, but not uniformly continuous.
 
-**Theorem 1.5.33 (Linear functions are uniformly continuous).** Any linear function $\mathbf{f}: \mathbb{R}^n \to \mathbb{R}^m$ is uniformly continuous.
+**Theorem 1.5.33 (Linear functions are uniformly continuous).** Any linear function $v{f}: bb{R}^n -> bb{R}^m$ is uniformly continuous.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-Any linear function has a corresponding matrix $A$ such that $\mathbf{f}(\mathbf{x}) = A\mathbf{x}$. Then
+Any linear function has a corresponding matrix $A$ such that $v{f}(v{x}) = A v{x}$. Then
 
 $$
 \begin{align*}
-\lVert\mathbf{f}(\mathbf{x})-\mathbf{f}(\mathbf{y})\rVert
-&= \lVert A \cdot \mathbf{x} - A \cdot \mathbf{y} \rVert \\
-&= \lVert A \cdot (\mathbf{x} - \mathbf{y}) \rVert \\
-&= \lVert A \rVert \cdot \lVert \mathbf{x} - \mathbf{y} \rVert
+norm(v{f}(v{x})-v{f}(v{y}))
+&= norm(A \cdot v{x} - A \cdot v{y}) \\
+&= norm(A \cdot (v{x} - v{y})) \\
+&= norm(A) \cdot norm(v{x} - v{y})
 \end{align*}
 $$
 
-Where $\lVert A \rVert = \sup_{\lVert v\rVert=1} \lVert Av \rVert$ is the [operator norm](https://mathworld.wolfram.com/OperatorNorm.html) of $A$.
+Where $norm(A) = \sup_{norm(v)=1} norm(Av)$ is the [operator norm](https://mathworld.wolfram.com/OperatorNorm.html) of $A$.
 
-Then, for all $\epsilon$ if we take $\delta = \dfrac{\epsilon}{\lVert A \rVert + 1 }$
+Then, for all $eps$ if we take $del = \dfrac{eps}{norm(A) + 1 }$
 , we'll have:
 
 $$
 \begin{align*}
-\lVert \mathbf{x} - \mathbf{y} \rVert < \delta &\implies
-\lVert \mathbf{x} - \mathbf{y} \rVert < \dfrac{\epsilon}{\lVert A \rVert + 1 }
+norm(v{x} - v{y}) < del &=>
+norm(v{x} - v{y}) < \dfrac{eps}{norm(A) + 1 }
 \\
-&\implies
-\left(\lVert A \rVert + 1\right) \lVert \mathbf{x} - \mathbf{y} \rVert < \epsilon
+&=>
+(norm(A) + 1) norm(v{x} - v{y}) < eps
 \\
-&\implies
-\lVert A \rVert \cdot \lVert \mathbf{x} - \mathbf{y} \rVert < \epsilon
+&=>
+norm(A) \cdot norm(v{x} - v{y}) < eps
 \\
-&\implies
-\lVert\mathbf{f}(\mathbf{x})-\mathbf{f}(\mathbf{y})\rVert < \epsilon
+&=>
+norm(v{f}(v{x})-v{f}(v{y})) < eps
 \end{align*}
 $$
 
-which means $\mathbf{f}$ is uniformly continuous.
+which means $v{f}$ is uniformly continuous.
 ::::
 
 ### Series of Vectors
 
-**Convergent series of vectors.** A series $\sum_{i=1}^{\infty} \vec{\mathbf{a}_i}$ 
-is _convergent_ if the sequence of partial sums $n \mapsto \vec{\mathbf{s}_n} = \sum_{i=1}^{n} \vec{\mathbf{a}_i}$ is convergent. The limit of the series is defined as
+**Convergent series of vectors.** A series $\sum_{i=1}^{inf} \vec{v{a}_i}$
+is _convergent_ if the sequence of partial sums $n \mapsto \vec{v{s}_n} = \sum_{i=1}^{n} \vec{v{a}_i}$ is convergent. The limit of the series is defined as
 
 $$
-\sum_{i=1}^{\infty} \vec{\mathbf{a}_i} = \lim_{n \to \infty} \vec{\mathbf{s}_n}
+\sum_{i=1}^{inf} \vec{v{a}_i} = \lim_{n -> inf} \vec{v{s}_n}
 $$
 
-**Proposition 1.5.35 (Absolute convergence).** If $\sum_{i=1}^{\infty} \lVert \vec{\mathbf{a}_i} \rVert$ converges, then $\sum_{i=1}^{\infty} \vec{\mathbf{a}_i}$ converges.
+**Proposition 1.5.35 (Absolute convergence).** If $\sum_{i=1}^{inf} norm(\vec{v{a}_i})$ converges, then $\sum_{i=1}^{inf} \vec{v{a}_i}$ converges.
 
 > [!NOTE]
 > This is a very important result. This can be used to prove:
@@ -554,14 +554,14 @@ $$
 ### Complex exponentials and trigonometric functions
 
 **Proposition 1.5.36 (Complex exponentials).** For any complex number $z$, the
-series $e^z = \sum_{n=0}^{\infty} \dfrac{z^n}{n!}$ converges.
+series $e^z = \sum_{n=0}^{inf} \dfrac{z^n}{n!}$ converges.
 
 **Proposition 1.5.37.** For any real number $t$ we have $e^{it} = \cos(t) + i \sin(t)$.
 
 ### Geometric series of matrices
 
-**Proposition 1.5.38.** Let $A$ be a square matrix. If $\lVert A \rVert < 1$, then the series $S = I + A + A^2 + \ldots$ converges to $(I - A)^{-1}$.
+**Proposition 1.5.38.** Let $A$ be a square matrix. If $norm(A) < 1$, then the series $S = I + A + A^2 + \ldots$ converges to $(I - A)^{-1}$.
 
-**Corollary 1.5.39.** If $\lVert A \rVert < 1$, then $(I - A)$ is invertible.
+**Corollary 1.5.39.** If $norm(A) < 1$, then $(I - A)$ is invertible.
 
 **Corollary 1.5.40.** The set of invertible $n \times n$ matrices is open.
