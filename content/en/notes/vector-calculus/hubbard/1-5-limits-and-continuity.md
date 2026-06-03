@@ -106,13 +106,11 @@ $norm(v{a} - v{a}_m) < eps_0$. Similar $M_2$ exists for $v{b}$.
 
 Then for all $m > \max \\{M_1, M_2\\}$, we have
 
-$$
-\begin{align*}
-norm(v{a} - v{b}) &<= norm(v{a} - v{a}_m) + norm(v{b} - v{a}_m) \quad \text{(triangle inequality)} \\
-&< eps_0 + eps_0  \\
-&= norm(v{a} - v{b})
-\end{align*}
-$$
+:::math
+norm(v{a} - v{b}) <= norm(v{a} - v{a}_m) + norm(v{b} - v{a}_m) \quad \text{(triangle inequality)}
+< eps_0 + eps_0
+= norm(v{a} - v{b})
+:::
 
 Hence $norm(v{a} - v{b}) < norm(v{a} - v{b})$, a contradiction. So, $v{a} = v{b}$.
 
@@ -123,9 +121,9 @@ $i \mapsto c_i$ be a sequence of numbers. Then
 
 1. If $i \mapsto v{a}_i$ and $i \mapsto v{b}_i$ both converge, then so does $i \mapsto v{a}_i + v{b}_i$, and
 
-:::align
+:::math
 lim[i -> inf] (v{a}_i + v{b}_i)
-&= lim[i -> inf] v{a}_i
+= lim[i -> inf] v{a}_i
   + lim[i -> inf] v{b}_i \tag{1.5.20}
 :::
 
