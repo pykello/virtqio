@@ -1,4 +1,4 @@
-**Problem III-19.** Determine the value of the line integral $int[C] v{F} dot unit{t} \\, ds$, where
+**Problem III-19.** Determine the value of the line integral $int[C] v{F} dot unit{t} \, ds$, where
 
 :::math
 v{F} = (e^{-y} - z e^{-x}) v{i} + (e^{-z} - x e^{-y}) v{j} + (e^{-x} - y e^{-z}) v{k}

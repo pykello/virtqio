@@ -29,13 +29,13 @@ iint[S] v{G} dot unit{n} \, dS = iiint[V] \nabla dot v{G} \, dV
 
 **Calculating the surface integral.**
 
-First we calculate the surface integral $iint[S] v{G} dot unit{n} \\, dS$.
+First we calculate the surface integral $iint[S] v{G} dot unit{n} \, dS$.
 
 In upper and lower parts of the surface, the normal vector is $\pm v{k}$,
 and since $v{G}$ has $0$ as the $v{k}$ component, then the surface integral is zero.
 
 To calculate the surface integral of the shaded part in the figure, since
-the value of $v{G}$ and the normal vector $unit{n}$ do not depend on the $z$-coordinate, we choose $dS$ as below. Then, $dS = h \\, ds$, where $h$ is the height of the surface.
+the value of $v{G}$ and the normal vector $unit{n}$ do not depend on the $z$-coordinate, we choose $dS$ as below. Then, $dS = h \, ds$, where $h$ is the height of the surface.
 
  ![](III-22a.png)
 
@@ -73,7 +73,7 @@ iint[S] v{G} dot unit{n} \, dS = h oint[C] G_x \, dy - G_y \, dx
 
 **Calculating the volume integral.**
 
-Since value of $v{G}$ doesn't depend on $z$, we can choose $dV$ as below. Then, $dV = h \\, dS$.
+Since value of $v{G}$ doesn't depend on $z$, we can choose $dV$ as below. Then, $dV = h \, dS$.
 
  ![](III-22b.png)
 
@@ -114,7 +114,7 @@ which is Stokes' theorem in two dimensions.
 
 Since $S$ lies entirely in the $xy$-plane, then
 - Assuming counterclockwise orientation, $unit{n} = unit{k}$,
-- $dS = dx \\, dy$.
+- $dS = dx \, dy$.
 
 Since $\nabla cross v{F} = v{k} ( pd(F_y, x) - pd(F_x, y) )$, we have:
 

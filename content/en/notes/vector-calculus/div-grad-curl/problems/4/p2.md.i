@@ -76,9 +76,9 @@ Then:
 
 :::math align
 v{G} dot (\nabla cross v{F}) &- v{F} dot (\nabla cross v{G}) =
-& (G_z pd(F_y, x) + F_y pd(G_z, x)) \- (G_y pd(F_z, x) + F_z pd(G_y, x))
-\+ &(G_x pd(F_z, y) + F_z pd(G_x, y)) \- (G_z pd(F_x, y) + F_x pd(G_z, y))
-\+ &(G_y pd(F_x, z) + F_x pd(G_y, z)) \- (G_x pd(F_y, z) + F_y pd(G_x, z))
+& (G_z pd(F_y, x) + F_y pd(G_z, x)) - (G_y pd(F_z, x) + F_z pd(G_y, x))
++ &(G_x pd(F_z, y) + F_z pd(G_x, y)) - (G_z pd(F_x, y) + F_x pd(G_z, y))
++ &(G_y pd(F_x, z) + F_x pd(G_y, z)) - (G_x pd(F_y, z) + F_y pd(G_x, z))
 :::
 
 Then:
@@ -104,7 +104,7 @@ v{G} dot &(\nabla cross v{F}) - v{F} dot (\nabla cross v{G})
 &\quad + v{j} ( f pd(F_x, z) + F_x pd(f, z) - f pd(F_z, x) - F_z pd(f, x) )
 &\quad + v{k} ( f pd(F_y, x) + F_y pd(f, x) - f pd(F_x, y) - F_x pd(f, y) )
 &= f ( v{i} ( pd(F_z, y) - pd(F_y, z) ) + v{j} ( pd(F_x, z) - pd(F_z, x) ) + v{k} ( pd(F_y, x) - pd(F_x, y) ) )
-&\quad + ( pd(f, y) F_z - pd(f, z) F_y ) v{i} \+ ( pd(f, z) F_x - pd(f, x) F_z ) v{j} + ( pd(f, x) F_y - pd(f, y) F_x ) v{k}
+&\quad + ( pd(f, y) F_z - pd(f, z) F_y ) v{i} + ( pd(f, z) F_x - pd(f, x) F_z ) v{j} + ( pd(f, x) F_y - pd(f, y) F_x ) v{k}
 &= f \nabla cross v{F} + (\nabla f) cross v{F}
 :::
 

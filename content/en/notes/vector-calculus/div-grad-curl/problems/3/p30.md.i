@@ -93,8 +93,8 @@ oint[P] v{F} &dot unit{t} \, ds \approx
 
 :::math align
 lim[N -> inf] oint[P] v{F} dot unit{t} \, ds &= oint[C] v{F} dot unit{t} \, ds
-&\= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0}
-&\+ (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... \Bigr) Delta S
+&= ( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0}
+&+ (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... ) Delta S
 :::
 
 where $Delta S$ is the area of the region $R$ enclosed by $C$ and $(\overline{x}, \overline{y})$ is the centroid of $R$. That is:
@@ -125,8 +125,8 @@ Putting this together, we have:
 
 :::math align
 oint[C] v{F} dot unit{t} \, ds &= lim[N -> inf] sum[l=1..N] oint[C_l] v{F} dot unit{t} \, ds
-&= \Bigl( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0}
-&\+ (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... \Bigr) Delta S
+&= ( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0}
+&+ (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... ) Delta S
 :::
 
 ::::
@@ -143,8 +143,8 @@ oint[C] v{F} dot unit{t} \, ds &= lim[N -> inf] sum[l=1..N] oint[C_l] v{F} dot u
 As $Delta S -> 0$, then $(\overline{x}, \overline{y}) -> (x, y)$, and we have:
 
 :::math align
-lim[Delta S -> 0] \frac{1}{Delta S} oint[P] v{F} dot unit{t} \, ds &= lim[Delta S -> 0] \Bigl( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0}
-&\+ (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... \Bigr)
+lim[Delta S -> 0] \frac{1}{Delta S} oint[P] v{F} dot unit{t} \, ds &= lim[Delta S -> 0] ( C(x_0, y_0) + (\overline{x} - x_0) ( pd(C, x) )_{x_0, y_0}
+&+ (\overline{y} - y_0) ( pd(C, y) )_{x_0, y_0} + ... )
 &= lim[Delta S -> 0] C(x_l, y_l)
 &= pd(F_y, x) - pd(F_x, y)
 :::

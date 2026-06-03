@@ -77,7 +77,7 @@ Since $Ax = b$, then:
 del A \, x + A \, del x + del A \, del x = 0
 :::
 
-Since $del A \\, del x$ is small, we can ignore it. Then we have:
+Since $del A \, del x$ is small, we can ignore it. Then we have:
 
 :::math
 del A \, x \approx -A \, del x
@@ -133,7 +133,7 @@ d_1 & & \\
 & & d_n \\
 \end{pmatrix}
 pmat(x_1; \vdots; x_n)
-\=
+=
 pmat(b_1; \vdots; b_n)
 :::
 
@@ -174,4 +174,3 @@ If some $l_{ii} = 0$, then solution may not exist.
 
 * The product of two triangular matrices is triangular.
 * The inverse of a triangular matrix is triangular (if it exists).
-

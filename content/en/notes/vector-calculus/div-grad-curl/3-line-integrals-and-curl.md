@@ -167,7 +167,7 @@ Putting these as components of a vector, we have:
 :::card[note]
 **Definition of Curl**: Limit of the circulation to area as area shrinks to zero.
 
-To be more precise, let $oint[C_n] v{F} dot unit{t} \\, ds$ be the circulation of $v{F}$ around a curve whose normal is $unit{n}$. Then by definition,
+To be more precise, let $oint[C_n] v{F} dot unit{t} \, ds$ be the circulation of $v{F}$ around a curve whose normal is $unit{n}$. Then by definition,
 
 :::math
 unit{n} dot \text{curl} \, v{F} = lim[Delta S -> 0] \frac{1}{Delta S} oint[C_n] v{F} dot unit{t} \, ds

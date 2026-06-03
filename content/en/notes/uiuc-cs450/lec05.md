@@ -26,7 +26,7 @@ $n^2$ unknowns in total, matching the number of entries in $A$.
 :::math
 A =
 mat(2, 3, 1; 6, 13, 5; 2, 19, 10)
-\=
+=
 mat(1, 0, 0; 3, 1, 0; 1, 4, 1)
 dot
 mat(2, 3, 1; 0, 4, 2; 0, 0, 1)
@@ -69,7 +69,7 @@ Computational complexity of this algorithm is $O(n^2)$.
 :::math
 M_k a = mat(1, ..., 0, 0, ..., 0; \vdots, \ddots, \vdots, \vdots, \ddots, \vdots; 0, ..., 1, 0, ..., 0; 0, ..., -m_{k+1}, 1, ..., 0; \vdots, \ddots, \vdots, \vdots, \ddots, \vdots; 0, ..., -m_{n}, 0, ..., 1)
 mat(a_1; \vdots; a_k; a_{k+1}; \vdots; a_n)
-\=
+=
 mat(a_1; \vdots; a_k; 0; \vdots; 0)
 :::
 
@@ -110,7 +110,7 @@ Consider the block matrix form:
 
 :::math
 mat(a_{11}, v{a}_{12}; v{a}_{21}, v{A}_{22})
-\=
+=
 mat(1, 0; v{l}_{21}, v{L}_{22})
 dot
 mat(u_{11}, v{u}_{12}; 0, v{U}_{22})
@@ -143,7 +143,7 @@ If all leading principal minors of $A$ are non-zero, then $A$ has an LU factoriz
 > 1 & 0 \\
 > 0 & 0
 > \end{bmatrix}
-> \=
+> =
 > \begin{bmatrix}
 > 1 & 0 \\
 > 0 & 1
@@ -171,7 +171,7 @@ Proceeding with Gauss elimination, we obtain:
 
 :::math
 mat(3, 2; 6, 4; 0, 3)
-\=
+=
 mat(1, 0; 2, 1; 0, l_{32})
 dot
 mat(3, 2; 0, u_{21})
@@ -220,4 +220,3 @@ the divisor $u_{ii}$ maximal at each step.
 This selection ensures that:
 - We are never forced to divide by zero during Gaussian elimination.
 - The magnitude of the entries in $L$ is at most 1.
-

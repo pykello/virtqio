@@ -364,7 +364,7 @@ iint[S] G(x, y, z) \, dS = &iint[R] G(x, y, f(x, y)) dot
 :::
 
 :::card[example]
-**Example.** Find $iint[S] z \\, dS$, where $S$ is the portion of the plane $x + y + z = 1$ in the first octant.
+**Example.** Find $iint[S] z \, dS$, where $S$ is the portion of the plane $x + y + z = 1$ in the first octant.
 
 Here $f(x, y) = 1 - x - y$, so we have:
 
@@ -592,8 +592,8 @@ V=set((x,y,z) | x^{2}+y^{2}+z^{2} <= 1, z >= 0).
 
 The boundary $S$ has two pieces
 
-* **$S_1$** – the curved spherical cap ($x^{2}+y^{2}+z^{2}=1,\\;z>= 0$),
-* **$S_2$** – the flat unit disk ($z=0,\\;x^{2}+y^{2}<= 1$).
+* **$S_1$** – the curved spherical cap ($x^{2}+y^{2}+z^{2}=1,\;z>= 0$),
+* **$S_2$** – the flat unit disk ($z=0,\;x^{2}+y^{2}<= 1$).
 
 ##### 1 . Volume integral of the divergence
 
@@ -602,7 +602,7 @@ The boundary $S$ has two pieces
 pd(z, z) = 1+1+1 = 3.
 :::
 
-Volume of the hemisphere: $\displaystyle \dfrac12\\!(\dfrac{4pi}{3})=\dfrac{2pi}{3}$.
+Volume of the hemisphere: $\displaystyle \dfrac12\!(\dfrac{4pi}{3})=\dfrac{2pi}{3}$.
 
 :::math
 iiint[V] (\nabla\!dot\!\mathbf F)\,dV
@@ -615,7 +615,7 @@ iiint[V] (\nabla\!dot\!\mathbf F)\,dV
 **Curved cap $S_1$**
 
 On the unit sphere the outward unit normal is $unit{n}=v{i}x + v{j}y + v{k}z$.
-So, $\mathbf F\\!dot\\!unit{n} = x^{2}+y^{2}+z^{2}=1.$
+So, $\mathbf F\!dot\!unit{n} = x^{2}+y^{2}+z^{2}=1.$
 
 :::math
 iint[S_1]\mathbf F\!dot\!unit{n}\,dS = 1dot 2pi = 2pi
@@ -624,7 +624,7 @@ iint[S_1]\mathbf F\!dot\!unit{n}\,dS = 1dot 2pi = 2pi
 **Flat disk $S_2$**
 
 Outward normal is $unit{n}=-\mathbf k$.
-On $S_2$, $z=0$. So, $\mathbf F\\!dot\\!unit{n} = 0$.
+On $S_2$, $z=0$. So, $\mathbf F\!dot\!unit{n} = 0$.
 
 :::math
 iint[S_2]\mathbf F\!dot\!unit{n}\,dS = 0

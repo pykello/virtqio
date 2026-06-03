@@ -53,7 +53,7 @@ Phi_{v{E}} &= iint[S] v{E} dot unit{n} dS
 &= \frac{1}{4 pi eps_0} \frac{2p}{R^3} iint[S] \cos phi dS
 :::
 
-We have $dS = R^2 \sin phi \\, dphi \\, d theta$. Then:
+We have $dS = R^2 \sin phi \, dphi \, d theta$. Then:
 
 :::math align
 Phi_{v{E}} &= \frac{1}{4 pi eps_0} \frac{2p}{R^3} int[0..pi] int[0..2pi] R^2 \cos phi \sin phi \, dtheta \, dphi

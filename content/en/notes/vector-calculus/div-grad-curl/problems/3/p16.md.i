@@ -74,7 +74,7 @@ $I$ is $v{B} = (mu_0 I / 2 pi r) unit{e}_theta$. Show that $\nabla cross v{B} = 
 :::expandable
 **Solution.** [Click to Expand]
 
-For a circle of radius $r$, $ds = r \\, dtheta$ and $unit{t} = unit{e}_theta$. Then, we have:
+For a circle of radius $r$, $ds = r \, dtheta$ and $unit{t} = unit{e}_theta$. Then, we have:
 
 :::math
 oint[circle] v{B} dot unit{t} \, ds = int[0..2 pi] \frac{mu_0 I}{2 pi r} r \, dtheta = mu_0 I

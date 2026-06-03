@@ -1,6 +1,6 @@
 **Problem III-1.**
 Use an argument like the one given in the text for the Coulomb force to
-show that $int[C] v{F} dot unit{t} \\, ds = 0$ is independent
+show that $int[C] v{F} dot unit{t} \, ds = 0$ is independent
 of path for any central force $v{F}$.
 
 :::expandable

@@ -82,7 +82,7 @@ int[C_1] v{F} dot unit{t} \, ds &= 0
 int[C_3] v{F} dot unit{t} \, ds &= 0
 :::
 
-For $C_2$, note that $y = \dfrac{b}{a} (a - x)$, so $dy = -\dfrac{b}{a} \\, dx$.
+For $C_2$, note that $y = \dfrac{b}{a} (a - x)$, so $dy = -\dfrac{b}{a} \, dx$.
 
 Then, we have:
 
@@ -98,7 +98,7 @@ int[C_2] v{F} dot unit{t} \, ds &= int[C_2] (y \, dx + 2 x \, dy)
 :::expandable
 **A Circle.** [Click to Expand]
 
-Let $v{F} = unit{e}_theta \dfrac{r}{2}$. We have $ds = r \\, dtheta$ and $unit{t} = unit{e}_theta$.
+Let $v{F} = unit{e}_theta \dfrac{r}{2}$. We have $ds = r \, dtheta$ and $unit{t} = unit{e}_theta$.
 
 Then, we have:
 

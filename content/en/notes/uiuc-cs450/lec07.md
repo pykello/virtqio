@@ -17,8 +17,8 @@ where $A \in bb{R}^{m cross n}$ and $b \in bb{R}^m$.
 We usually write this as $Ax \cong b$, meaning $x$ is the vector that
 minimizes the 2-norm of the **residual** $Ax - b$.
 
-For an optimal solution $x^\*$, we have $r \perp \text{span}(A)$ where
-$r = Ax^\* - b$. Residual can only be $0$ if $b \in \text{span}(A)$.
+For an optimal solution $x^*$, we have $r \perp \text{span}(A)$ where
+$r = Ax^* - b$. Residual can only be $0$ if $b \in \text{span}(A)$.
 
 Given the SVD of $A = U Sigma V^T$, and since $U^T$ is orthogonal (hence, an isometry), we can write:
 
@@ -32,7 +32,7 @@ $norm(Sigma y - d)_2$ is minimized.
 
 The minimizer of this reduced problem is given by:
 
-- $y^*_i = \dfrac{d_i}{sigma_i}$ for $i \in \\{1, ..., r\\}$
+- $y^*_i = \dfrac{d_i}{sigma_i}$ for $i \in \{1, ..., r\}$
 - $y^*_i = 0$ for $i > r$
 
 where $r = \text{rank}(A)$.
@@ -68,7 +68,7 @@ We can write this as a linear system:
 :::math
 mat(1, x_1, x_1^2, ..., x_1^{n-1}; 1, x_2, x_2^2, ..., x_2^{n-1}; \vdots, \vdots, \vdots, \ddots, \vdots; 1, x_m, x_m^2, ..., x_m^{n-1})
 mat(a_0; a_1; \vdots; a_{n-1})
-\=
+=
 mat(y_1; y_2; \vdots; y_m)
 :::
 

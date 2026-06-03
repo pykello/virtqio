@@ -63,7 +63,7 @@ we proceed with pivoted LU:
 :::math
 \underbrace{mat(0, 1; 1, 0)}_{P_2}
 mat(0; 3)
-\=
+=
 mat(1; 0)
 mat(3)
 :::
@@ -76,7 +76,7 @@ Then the overall factorization is given by:
 P_1
 \;
 A
-\= \begin{bmatrix}
+= \begin{bmatrix}
 1 &  \\
 0 & 1 \\
 1/2 & 0
@@ -116,7 +116,7 @@ eps & 1 \\\\
 eps & 1 \\\\
 0 & -1/eps
 \end{bmatrix}$.
-* This leads to $L \\; fl(U) = \begin{bmatrix}
+* This leads to $L \; fl(U) = \begin{bmatrix}
 eps & 1 \\\\
 1 & 0
 \end{bmatrix}$, a backward error of $\begin{bmatrix}0 & 0 \\\\
@@ -137,7 +137,7 @@ eps & 1
 1 & 1 \\\\
 0 & 1
 \end{bmatrix}$.
-* This leads to $L \\; fl(U) = \begin{bmatrix}
+* This leads to $L \; fl(U) = \begin{bmatrix}
 1 & 1 \\\\
 eps & 1 + eps
 \end{bmatrix}$, a backward error of $\begin{bmatrix}0 & 0 \\\\
@@ -209,4 +209,3 @@ To compute this:
 - Then evaluate $x = y + \dfrac{z (v^T y)}{1 + v^T z}$ (cost: $O(n)$).
 
 Thus, the full solution requires only $O(n^2)$ time.
-

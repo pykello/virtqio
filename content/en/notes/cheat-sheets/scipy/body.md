@@ -93,7 +93,7 @@ mat[:, 1]   # all rows, col 1 -> [2, 5]
 
 | Function                             | Description                                                                                          |
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| `np.random.rand(d0, d1)`             | Generate random floats in the interval $\[0, 1)\$ with shape `(d0, d1)`.                             |
+| `np.random.rand(d0, d1)`             | Generate random floats in the interval $[0, 1)$ with shape `(d0, d1)`.                               |
 | `np.random.randn(d0, d1)`            | Generate samples from the standard normal distribution (mean 0, std 1) with shape `(d0, d1)`.        |
 | `np.random.randint(lo, hi, size)`    | Generate random integers from `lo` (inclusive) to `hi` (exclusive), with the specified shape `size`. |
 | `np.random.choice(a, size, replace)` | Draw `size` random samples from array `a`. Set `replace=True` to sample with replacement.            |

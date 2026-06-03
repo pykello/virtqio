@@ -66,7 +66,7 @@ means for any $eps > 0$, there exists $M$ such that for all $m > M$ we have:
 Which means $m \mapsto (a_m)_i$ converges to $a_i$.
 
 2. ($\impliedby$) Fix $eps$. For each $a_i$ we find corresponding $M_i$ for
-$eps_i = eps / \sqrt{n}$. Then we choose $M = \max\\{M_1,...,M_n\\}$.
+$eps_i = eps / \sqrt{n}$. Then we choose $M = \max\{M_1,...,M_n\}$.
 For $m > M$, $norm(v{a} - v{a}_m) < \sqrt{n dot (\dfrac{eps}{\sqrt{n}})^2} = eps$. Which means $m \mapsto v{a}_m$ converges to $v{a}$.
 
 ::::
@@ -97,7 +97,7 @@ Assume $v{a} != v{b}$. Then $eps_0 = \dfrac{norm(v{a}-v{b})}{2} > 0$.
 By definition of convergence, there exists $M_1$ such that for all $m > M_1$,
 $norm(v{a} - v{a}_m) < eps_0$. Similar $M_2$ exists for $v{b}$.
 
-Then for all $m > \max \\{M_1, M_2\\}$, we have
+Then for all $m > \max \{M_1, M_2\}$, we have
 
 :::math
 norm(v{a} - v{b}) <= norm(v{a} - v{a}_m) + norm(v{b} - v{a}_m) \quad \text{(triangle inequality)}
@@ -124,7 +124,7 @@ lim[i -> inf] (v{a}_i + v{b}_i)
 
 :::math
 lim[i-> inf] c_i v{a}_i
-\= (lim[i-> inf] c_i )
+= (lim[i-> inf] c_i )
   ( lim[i-> inf] v{a}_i ) \tag{1.5.21}
 :::
 
@@ -132,14 +132,14 @@ lim[i-> inf] c_i v{a}_i
 
 :::math
 lim[i-> inf] (\vec{v{a}_i} dot \vec{v{b}_i} )
-\= (lim[i-> inf] \vec{v{a}_i} ) dot
+= (lim[i-> inf] \vec{v{a}_i} ) dot
   ( lim[i-> inf] \vec{v{b}_i} ) \tag{1.5.22}
 :::
 
 4. If $i \mapsto v{a}_i$ is bounded and $i \mapsto c_i$ converges to $0$, then
 
 :::math
-lim[i-> inf] c_i v{a}_i \= 0 \tag{1.5.23}
+lim[i-> inf] c_i v{a}_i = 0 \tag{1.5.23}
 :::
 
 **Proposition 1.5.17 (Sequence in closed set).**
@@ -221,7 +221,7 @@ Since $v{a}$ is a limit, then there exists $del_a$ such that for all
 $v{x} \in X$, $norm(v{x} - v{x}_0) < del_a$ implies
 $norm(v{f}(v{x}) - v{a}) < eps$. Similar $del_b$ exists for $v{b}$.
 
-Then for all $v{x} \in X$ such that $norm(v{x} - v{x}_0) < \min\\{del_a, del_b\\}$, we have:
+Then for all $v{x} \in X$ such that $norm(v{x} - v{x}_0) < \min\{del_a, del_b\}$, we have:
 
 :::math align
 norm(v{a}-v{b}) &<= norm(v{f}(v{x}) - v{a})+norm(v{f}(v{x}) - v{b}) \quad\text{(triangle inequality)}
@@ -235,7 +235,7 @@ Hence $norm(v{a}-v{b}) < norm(v{a}-v{b})$, a contradiction. So, $v{a} = v{b}$
 **Theorem 1.5.22 (Limit of a composition).** Let $U \subset bb{R}^n$, $V \subset bb{R}^m$, and $v{f}: U -> V$  and $v{g}: V -> bb{R}^k$ be mappings, so that $v{g} \circ v{f}$ is defined on $U$. If $v{x}_0 \in \overline{U}$ and
 
 :::math
-v{y}_0 = lim[v{x} -> v{x}_0] v{f}(v{x}) \quad \text{and} \quad v{z}_0 \= lim[v{y} -> v{y}_0] v{g}(v{y})
+v{y}_0 = lim[v{x} -> v{x}_0] v{f}(v{x}) \quad \text{and} \quad v{z}_0 = lim[v{y} -> v{y}_0] v{g}(v{y})
 :::
 
 both exist, then $lim[v{x} -> v{x}_0] (v{g} \circ v{f})(v{x})$ exists and is equal to $v{z}_0$.
@@ -243,13 +243,13 @@ both exist, then $lim[v{x} -> v{x}_0] (v{g} \circ v{f})(v{x})$ exists and is equ
 :::expandable
 **Proof.** [Click to Expand]
 
-Since $lim[v{y}-> v{y}_0] v{g}(v{y}) \= v{z}_0$,
+Since $lim[v{y}-> v{y}_0] v{g}(v{y}) = v{z}_0$,
 
 :::math
 forall eps > 0, exists eta > 0 \quad\text{s.t.}\quad norm(v{y} - v{y}_0) < eta => norm(v{g}(v{y}) - v{z}_0) < eps
 :::
 
-Since $lim[v{x}-> v{x}_0] v{f}(v{x}) \= v{y}_0$,
+Since $lim[v{x}-> v{x}_0] v{f}(v{x}) = v{y}_0$,
 
 :::math
 forall eta > 0, exists del > 0 \quad\text{s.t.}\quad norm(v{x} - v{x}_0) < del => norm(v{f}(v{x}) - v{y}_0) < eta
@@ -305,11 +305,11 @@ Then $lim[v{x} -> v{x}_0] v{f}(v{x}) = pmat(a_1; \vdots; a_m)$ if and only if $l
 :::expandable
 **Proof.** [Click to Expand]
 
-1. ($=>$) Since $forall i \in \\{1,...,m\\}$ we have $norm(v{f}(v{x})-v{f}(v{y}))>= abs(f_i(v{x})-f_i(v{y}))$, then for each $eps$ the same $del$ that works for the limit of vector
+1. ($=>$) Since $forall i \in \{1,...,m\}$ we have $norm(v{f}(v{x})-v{f}(v{y}))>= abs(f_i(v{x})-f_i(v{y}))$, then for each $eps$ the same $del$ that works for the limit of vector
 function works also for the limit of each coordinate function.
 
 2. ($\impliedby$) Fix $eps$, and for each coordinate function $f_i$ find the
-$del_i$ corresponding to $eps/\sqrt{m}$. Then use $del=\min\\{del_1,...,del_m\\}$ for the vector function.
+$del_i$ corresponding to $eps/\sqrt{m}$. Then use $del=\min\{del_1,...,del_m\}$ for the vector function.
 ::::
 
 **Theorem 1.5.26 (Limits of functions).** Let $U \subset bb{R}^n$, and let $v{f}, v{g}: U -> bb{R}^m$, $h: U -> bb{R}$.

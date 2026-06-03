@@ -130,16 +130,16 @@ Some examples from [Wikipedia](https://en.wikipedia.org/wiki/Double-precision_fl
 | Hexadecimal Value        |                                   | Decimal Value / Note                                            |
 |--------------------------|-----------------------------------|-----------------------------------------------------------------|
 | 3FF0 0000 0000 0000    | $+2^{0}cross 1$                  | 1.0                                                             |
-| 3FF0 0000 0000 0001    | $+2^{0}cross\bigl(1+2^{-52}\bigr)$ | 1.000 000 000 000 000 2220  <br/>(smallest number > 1)           |
-| 3FF0 0000 0000 0002    | $+2^{0}cross\bigl(1+2^{-51}\bigr)$ | 1.000 000 000 000 000 4441                                       |
+| 3FF0 0000 0000 0001    | $+2^{0}cross(1+2^{-52})$ | 1.000 000 000 000 000 2220  <br/>(smallest number > 1)           |
+| 3FF0 0000 0000 0002    | $+2^{0}cross(1+2^{-51})$ | 1.000 000 000 000 000 4441                                       |
 | 4000 0000 0000 0000    | $+2^{1}cross 1$                  | 2.0                                                             |
 | C000 0000 0000 0000    | $-2^{1}cross 1$                  | −2.0                                                            |
-| 4008 0000 0000 0000    | $+2^{1}cross 1.5\\;(1.1_{2})$     | 3.0                                                             |
-| 3F88 0000 0000 0000    | $+2^{-7}cross 1.5\\;(1.1_{2})$    | 3 / 256                                         |
+| 4008 0000 0000 0000    | $+2^{1}cross 1.5 (1.1_{2})$     | 3.0                                                             |
+| 3F88 0000 0000 0000    | $+2^{-7}cross 1.5 (1.1_{2})$    | 3 / 256                                         |
 | 0000 0000 0000 0001    | $+2^{-1022}cross 2^{-52}=2^{-1074}$ | $4.940... × 10^{-324}$ <br/>(smallest positive sub-normal) |
-| 000F FFFF FFFF FFFF      | $+2^{-1022}\\!cross\\!\bigl(1-2^{-52}\bigr)$ | $2.225... × 10^{-308}$  <br/>(largest sub-normal)     |
+| 000F FFFF FFFF FFFF      | $+2^{-1022}cross(1-2^{-52})$ | $2.225... × 10^{-308}$  <br/>(largest sub-normal)     |
 | 0010 0000 0000 0000      | $+2^{-1022}cross 1$              | $2.225... × 10^{-308}$ <br/>(smallest positive normal) |
-| 7FEF FFFF FFFF FFFF      | $+2^{1023}\\!cross\\!\bigl(2-2^{-52}\bigr)$ | $1.797... × 10^{308}$ <br/>(largest normal)        |
+| 7FEF FFFF FFFF FFFF      | $+2^{1023}cross(2-2^{-52})$ | $1.797... × 10^{308}$ <br/>(largest normal)        |
 | 0000 0000 0000 0000      |                                   |  +0                                                       |
 | 8000 0000 0000 0000      |                                   | −0                                                              |
 | 7FF0 0000 0000 0000      |                                   | +∞                                                              |
@@ -206,4 +206,3 @@ In general if $x + y$ is near 0, then addition is ill-conditioned.
 :::
 
 So the relative error is at most $3 eps$. That is, $kappa(x dot y) <= 3$.
-

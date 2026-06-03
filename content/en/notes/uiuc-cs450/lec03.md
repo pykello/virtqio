@@ -149,7 +149,7 @@ norm(A)_p = max[x != 0] \frac{norm(Ax)_p}{norm(x)_p} = max[x, norm(x)_p = 1] nor
 **Proof**.
 
 Assume $A$ is $n cross m$. Let $1 <= i <= n$ and $v \in bb{R}^m$ s.t. $norm(v)_inf = 1$.
-Since $\max \\{|v_1|, ..., |v_m|\\} = 1$, we have
+Since $\max \{|v_1|, ..., |v_m|\} = 1$, we have
 
 :::math
 |(A dot v)_i| <= sum[j=1..m] |A_{i,j}| = norm(A_i)_1 \tag{1}
@@ -331,4 +331,3 @@ A &= U Sigma V^T
 Since $U$ and $V^T$ are orthogonal, then $U V^T$ is also orthogonal. So, $A=alpha Q$ for some scalar $alpha$ and orthogonal $Q$.
 
 ::::
-

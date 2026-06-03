@@ -25,7 +25,7 @@ We have:
 
 :::math align
 \nabla cross v{H} &= v{i} ( pd(H_z, y) - pd(H_y, z) ) + v{j} ( pd(H_x, z) - pd(H_z, x) ) + v{k} ( pd(H_y, x) - pd(H_x, y) )
-&= v{i} ( pd(H_z, y) - pd(H_y, z) ) \+ v{j} ( 0 - pd(H_z, x) ) + v{k} ( pd(H_y, x) - 0 )
+&= v{i} ( pd(H_z, y) - pd(H_y, z) ) + v{j} ( 0 - pd(H_z, x) ) + v{k} ( pd(H_y, x) - 0 )
 :::
 
 We have:

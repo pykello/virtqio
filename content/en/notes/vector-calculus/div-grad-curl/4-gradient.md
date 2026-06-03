@@ -3,7 +3,7 @@
 ### Line Integrals and the Gradient
 
 We looked at the relationship between
-1. $oint[C] v{F} dot unit{t} \\, ds = 0$ for any closed curve $C$.
+1. $oint[C] v{F} dot unit{t} \, ds = 0$ for any closed curve $C$.
 2. $\nabla cross v{F} = 0$.
 
 Two results:
@@ -79,7 +79,7 @@ This can be written as:
 
 :::math align
 v{F} &= v{i} pd(psi, x) + v{j} pd(psi, y) + v{k} pd(psi, z)
-&= ( v{i} pd(\partial, x) + v{j} pd(\partial, y) \+ v{k} pd(\partial, z) ) psi = \nabla psi
+&= ( v{i} pd(\partial, x) + v{j} pd(\partial, y) + v{k} pd(\partial, z) ) psi = \nabla psi
 :::
 
 which we read "**del psi**". This operator is called the **gradient**.
@@ -108,7 +108,7 @@ The converse: If $\nabla cross v{F} = 0$ in a simply connected region, then $v{F
 In normal circumstances, where our functions have continuous first derivatives and the
 regions are simply connected, then the three conditions are equivalent:
 
-1. $oint[C] v{F} dot unit{t} \\, ds = 0$ independent of path.
+1. $oint[C] v{F} dot unit{t} \, ds = 0$ independent of path.
 2. $\nabla cross v{F} = 0$.
 3. $v{F} = \nabla psi$ for some scalar function $psi$.
 

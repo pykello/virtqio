@@ -31,14 +31,14 @@ which is one of Maxwell's equations.
 :::expandable
 **Solution.** [Click to Expand]
 
-Since $cal{E} = oint[C] v{E} dot unit{t} \\, ds$, then for any
+Since $cal{E} = oint[C] v{E} dot unit{t} \, ds$, then for any
 capping surface $S$ of $C$, we have:
 
 :::math
 cal{E} = iint[S] \nabla cross v{E} dot unit{n} \, dS \tag{1}
 :::
 
-Differentiating $Phi = iint[S] v{B} dot unit{n} \\, dS$ with respect to $t$, we have:
+Differentiating $Phi = iint[S] v{B} dot unit{n} \, dS$ with respect to $t$, we have:
 
 :::math
 dd(Phi, t) = iint[S] pd(v{B}, t) dot unit{n} \, dS
