@@ -13,7 +13,7 @@ $ip(v{u}, v{v}) = dot(v{u}, v{v}),\quad cross(v{u}, v{v}) dot unit{n} = 0$
 
 $dist(x, y) <= norm(tuple(x_1, ..., x_n) - tuple(y_1, ..., y_n))$
 
-$seq(v{x}_n) \text{ converges } in bb{R}^n$
+$seq(v{x}_n) \text{ converges in } bb{R}^n$
 ```
 
 $v{x}, bb{R}, cal{F}, hat{n}, unit{n}$
@@ -24,14 +24,14 @@ $ip(v{u}, v{v}) = dot(v{u}, v{v}),\quad cross(v{u}, v{v}) dot unit{n} = 0$
 
 $dist(x, y) <= norm(tuple(x_1, ..., x_n) - tuple(y_1, ..., y_n))$
 
-$seq(v{x}_n) \text{ converges } in bb{R}^n$
+$seq(v{x}_n) \text{ converges in } bb{R}^n$
 
 ### Scaled Brackets And Sets
 
 ```text
 :::math
 ( \frac{1}{1 + norm(v{x})} )
-\quad
+\;
 [ A^{-1} B A ]
 \quad
 set(v{x} in bb{R}^n | norm(v{x}) < r)
@@ -42,7 +42,7 @@ set(t : 0 <= t <= 1)
 
 :::math
 ( \frac{1}{1 + norm(v{x})} )
-\quad
+\;
 [ A^{-1} B A ]
 \quad
 set(v{x} in bb{R}^n | norm(v{x}) < r)
@@ -164,21 +164,15 @@ oint[C](v{F} dot unit{t}, s) = iint[S](curl(v{F}) dot unit{n}, S)
 
 ```text
 :::math
-dd(x, t) = v{v}(t)
-\quad
-dd[2](x, t) = v{a}(t)
+dd(x, t) = v{v}(t) \quad dd[2](x, t) = v{a}(t)
 
-pd(f, x)
-\quad
-pd[2](f, x)
-\quad
-pd2(f, x, y)
+pd(f, x) \quad pd[2](f, x) \quad pd2(f, x, y)
 
 grad(phi) = pd(phi, x) v{i} + pd(phi, y) v{j} + pd(phi, z) v{k}
 
 div(v{F}) = pd(F_x, x) + pd(F_y, y) + pd(F_z, z)
 
-curl(v{F}) = detmat(v{i}, v{j}, v{k}; pd({}, x), pd({}, y), pd({}, z); F_x, F_y, F_z)
+curl(v{F}) = detmat(v{i}, v{j}, v{k}; \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}; F_x, F_y, F_z)
 
 jac(v{f}) = mat(pd(f_1, x_1), pd(f_1, x_2); pd(f_2, x_1), pd(f_2, x_2))
 
@@ -187,21 +181,15 @@ hess(f) = mat(pd[2](f, x), pd2(f, x, y); pd2(f, y, x), pd[2](f, y))
 ```
 
 :::math
-dd(x, t) = v{v}(t)
-\quad
-dd[2](x, t) = v{a}(t)
+dd(x, t) = v{v}(t) \quad dd[2](x, t) = v{a}(t)
 
-pd(f, x)
-\quad
-pd[2](f, x)
-\quad
-pd2(f, x, y)
+pd(f, x) \quad pd[2](f, x) \quad pd2(f, x, y)
 
 grad(phi) = pd(phi, x) v{i} + pd(phi, y) v{j} + pd(phi, z) v{k}
 
 div(v{F}) = pd(F_x, x) + pd(F_y, y) + pd(F_z, z)
 
-curl(v{F}) = detmat(v{i}, v{j}, v{k}; pd({}, x), pd({}, y), pd({}, z); F_x, F_y, F_z)
+curl(v{F}) = detmat(v{i}, v{j}, v{k}; \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}; F_x, F_y, F_z)
 
 jac(v{f}) = mat(pd(f_1, x_1), pd(f_1, x_2); pd(f_2, x_1), pd(f_2, x_2))
 
@@ -216,7 +204,7 @@ A = mat(2, 3, 1; 6, 13, 5; 2, 19, 10)
 
 v{x} = pmat(x_1; x_2; x_3)
 
-det(A) = detmat(a, b; c, d) = ad - bc
+\det(A) = detmat(a, b; c, d) = ad - bc
 
 Q^T Q = I
 :::
@@ -227,7 +215,7 @@ A = mat(2, 3, 1; 6, 13, 5; 2, 19, 10)
 
 v{x} = pmat(x_1; x_2; x_3)
 
-det(A) = detmat(a, b; c, d) = ad - bc
+\det(A) = detmat(a, b; c, d) = ad - bc
 
 Q^T Q = I
 :::
@@ -267,81 +255,51 @@ boundary(Phi) = 0
 ### Greek, Logic, And Relations
 
 ```text
-:::math
-forall eps > 0, exists del > 0:
-norm(v{x} - v{x}_0) < del
-=> norm(v{f}(v{x}) - v{a}) < eps
-
-alpha, beta, gamma, theta, lambda, mu, rho, sigma, omega, Phi
-
-x in A
-\quad
-y notin B
-\quad
-x != y
-\quad
-A <=> B
-\quad
-n -> inf
-\quad
-1 + ... + n
+:::math align
+&forall eps > 0, exists del > 0:
+&norm(v{x} - v{x}_0) < del
+&=> norm(v{f}(v{x}) - v{a}) < eps
+&alpha, beta, gamma, theta, lambda, mu, rho, sigma, omega, Phi
+&x in A \quad y notin B \quad x != y \quad A <=> B \quad n -> inf \quad 1 + ... + n
 :::
 ```
 
-:::math
-forall eps > 0, exists del > 0:
-norm(v{x} - v{x}_0) < del
-=> norm(v{f}(v{x}) - v{a}) < eps
-
-alpha, beta, gamma, theta, lambda, mu, rho, sigma, omega, Phi
-
-x in A
-\quad
-y notin B
-\quad
-x != y
-\quad
-A <=> B
-\quad
-n -> inf
-\quad
-1 + ... + n
+:::math align
+&forall eps > 0, exists del > 0:
+&norm(v{x} - v{x}_0) < del
+&=> norm(v{f}(v{x}) - v{a}) < eps
+&alpha, beta, gamma, theta, lambda, mu, rho, sigma, omega, Phi
+&x in A \quad y notin B \quad x != y \quad A <=> B \quad n -> inf \quad 1 + ... + n
 :::
 
 ### Mixed With LaTeX
 
 ```text
-:::math
-\sqrt[n]{norm(v{x})^n + norm(v{y})^n}
-<= norm(v{x}) + norm(v{y})
+:::math align
+\sqrt[n]{norm(v{x})^n + norm(v{y})^n} &<= norm(v{x}) + norm(v{y})
 
-\frac{1}{4 \pi eps_0} sum[i=1..N](\frac{q_i}{norm(v{r} - v{r}_i)^2} unit{u}_i)
+v{E} &= \frac{1}{4 \pi eps_0} sum[i=1..N](\frac{q_i}{norm(v{r} - v{r}_i)^2} unit{u}_i)
 
-\operatorname{rank}(jac(v{f})(v{x}_0)) = n
+\operatorname{rank}(jac(v{f})(v{x}_0)) &= n
 
-\left.\pd(phi, x)\right|_{x=0} = 0
+\left. pd(phi, x)\right|_{x=0} &= 0
 
-\begin{aligned}
 S_n &= sum[k=1..n](a_k) \\
 &= S_{n-1} + a_n
-\end{aligned}
 :::
 ```
 
-:::math
-\sqrt[n]{norm(v{x})^n + norm(v{y})^n}
-<= norm(v{x}) + norm(v{y})
+:::math align
+\sqrt[n]{norm(v{x})^n + norm(v{y})^n} &<= norm(v{x}) + norm(v{y})
 
-\frac{1}{4 \pi eps_0} sum[i=1..N](\frac{q_i}{norm(v{r} - v{r}_i)^2} unit{u}_i)
+v{E} &= \frac{1}{4 \pi eps_0} sum[i=1..N](\frac{q_i}{norm(v{r} - v{r}_i)^2} unit{u}_i)
 
-\operatorname{rank}(jac(v{f})(v{x}_0)) = n
+\operatorname{rank}(jac(v{f})(v{x}_0)) &= n
 
-\left.\pd(phi, x)\right|_{x=0} = 0
+\left. pd(phi, x)\right|_{x=0} &= 0
 
-\begin{aligned}
 S_n &= sum[k=1..n](a_k) \\
 &= S_{n-1} + a_n
-\end{aligned}
 :::
 
 ### Auto-Aligned Block
