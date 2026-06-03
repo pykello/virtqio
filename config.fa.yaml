@@ -22,3 +22,5 @@ theorems:
     label: "Proof"
     numbered: false
 syntax_highlighter_theme: "InspiredGitHub"
+escape_markdown_in_math: false
+math_shorthand: true

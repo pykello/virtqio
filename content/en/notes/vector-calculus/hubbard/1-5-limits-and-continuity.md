@@ -8,30 +8,30 @@ I've also added some notes and expanded some of the examples to make them cleare
 
 ### Open and Closed Sets
 
-**Open ball.** For any $\mathbf{x} \in \mathbb{R}^n$ and $r > 0$, the open ball of radius $r$ centered at $\mathbf{x}$ is the subset
+**Open ball.** For any $v{x} \in bb{R}^n$ and $r > 0$, the open ball of radius $r$ centered at $v{x}$ is the subset
 
 $$
-B_r(\mathbf{x}) := \{\mathbf{y} \in \mathbb{R}^n : \lVert\mathbf{x} - \mathbf{y}\rVert < r\}.
+B_r(v{x}) := \{v{y} \in bb{R}^n : norm(v{x} - v{y}) < r\}.
 $$
 
-**Open set of $\mathbb{R}^n$.** A subset $U \subset \mathbb{R}^n$ is open if for every $x \in U$, there exists $r > 0$ such that $B_r(\mathbf{x}) \subset U$.
+**Open set of $bb{R}^n$.** A subset $U \subset bb{R}^n$ is open if for every $x \in U$, there exists $r > 0$ such that $B_r(v{x}) \subset U$.
 
-**Closed set of $\mathbb{R}^n$.** A subset $C \subset \mathbb{R}^n$ is closed if its complement $C^c = \mathbb{R}^n - C$ is open.
+**Closed set of $bb{R}^n$.** A subset $C \subset bb{R}^n$ is closed if its complement $C^c = bb{R}^n - C$ is open.
 
 > [!NOTE]
-> * A set can be both open and closed. For example, $\emptyset$ and $\mathbb{R}^n$ are both open and closed.
+> * A set can be both open and closed. For example, $\emptyset$ and $bb{R}^n$ are both open and closed.
 > * A set can be neither open nor closed. For example, $[0, 1)$ is neither open nor closed.
 
-**Neighborhood.** A neighborhood of a point $\mathbf{x} \in \mathbb{R}^n$ is a subset $X \subset \mathbb{R}^n$ such that there exists $\epsilon > 0$ with $B_\epsilon(\mathbf{\mathbf{x}}) \subset X$.
+**Neighborhood.** A neighborhood of a point $v{x} \in bb{R}^n$ is a subset $X \subset bb{R}^n$ such that there exists $eps > 0$ with $B_\epsilon(v{x}) \subset X$.
 
 Often, we deal with sets that are neither open or closed. But every set is contained
 in a smallest closed set, called its _closure_, and largest open set, called its _interior_.
 
-**Closure.** The _closure_ of $A \subset \mathbb{R}^n$, denoted $\overline{A}$, is the set of $\mathbf{x} \in \mathbb{R}^n$ such that for every $r > 0$, $B_r(\mathbf{x}) \cap A \neq \emptyset$.
+**Closure.** The _closure_ of $A \subset bb{R}^n$, denoted $\overline{A}$, is the set of $v{x} \in bb{R}^n$ such that for every $r > 0$, $B_r(v{x}) \cap A \neq \emptyset$.
 
-**Interior.** The _interior_ of $A \subset \mathbb{R}^n$, denoted $\overset{\circ}{A}$, is the set of $\mathbf{x} \in \mathbb{R}^n$ such that there exists $r > 0$ with $B_r(\mathbf{x}) \subset A$.
+**Interior.** The _interior_ of $A \subset bb{R}^n$, denoted $\overset{\circ}{A}$, is the set of $v{x} \in bb{R}^n$ such that there exists $r > 0$ with $B_r(v{x}) \subset A$.
 
-**Boundary.** The _boundary_ of $A \subset \mathbb{R}^n$, denoted $\partial A$, is the set of $\mathbf{x} \in \mathbb{R}^n$ such that every neighborhood of $\mathbf{x}$ overlaps both $A$ and $A^c$.
+**Boundary.** The _boundary_ of $A \subset bb{R}^n$, denoted $\partial A$, is the set of $v{x} \in bb{R}^n$ such that every neighborhood of $v{x}$ overlaps both $A$ and $A^c$.
 
 Thus,
 * The closure of $A$ is the union of $A$ and its boundary: $\overline{A} = A \cup \partial A$.
@@ -40,13 +40,13 @@ Thus,
 
 ### Convergence and Limits
 
-**Convergence.** A sequence $i \mapsto \mathbf{a}_i \in \mathbb{R}^n$ _converges_ to $\mathbf{a} \in \mathbb{R}^n$ if
+**Convergence.** A sequence $i \mapsto v{a}_i \in bb{R}^n$ _converges_ to $v{a} \in bb{R}^n$ if
 
 $$
-\forall \epsilon > 0, \exists M | m > M \implies \lVert\mathbf{a}_m - \mathbf{a}\rVert < \epsilon.
+forall eps > 0, exists M | m > M => norm(v{a}_m - v{a}) < eps.
 $$
 
-We call $\mathbf{a}$ the _limit_ of the sequence.
+We call $v{a}$ the _limit_ of the sequence.
 
 **Proposition 1.5.13 (Convergence in terms of coordinates).** A sequence $m \mapsto \mathbf{a}_m \in \mathbb{R}^n$ converges to $\mathbf{a} \in \mathbb{R}^n$ if and only if each coordinate converges.
 
@@ -123,11 +123,11 @@ $i \mapsto c_i$ be a sequence of numbers. Then
 
 1. If $i \mapsto \mathbf{a}_i$ and $i \mapsto \mathbf{b}_i$ both converge, then so does $i \mapsto \mathbf{a}_i + \mathbf{b}_i$, and
 
-$$
-\lim_{i\to\infty} \left(\mathbf{a}_i + \mathbf{b}_i\right)
-\= \lim_{i\to\infty} \mathbf{a}_i
-  \+ \lim_{i\to\infty} \mathbf{b}_i \tag{1.5.20}
-$$
+:::align
+lim[i -> inf] (v{a}_i + v{b}_i)
+&= lim[i -> inf] v{a}_i
+  + lim[i -> inf] v{b}_i \tag{1.5.20}
+:::
 
 2. If $i \mapsto \mathbf{a}_i$ and $i \mapsto c_i$ both converge, then so does $i \mapsto c_i \mathbf{a}_i$, and 
 
