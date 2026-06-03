@@ -164,7 +164,9 @@ Query (F)
 
 به صورت کلی، مراحی پردازش کوئری عبارتند از:
 
-   ![Postgres Flow](postgres-flow.svg)
+:::figure postgres-flow.svg
+alt: Postgres Flow
+:::
 
 ### مرحله Parse و Analyze
 

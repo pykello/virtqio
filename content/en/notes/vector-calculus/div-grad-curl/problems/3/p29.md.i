@@ -19,7 +19,8 @@ yields Equation (III-7b).
 
 Consider the cuboid shown in the figure below:
 
- ![](III-29a.jpg)
+:::figure III-29a.jpg
+:::
 
 **Side S1.**
 - Normal: $unit{j}$,

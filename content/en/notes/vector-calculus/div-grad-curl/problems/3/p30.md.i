@@ -17,25 +17,29 @@ into $N$ patches of which the $l$-th has area $Delta S_l$.
 Convince yourself by means of a sketch that this subdivision can be made
 with only two kinds of patches: rectangles and right triangles.
 
- ![](III-30a.jpg)
+:::figure III-30a.jpg
+:::
 
 :::expandable
 **Solution.** [Click to Expand]
 
 **Step 1.** Form right triangles taking each oblique segment of $P$ as the hypotenuse.
 
- ![](III-30b.jpg)
+:::figure III-30b.jpg
+:::
 
 If right triangles overlap each other or the sides of $P$, then subdivide them into
 smaller right triangles:
 
- ![](III-30d.png)
+:::figure III-30d.png
+:::
 
 **Step 2.** Now, we have only right triangles and polygons with sides parallel
 to the axes. Add vertical segments at concave 270° corners of the polygon to
 form rectangles:
 
- ![](III-30c.jpg)
+:::figure III-30c.jpg
+:::
 
 ::::
 

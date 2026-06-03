@@ -11,7 +11,8 @@ is independent of the path, rederive it, using a triangular path.
 :::expandable
 **Solution.** [Click to Expand]
 
- ![](III-2.png)
+:::figure III-2.png
+:::
 
 Assume the force $v{F}$ is given by:
 

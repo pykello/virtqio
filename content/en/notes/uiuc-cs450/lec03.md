@@ -28,7 +28,8 @@ norm(x)_p = ( sum[i=1..n] |x_i|^p )^{1/p}
 - 2-norm: $norm(x)_2 = \sqrt{sum[i=1..n] |x_i|^2}$. In 2D, the unit ball is a circle.
 - $inf$-norm: $norm(x)_inf = max[i=1..n] |x_i|$. In 2D, the unit ball is a square.
 
-<div id="fig1" style="width:90%; max-width: 360px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
+:::figure id=fig1 width=360
+:::
 
 <script>
 const board = JXG.JSXGraph.initBoard('fig1', {
@@ -199,7 +200,7 @@ Using 2 and 4, we conclude that $norm(A)_inf$ is the maximum 1-norm of the rows 
 ::::
 
 
-:::card[note]
+:::aside
 
 **Note.** The following properties hold for norms induced by p-norms, but
 may or may not hold for more general matrix norms:
@@ -207,7 +208,7 @@ may or may not hold for more general matrix norms:
 - $norm(AB)_p <= norm(A)_p dot norm(B)_p$
 - $norm(Ax)_p <= norm(A)_p dot norm(x)_p$
 
-::::
+:::
 
 **Example.** For the matrix
 

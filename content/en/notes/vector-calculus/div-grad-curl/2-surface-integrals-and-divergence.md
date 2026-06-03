@@ -151,7 +151,8 @@ iint[S] G(x, y, z) \, dS
 
 Our strategy is to relate $Delta S_i$ to the area of its projection on the $xy$-plane, as shown in the figure below.
 
-<div id="fig12" style="width:90%; max-width: 360px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
+:::figure id=fig12 width=360
+:::
 
 <script>
   const brd = initBoard('fig12');
@@ -181,7 +182,8 @@ and area of its projection in the $xy$-plane.
 
 Assume one pair of sides are parallel to the $xy$-plane, and the other pair makes angle $theta$ with the $xy$-plane.
 
-<div id="fig14" style="width:90%; max-width: 360px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
+:::figure id=fig14 width=360
+:::
 
 <script>
 {
@@ -429,7 +431,8 @@ We can use symmetry and Gauss's Law to find the electric field in the following 
 
 Consider the surface integral of the electric field over closed surfaces centered at $P$:
 
- ![](fig-II-21.png)
+:::figure fig-II-21.png
+:::
 
 Assuming volume $Delta V$ and average charge density $\overline{rho}_{Delta V}$, we have:
 
@@ -469,7 +472,8 @@ Then equation (II-16) can be written as:
 
 To calculate this, consider a small cube centered at $(x, y, z)$ with side length $Delta x$, $Delta y$, and $Delta z$:
 
- ![](fig-II-23.png)
+:::figure fig-II-23.png
+:::
 
 $S_1$ is the front face, $S_2$ is the back face. Let $v{F} dot v{i} = F_x$.
 
@@ -526,7 +530,8 @@ to define the divergence as the limit of flux to volume as stated in equation (I
 
 To calculate the divergence in cylindrical coordinates, consider the "cylindrical cuboid" shown below:
 
- ![](fig-II-24.png)
+:::figure fig-II-24.png
+:::
 
 Center is $(r, theta, z)$, and volume is $Delta V = r Delta r Delta theta Delta z$.
 

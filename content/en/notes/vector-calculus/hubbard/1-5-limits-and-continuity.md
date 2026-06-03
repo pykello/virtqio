@@ -50,8 +50,7 @@ We call $v{a}$ the _limit_ of the sequence.
 
 **Proposition 1.5.13 (Convergence in terms of coordinates).** A sequence $m \mapsto v{a}_m \in bb{R}^n$ converges to $v{a} \in bb{R}^n$ if and only if each coordinate converges.
 
-:::expandable
-**Proof.** [Click to Expand]
+:::proof
 
 1. ($=>$) Assume $m \mapsto v{a}_m$ converges to $v{a}$. This
 means for any $eps > 0$, there exists $M$ such that for all $m > M$ we have:
@@ -76,8 +75,7 @@ For $m > M$, $norm(v{a} - v{a}_m) < \sqrt{n dot (\dfrac{eps}{\sqrt{n}})^2} = eps
 1. For every $eps > 0$, there exists $M$ such that for all $m > M$, $norm(v{a}_m - v{a}) < u(eps)$.
 2. For every $eps > 0$, there exists $M$ such that for all $m > M$, $norm(v{a}_m - v{a}) < eps$.
 
-:::expandable
-**Proof.** [Click to Expand]
+:::proof
 
 $lim[eps -> 0] u(eps) = 0$ means that for every $del > 0$ there exists $eps_0$ such that $u(eps) < del$ for all $eps < eps_0$.
 
@@ -89,8 +87,7 @@ $lim[eps -> 0] u(eps) = 0$ means that for every $del > 0$ there exists $eps_0$ s
 $i \mapsto v{a}_i$ of points in $bb{R}^n$ converges to $v{a}$
 and $v{b}$, then $v{a} = v{b}$.
 
-:::expandable
-**Proof.** [Click to Expand]
+:::proof
 
 Assume $v{a} != v{b}$. Then $eps_0 = \dfrac{norm(v{a}-v{b})}{2} > 0$.
 
@@ -149,8 +146,7 @@ converging to $v{x} \in bb{R}^n$. Then $v{x} \in C$.
 2. Conversely, if every convergent sequence in $C \subset bb{R}^n$ converges to
 a point in $C$, then $C$ is closed.
 
-:::expandable
-**Proof.** [Click to Expand]
+:::proof
 
 1. Assume $v{x} \notin C$. Then $v{x} \in C^c$ which is open. So, there
 exists $r > 0$ such that $B_r(v{x}) \subset C^c$. Since all $v{x}_i \in C$, then $v{x}_i \notin B_r(v{x})$, which means for all $i$ we have $norm(v{x}_i - v{x}) >= r$ for every $i$. Then if we choose $eps = r/2$, we can't find an $M$ such that for $m > M$ we have $norm(v{x}_m - v{x}) < eps$. So, $i \mapsto v{x}_i$ doesn't converge to $v{x}$. A contradiction.
@@ -211,8 +207,7 @@ norm(v{x} - v{x}_0) < del => norm(v{f}(v{x}) - v{a}) < eps
 **Proposition 1.5.21 (Limit of function is unique).** Let $f: X -> bb{R}^n$ be
 a function. If $f$ has a limit at $v{x}_0 \in \overline{X}$, the limit is unique.
 
-:::expandable
-**Proof.** [Click to Expand]
+:::proof
 
 Assume it's not unique and $lim[v{x}-> v{x}_0]v{f}(v{x})$ takes two values of $v{a} != v{b}$. Let
 $eps = \dfrac{norm(v{a} - v{b})}{2} > 0$.
@@ -240,8 +235,7 @@ v{y}_0 = lim[v{x} -> v{x}_0] v{f}(v{x}) \quad \text{and} \quad v{z}_0 = lim[v{y}
 
 both exist, then $lim[v{x} -> v{x}_0] (v{g} \circ v{f})(v{x})$ exists and is equal to $v{z}_0$.
 
-:::expandable
-**Proof.** [Click to Expand]
+:::proof
 
 Since $lim[v{y}-> v{y}_0] v{g}(v{y}) = v{z}_0$,
 
@@ -302,8 +296,7 @@ v{x}_0 \in \overline{U}.
 
 Then $lim[v{x} -> v{x}_0] v{f}(v{x}) = pmat(a_1; \vdots; a_m)$ if and only if $lim[v{x} -> v{x}_0] f_i(v{x}) = a_i$ for all $i = 1, ..., m$.
 
-:::expandable
-**Proof.** [Click to Expand]
+:::proof
 
 1. ($=>$) Since $forall i \in \{1,...,m\}$ we have $norm(v{f}(v{x})-v{f}(v{y}))>= abs(f_i(v{x})-f_i(v{y}))$, then for each $eps$ the same $del$ that works for the limit of vector
 function works also for the limit of each coordinate function.
@@ -350,8 +343,7 @@ lim[v{x} -> v{x}_0] (h v{f})(v{x}) = 0.
 lim[v{x} -> v{x}_0] (h v{f})(v{x}) = 0.
 :::
 
-:::expandable
-**Proof of 4.** [Click to Expand]
+:::proof[Proof of 4]
 
 Using **1.5.25**, since limit of $v{f}$ exists, then limit of each coordinate function $f_i$ exits. Part 1 and 2 apply also when the target space is one-dimensional. Induction on part 1 implies similar result for finite-sums.
 
@@ -396,8 +388,7 @@ $v{f}$ is continuous on $X$ if it is continuous at every point $v{x}_0 \in X$.
 lim[i-> inf] v{f}(v{x}_i) = v{f}(v{x}_0).
 :::
 
-:::expandable
-**Proof.** [Click to Expand]
+:::proof
 
 [TODO: Add proof]
 ::::
@@ -471,8 +462,7 @@ is continuous at $v{x}_0$.
 
 **Theorem 1.5.33 (Linear functions are uniformly continuous).** Any linear function $v{f}: bb{R}^n -> bb{R}^m$ is uniformly continuous.
 
-:::expandable
-**Proof.** [Click to Expand]
+:::proof
 
 Any linear function has a corresponding matrix $A$ such that $v{f}(v{x}) = A v{x}$. Then
 

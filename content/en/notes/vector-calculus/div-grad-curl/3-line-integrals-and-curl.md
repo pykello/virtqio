@@ -30,7 +30,8 @@ Work, in most elementary sense, is force times displacement. Consider the curve 
 and assume that the object moves along the curve from point $s_1$ to $s_2$. Let the force
 acting on the object be given by a vector field $v{f}(x,y,z)$.
 
- ![](fig-III-4.png)
+:::figure fig-III-4.png
+:::
 
 Let $unit{t}$ be the unit tangent vector to the curve at $P$. The component of the force acting along the curve is $v{f} dot unit{t}$. Then the work done by the force in moving the object from $s_1$ to $s_2$ along the curve $C$ is:
 
@@ -112,11 +113,13 @@ The path integral around a closed curve is often called a **circulation**.
 
 Let us consider the circulation of $v{F}$ around a small rectangle parallel to the $xy$-plane:
 
- ![](fig-III-11a.png)
+:::figure fig-III-11a.png
+:::
 
 The line integral can be broken into four parts: $C_B$ (bottom), $C_L$ (left), $C_T$ (top), and $C_R$ (right).
 
- ![](fig-III-11b.png)
+:::figure fig-III-11b.png
+:::
 
 Since the rectangle is small, well approximate each integral by $v{F} dot unit{t}$ at the center of the segment multiplied by the length of the segment.
 
@@ -164,7 +167,7 @@ Putting these as components of a vector, we have:
 \text{curl} \, v{F} = v{i} ( pd(F_z, y) - pd(F_y, z) ) + v{j} ( pd(F_x, z) - pd(F_z, x) ) + v{k} ( pd(F_y, x) - pd(F_x, y) )
 :::
 
-:::card[note]
+:::aside
 **Definition of Curl**: Limit of the circulation to area as area shrinks to zero.
 
 To be more precise, let $oint[C_n] v{F} dot unit{t} \, ds$ be the circulation of $v{F}$ around a curve whose normal is $unit{n}$. Then by definition,
@@ -210,7 +213,8 @@ We observe that the curl is a vector pointing along the axis of rotation, with a
 
 To visualize the curl of a vector field at a point, imagine placing a tiny paddlewheel at that location. If the surrounding flow causes the paddlewheel to spin, then the field has a nonzero curl there.
 
- ![](paddle-wheel.png)
+:::figure paddle-wheel.png
+:::
 
 Diagram was taken from: [MIT OCW's 18-02sc, Physical meaning of curl](https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/d18774dd8a3f24001bf3d502fef7f854_MIT18_02SC_MNotes_v4.3.pdf), licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 

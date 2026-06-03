@@ -269,6 +269,8 @@ plt.savefig('my_plot.png', dpi=300)  # Save as high-res image
 plt.show()                           # Display in notebook or GUI
 ```
 
- ![image](fig1.png)
+:::figure fig1.png
+alt: image
+:::
 
 ::::

@@ -4,7 +4,8 @@
 region enclosed by them. Show that the circulation of $v{F}$ around $C_1$ equals
 the circulation of $v{F}$ around $C_2$.
 
- ![](III-16a.jpg)
+:::figure III-16a.jpg
+:::
 
 :::expandable
 **Solution.** [Click to Expand]
@@ -14,7 +15,8 @@ Form $C_3$ by joining $C_1$ and $C_2$ with a segment on $S$ and reversing the di
 In figure below $a$ and $b$ segments completely overlap but in opposite directions. They connect
 inner and outer parts of the curve by moving along $S$.
 
- ![](III-16b.jpg)
+:::figure III-16b.jpg
+:::
 
 Then $S$ is a capping surface for the region enclosed by $C_3$.
 

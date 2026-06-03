@@ -1,7 +1,8 @@
 **Problem III-27.** Prove the statement made in Problem III-24(a) by applying Stokes' theorem
 and divergence theorem. [Hint: See the diagram below]
 
-![](III-27.png)
+:::figure III-27.png
+:::
 
 :::expandable
 **Solution.** [Click to Expand]

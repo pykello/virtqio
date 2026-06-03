@@ -6,11 +6,13 @@ in cylindrical coordinates. Proceeding the same way, obtain the $theta$- and $r$
 
 Using the path shown in the figure, we'll yield the $theta$-component of $\nabla cross v{F}$ in cylindrical coordinates.
 
- ![](III-8a.jpg)
+:::figure III-8a.jpg
+:::
 
 Viewed from above:
 
- ![](III-8b.jpg)
+:::figure III-8b.jpg
+:::
 
 For $C_1$, we have $unit{t} = unit{e}_r$ and $ds = dr$. Then:
 
@@ -70,7 +72,8 @@ pd(F_r, z) - pd(F_z, r)
 
 Using the path shown in the figure, we'll yield the $r$-component of $\nabla cross v{F}$ in cylindrical coordinates.
 
- ![](III-8c.jpg)
+:::figure III-8c.jpg
+:::
 
 For $C_1$, we have $unit{t} = unit{e}_theta$ and $ds = r dtheta$. Then:
 

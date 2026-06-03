@@ -49,7 +49,8 @@ or equivalently:
 
 Let $v{F} = v{i} y + 2 v{j} x$ and consider the rectangle below:
 
- ![](III-23a.png)
+:::figure III-23a.png
+:::
 
 Then, we have:
 
@@ -73,7 +74,8 @@ oint[C_1 + C_2 + C_3 + C_4] v{F} dot unit{t} \, ds = 2 a b - a b = a b
 
 Let $v{F} = v{i} y + 2 v{j} x$ and consider the right triangle below:
 
- ![](III-23b.jpg)
+:::figure III-23b.jpg
+:::
 
 Then, we have:
 

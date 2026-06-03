@@ -17,7 +17,8 @@
 > [!CAUTION]
 > Negative potential consequences of an action.
 
-<div id="box" class="jxgbox" style="width:90%; max-width: 480px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
+:::figure id=box class=jxgbox width=480
+:::
 
 <script>
     var board = JXG.JSXGraph.initBoard('box', {
@@ -49,7 +50,8 @@
     board.unsuspendUpdate();
 </script>
 
-<div id="jxgbox" class="jxgbox" style="width:90%; max-width: 480px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
+:::figure id=jxgbox class=jxgbox width=480
+:::
 
 <script>
     const board2 = JXG.JSXGraph.initBoard('jxgbox', {
@@ -71,8 +73,7 @@ For every positive integer $n$,
 1 + 2 + ... + n = \frac{n(n+1)}{2}.
 :::
 
-:::expandable
-**Proof.** ([Click to Expand])
+:::proof
 
 Let $S = 1 + 2 + ... + n$.
 

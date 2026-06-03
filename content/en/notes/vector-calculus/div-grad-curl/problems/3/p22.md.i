@@ -7,7 +7,8 @@ v{G}(x, y) = v{i} G_x(x, y) + v{j} G_y(x, y)
 
 using for $V$ and $S$ the volume and surface shown in the diagram.
 
-  ![](III-22.png)
+:::figure III-22.png
+:::
 
 In this way obtain the relation
 
@@ -37,7 +38,8 @@ and since $v{G}$ has $0$ as the $v{k}$ component, then the surface integral is z
 To calculate the surface integral of the shaded part in the figure, since
 the value of $v{G}$ and the normal vector $unit{n}$ do not depend on the $z$-coordinate, we choose $dS$ as below. Then, $dS = h \, ds$, where $h$ is the height of the surface.
 
- ![](III-22a.png)
+:::figure III-22a.png
+:::
 
 Then surface integral of the shaded part in the figure will be equal to:
 
@@ -75,7 +77,8 @@ iint[S] v{G} dot unit{n} \, dS = h oint[C] G_x \, dy - G_y \, dx
 
 Since value of $v{G}$ doesn't depend on $z$, we can choose $dV$ as below. Then, $dV = h \, dS$.
 
- ![](III-22b.png)
+:::figure III-22b.png
+:::
 
 Then, we have:
 
