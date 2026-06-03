@@ -43,25 +43,25 @@ the spark will occur at position $x = v_\text{rel} t$.
 
 Now, using the invariance of the spacetime interval, we can calculate $t'$,
 
-$$
+:::math
 t' = t ( 1 - v_\text{rel}^2 )^{1/2}
-$$
+:::
 
 Or
 
-$$
+:::math
 t = \frac{t'}{( 1 - v_\text{rel}^2 )^{1/2}}
-$$
+:::
 
 We define the **time stretch factor** as
 
-$$
-\gamma = \frac{1}{( 1 - v_\text{rel}^2 )^{1/2}}
-$$
+:::math
+gamma = \frac{1}{( 1 - v_\text{rel}^2 )^{1/2}}
+:::
 
-So we have $t = \gamma t'$ (when $x' = 0$).
+So we have $t = gamma t'$ (when $x' = 0$).
 
-Then, we have $x = v_\text{rel} \gamma t'$ (when $x' = 0$).
+Then, we have $x = v_\text{rel} gamma t'$ (when $x' = 0$).
 
 ### L.4 Form of the Lorentz Transformation
 
@@ -69,12 +69,12 @@ In this section the book argues that the general form of the transformation must
 
 That is, the general form should be:
 
-$$
+:::math plain
 \begin{aligned}
 t &= B x' + D t' \\
 x &= G x' + H t'
 \end{aligned}
-$$
+:::
 
 Why? since we are free to choose any event as the reference event. See the book for more details.
 
@@ -82,40 +82,40 @@ Why? since we are free to choose any event as the reference event. See the book 
 
 Using the special case in section L.3, we can find $D$ and $H$:
 
-$$
+:::math plain
 \begin{aligned}
-t &= B x' + \gamma t' \\
-x &= G x' + v_\text{rel} \gamma t'
+t &= B x' + gamma t' \\
+x &= G x' + v_\text{rel} gamma t'
 \end{aligned}
-$$
+:::
 
 Demanding the invariance of interval between any pair of events whatsoever,
 leads to completed form of the Lorentz transformation:
 
-$$
+:::math plain
 \begin{aligned}
-t &= \gamma ( t' + v_\text{rel} x' ) \\
-x &= \gamma ( x' + v_\text{rel} t' )
+t &= gamma ( t' + v_\text{rel} x' ) \\
+x &= gamma ( x' + v_\text{rel} t' )
 \end{aligned}
-$$
+:::
 
 or
 
-$$
+:::math plain
 \begin{aligned}
 t &= \frac{v_\text{rel} x' + t'}{( 1 - v_\text{rel}^2 )^{1/2}} \\[0.5em]
 x &= \frac{x' + v_\text{rel} t'}{( 1 - v_\text{rel}^2 )^{1/2}}
 \end{aligned}
-$$
+:::
 
 ### L.6 Inverse Lorentz Transformation
 
-$$
+:::math plain
 \begin{aligned}
 t' &= \frac{-v_\text{rel} x + t}{( 1 - v_\text{rel}^2 )^{1/2}} \\[0.5em]
 x' &= \frac{x - v_\text{rel} t}{( 1 - v_\text{rel}^2 )^{1/2}}
 \end{aligned}
-$$
+:::
 
 ### L.7 Addition of Velocities
 
@@ -123,22 +123,22 @@ Add light velocity to light velocity: gives light velocity!
 
 **Law of addition of velocities:**
 
-$$
+:::math
 v = \frac{v' + v_\text{rel}}{1 + v' v_\text{rel}}
-$$
+:::
 
 **Example 1.** A rocket moves at $4/5$ the speed of light relative to the lab observer.
 A bullet is fired from the rocket at $4/5$ the speed of light relative to the rocket.
 What is the speed of the bullet relative to the lab observer?
 
-$$
+:::math
 v = \frac{4/5 + 4/5}{1 + (4/5)(4/5)} = \frac{8/5}{1 + 16/25} = \frac{8/5}{41/25} = \frac{40}{41}
-$$
+:::
 
 **Example 2.** Suppose that bullet that is fired is in fact a beam of light. What is the
 speed of the light beam relative to the lab observer?
 
-$$
+:::math
 v = \frac{1 + 4/5}{1 + (1)(4/5)} = \frac{9/5}{9/5} = 1
-$$
+:::
 

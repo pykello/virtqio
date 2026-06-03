@@ -18,15 +18,15 @@ In **ill-conditioned** or **sensitive** problems, small relative changes in the 
 
 **Absolute Condition Number**
 
-$$
-\kappa_{abs}(f, x) = abs(f'(x))
-$$
+:::math
+kappa_{abs}(f, x) = abs(f'(x))
+:::
 
 **Relative Condition Number**
 
-$$
-\kappa_{rel}(f, x) = abs(\frac{x f'(x)}{f(x)})
-$$
+:::math
+kappa_{rel}(f, x) = abs(\frac{x f'(x)}{f(x)})
+:::
 
 Condition number of an ill-posed problem is infinite. That is, $f$ is not
 differentiable for some input.
@@ -34,9 +34,9 @@ differentiable for some input.
 :::card[example]
 **Example (Condition Number).** Let $f(x) = \sqrt{x}$. Since $f'(x) = \dfrac{1}{2\sqrt{x}}$, we have:
 
-$$
-\kappa_{rel}(f, x) = abs(\frac{x f'(x)}{f(x)}) = abs(\frac{x/(2\sqrt{x})}{\sqrt{x}}) = \frac{1}{2}
-$$
+:::math
+kappa_{rel}(f, x) = abs(\frac{x f'(x)}{f(x)}) = abs(\frac{x/(2\sqrt{x})}{\sqrt{x}}) = \frac{1}{2}
+:::
 
 This means that a given relative change in the input causes a relative change in the output of about half as much.
 ::::
@@ -59,22 +59,22 @@ An algorithm is **accurate** if $hat{f}(x) = f(x)$ for all $x$ when computing wi
 
 **Truncation error** concerns errors due to approximations in the algorithm. For example, when using Taylor series to approximate a function, truncation error is the difference between the exact function and the approximation.
 
-$$
-f(x + h) \approx g(h) = \sum_{i=0}^{k} \frac{f^{(i)}(x)}{i!} h^i
-$$
+:::math
+f(x + h) \approx g(h) = sum[i=0..k] \frac{f^{(i)}(x)}{i!} h^i
+:::
 
 Then the absolute truncation error of the approximation is given by
 
-$$
-f(x + h) - g(h) = \sum_{i=k+1}^{inf} \frac{f^{(i)}(x)}{i!} h^i = cal{O}(h^{k+1}) \text{ as } h -> 0
-$$
+:::math
+f(x + h) - g(h) = sum[i=k+1..inf] \frac{f^{(i)}(x)}{i!} h^i = cal{O}(h^{k+1}) \text{ as } h -> 0
+:::
 
 #### Round-off Error
 
 **Round-off error** concerns errors due to inexact representations of numbers.
 
 To study the propagation of round-off errors, we can use the notion of conditioning. The
-condition number tells us the worst-case amplification of the error in the input to the error in the output. We usually want to consider the point of maximum amplification: $\kappa(f) = \max_{x \in cal{X}} \kappa_{rel}(f, x)$.
+condition number tells us the worst-case amplification of the error in the input to the error in the output. We usually want to consider the point of maximum amplification: $kappa(f) = max[x \in cal{X}] kappa_{rel}(f, x)$.
 
 
 #### 64-bit Floating Point Numbers
@@ -112,13 +112,13 @@ Special cases:
 - **Normal numbers** have an **implicit leading 1** in the significand and a **non-zero exponent field** (1–2046). They follow the standard form:
 
   $$
-  (\pm)\,1.\text{fraction} \times 2^{e - 1023}
+  (\pm)\,1.\text{fraction} cross 2^{e - 1023}
   $$
 
 - **Subnormal (denormal) numbers** fill the gap near zero when the exponent field is **all zeros (0)**. They have no implicit leading 1:
 
   $$
-  (\pm)\,0.\text{fraction} \times 2^{-1022}
+  (\pm)\,0.\text{fraction} cross 2^{-1022}
   $$
 
 This allows gradual underflow toward zero, preserving precision for very small numbers.
@@ -129,17 +129,17 @@ Some examples from [Wikipedia](https://en.wikipedia.org/wiki/Double-precision_fl
 
 | Hexadecimal Value        |                                   | Decimal Value / Note                                            |
 |--------------------------|-----------------------------------|-----------------------------------------------------------------|
-| 3FF0 0000 0000 0000    | $+2^{0}\times 1$                  | 1.0                                                             |
-| 3FF0 0000 0000 0001    | $+2^{0}\times\bigl(1+2^{-52}\bigr)$ | 1.000 000 000 000 000 2220  <br/>(smallest number > 1)           |
-| 3FF0 0000 0000 0002    | $+2^{0}\times\bigl(1+2^{-51}\bigr)$ | 1.000 000 000 000 000 4441                                       |
-| 4000 0000 0000 0000    | $+2^{1}\times 1$                  | 2.0                                                             |
-| C000 0000 0000 0000    | $-2^{1}\times 1$                  | −2.0                                                            |
-| 4008 0000 0000 0000    | $+2^{1}\times 1.5\\;(1.1_{2})$     | 3.0                                                             |
-| 3F88 0000 0000 0000    | $+2^{-7}\times 1.5\\;(1.1_{2})$    | 3 / 256                                         |
-| 0000 0000 0000 0001    | $+2^{-1022}\times 2^{-52}=2^{-1074}$ | $4.940\cdots × 10^{-324}$ <br/>(smallest positive sub-normal) |
-| 000F FFFF FFFF FFFF      | $+2^{-1022}\\!\times\\!\bigl(1-2^{-52}\bigr)$ | $2.225\cdots × 10^{-308}$  <br/>(largest sub-normal)     |
-| 0010 0000 0000 0000      | $+2^{-1022}\times 1$              | $2.225\cdots × 10^{-308}$ <br/>(smallest positive normal) |
-| 7FEF FFFF FFFF FFFF      | $+2^{1023}\\!\times\\!\bigl(2-2^{-52}\bigr)$ | $1.797\cdots × 10^{308}$ <br/>(largest normal)        |
+| 3FF0 0000 0000 0000    | $+2^{0}cross 1$                  | 1.0                                                             |
+| 3FF0 0000 0000 0001    | $+2^{0}cross\bigl(1+2^{-52}\bigr)$ | 1.000 000 000 000 000 2220  <br/>(smallest number > 1)           |
+| 3FF0 0000 0000 0002    | $+2^{0}cross\bigl(1+2^{-51}\bigr)$ | 1.000 000 000 000 000 4441                                       |
+| 4000 0000 0000 0000    | $+2^{1}cross 1$                  | 2.0                                                             |
+| C000 0000 0000 0000    | $-2^{1}cross 1$                  | −2.0                                                            |
+| 4008 0000 0000 0000    | $+2^{1}cross 1.5\\;(1.1_{2})$     | 3.0                                                             |
+| 3F88 0000 0000 0000    | $+2^{-7}cross 1.5\\;(1.1_{2})$    | 3 / 256                                         |
+| 0000 0000 0000 0001    | $+2^{-1022}cross 2^{-52}=2^{-1074}$ | $4.940... × 10^{-324}$ <br/>(smallest positive sub-normal) |
+| 000F FFFF FFFF FFFF      | $+2^{-1022}\\!cross\\!\bigl(1-2^{-52}\bigr)$ | $2.225... × 10^{-308}$  <br/>(largest sub-normal)     |
+| 0010 0000 0000 0000      | $+2^{-1022}cross 1$              | $2.225... × 10^{-308}$ <br/>(smallest positive normal) |
+| 7FEF FFFF FFFF FFFF      | $+2^{1023}\\!cross\\!\bigl(2-2^{-52}\bigr)$ | $1.797... × 10^{308}$ <br/>(largest normal)        |
 | 0000 0000 0000 0000      |                                   |  +0                                                       |
 | 8000 0000 0000 0000      |                                   | −0                                                              |
 | 7FF0 0000 0000 0000      |                                   | +∞                                                              |
@@ -149,40 +149,40 @@ Some examples from [Wikipedia](https://en.wikipedia.org/wiki/Double-precision_fl
 
 #### Preserving Relative Error
 
-This is best characterized by **machine epsilon** ($\varepsilon_{\text{mach}}$), which is the best
+This is best characterized by **machine epsilon** ($eps_{\text{mach}}$), which is the best
 quantification of the precision of the floating-point representation.
 
 It is defined as the smallest positive number which, when added to 1.0, gives a result larger than 1.0 in the floating-point representation.
 
-The relative error in floating-point arithmetic is at most $\varepsilon_{\text{mach}}$:
+The relative error in floating-point arithmetic is at most $eps_{\text{mach}}$:
 
-$$
-abs(\frac{\text{fl}(x) - x}{x}) <= \varepsilon_{\text{mach}}
-$$
+:::math
+abs(\frac{\text{fl}(x) - x}{x}) <= eps_{\text{mach}}
+:::
 
 :::card[example]
-**Example.** In IEEE 754 double precision, machine epsilon is $\varepsilon = 2^{-52} \approx 2.22 \times 10^{-16}$.
+**Example.** In IEEE 754 double precision, machine epsilon is $eps = 2^{-52} \approx 2.22 cross 10^{-16}$.
 ::::
 
 #### Rounding Error in Operations
 
-For example, consider a scientific notation system with 4 digits of precision. We want to add $2.103 \times 10^2$ and $7.620 \times 10^0$:
+For example, consider a scientific notation system with 4 digits of precision. We want to add $2.103 cross 10^2$ and $7.620 cross 10^0$:
 
 * First, we align the decimal points:
-  $2.103 \times 10^2$ and $0.07620 \times 10^2$.
-* Then we add: $2.103 + 0.07620 = 2.17920 \times 10^2$.
-* Finally, we round to 4 digits: $2.179 \times 10^2$.
+  $2.103 cross 10^2$ and $0.07620 cross 10^2$.
+* Then we add: $2.103 + 0.07620 = 2.17920 cross 10^2$.
+* Finally, we round to 4 digits: $2.179 cross 10^2$.
 
-In this method, adding $2.103 \times 10^2$ and $1 \times 10^{-6}$ would
+In this method, adding $2.103 cross 10^2$ and $1 cross 10^{-6}$ would
 effectively do nothing. Which is okay if we do it once. But assume we do it
 $10^9$ times. Then we ignore all of these small changes, which add up to a large change.
 
 :::card[example]
 **Example.** We know that the harmonic series diverges:
 
-$$
-\sum_{i=1}^{n} \frac{1}{i} -> inf
-$$
+:::math
+sum[i=1..n] \frac{1}{i} -> inf
+:::
 
 But if we compute it using 32-bit floating point numbers, it converges to approximately $15.4037$.
 
@@ -191,7 +191,7 @@ But if we compute it using 32-bit floating point numbers, it converges to approx
 **Catastrophic cancellation** occurs when subtracting two nearly equal numbers, causing significant digits to cancel out. As a result, the result has analytically less precision.
 
 :::card[example]
-**Example.** When adding $2.103 \times 10^2$ and $-2.102 \times 10^2$, we get $
+**Example.** When adding $2.103 cross 10^2$ and $-2.102 cross 10^2$, we get $
 1.000 \times 10^{-1}$. But the 0s in the result are not reliable, as the significant digits in the inputs cancelled out.
 ::::
 
@@ -199,13 +199,11 @@ In general if $x + y$ is near 0, then addition is ill-conditioned.
 
 #### Multiplication and Division
 
-$$
-\begin{align*}
-\text{fl}(\text{fl}(x) \cdot \text{fl}(y)) - x y &<= (1 + \varepsilon)(x(1 + \varepsilon)) \cdot y(1 + \varepsilon) - x  y \\
-&= x  y (1 + \varepsilon)^3 - x y \\
-&\approx x y (1 + 3 \varepsilon) - x  y
-\end{align*}
-$$
+:::math align
+\text{fl}(\text{fl}(x) dot \text{fl}(y)) - x y &<= (1 + eps)(x(1 + eps)) dot y(1 + eps) - x  y
+&= x  y (1 + eps)^3 - x y
+&\approx x y (1 + 3 eps) - x  y
+:::
 
-So the relative error is at most $3 \varepsilon$. That is, $\kappa(x \cdot y) <= 3$.
+So the relative error is at most $3 eps$. That is, $kappa(x dot y) <= 3$.
 

@@ -1,19 +1,19 @@
-**Problem III-28.** **(a)** What is the integral form of the equation $v{G} = \nabla \times v{H}$?
+**Problem III-28.** **(a)** What is the integral form of the equation $v{G} = \nabla cross v{H}$?
 
 :::expandable
 **Solution.** [Click to Expand]
 
 Using the Stokes' theorem, for a closed path $C$ and a surface $S$ capping $C$, we have:
 
-$$
-\iint_S \nabla \times v{H} \cdot unit{n} \, dS = \oint_C v{H} \cdot unit{t} \, ds
-$$
+:::math
+iint[S] \nabla cross v{H} dot unit{n} \, dS = oint[C] v{H} dot unit{t} \, ds
+:::
 
-Since $v{G} = \nabla \times v{H}$, then we have:
+Since $v{G} = \nabla cross v{H}$, then we have:
 
-$$
-\iint_S v{G} \cdot unit{n} \, dS = \oint_C v{H} \cdot unit{t} \, ds
-$$
+:::math
+iint[S] v{G} dot unit{n} \, dS = oint[C] v{H} dot unit{t} \, ds
+:::
 
-and this is the integral form of the equation $v{G} = \nabla \times v{H}$.
+and this is the integral form of the equation $v{G} = \nabla cross v{H}$.
 ::::

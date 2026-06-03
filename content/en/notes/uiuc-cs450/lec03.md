@@ -13,20 +13,20 @@ A **vector norm** should satisfy:
 
 - $norm(x) >= 0$
 - $norm(x) = 0$ if and only if $x = 0$
-- $norm(\alpha x) = |\alpha| norm(x)$ for all $\alpha \in bb{R}$
+- $norm(alpha x) = |alpha| norm(x)$ for all $alpha \in bb{R}$
 - $norm(x + y) <= norm(x) + norm(y)$ (triangle inequality)
 
 A norm is uniquely determined by its unit ball, which is the set of all vectors $x$ such that $norm(x) = 1$.
 
 $p$-norms are defined as:
 
-$$
-norm(x)_p = ( \sum_{i=1}^n |x_i|^p )^{1/p}
-$$
+:::math
+norm(x)_p = ( sum[i=1..n] |x_i|^p )^{1/p}
+:::
 
-- 1-norm: $norm(x)_1 = \sum_{i=1}^n |x_i|$. In 2D, the unit ball is a diamond.
-- 2-norm: $norm(x)_2 = \sqrt{\sum_{i=1}^n |x_i|^2}$. In 2D, the unit ball is a circle.
-- $inf$-norm: $norm(x)_\infty = \max_{i=1}^n |x_i|$. In 2D, the unit ball is a square.
+- 1-norm: $norm(x)_1 = sum[i=1..n] |x_i|$. In 2D, the unit ball is a diamond.
+- 2-norm: $norm(x)_2 = \sqrt{sum[i=1..n] |x_i|^2}$. In 2D, the unit ball is a circle.
+- $inf$-norm: $norm(x)_inf = max[i=1..n] |x_i|$. In 2D, the unit ball is a square.
 
 <div id="fig1" style="width:90%; max-width: 360px; aspect-ratio: 1 / 1; margin: 20px auto;"></div>
 
@@ -100,13 +100,13 @@ board.create('polygon', linfPoints, {
 
 In general, for any vector $v \in bb{R}^n$, we have:
 
-$$
-norm(v)_1 >= norm(v)_2 >= norm(v)_\infty
-$$
+:::math
+norm(v)_1 >= norm(v)_2 >= norm(v)_inf
+:::
 
 We also have the following inequalities:
 - $norm(v)_1 <= \sqrt{n} norm(v)_2$
-- $norm(v)_2 <= \sqrt{n} norm(v)_\infty$
+- $norm(v)_2 <= \sqrt{n} norm(v)_inf$
 
 So, any of these norms differ by at most a factor of a constant.
 
@@ -118,7 +118,7 @@ So, any of these norms differ by at most a factor of a constant.
 - $\langle x, x \rangle = 0$ if and only if $x = 0$
 - $\langle x, y \rangle = \langle y, x \rangle$
 - $\langle x, y + z \rangle = \langle x, y \rangle + \langle x, z \rangle$
-- $\langle \alpha x, y \rangle = \alpha \langle x, y \rangle$ for all $\alpha \in bb{R}$
+- $\langle alpha x, y \rangle = alpha \langle x, y \rangle$ for all $alpha \in bb{R}$
 
 **Cauchy-Schwarz Inequality**: $abs(\langle x, y \rangle) <= \sqrt{\langle x, x \rangle \langle y, y \rangle}$
 
@@ -130,63 +130,62 @@ A **matrix norm** should satisfy:
 
 - $norm(A) >= 0$
 - $norm(A) = 0$ if and only if $A = 0$
-- $norm(\alpha A) = |\alpha| \cdot norm(A)$ for all $\alpha \in bb{R}$
+- $norm(alpha A) = |alpha| dot norm(A)$ for all $alpha \in bb{R}$
 - $norm(A + B) <= norm(A) + norm(B)$ (triangle inequality)
 
-**Frobenius norm**: $norm(A)_F = \sqrt{\sum_{i, j} a_{ij}^2}$
+**Frobenius norm**: $norm(A)_F = \sqrt{sum[i, j] a_{ij}^2}$
 
 **Operator norm**: Maximum amplification of any input vector $x$ to $Ax$:
 
-$$
-norm(A)_p = \max_{x != 0} \frac{norm(Ax)_p}{norm(x)_p} = \max_{x, norm(x)_p = 1} norm(Ax)_p
-$$
+:::math
+norm(A)_p = max[x != 0] \frac{norm(Ax)_p}{norm(x)_p} = max[x, norm(x)_p = 1] norm(Ax)_p
+:::
 
 
 :::card[example]
 
-**Theorem** (from quiz 3): $norm(A)_\infty$ is the maximum 1-norm of the rows of $A$.
+**Theorem** (from quiz 3): $norm(A)_inf$ is the maximum 1-norm of the rows of $A$.
 
 **Proof**.
 
-Assume $A$ is $n \times m$. Let $1 <= i <= n$ and $v \in bb{R}^m$ s.t. $norm(v)_\infty = 1$.
-Since $\max \\{|v_1|, \ldots, |v_m|\\} = 1$, we have
+Assume $A$ is $n cross m$. Let $1 <= i <= n$ and $v \in bb{R}^m$ s.t. $norm(v)_inf = 1$.
+Since $\max \\{|v_1|, ..., |v_m|\\} = 1$, we have
 
-$$
-|(A \cdot v)_i| <= \sum_{j=1}^m |A_{i,j}| = norm(A_i)_1 \tag{1}
-$$
+:::math
+|(A dot v)_i| <= sum[j=1..m] |A_{i,j}| = norm(A_i)_1 \tag{1}
+:::
 
 Therefore,
 
-$$
-norm(A)_\infty <= \max\{norm(A_1)_1, \ldots, norm(A_n)_1\} \tag{2}
-$$
+:::math
+norm(A)_inf <= \max\{norm(A_1)_1, ..., norm(A_n)_1\} \tag{2}
+:::
 
 Now, we show that a vector $v$ exists to make the equality happen.
 
-Define vectors $v^1, \ldots, v^n$ such that $v^i_j = \text{sgn}(A_{i,j})$, where
+Define vectors $v^1, ..., v^n$ such that $v^i_j = \text{sgn}(A_{i,j})$, where
 
-$$
-\text{sgn}(x) = \begin{cases}
-+1 \quad &x >= 0 \\
--1 \quad &x < 0
-\end{cases}
-$$
+:::math
+\text{sgn}(x) = cases:
++1 \quad | x >= 0
+-1 \quad | x < 0
+:::
 
-Then for all $1 <= i <= n$, $norm(v^i)_\infty = 1$ and
+Then for all $1 <= i <= n$, $norm(v^i)_inf = 1$ and
 
-$$
-(A \cdot v^i)_i = \sum_{j=1}^m |A_{i,j}| = norm(A_i)_1 \tag{3}
-$$
+:::math
+(A dot v^i)_i = sum[j=1..m] |A_{i,j}| = norm(A_i)_1 \tag{3}
+:::
 
 Choose $k = \text{argmax}_{i=1}^n norm(A_i)_1$. In case there are multiple such $k$, choose any.
 
 Then using (1) and (3),
 
-$$
-norm(A \cdot v^k)_\infty = norm(A_k)_1 = \max\{norm(A_1)_1, \ldots, norm(A_n)_1\} \tag{4}
-$$
+:::math
+norm(A dot v^k)_inf = norm(A_k)_1 = \max\{norm(A_1)_1, ..., norm(A_n)_1\} \tag{4}
+:::
 
-Using 2 and 4, we conclude that $norm(A)_\infty$ is the maximum 1-norm of the rows of $A$.
+Using 2 and 4, we conclude that $norm(A)_inf$ is the maximum 1-norm of the rows of $A$.
 
 ::::
 
@@ -195,7 +194,7 @@ Using 2 and 4, we conclude that $norm(A)_\infty$ is the maximum 1-norm of the ro
 **Theorem** (from quiz 3):
 
 * $norm(A)_1$ is the maximum 1-norm of the columns of $A$.
-* $norm(A^T)_1 = norm(A)_\infty$.
+* $norm(A^T)_1 = norm(A)_inf$.
 
 ::::
 
@@ -205,52 +204,42 @@ Using 2 and 4, we conclude that $norm(A)_\infty$ is the maximum 1-norm of the ro
 **Note.** The following properties hold for norms induced by p-norms, but
 may or may not hold for more general matrix norms:
 
-- $norm(AB)_p <= norm(A)_p \cdot norm(B)_p$
-- $norm(Ax)_p <= norm(A)_p \cdot norm(x)_p$
+- $norm(AB)_p <= norm(A)_p dot norm(B)_p$
+- $norm(Ax)_p <= norm(A)_p dot norm(x)_p$
 
 ::::
 
 **Example.** For the matrix
 
-$$
-A = \begin{bmatrix}
-1 & 0 & 3 \\
--1 & 2 & 0 \\
-4 & 0 & 1
-\end{bmatrix}
-$$
+:::math
+A = mat(1, 0, 3; -1, 2, 0; 4, 0, 1)
+:::
 
 we have:
-$$
-\begin{align*}
-norm(A)_1 &= \max\{6, 2, 4\} = 6 \\
-norm(A)_\infty &= \max\{4, 3, 5\} = 5
-\end{align*}
-$$
+:::math align
+norm(A)_1 &= \max\{6, 2, 4\} = 6
+norm(A)_inf &= \max\{4, 3, 5\} = 5
+:::
 
 2-norm is the largest singular value of $A$. We have:
 
-$$
-A^T A = \begin{bmatrix}
-18 & -2 & 7 \\
--2 & 4 & 0 \\
-7 & 0 & 10
-\end{bmatrix}
-$$
+:::math
+A^T A = mat(18, -2, 7; -2, 4, 0; 7, 0, 10)
+:::
 
-Its eigenvalues are $\lambda_1 \approx 22.22698, \lambda_2 \approx 6.33655, \lambda_3 \approx 3.43646$. So, $norm(A)_2 = \sqrt{\lambda_1} \approx 4.71$.
+Its eigenvalues are $lambda_1 \approx 22.22698, lambda_2 \approx 6.33655, lambda_3 \approx 3.43646$. So, $norm(A)_2 = \sqrt{lambda_1} \approx 4.71$.
 
 #### Induced Matrix Norms
 
-We defined $norm(A)_2 = \max_{norm(x)_2 = 1} norm(Ax)_2$.
+We defined $norm(A)_2 = max[norm(x)_2 = 1] norm(Ax)_2$.
 
-Now, the question is what is $\min_{norm(x)_2 = 1} norm(Ax)_2$? If $A$ grows this direction the least, then $A^{-1}$ grows it the most.
+Now, the question is what is $min[norm(x)_2 = 1] norm(Ax)_2$? If $A$ grows this direction the least, then $A^{-1}$ grows it the most.
 
 So,
 
-$$
-\min_{norm(x)_2 = 1} norm(Ax)_2 = \frac{1}{norm(A^{-1})_2}
-$$
+:::math
+min[norm(x)_2 = 1] norm(Ax)_2 = \frac{1}{norm(A^{-1})_2}
+:::
 
 #### Matrix Condition Number
 
@@ -259,30 +248,28 @@ The **matrix condition number** bounds the worst-case amplification of the error
 Let $x$ be a unit vector, and add some error $del x$ to it. In the worst
 case, $x$ is in the direction of the minimum amplification of $A$, and $del x$ is in the direction of the maximum amplification of $A$. That is, the solution shrinks and the error grows.
 
-We want the condition number to capture this worst-case amplification of the error. So, we define it as: $\kappa(A) = norm(A)\ \cdot norm(A^{-1})$. That is, the ratio of the maximum amplification to the minimum amplification.
+We want the condition number to capture this worst-case amplification of the error. So, we define it as: $kappa(A) = norm(A)\ dot norm(A^{-1})$. That is, the ratio of the maximum amplification to the minimum amplification.
 
 
-By definition, $\kappa(A) >= 1$.
+By definition, $kappa(A) >= 1$.
 
-If $Q$ is square and $\kappa(Q) = 1$ and $norm(Q) = 1$, then $Q$ is orthogonal. That is, $Q^TQ = I$. If $Q$ is orthogonal, then for all $v$, $norm(Qv)_2 = norm(v)_2$.
+If $Q$ is square and $kappa(Q) = 1$ and $norm(Q) = 1$, then $Q$ is orthogonal. That is, $Q^TQ = I$. If $Q$ is orthogonal, then for all $v$, $norm(Qv)_2 = norm(v)_2$.
 
 
 :::card[example]
 **Example** (from quiz 3):
 
-$$
-\begin{align*}
-\kappa(2A) &= norm(2A) \cdot norm((2A)^{-1}) \\
-&= 2 norm(A) \cdot \frac{1}{2} norm(A^{-1}) \\
-&= \kappa(A)
-\end{align*}
-$$
+:::math align
+kappa(2A) &= norm(2A) dot norm((2A)^{-1})
+&= 2 norm(A) dot \frac{1}{2} norm(A^{-1})
+&= kappa(A)
+:::
 
 ::::
 
-The condition number is a measure of how close a matrix is to being singular. If $\kappa(A)$ is large, then $A$ is close to being singular. Whereas if $\kappa(A)$ is close to 1, then $A$ is far from being singular.
+The condition number is a measure of how close a matrix is to being singular. If $kappa(A)$ is large, then $A$ is close to being singular. Whereas if $kappa(A)$ is close to 1, then $A$ is far from being singular.
 
-From the definition, $\kappa(A) = \kappa(A^{-1})$. This means that if $A$ is
+From the definition, $kappa(A) = kappa(A^{-1})$. This means that if $A$ is
 close to being singular, then $A^{-1}$ is equally close to being singular.
 
 #### Condition Number Estimation
@@ -292,15 +279,15 @@ column sum or row sum, depending on the norm used. However, calculating $norm(A^
 
 If $z$ is a solution to $Az = y$, then
 
-$$
+:::math
 norm(z) = norm(A^{-1} y) <= norm(A^{-1}) norm(y)
-$$
+:::
 
 Therefore,
 
-$$
+:::math
 \frac{norm(z)}{norm(y)} <= norm(A^{-1})
-$$
+:::
 
 Thus maximizing $\dfrac{norm(z)}{norm(y)}$ gives a reasonable estimate of $norm(A^{-1})$.
 
@@ -309,41 +296,39 @@ vectors and take the maximum $\dfrac{norm(z)}{norm(y)}$.
 
 #### Singular Value Decomposition (SVD)
 
-Any matrix $A$ can be decomposed as $A = U \Sigma V^T$, where $U$ and $V$ are orthogonal matrices and $\Sigma$ is a diagonal matrix with non-negative entries.
+Any matrix $A$ can be decomposed as $A = U Sigma V^T$, where $U$ and $V$ are orthogonal matrices and $Sigma$ is a diagonal matrix with non-negative entries.
 
-If $A$ is invertible, then $A^{-1} = V \Sigma^{-1} U^T$.
+If $A$ is invertible, then $A^{-1} = V Sigma^{-1} U^T$.
 
-Let $\sigma_{max}=\sigma_1, \sigma_2, \ldots, \sigma_n=\sigma_{min}$ be diagonal entries of $\Sigma$ sorted in descending order. Then $norm(A)_2 = \sigma_{max}$ and $norm(A^{-1})_2 = \dfrac{1}{\sigma_{min}}$.
+Let $sigma_{max}=sigma_1, sigma_2, ..., sigma_n=sigma_{min}$ be diagonal entries of $Sigma$ sorted in descending order. Then $norm(A)_2 = sigma_{max}$ and $norm(A^{-1})_2 = \dfrac{1}{sigma_{min}}$.
 
-Therefore, $\kappa(A) = \dfrac{\sigma_{max}}{\sigma_{min}}$.
+Therefore, $kappa(A) = \dfrac{sigma_{max}}{sigma_{min}}$.
 
 :::card[example]
-**Example.** Prove that if $\kappa_2(A) = 1$ where $A$ is $n \times n$, then $A=\alpha Q$ for some orthogonal $Q$ and scalar $\alpha$.
+**Example.** Prove that if $kappa_2(A) = 1$ where $A$ is $n cross n$, then $A=alpha Q$ for some orthogonal $Q$ and scalar $alpha$.
 
 **Proof.**
 
-Since $\kappa_2(A) = 1$, then
+Since $kappa_2(A) = 1$, then
 
-$$
+:::math
 norm(A)_2 = \dfrac{1}{norm(A^{-1})}_2 \tag{5}
-$$
+:::
 
-Consider the SVD of $A$: $A = U \Sigma V^T$, where $\Sigma = \text{diag}(\sigma_{max}, \ldots, \sigma_{min})$.
-Then $norm(A)_2 = \sigma_{max}$ and $norm(A^{-1})_2 = \dfrac{1}{\sigma_{min}}$.
-Putting this together with (5), we have $\sigma_{max} = \sigma_{min}$.
-Therefore, all singular values are equal. Let $\alpha$ be the value of singular values. Then, $\Sigma = \alpha I$.
+Consider the SVD of $A$: $A = U Sigma V^T$, where $Sigma = \text{diag}(sigma_{max}, ..., sigma_{min})$.
+Then $norm(A)_2 = sigma_{max}$ and $norm(A^{-1})_2 = \dfrac{1}{sigma_{min}}$.
+Putting this together with (5), we have $sigma_{max} = sigma_{min}$.
+Therefore, all singular values are equal. Let $alpha$ be the value of singular values. Then, $Sigma = alpha I$.
 
 Then:
 
-$$
-\begin{align*}
-A &= U \Sigma V^T \\
-&= U \cdot (\alpha I) \cdot V^T \\
-&= \alpha U V^T
-\end{align*}
-$$
+:::math align
+A &= U Sigma V^T
+&= U dot (alpha I) dot V^T
+&= alpha U V^T
+:::
 
-Since $U$ and $V^T$ are orthogonal, then $U V^T$ is also orthogonal. So, $A=\alpha Q$ for some scalar $\alpha$ and orthogonal $Q$.
+Since $U$ and $V^T$ are orthogonal, then $U V^T$ is also orthogonal. So, $A=alpha Q$ for some scalar $alpha$ and orthogonal $Q$.
 
 ::::
 

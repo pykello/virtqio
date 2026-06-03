@@ -11,75 +11,59 @@ Some notes and examples are from:
 
 Consider the decomposition:
 
-$$
+:::math plain
+pmat(u_1, ..., u_n)
 \begin{pmatrix}
-\\
-u_1 & \cdots & u_n \\
-\\
-\end{pmatrix}
-\begin{pmatrix}
-\sigma_1 & & \\
+sigma_1 & & \\
 & \ddots & \\
-& & \sigma_n \\
+& & sigma_n \\
 \end{pmatrix}
-\begin{pmatrix}
-\\
-v_1 & \cdots & v_n \\
-\\
-\end{pmatrix}^T
-= \sum_{i=1}^n \sigma_i u_i v_i^T
-$$
+pmat(v_1, ..., v_n)^T
+= sum[i=1..n] sigma_i u_i v_i^T
+:::
 
-We want to find $x_1$ such that $norm(x_1)_2 = 1$ and maximizes $norm(Ax)_2$. Then $x_1$ is the first right singular vector $v_1$. We can show that $Av_1 = \sigma_1 u_1$, and therefore $u_1 = \dfrac{Av_1}{norm(Av_1)_2} = \dfrac{Av_1}{\sigma_1}$.
+We want to find $x_1$ such that $norm(x_1)_2 = 1$ and maximizes $norm(Ax)_2$. Then $x_1$ is the first right singular vector $v_1$. We can show that $Av_1 = sigma_1 u_1$, and therefore $u_1 = \dfrac{Av_1}{norm(Av_1)_2} = \dfrac{Av_1}{sigma_1}$.
 
-Similarly, $v_2$ is the vector that maximizes $norm((A - \sigma_1 u_1 v_1^T)x)_2$ subject to $norm(x)_2 = 1$, and so on.
+Similarly, $v_2$ is the vector that maximizes $norm((A - sigma_1 u_1 v_1^T)x)_2$ subject to $norm(x)_2 = 1$, and so on.
 
 #### Conditioning of Linear Systems
 
-We saw previously that $\kappa(A) = norm(A)_2 norm(A^{-1})_2$ controls
+We saw previously that $kappa(A) = norm(A)_2 norm(A^{-1})_2$ controls
 the maximum relative perturbation of $Ax$.
 
-We can also show $\kappa(A)$ describes the conditioning of the linear system $Ax = b$.
+We can also show $kappa(A)$ describes the conditioning of the linear system $Ax = b$.
 That is, if we perturb $b$ by $del b$, what's the maximum relative perturbation $del x$ in the solution $x$?
 
 If $A(x + del x) = b + del b$, then how $\dfrac{norm(del b)_2}{norm(b)_2}$ relates to $\dfrac{norm(del x)_2}{norm(x)_2}$?
 
-(In the following, we will use $norm(\cdot)$ to denote the 2-norm.)
+(In the following, we will use $norm(dot)$ to denote the 2-norm.)
 
 By linearity, we can write:
 
-$$
-\begin{align*}
-del b = A del x &=>
-del x = A^{-1} del b
-\\[1em]
-&=>
-norm(del x) <= norm(A^{-1}) norm(del b)
-\\[1em]
-&=>
-\dfrac{norm(del x)}{norm(x)} <= \dfrac{norm(A^{-1}) \cdot norm(del b)}{norm(x)}
-\tag{1}
-\end{align*}
-$$
+:::math align
+del b = A del x &=> del x = A^{-1} del b
+&=> norm(del x) <= norm(A^{-1}) norm(del b)
+&=> \dfrac{norm(del x)}{norm(x)} <= \dfrac{norm(A^{-1}) dot norm(del b)}{norm(x)} \tag{1}
+:::
 
 Since $x$ is in the denominator, we are interested in lower bounding it. Since $Ax = b$, we have:
 
-$$
+:::math
 norm(x) >= \frac{norm(b)}{norm(A)} \tag{2}
-$$
+:::
 
 Then putting (2) and (1) together, we get:
 
-$$
-\dfrac{norm(del x)}{norm(x)} <= norm(A) \cdot norm(A^{-1}) \cdot \dfrac{norm(del b)}{norm(b)}
-$$
+:::math
+\dfrac{norm(del x)}{norm(x)} <= norm(A) dot norm(A^{-1}) dot \dfrac{norm(del b)}{norm(b)}
+:::
 
 So, we have:
 
-$$
+:::math
 \dfrac{norm(del x)}{norm(x)}
-    <= \kappa(A) \dfrac{norm(del b)}{norm(b)}
-$$
+    <= kappa(A) \dfrac{norm(del b)}{norm(b)}
+:::
 
 ---------
 
@@ -89,33 +73,33 @@ We want to solve $Ax = b$ and want to know how much the solution changes if we p
 
 Since $Ax = b$, then:
 
-$$
+:::math
 del A \, x + A \, del x + del A \, del x = 0
-$$
+:::
 
 Since $del A \\, del x$ is small, we can ignore it. Then we have:
 
-$$
+:::math
 del A \, x \approx -A \, del x
-$$
+:::
 
 Then:
 
-$$
+:::math
 norm(del x) <= norm(A^{-1}) norm(del A) norm(x)
-$$
+:::
 
 Which means:
 
-$$
+:::math
 \dfrac{norm(del x)}{norm(x)} <= norm(A^{-1}) norm(del A) = norm(A^{-1}) norm(A) \dfrac{norm(del A)}{norm(A)}
-$$
+:::
 
 So, we have:
 
-$$
-\dfrac{norm(del x)}{norm(x)} <= \kappa(A) \dfrac{norm(del A)}{norm(A)}
-$$
+:::math
+\dfrac{norm(del x)}{norm(x)} <= kappa(A) \dfrac{norm(del A)}{norm(A)}
+:::
 
 #### Geometric Interpretation
 
@@ -134,32 +118,24 @@ We can premultiply both sides by any non-singular matrix $P$
 without changing the solution. To see this, note that the
 solution to $MAx = Mb$ is given by:
 
-$$
+:::math
 z = (MA)^{-1} Mb = A^{-1} M^{-1} Mb = A^{-1} b = x
-$$
+:::
 
 ##### Diagonal Matrices
 
 If we have:
 
-$$
+:::math plain
 \begin{pmatrix}
 d_1 & & \\
 & \ddots & \\
 & & d_n \\
 \end{pmatrix}
-\begin{pmatrix}
-x_1 \\
-\vdots \\
-x_n \\
-\end{pmatrix}
+pmat(x_1; \vdots; x_n)
 \=
-\begin{pmatrix}
-b_1 \\
-\vdots \\
-b_n \\
-\end{pmatrix}
-$$
+pmat(b_1; \vdots; b_n)
+:::
 
 Then $x_i = \dfrac{b_i}{d_i}$.
 
@@ -169,21 +145,21 @@ Solve $Qx = b$ where $Q$ is orthogonal. Then $x = Q^T b$.
 
 ##### Given SVD
 
-Given SVD $A = U \Sigma V^T$. Then $A^{-1} = V \Sigma^{-1} U^T$.
-Then $x = V \Sigma^{-1} U^T b$.
+Given SVD $A = U Sigma V^T$. Then $A^{-1} = V Sigma^{-1} U^T$.
+Then $x = V Sigma^{-1} U^T b$.
 
 ##### Solving Triangular Systems
 
 If $Lx = b$ where $L$ is lower triangular, then we can solve by forward substitution:
 
-$$
+:::math plain
 \begin{array}{rclcl}
 l_{11} x_1 & = & b_1 & & x_1 = b_1 / l_{11} \\
 l_{21} x_1 + l_{22} x_2 & = & b_2 & \Rightarrow & x_2 = (b_2 - l_{21}x_1) / l_{22} \\
 l_{31} x_1 + l_{32} x_2 + l_{33} x_3 & = & b_3 & & x_3 = (b_3 - l_{31}x_1 - l_{32}x_2) / l_{33} \\
 \vdots & & \vdots & & \vdots
 \end{array}
-$$
+:::
 
 The above algorithm can also be formulated recursively by blocks.
 

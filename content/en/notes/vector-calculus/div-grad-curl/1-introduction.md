@@ -11,9 +11,9 @@ A vector function $v{F}(x, y, z)$ has a _magnitude_ and a _direction_ at each po
 
 A vector function can be decomposed into its components:
 
-$$
+:::math
 v{F}(x, y, z) = v{i} F_x(x, y, z) + v{j} F_y(x, y, z) + v{k} F_z(x, y, z)
-$$
+:::
 
 where each of $F_x$, $F_y$, and $F_z$ are scalar functions themselves.
 
@@ -27,20 +27,20 @@ proportional to the product of their charges and inversely proportional to the s
 
 The force on $q_0$ due to $q$ is given by
 
-$$
+:::math
 v{F} = K \frac{q q_0}{r^2} unit{u}
-$$
+:::
 
 where $unit{u}$ is the unit vector pointing from $q$ to $q_0$. With
 choice of MKS units, electric charge is measured in coulombs, distance in meters, and force in newtons.
 
 Constant $eps_0$ is called the permittivity of free space, and has
-value $8.854 \times 10^{-12} \text{C}^2/\text{N m}^2$.
+value $8.854 cross 10^{-12} \text{C}^2/\text{N m}^2$.
 The constant $K$ is given by
 
-$$
-K = \frac{1}{4 \pi eps_0}
-$$
+:::math
+K = \frac{1}{4 pi eps_0}
+:::
 
 **3.** **Superposition principle.** If $v{F}_1$ is the force on $q_0$ due to $q_1$ when there are no other charges nearby, and $v{F}_2$ is the force on $q_0$ due to $q_2$ when there are no other charges nearby, then the force on $q_0$ due to both $q_1$ and $q_2$ is given by $v{F}_1 + v{F}_2$.
 
@@ -48,27 +48,27 @@ $$
 The force per unit charge. Electrostatic field at $v{r}$ due to the
 charge $q$ is given by
 
-$$
+:::math
 v{E}(v{r}) = \frac{v{F}(v{r})}{q_0}
-= \frac{1}{4 \pi eps_0} \frac{q}{r^2} unit{u}
+= \frac{1}{4 pi eps_0} \frac{q}{r^2} unit{u}
 \tag{I-2}
-$$
+:::
 
-Extension of these ideas: Suppose we have a group of $N$ charges $q_1, \ldots, q_N$ at positions $v{r}_1, \ldots, v{r}_N$. The force on a charge $q_0$ at position $v{r}$ is given by
+Extension of these ideas: Suppose we have a group of $N$ charges $q_1, ..., q_N$ at positions $v{r}_1, ..., v{r}_N$. The force on a charge $q_0$ at position $v{r}$ is given by
 
-$$
-v{F}(v{r}) = \frac{1}{4 \pi eps_0} \sum_{i=1}^N \frac{q_0 q_i}{|v{r} - v{r}_i|^2} unit{u}_{i}
+:::math
+v{F}(v{r}) = \frac{1}{4 pi eps_0} sum[i=1..N] \frac{q_0 q_i}{|v{r} - v{r}_i|^2} unit{u}_{i}
 \tag{I-3}
-$$
+:::
 
 where $unit{u}_i$ is the unit vector pointing from $v{r}_i$ to $v{r}$.
 
 From this we can define the electrostatic field $v{E}(v{r})$ at $v{r}$ due to the group of charges:
 
-$$
-v{E}(v{r}) = \frac{1}{4 \pi eps_0} \sum_{i=1}^N \frac{q_i}{|v{r} - v{r}_i|^2} unit{u}_{i}
+:::math
+v{E}(v{r}) = \frac{1}{4 pi eps_0} sum[i=1..N] \frac{q_i}{|v{r} - v{r}_i|^2} unit{u}_{i}
 \tag{I-4}
-$$
+:::
 
 That is, superposition principle applies to the electrostatic field as well.
 
@@ -79,33 +79,33 @@ without worrying about the effect of other charges, and (b) calculating the forc
 2. The electrostatic field is more basic. Entire classical electromagnetic theory can be codified in terms of four basic equations, called Maxwell's equations, which relate fields to each other and to the charges and currents that produce them.
 
 ### Treating the charge distribution as continuous
-Suppose in some region of space of volume $\Delta V$ the total electric charge is $\Delta Q$. We can define the _average charge density_ in that region as
+Suppose in some region of space of volume $Delta V$ the total electric charge is $Delta Q$. We can define the _average charge density_ in that region as
 
-$$
-\overline{\rho}_{\Delta V} = \frac{\Delta Q}{\Delta V}
+:::math
+\overline{rho}_{Delta V} = \frac{Delta Q}{Delta V}
 \tag{I-5}
-$$
+:::
 
 Then charge density at point $(x, y, z)$ is defined as
 
-$$
-\rho(x, y, z) = \lim_{\Delta V -> 0} \frac{\Delta Q}{\Delta V}
-= \lim_{\Delta V -> 0} \overline{\rho}_{\Delta V}
+:::math
+rho(x, y, z) = lim[Delta V -> 0] \frac{Delta Q}{Delta V}
+= lim[Delta V -> 0] \overline{rho}_{Delta V}
 \tag{I-6}
-$$
+:::
 
 Then the electric charge in some region is given by
 
-$$
-Q = \iiint_V \rho(x, y, z) dV
-$$
+:::math
+Q = iiint[V] rho(x, y, z) dV
+:::
 
 Then
 
-$$
-v{E}(v{r}) = \frac{1}{4 \pi eps_0} \iiint_V \frac{\rho(v{r'})
+:::math
+v{E}(v{r}) = \frac{1}{4 pi eps_0} iiint[V] \frac{rho(v{r'})
 unit{u}(v{r'})
 }{|v{r} - v{r'}|^2}  dV'
 \tag{I-7}
-$$
+:::
 

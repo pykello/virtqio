@@ -1,9 +1,9 @@
 **Problem III-22.**
 **(a)** Apply the divergence theorem to the function
 
-$$
+:::math
 v{G}(x, y) = v{i} G_x(x, y) + v{j} G_y(x, y)
-$$
+:::
 
 using for $V$ and $S$ the volume and surface shown in the diagram.
 
@@ -11,9 +11,9 @@ using for $V$ and $S$ the volume and surface shown in the diagram.
 
 In this way obtain the relation
 
-$$
-\oint_C G_x \, dy - G_y \, dx = \iint_R ( \frac{\partial G_x}{\partial x} + \frac{\partial G_y}{\partial y} ) \, dx dy
-$$
+:::math
+oint[C] G_x \, dy - G_y \, dx = iint[R] ( pd(G_x, x) + pd(G_y, y) ) \, dx dy
+:::
 
 which is the divergence theorem in two dimensions.
 
@@ -22,14 +22,14 @@ which is the divergence theorem in two dimensions.
 
 We'll use the divergence theorem:
 
-$$
-\iint_S v{G} \cdot unit{n} \, dS = \iiint_V \nabla \cdot v{G} \, dV
+:::math
+iint[S] v{G} dot unit{n} \, dS = iiint[V] \nabla dot v{G} \, dV
 \tag{1}
-$$
+:::
 
 **Calculating the surface integral.**
 
-First we calculate the surface integral $\iint_S v{G} \cdot unit{n} \\, dS$.
+First we calculate the surface integral $iint[S] v{G} dot unit{n} \\, dS$.
 
 In upper and lower parts of the surface, the normal vector is $\pm v{k}$,
 and since $v{G}$ has $0$ as the $v{k}$ component, then the surface integral is zero.
@@ -41,37 +41,35 @@ the value of $v{G}$ and the normal vector $unit{n}$ do not depend on the $z$-coo
 
 Then surface integral of the shaded part in the figure will be equal to:
 
-$$
-h \, \oint_C v{G} \cdot unit{n} \, ds
-$$
+:::math
+h \, oint[C] v{G} dot unit{n} \, ds
+:::
 
 Since $C$ is on the $xy$-plane, then its tangent vector is:
 
-$$
-unit{t} = v{i} \frac{dx}{ds} + v{j} \frac{dy}{ds}
-$$
+:::math
+unit{t} = v{i} dd(x, s) + v{j} dd(y, s)
+:::
 
 Given that $C$ is oriented counterclockwise, then the normal vector is the tangent vector rotated by $90^\circ$ clockwise:
 
-$$
-unit{n} = v{i} \frac{dy}{ds} - v{j} \frac{dx}{ds}
-$$
+:::math
+unit{n} = v{i} dd(y, s) - v{j} dd(x, s)
+:::
 
 Then, we have:
 
-$$
-\begin{align*}
-\oint_C v{G} \cdot unit{n} \, ds &= \oint_C ( G_x \frac{dy}{ds} - G_y \frac{dx}{ds} ) \, ds \\[0.8em]
-&= \oint_C G_x \, dy - G_y \, dx
-\end{align*}
-$$
+:::math align
+oint[C] v{G} dot unit{n} \, ds &= oint[C] ( G_x dd(y, s) - G_y dd(x, s) ) \, ds
+&= oint[C] G_x \, dy - G_y \, dx
+:::
 
 and then the total surface integral is:
 
-$$
-\iint_S v{G} \cdot unit{n} \, dS = h \oint_C G_x \, dy - G_y \, dx
+:::math
+iint[S] v{G} dot unit{n} \, dS = h oint[C] G_x \, dy - G_y \, dx
 \tag{2}
-$$
+:::
 
 **Calculating the volume integral.**
 
@@ -81,37 +79,33 @@ Since value of $v{G}$ doesn't depend on $z$, we can choose $dV$ as below. Then, 
 
 Then, we have:
 
-$$
-\begin{align*}
-\iiint_V \nabla \cdot v{G} \, dV &=
-h \iint_R \nabla \cdot v{G} \, dS \\[0.8em]
-&= h \iint_R ( \frac{\partial G_x}{\partial x} + \frac{\partial G_y}{\partial y} ) \, dx dy
-\tag{3}
-\end{align*}
-$$
+:::math align
+iiint[V] \nabla dot v{G} \, dV &= h iint[R] \nabla dot v{G} \, dS
+&= h iint[R] ( pd(G_x, x) + pd(G_y, y) ) \, dx dy \tag{3}
+:::
 
 ------------------
 
 Finally, putting (1), (2), and (3) together, we have:
 
-$$
-\oint_C G_x \, dy - G_y \, dx = \iint_R ( \frac{\partial G_x}{\partial x} + \frac{\partial G_y}{\partial y} ) \, dx dy
-$$
+:::math
+oint[C] G_x \, dy - G_y \, dx = iint[R] ( pd(G_x, x) + pd(G_y, y) ) \, dx dy
+:::
 
 ::::
 
 **(b)** Apply Stokes' theorem to the function
 
-$$
+:::math
 v{F}(x, y) = v{i} F_x(x, y) + v{j} F_y(x, y)
-$$
+:::
 
 using for $C$ a closed curve lying entirely in the $xy$-plane and for $S$ the
 region $R$ of the $xy$-plane enclosed by $C$. In this way obtain the relation
 
-$$
-\oint_C F_x \, dx + F_y \, dy = \iint_R ( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} ) \, dx dy
-$$
+:::math
+oint[C] F_x \, dx + F_y \, dy = iint[R] ( pd(F_y, x) - pd(F_x, y) ) \, dx dy
+:::
 
 which is Stokes' theorem in two dimensions.
 
@@ -122,40 +116,40 @@ Since $S$ lies entirely in the $xy$-plane, then
 - Assuming counterclockwise orientation, $unit{n} = unit{k}$,
 - $dS = dx \\, dy$.
 
-Since $\nabla \times v{F} = v{k} ( \dfrac{\partial F_y}{\partial x} - \dfrac{\partial F_x}{\partial y} )$, we have:
+Since $\nabla cross v{F} = v{k} ( pd(F_y, x) - pd(F_x, y) )$, we have:
 
-$$
-\nabla \times v{F} \cdot unit{n} = \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
-$$
+:::math
+\nabla cross v{F} dot unit{n} = pd(F_y, x) - pd(F_x, y)
+:::
 
 and then:
 
-$$
-\iint_S \nabla \times v{F} \cdot unit{n} \, dS = \iint_R ( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} ) \, dx dy \tag{1}
-$$
+:::math
+iint[S] \nabla cross v{F} dot unit{n} \, dS = iint[R] ( pd(F_y, x) - pd(F_x, y) ) \, dx dy \tag{1}
+:::
 
 ------------
 
 Since $C$ is a closed curve lying entirely in the $xy$-plane, then:
 
-$$
-\oint_C v{F} \cdot unit{t} \, ds = \oint_C F_x \, dx + F_y \, dy \tag{2}
-$$
+:::math
+oint[C] v{F} dot unit{t} \, ds = oint[C] F_x \, dx + F_y \, dy \tag{2}
+:::
 
 ---------------
 
 Then, by Stokes' theorem we have:
 
-$$
-\oint_C v{F} \cdot unit{t} \, ds = \iint_S \nabla \times v{F} \cdot unit{n} \, dS \tag{3}
-$$
+:::math
+oint[C] v{F} dot unit{t} \, ds = iint[S] \nabla cross v{F} dot unit{n} \, dS \tag{3}
+:::
 
 
 Putting (1), (2), and (3) together, we have:
 
-$$
-\oint_C F_x \, dx + F_y \, dy = \iint_R ( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} ) \, dx dy
-$$
+:::math
+oint[C] F_x \, dx + F_y \, dy = iint[R] ( pd(F_y, x) - pd(F_x, y) ) \, dx dy
+:::
 
 ::::
 

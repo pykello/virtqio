@@ -2,16 +2,16 @@
 
 ### Alerts
 
-> [!NOTE]  
+> [!NOTE]
 > Highlights information that users should take into account, even when skimming.
 
 > [!TIP]
 > Optional information to help a user be more successful.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Crucial information necessary for users to succeed.
 
-> [!WARNING]  
+> [!WARNING]
 > Critical content demanding immediate user attention due to potential risks.
 
 > [!CAUTION]
@@ -67,31 +67,31 @@
 
 For every positive integer $n$,
 
-$$
-1 + 2 + \dots + n = \frac{n(n+1)}{2}.
-$$
+:::math
+1 + 2 + ... + n = \frac{n(n+1)}{2}.
+:::
 
 :::expandable
 **Proof.** ([Click to Expand])
 
-Let $S = 1 + 2 + \dots + n$.
+Let $S = 1 + 2 + ... + n$.
 
 Write the same sum in reverse order and add term‑wise:
 
-$$
+:::math plain
 \begin{aligned}
-S & = 1 + 2 + \dots + n,\\
-S & = n + (n-1) + \dots + 1,\\
-2S & = (n+1) + (n+1) + \dots + (n+1) 
+S & = 1 + 2 + ... + n,\\
+S & = n + (n-1) + ... + 1,\\
+2S & = (n+1) + (n+1) + ... + (n+1)
      \quad\text{(a total of \(n\) terms)}\\
     & = n(n+1).
 \end{aligned}
-$$
+:::
 
 Dividing by $2$ gives
 
-$$
+:::math
 S = \frac{n(n+1)}{2}.
-$$
+:::
 
 :::

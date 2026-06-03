@@ -3,42 +3,40 @@
 **(a)** An electric dipole of strength $p$ situated at the origin and oriented
 in the positive $z$-direction gives rise to the electric field
 
-$$
-v{E(r, \theta, \phi)} = \frac{1}{4 \pi eps_0} \frac{p}{r^3} ( 2 unit{e}_r \cos \phi + unit{e}_\phi \sin \phi )
-$$
+:::math
+v{E(r, theta, phi)} = \frac{1}{4 pi eps_0} \frac{p}{r^3} ( 2 unit{e}_r \cos phi + unit{e}_phi \sin phi )
+:::
 
 Show that the dipole potential is given by
 
-$$
-\Phi(r, \theta, \phi) = \frac{1}{4 \pi eps_0} \frac{p \cos \phi}{r^2}
-$$
+:::math
+Phi(r, theta, phi) = \frac{1}{4 pi eps_0} \frac{p \cos phi}{r^2}
+:::
 
 In spherical coordinates,
 
-$$
-unit{t} = unit{e}_r \frac{dr}{ds} + unit{e}_\phi r \frac{d\phi}{ds} + unit{e}_\theta r \sin \phi \frac{d\theta}{ds}
-$$
+:::math
+unit{t} = unit{e}_r dd(r, s) + unit{e}_phi r dd(phi, s) + unit{e}_theta r \sin phi dd(theta, s)
+:::
 
 :::expandable
 **Solution.** [Click to Expand]
 
 We have:
 
-$$
-v{E} \cdot unit{t} = \frac{1}{4 \pi eps_0} \frac{p}{r^3} ( 2 \cos \phi \frac{dr}{ds} + r \sin \phi \frac{d\phi}{ds} )
-$$
+:::math
+v{E} dot unit{t} = \frac{1}{4 pi eps_0} \frac{p}{r^3} ( 2 \cos phi dd(r, s) + r \sin phi dd(phi, s) )
+:::
 
 Since path integral of $v{E}$ is path independent, then:
 
-$$
-\begin{align*}
-\Phi &= - \int_{(r_0, \theta_0, \phi_0)}^{(r, \theta, \phi)} v{E} \cdot unit{t} ds \\[1em]
-&= - ( \int_{(r_0, \theta_0, \phi_0)}^{(r, \theta_0, \phi_0)} v{E} \cdot unit{t} ds + \int_{(r, \theta_0, \phi_0)}^{(r, \theta, \phi_0)} v{E} \cdot unit{t} ds + \int_{(r, \theta, \phi_0)}^{(r, \theta, \phi)} v{E} \cdot unit{t} ds ) \\[1em]
-&= - \frac{p}{4 \pi eps_0} ( \int_{r_0}^r \frac{2 \cos \phi_0}{r^3} dr + 0 + \int_{\phi_0}^{\phi} \frac{\sin \phi}{r^2} d\phi ) \\[1em]
-&= - \frac{p}{4 \pi eps_0} ( - \frac{\cos \phi_0}{r^2} +\frac{\cos \phi_0}{r_0^2} - \frac{\cos \phi}{r^2} + \frac{cos \phi_0}{r^2} ) \\[1em]
-&= \frac{1}{4 \pi eps_0} \frac{p \cos \phi}{r^2} + \text{constant}
-\end{align*}
-$$
+:::math align
+Phi &= - int[(r_0, theta_0, phi_0)..(r, theta, phi)] v{E} dot unit{t} ds
+&= - ( int[(r_0, theta_0, phi_0)..(r, theta_0, phi_0)] v{E} dot unit{t} ds + int[(r, theta_0, phi_0)..(r, theta, phi_0)] v{E} dot unit{t} ds + int[(r, theta, phi_0)..(r, theta, phi)] v{E} dot unit{t} ds )
+&= - \frac{p}{4 pi eps_0} ( int[r_0..r] \frac{2 \cos phi_0}{r^3} dr + 0 + int[phi_0..phi] \frac{\sin phi}{r^2} dphi )
+&= - \frac{p}{4 pi eps_0} ( - \frac{\cos phi_0}{r^2} +\frac{\cos phi_0}{r_0^2} - \frac{\cos phi}{r^2} + \frac{cos phi_0}{r^2} )
+&= \frac{1}{4 pi eps_0} \frac{p \cos phi}{r^2} + \text{constant}
+:::
 
 ::::
 
@@ -49,23 +47,19 @@ $$
 
 In a spherical surface, $unit{n} = unit{e}_r$. Then:
 
-$$
-\begin{align*}
-\Phi_{v{E}} &= \iint_S v{E} \cdot unit{n} dS \\[1em]
-&= \iint_S \frac{1}{4 \pi eps_0} \frac{2p}{R^3} \cos \phi dS \\[1em]
-&= \frac{1}{4 \pi eps_0} \frac{2p}{R^3} \iint_S \cos \phi dS \\[1em]
-\end{align*}
-$$
+:::math align
+Phi_{v{E}} &= iint[S] v{E} dot unit{n} dS
+&= iint[S] \frac{1}{4 pi eps_0} \frac{2p}{R^3} \cos phi dS
+&= \frac{1}{4 pi eps_0} \frac{2p}{R^3} iint[S] \cos phi dS
+:::
 
-We have $dS = R^2 \sin \phi \\, d\phi \\, d \theta$. Then:
+We have $dS = R^2 \sin phi \\, dphi \\, d theta$. Then:
 
-$$
-\begin{align*}
-\Phi_{v{E}} &= \frac{1}{4 \pi eps_0} \frac{2p}{R^3} \int_{0}^{\pi} \int_{0}^{2\pi} R^2 \cos \phi \sin \phi \, d\theta \, d\phi  \\[1em]
-&=\frac{1}{eps_0} \frac{p}{R} \int_{0}^{\pi} \cos \phi \sin \phi \, d\phi \\[1em]
+:::math align
+Phi_{v{E}} &= \frac{1}{4 pi eps_0} \frac{2p}{R^3} int[0..pi] int[0..2pi] R^2 \cos phi \sin phi \, dtheta \, dphi
+&=\frac{1}{eps_0} \frac{p}{R} int[0..pi] \cos phi \sin phi \, dphi
 &= 0
-\end{align*}
-$$
+:::
 ::::
 
 **(c)** What is the flux of the dipole field over any closed surface that doesn't pass through
@@ -76,27 +70,22 @@ the origin?
 
 Divergence in spherical coordinates is given by:
 
-$$
-\nabla \cdot v{F} = \frac{1}{r^2} \frac{\partial}{\partial r} ( r^2 F_r ) + \frac{1}{r \sin \phi} \frac{\partial}{\partial \phi} ( F_\phi \sin \phi ) + \frac{1}{r \sin{\phi}} \frac{\partial F_\theta}{\partial \theta}
-$$
+:::math
+\nabla dot v{F} = \frac{1}{r^2} pd(\partial, r) ( r^2 F_r ) + \frac{1}{r \sin phi} pd(\partial, phi) ( F_phi \sin phi ) + \frac{1}{r \sin{phi}} pd(F_theta, theta)
+:::
 
 Then:
 
-$$
-\begin{align*}
-\nabla \cdot v{E} &= \frac{p}{4 \pi eps_0} ( \frac{1}{r^2} \frac{\partial}{\partial r} ( r^2 \frac{2}{r^3} \cos \phi ) + \frac{1}{r \sin \phi} \frac{\partial}{\partial \phi} ( \frac{\sin^2 \phi}{r^3} ) + 0 )
-\\[1em]
-&= \frac{p}{4 \pi eps_0} ( \frac{1}{r^2} (-\frac{2}{r^2} \cos \phi ) + \frac{1}{r \sin \phi} ( \frac{2 \sin \phi \cos \phi}{r^3} ) )
-\\[1em]
-&= \frac{p}{4 \pi eps_0} ( -\frac{2 \cos \phi}{r^4} + \frac{2 \cos \phi}{r^4} )
-\\[1em]
+:::math align
+\nabla dot v{E} &= \frac{p}{4 pi eps_0} ( \frac{1}{r^2} pd(\partial, r) ( r^2 \frac{2}{r^3} \cos phi ) + \frac{1}{r \sin phi} pd(\partial, phi) ( \frac{\sin^2 phi}{r^3} ) + 0 )
+&= \frac{p}{4 pi eps_0} ( \frac{1}{r^2} (-\frac{2}{r^2} \cos phi ) + \frac{1}{r \sin phi} ( \frac{2 \sin phi \cos phi}{r^3} ) )
+&= \frac{p}{4 pi eps_0} ( -\frac{2 \cos phi}{r^4} + \frac{2 \cos phi}{r^4} )
 &= 0
-\end{align*}
-$$
+:::
 
 Now, given any closed surface $S$ that doesn't pass through the origin, there exists a sphere with
 $R > 0$ inside $S$ centered at the origin. Using part (b), flux of $v{E}$ over the sphere is 0.
-Using problem II-27, since $\nabla \cdot v{E} = 0$ then flux of $v{E}$ over $S$ is
+Using problem II-27, since $\nabla dot v{E} = 0$ then flux of $v{E}$ over $S$ is
 equal to the flux of $v{E}$ over the sphere, which is 0.
 
 ::::

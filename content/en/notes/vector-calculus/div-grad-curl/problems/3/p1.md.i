@@ -1,6 +1,6 @@
 **Problem III-1.**
 Use an argument like the one given in the text for the Coulomb force to
-show that $\int_C v{F} \cdot unit{t} \\, ds = 0$ is independent
+show that $int[C] v{F} dot unit{t} \\, ds = 0$ is independent
 of path for any central force $v{F}$.
 
 :::expandable
@@ -9,71 +9,61 @@ of path for any central force $v{F}$.
 If $v{F}$ is a central force, then for any point $P$ in space, the force is in
 the radial direction and its magnitude depends only on the distance $r$ from the origin:
 
-$$
+:::math
 v{F} = F_r(r) unit{e}_r
-$$
+:::
 
 Then we have:
 
-$$
-\begin{align*}
-F_x &= F_r(r) \sin \phi \cos \theta \\
-F_y &= F_r(r) \sin \phi \sin \theta \\
-F_z &= F_r(r) \cos \phi
-\end{align*}
-$$
+:::math align
+F_x &= F_r(r) \sin phi \cos theta
+F_y &= F_r(r) \sin phi \sin theta
+F_z &= F_r(r) \cos phi
+:::
 
 and since:
 
-$$
-\begin{align*}
-x &= r \sin \phi \cos \theta \\
-y &= r \sin \phi \sin \theta \\
-z &= r \cos \phi
-\end{align*}
-$$
+:::math align
+x &= r \sin phi \cos theta
+y &= r \sin phi \sin theta
+z &= r \cos phi
+:::
 
 We have:
 
-$$
-\begin{align*}
-dx &= \sin \phi \cos \theta \, dr + r \cos \phi \cos \theta \, d\phi - r \sin \phi \sin \theta \, d\theta \\
-dy &= \sin \phi \sin \theta \, dr + r \cos \phi \sin \theta \, d\phi + r \sin \phi \cos \theta \, d\theta \\
-dz &= \cos \phi \, dr - r \sin \phi \, d\phi
-\end{align*}
-$$
+:::math align
+dx &= \sin phi \cos theta \, dr + r \cos phi \cos theta \, dphi - r \sin phi \sin theta \, dtheta
+dy &= \sin phi \sin theta \, dr + r \cos phi \sin theta \, dphi + r \sin phi \cos theta \, dtheta
+dz &= \cos phi \, dr - r \sin phi \, dphi
+:::
 
 Then:
 
-$$
-\begin{align*}
-F_x \, dx &+ F_y \, dy + F_z \, dz = \\
-& F_r(r) (\sin^2 \phi \cos^2 \theta + \sin^2 \phi \sin^2 \theta + \cos^2 \phi) \, dr + \\
-& F_r(r) (r \sin \phi \cos \phi \cos^2 \theta + r \sin \phi \cos \phi \sin^2 \theta - r \sin \phi \cos \phi) \, d\phi + \\
-& F_r(r) (-r \sin^2 \phi \sin \theta \cos \theta + r \sin^2 \phi \sin \theta \cos \theta) \, d\theta
-\end{align*}
-$$
+:::math align
+F_x \, dx &+ F_y \, dy + F_z \, dz =
+& F_r(r) (\sin^2 phi \cos^2 theta + \sin^2 phi \sin^2 theta + \cos^2 phi) \, dr +
+& F_r(r) (r \sin phi \cos phi \cos^2 theta + r \sin phi \cos phi \sin^2 theta - r \sin phi \cos phi) \, dphi +
+& F_r(r) (-r \sin^2 phi \sin theta \cos theta + r \sin^2 phi \sin theta \cos theta) \, dtheta
+:::
 
 Which simplifies to:
 
-$$
+:::math
 F_x \, dx + F_y \, dy + F_z \, dz = F_r(r) \, dr
-$$
+:::
 
 On page 68 we saw that:
 
-$$
-\int_C v{F} \cdot unit{t} \, ds = \int_C (F_x \, dx + F_y \, dy + F_z \, dz)
-$$
+:::math
+int[C] v{F} dot unit{t} \, ds = int[C] (F_x \, dx + F_y \, dy + F_z \, dz)
+:::
 
 Thus, we have:
 
-$$
-\begin{align*}
-\int_C v{F} \cdot unit{t} \, ds &= \int_C F_r(r) \, dr \\
- &= \int_{r_1}^{r_2} F_r(r) \, dr
-\end{align*}
-$$
+:::math align
+int[C] v{F} dot unit{t} \, ds &= int[C] F_r(r) \, dr
+&= int[r_1..r_2] F_r(r) \, dr
+:::
 
 which is independent of the path taken and depends only on the initial and final radius.
 

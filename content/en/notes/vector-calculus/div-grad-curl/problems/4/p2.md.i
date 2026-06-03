@@ -6,125 +6,106 @@ Verify the following identities.
 :::expandable
 **Solution.** [Click to Expand]
 
-$$
-\begin{align*}
-\nabla(fg) &= \frac{\partial(fg)}{\partial x} v{i} + \frac{\partial(fg)}{\partial y} v{j} + \frac{\partial(fg)}{\partial z} v{k} \\[1em]
-&= g \frac{\partial f}{\partial x} v{i} + f \frac{\partial g}{\partial x} v{i} + g \frac{\partial f}{\partial y} v{j} + f \frac{\partial g}{\partial y} v{j} + g \frac{\partial f}{\partial z} v{k} + f \frac{\partial g}{\partial z} v{k} \\[1em]
-&= f ( \frac{\partial g}{\partial x} v{i} + \frac{\partial g}{\partial y} v{j} + \frac{\partial g}{\partial z} v{k} ) + g ( \frac{\partial f}{\partial x} v{i} + \frac{\partial f}{\partial y} v{j} + \frac{\partial f}{\partial z} v{k} ) \\[1em]
+:::math align
+\nabla(fg) &= pd(\partial(fg), x) v{i} + pd(\partial(fg), y) v{j} + pd(\partial(fg), z) v{k}
+&= g pd(f, x) v{i} + f pd(g, x) v{i} + g pd(f, y) v{j} + f pd(g, y) v{j} + g pd(f, z) v{k} + f pd(g, z) v{k}
+&= f ( pd(g, x) v{i} + pd(g, y) v{j} + pd(g, z) v{k} ) + g ( pd(f, x) v{i} + pd(f, y) v{j} + pd(f, z) v{k} )
 &= f \nabla g + g \nabla f
-\end{align*}
-$$
+:::
 :::
 
-**(b)** $\nabla(v{F} \cdot v{G}) = (v{G} \cdot \nabla) v{F} + (v{F} \cdot \nabla) v{G} + v{F} \times (\nabla \times v{G}) + v{G} \times (\nabla \times v{F})$
+**(b)** $\nabla(v{F} dot v{G}) = (v{G} dot \nabla) v{F} + (v{F} dot \nabla) v{G} + v{F} cross (\nabla cross v{G}) + v{G} cross (\nabla cross v{F})$
 
 :::expandable
 **Solution.** [Click to Expand]
 
 We have:
 
-$$
-\begin{align*}
-( (v{G} \cdot \nabla) v{F} )_x &= G_x \frac{\partial F_x}{\partial x} + G_y \frac{\partial F_x}{\partial y} + G_z \frac{\partial F_x}{\partial z} \\[1em]
-( (v{F} \cdot \nabla) v{G} )_x &= F_x \frac{\partial G_x}{\partial x} + F_y \frac{\partial G_x}{\partial y} + F_z \frac{\partial G_x}{\partial z} \\[1em]
-(v{F} \times (\nabla \times v{G}))_x &= F_y ( \frac{\partial G_y}{\partial x} - \frac{\partial G_x}{\partial y} ) - F_z ( \frac{\partial G_x}{\partial z} - \frac{\partial G_z}{\partial x} ) \\[1em]
-(v{G} \times (\nabla \times v{F}))_x &= G_y ( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} ) - G_z ( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} )
-\end{align*}
-$$
+:::math align
+( (v{G} dot \nabla) v{F} )_x &= G_x pd(F_x, x) + G_y pd(F_x, y) + G_z pd(F_x, z)
+( (v{F} dot \nabla) v{G} )_x &= F_x pd(G_x, x) + F_y pd(G_x, y) + F_z pd(G_x, z)
+(v{F} cross (\nabla cross v{G}))_x &= F_y ( pd(G_y, x) - pd(G_x, y) ) - F_z ( pd(G_x, z) - pd(G_z, x) )
+(v{G} cross (\nabla cross v{F}))_x &= G_y ( pd(F_y, x) - pd(F_x, y) ) - G_z ( pd(F_x, z) - pd(F_z, x) )
+:::
 
 Adding these together, we get:
 
-$$
-G_x \frac{\partial F_x}{\partial x} + F_x \frac{\partial G_x}{\partial x} +
-G_y \frac{\partial F_x}{\partial y} + F_y \frac{\partial G_x}{\partial y} +
-G_z \frac{\partial F_x}{\partial z} + F_z \frac{\partial G_x}{\partial z} +
-$$
+:::math
+G_x pd(F_x, x) + F_x pd(G_x, x) +
+G_y pd(F_x, y) + F_y pd(G_x, y) +
+G_z pd(F_x, z) + F_z pd(G_x, z) +
+:::
 
 which is equal to:
 
-$$
-\frac{\partial}{\partial x} (F_x G_x + F_y G_y + F_z G_z)
-$$
+:::math
+pd(\partial, x) (F_x G_x + F_y G_y + F_z G_z)
+:::
 
-which is the $x$-component of $\nabla(v{F} \cdot v{G})$.
+which is the $x$-component of $\nabla(v{F} dot v{G})$.
 
 Similarly, we can prove the equality for the $y$ and $z$ components.
 
 ::::
 
-**(c)** $\nabla \cdot (f v{F}) = f \nabla \cdot v{F} + v{F} \cdot \nabla f$
+**(c)** $\nabla dot (f v{F}) = f \nabla dot v{F} + v{F} dot \nabla f$
 
 :::expandable
 **Solution.** [Click to Expand]
 
-$$
-\begin{align*}
-\nabla \cdot (f v{F}) &= \frac{\partial (f F_x)}{\partial x} + \frac{\partial (f F_y)}{\partial y} + \frac{\partial (f F_z)}{\partial z} \\[1em]
-&= f \frac{\partial F_x}{\partial x} + F_x \frac{\partial f}{\partial x} + f \frac{\partial F_y}{\partial y} + F_y \frac{\partial f}{\partial y} + f \frac{\partial F_z}{\partial z} + F_z \frac{\partial f}{\partial z} \\[1em]
-&= f \nabla \cdot v{F} + v{F} \cdot \nabla f
-\end{align*}
-$$
+:::math align
+\nabla dot (f v{F}) &= pd((f F_x), x) + pd((f F_y), y) + pd((f F_z), z)
+&= f pd(F_x, x) + F_x pd(f, x) + f pd(F_y, y) + F_y pd(f, y) + f pd(F_z, z) + F_z pd(f, z)
+&= f \nabla dot v{F} + v{F} dot \nabla f
+:::
 ::::
 
-**(d)** $\nabla \cdot (v{F} \times v{G}) = v{G} \cdot (\nabla \times v{F}) - v{F} \cdot (\nabla \times v{G})$
+**(d)** $\nabla dot (v{F} cross v{G}) = v{G} dot (\nabla cross v{F}) - v{F} dot (\nabla cross v{G})$
 
 :::expandable
 **Solution.** [Click to Expand]
 
 We have:
 
-$$
-\begin{align*}
-v{G} \cdot (\nabla \times v{F}) &= G_x ( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} ) + G_y ( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} ) + G_z ( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} ) \\[1em]
-v{F} \cdot (\nabla \times v{G}) &= F_x ( \frac{\partial G_z}{\partial y} - \frac{\partial G_y}{\partial z} ) + F_y ( \frac{\partial G_x}{\partial z} - \frac{\partial G_z}{\partial x} ) + F_z ( \frac{\partial G_y}{\partial x} - \frac{\partial G_x}{\partial y} )
-\end{align*}
-$$
+:::math align
+v{G} dot (\nabla cross v{F}) &= G_x ( pd(F_z, y) - pd(F_y, z) ) + G_y ( pd(F_x, z) - pd(F_z, x) ) + G_z ( pd(F_y, x) - pd(F_x, y) )
+v{F} dot (\nabla cross v{G}) &= F_x ( pd(G_z, y) - pd(G_y, z) ) + F_y ( pd(G_x, z) - pd(G_z, x) ) + F_z ( pd(G_y, x) - pd(G_x, y) )
+:::
 
 Then:
 
-$$
-\begin{align*}
-v{G} \cdot (\nabla \times v{F}) &- v{F} \cdot (\nabla \times v{G}) = \\[1em]
-& (G_z \frac{\partial F_y}{\partial x} + F_y \frac{\partial G_z}{\partial x})
-\- (G_y \frac{\partial F_z}{\partial x} + F_z \frac{\partial G_y}{\partial x}) \\[1em]
-\+ &(G_x \frac{\partial F_z}{\partial y} + F_z \frac{\partial G_x}{\partial y})
-\- (G_z \frac{\partial F_x}{\partial y} + F_x \frac{\partial G_z}{\partial y}) \\[1em]
-\+ &(G_y \frac{\partial F_x}{\partial z} + F_x \frac{\partial G_y}{\partial z})
-\- (G_x \frac{\partial F_y}{\partial z} + F_y \frac{\partial G_x}{\partial z})
-\end{align*}
-$$
+:::math align
+v{G} dot (\nabla cross v{F}) &- v{F} dot (\nabla cross v{G}) =
+& (G_z pd(F_y, x) + F_y pd(G_z, x)) \- (G_y pd(F_z, x) + F_z pd(G_y, x))
+\+ &(G_x pd(F_z, y) + F_z pd(G_x, y)) \- (G_z pd(F_x, y) + F_x pd(G_z, y))
+\+ &(G_y pd(F_x, z) + F_x pd(G_y, z)) \- (G_x pd(F_y, z) + F_y pd(G_x, z))
+:::
 
 Then:
 
-$$
-\begin{align*}
-v{G} \cdot &(\nabla \times v{F}) - v{F} \cdot (\nabla \times v{G}) \\[1em]
-&=
-\frac{\partial}{\partial x} (F_y G_z - F_z G_y) + \frac{\partial}{\partial y} (F_z G_x - F_x G_z) + \frac{\partial}{\partial z} (F_x G_y - F_y G_x) \\[1em]
-&= \nabla \cdot (v{F} \times v{G})
-\end{align*}
-$$
+:::math align
+v{G} dot &(\nabla cross v{F}) - v{F} dot (\nabla cross v{G})
+&= pd(\partial, x) (F_y G_z - F_z G_y) + pd(\partial, y) (F_z G_x - F_x G_z) + pd(\partial, z) (F_x G_y - F_y G_x)
+&= \nabla dot (v{F} cross v{G})
+:::
 
 ::::
 
-**(e)** $\nabla \times (f v{F}) = f \nabla \times v{F} + (\nabla f) \times v{F}$
+**(e)** $\nabla cross (f v{F}) = f \nabla cross v{F} + (\nabla f) cross v{F}$
 
 :::expandable
 **Solution.** [Click to Expand]
 
-$$
-\begin{align*}
-\nabla \times (f v{F}) &= v{i} ( \frac{\partial (f F_z)}{\partial y} - \frac{\partial (f F_y)}{\partial z} ) \\[1em]
-&\quad + v{j} ( \frac{\partial (f F_x)}{\partial z} - \frac{\partial (f F_z)}{\partial x} )\\[1em]
-&\quad + v{k} ( \frac{\partial (f F_y)}{\partial x} - \frac{\partial (f F_x)}{\partial y} ) \\[1em]
-&= v{i} ( f \frac{\partial F_z}{\partial y} + F_z \frac{\partial f}{\partial y} - f \frac{\partial F_y}{\partial z} - F_y \frac{\partial f}{\partial z} ) \\[1em]
-&\quad + v{j} ( f \frac{\partial F_x}{\partial z} + F_x \frac{\partial f}{\partial z} - f \frac{\partial F_z}{\partial x} - F_z \frac{\partial f}{\partial x} ) \\[1em]
-&\quad + v{k} ( f \frac{\partial F_y}{\partial x} + F_y \frac{\partial f}{\partial x} - f \frac{\partial F_x}{\partial y} - F_x \frac{\partial f}{\partial y} ) \\[1em]
-&= f ( v{i} ( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} ) + v{j} ( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} ) + v{k} ( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} ) ) \\[1em]
-&\quad + ( \frac{\partial f}{\partial y} F_z - \frac{\partial f}{\partial z} F_y ) v{i}
-\+ ( \frac{\partial f}{\partial z} F_x - \frac{\partial f}{\partial x} F_z ) v{j} + ( \frac{\partial f}{\partial x} F_y - \frac{\partial f}{\partial y} F_x ) v{k} \\[1em]
-&= f \nabla \times v{F} + (\nabla f) \times v{F}
-\end{align*}
-$$
+:::math align
+\nabla cross (f v{F}) &= v{i} ( pd((f F_z), y) - pd((f F_y), z) )
+&\quad + v{j} ( pd((f F_x), z) - pd((f F_z), x) )
+&\quad + v{k} ( pd((f F_y), x) - pd((f F_x), y) )
+&= v{i} ( f pd(F_z, y) + F_z pd(f, y) - f pd(F_y, z) - F_y pd(f, z) )
+&\quad + v{j} ( f pd(F_x, z) + F_x pd(f, z) - f pd(F_z, x) - F_z pd(f, x) )
+&\quad + v{k} ( f pd(F_y, x) + F_y pd(f, x) - f pd(F_x, y) - F_x pd(f, y) )
+&= f ( v{i} ( pd(F_z, y) - pd(F_y, z) ) + v{j} ( pd(F_x, z) - pd(F_z, x) ) + v{k} ( pd(F_y, x) - pd(F_x, y) ) )
+&\quad + ( pd(f, y) F_z - pd(f, z) F_y ) v{i} \+ ( pd(f, z) F_x - pd(f, x) F_z ) v{j} + ( pd(f, x) F_y - pd(f, y) F_x ) v{k}
+&= f \nabla cross v{F} + (\nabla f) cross v{F}
+:::
 
 ::::

@@ -12,9 +12,9 @@ We are interested in well-posed problems. Problems that:
 - have a unique solution
 - the solution depends continuously on the input. That is:
 
-$$
-\lim_{hat{x}-> x} f(hat{x}) = f(x)
-$$
+:::math
+lim[hat{x}-> x] f(hat{x}) = f(x)
+:::
 
 Otherwise, the problem is ill-posed.
 
@@ -46,16 +46,16 @@ Example: as an approximation to $\sqrt{2}$, $1.4$ has a backward error of $\frac
 #### Condition Number
 The **absolute condition number** is a property of the problem, which measures its sensitivity small perturbations in the input data.
 
-$$
-\kappa_{abs}(f) = \lim_{\Delta x -> 0} abs(\frac{f(x + \Delta x) - f(x)}{\Delta x}) = abs(\frac{df}{dx} (x))
-$$
+:::math
+kappa_{abs}(f) = lim[Delta x -> 0] abs(\frac{f(x + Delta x) - f(x)}{Delta x}) = abs(dd(f, x) (x))
+:::
 
-When considering a space of inputs $cal{X}$, then $\kappa_{abs}(f) = \max_{x \in cal{X}} abs(\frac{df}{dx} (x))$. That is, what's the worst case scenario?
+When considering a space of inputs $cal{X}$, then $kappa_{abs}(f) = max[x \in cal{X}] abs(dd(f, x) (x))$. That is, what's the worst case scenario?
 
 The **relative condition number** considers the relative perturbations in the input and output:
 
-$$
-\kappa_{rel}(f) = \max_{x \in cal{X}} \lim_{\Delta x -> 0} abs(\frac{(f(x + \Delta x) - f(x)) / f(x)}{\Delta x / x}) = \frac{\kappa_{abs}(f) |x|}{|f(x)|}
-$$
+:::math
+kappa_{rel}(f) = max[x \in cal{X}] lim[Delta x -> 0] abs(\frac{(f(x + Delta x) - f(x)) / f(x)}{Delta x / x}) = \frac{kappa_{abs}(f) |x|}{|f(x)|}
+:::
 
 It quantifies how much relative error in input can amplify relative error in output.

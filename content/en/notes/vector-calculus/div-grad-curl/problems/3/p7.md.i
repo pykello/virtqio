@@ -1,26 +1,21 @@
-**Problem III-7.** Show that $\nabla \cdot (\nabla \times v{F}) = 0$. (Assume that
+**Problem III-7.** Show that $\nabla dot (\nabla cross v{F}) = 0$. (Assume that
 mixed second partial derivatives are independent of the order of differentiation.)
 
 :::expandable
 **Solution.** [Click to Expand]
 
-$$
-\begin{align*}
-\nabla \times v{F} &= v{i} ( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} ) \\
-&+ v{j} ( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} ) \\
-&+ v{k} ( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} )
-\end{align*}
-$$
+:::math align
+\nabla cross v{F} &= v{i} ( pd(F_z, y) - pd(F_y, z) )
+&+ v{j} ( pd(F_x, z) - pd(F_z, x) )
+&+ v{k} ( pd(F_y, x) - pd(F_x, y) )
+:::
 
 Then:
 
-$$
-\begin{align*}
-\nabla \cdot (\nabla \times v{F}) &= \frac{\partial F_z}{\partial x \partial y} -
-\frac{\partial F_y}{\partial x \partial z} \\
-&+ \frac{\partial F_x}{\partial y \partial z} - \frac{\partial F_z}{\partial x \partial y} \\
-&+ \frac{\partial F_y}{\partial x \partial z} - \frac{\partial F_x}{\partial y \partial z} \\
+:::math align
+\nabla dot (\nabla cross v{F}) &= pd2(F_z, x, y) - pd2(F_y, x, z)
+&+ pd2(F_x, y, z) - pd2(F_z, x, y)
+&+ pd2(F_y, x, z) - pd2(F_x, y, z)
 &= 0
-\end{align*}
-$$
+:::
 ::::

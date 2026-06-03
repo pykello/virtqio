@@ -10,9 +10,9 @@ I've also added some notes and expanded some of the examples to make them cleare
 
 **Open ball.** For any $v{x} \in bb{R}^n$ and $r > 0$, the open ball of radius $r$ centered at $v{x}$ is the subset
 
-$$
+:::math
 B_r(v{x}) := \{v{y} \in bb{R}^n : norm(v{x} - v{y}) < r\}.
-$$
+:::
 
 **Open set of $bb{R}^n$.** A subset $U \subset bb{R}^n$ is open if for every $x \in U$, there exists $r > 0$ such that $B_r(v{x}) \subset U$.
 
@@ -22,7 +22,7 @@ $$
 > * A set can be both open and closed. For example, $\emptyset$ and $bb{R}^n$ are both open and closed.
 > * A set can be neither open nor closed. For example, $[0, 1)$ is neither open nor closed.
 
-**Neighborhood.** A neighborhood of a point $v{x} \in bb{R}^n$ is a subset $X \subset bb{R}^n$ such that there exists $eps > 0$ with $B_\epsilon(v{x}) \subset X$.
+**Neighborhood.** A neighborhood of a point $v{x} \in bb{R}^n$ is a subset $X \subset bb{R}^n$ such that there exists $eps > 0$ with $B_eps(v{x}) \subset X$.
 
 Often, we deal with sets that are neither open or closed. But every set is contained
 in a smallest closed set, called its _closure_, and largest open set, called its _interior_.
@@ -42,9 +42,9 @@ Thus,
 
 **Convergence.** A sequence $i \mapsto v{a}_i \in bb{R}^n$ _converges_ to $v{a} \in bb{R}^n$ if
 
-$$
+:::math
 forall eps > 0, exists M | m > M => norm(v{a}_m - v{a}) < eps.
-$$
+:::
 
 We call $v{a}$ the _limit_ of the sequence.
 
@@ -56,25 +56,18 @@ We call $v{a}$ the _limit_ of the sequence.
 1. ($=>$) Assume $m \mapsto v{a}_m$ converges to $v{a}$. This
 means for any $eps > 0$, there exists $M$ such that for all $m > M$ we have:
 
-$$
-\begin{align*}
-&norm(v{a}_m - v{a}) < eps \\
-=> &
-\sqrt{
-    ((a_m)_1-a_1)^2 + \cdots + ((a_m)_n-a_n)^2
-} < eps \\
-=> &
- ((a_m)_i-a_i)^2  < eps^2 \\
-=> &
- norm((a_m)_i-a_i) < eps
-\end{align*}
-$$
+:::math align
+&norm(v{a}_m - v{a}) < eps
+=> & \sqrt{ ((a_m)_1-a_1)^2 + ... + ((a_m)_n-a_n)^2 } < eps
+=> & ((a_m)_i-a_i)^2  < eps^2
+=> & norm((a_m)_i-a_i) < eps
+:::
 
 Which means $m \mapsto (a_m)_i$ converges to $a_i$.
 
 2. ($\impliedby$) Fix $eps$. For each $a_i$ we find corresponding $M_i$ for
 $eps_i = eps / \sqrt{n}$. Then we choose $M = \max\\{M_1,...,M_n\\}$.
-For $m > M$, $norm(v{a} - v{a}_m) < \sqrt{n \cdot (\dfrac{eps}{\sqrt{n}})^2} = eps$. Which means $m \mapsto v{a}_m$ converges to $v{a}$.
+For $m > M$, $norm(v{a} - v{a}_m) < \sqrt{n dot (\dfrac{eps}{\sqrt{n}})^2} = eps$. Which means $m \mapsto v{a}_m$ converges to $v{a}$.
 
 ::::
 
@@ -86,7 +79,7 @@ For $m > M$, $norm(v{a} - v{a}_m) < \sqrt{n \cdot (\dfrac{eps}{\sqrt{n}})^2} = e
 :::expandable
 **Proof.** [Click to Expand]
 
-$\lim_{eps -> 0} u(eps) = 0$ means that for every $del > 0$ there exists $eps_0$ such that $u(eps) < del$ for all $eps < eps_0$.
+$lim[eps -> 0] u(eps) = 0$ means that for every $del > 0$ there exists $eps_0$ such that $u(eps) < del$ for all $eps < eps_0$.
 
 [TODO]
 
@@ -129,25 +122,25 @@ lim[i -> inf] (v{a}_i + v{b}_i)
 
 2. If $i \mapsto v{a}_i$ and $i \mapsto c_i$ both converge, then so does $i \mapsto c_i v{a}_i$, and
 
-$$
-\lim_{i-> inf} c_i v{a}_i
-\= (\lim_{i-> inf} c_i )
-  ( \lim_{i-> inf} v{a}_i ) \tag{1.5.21}
-$$
+:::math
+lim[i-> inf] c_i v{a}_i
+\= (lim[i-> inf] c_i )
+  ( lim[i-> inf] v{a}_i ) \tag{1.5.21}
+:::
 
-3. If $i \mapsto v{a}_i$ and $i \mapsto v{b}_i$ both converge, then so does their dot product $i \mapsto \vec{v{a}_i} \cdot \vec{v{b}_i}$, and
+3. If $i \mapsto v{a}_i$ and $i \mapsto v{b}_i$ both converge, then so does their dot product $i \mapsto \vec{v{a}_i} dot \vec{v{b}_i}$, and
 
-$$
-\lim_{i-> inf} (\vec{v{a}_i} \cdot \vec{v{b}_i} )
-\= (\lim_{i-> inf} \vec{v{a}_i} ) \cdot
-  ( \lim_{i-> inf} \vec{v{b}_i} ) \tag{1.5.22}
-$$
+:::math
+lim[i-> inf] (\vec{v{a}_i} dot \vec{v{b}_i} )
+\= (lim[i-> inf] \vec{v{a}_i} ) dot
+  ( lim[i-> inf] \vec{v{b}_i} ) \tag{1.5.22}
+:::
 
 4. If $i \mapsto v{a}_i$ is bounded and $i \mapsto c_i$ converges to $0$, then
 
-$$
-\lim_{i-> inf} c_i v{a}_i \= 0 \tag{1.5.23}
-$$
+:::math
+lim[i-> inf] c_i v{a}_i \= 0 \tag{1.5.23}
+:::
 
 **Proposition 1.5.17 (Sequence in closed set).**
 
@@ -180,15 +173,15 @@ subsequence of the sequence converges to the same limit $v{a}$.
 
 **Limit of a function.** Let $X$ be a subset of $bb{R}^n$ and $v{x}_0$ a point in $\overline{X}$. A function $v{f}: X -> bb{R}^p$ has the _limit_ $v{a}$ at $v{x}_0$:
 
-$$
-\lim_{v{x}-> v{x}_0} v{f}(v{x}) = v{a}
-$$
+:::math
+lim[v{x}-> v{x}_0] v{f}(v{x}) = v{a}
+:::
 
 if for all $eps > 0$ there exists $del > 0$ such that for all $v{x} \in X$,
 
-$$
+:::math
 norm(v{x} - v{x}_0) < del => norm(v{f}(v{x}) - v{a}) < eps
-$$
+:::
 
 > [!NOTE]
 > With this definition, $v{x}_0$ need not be in $X$. It only needs to be in the
@@ -221,7 +214,7 @@ a function. If $f$ has a limit at $v{x}_0 \in \overline{X}$, the limit is unique
 :::expandable
 **Proof.** [Click to Expand]
 
-Assume it's not unique and $\lim_{v{x}-> v{x}_0}v{f}(v{x})$ takes two values of $v{a} != v{b}$. Let
+Assume it's not unique and $lim[v{x}-> v{x}_0]v{f}(v{x})$ takes two values of $v{a} != v{b}$. Let
 $eps = \dfrac{norm(v{a} - v{b})}{2} > 0$.
 
 Since $v{a}$ is a limit, then there exists $del_a$ such that for all
@@ -230,47 +223,45 @@ $norm(v{f}(v{x}) - v{a}) < eps$. Similar $del_b$ exists for $v{b}$.
 
 Then for all $v{x} \in X$ such that $norm(v{x} - v{x}_0) < \min\\{del_a, del_b\\}$, we have:
 
-$$
-\begin{align*}
-norm(v{a}-v{b}) &<= norm(v{f}(v{x}) - v{a})+norm(v{f}(v{x}) - v{b}) \quad\text{(triangle inequality)} \\
-&< eps + eps \\
+:::math align
+norm(v{a}-v{b}) &<= norm(v{f}(v{x}) - v{a})+norm(v{f}(v{x}) - v{b}) \quad\text{(triangle inequality)}
+&< eps + eps
 &= norm(v{a}-v{b})
-\end{align*}
-$$
+:::
 
 Hence $norm(v{a}-v{b}) < norm(v{a}-v{b})$, a contradiction. So, $v{a} = v{b}$
 ::::
 
 **Theorem 1.5.22 (Limit of a composition).** Let $U \subset bb{R}^n$, $V \subset bb{R}^m$, and $v{f}: U -> V$  and $v{g}: V -> bb{R}^k$ be mappings, so that $v{g} \circ v{f}$ is defined on $U$. If $v{x}_0 \in \overline{U}$ and
 
-$$
-v{y}_0 = \lim_{v{x} -> v{x}_0} v{f}(v{x}) \quad \text{and} \quad v{z}_0 \= \lim_{v{y} -> v{y}_0} v{g}(v{y})
-$$
+:::math
+v{y}_0 = lim[v{x} -> v{x}_0] v{f}(v{x}) \quad \text{and} \quad v{z}_0 \= lim[v{y} -> v{y}_0] v{g}(v{y})
+:::
 
-both exist, then $\lim_{v{x} -> v{x}_0} (v{g} \circ v{f})(v{x})$ exists and is equal to $v{z}_0$.
+both exist, then $lim[v{x} -> v{x}_0] (v{g} \circ v{f})(v{x})$ exists and is equal to $v{z}_0$.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-Since $\lim_{v{y}-> v{y}_0} v{g}(v{y}) \= v{z}_0$,
+Since $lim[v{y}-> v{y}_0] v{g}(v{y}) \= v{z}_0$,
 
-$$
-forall eps > 0, exists \eta > 0 \quad\text{s.t.}\quad norm(v{y} - v{y}_0) < \eta => norm(v{g}(v{y}) - v{z}_0) < eps
-$$
+:::math
+forall eps > 0, exists eta > 0 \quad\text{s.t.}\quad norm(v{y} - v{y}_0) < eta => norm(v{g}(v{y}) - v{z}_0) < eps
+:::
 
-Since $\lim_{v{x}-> v{x}_0} v{f}(v{x}) \= v{y}_0$,
+Since $lim[v{x}-> v{x}_0] v{f}(v{x}) \= v{y}_0$,
 
-$$
-forall \eta > 0, exists del > 0 \quad\text{s.t.}\quad norm(v{x} - v{x}_0) < del => norm(v{f}(v{x}) - v{y}_0) < \eta
-$$
+:::math
+forall eta > 0, exists del > 0 \quad\text{s.t.}\quad norm(v{x} - v{x}_0) < del => norm(v{f}(v{x}) - v{y}_0) < eta
+:::
 
 Combining these, we get
 
-$$
+:::math
 forall eps > 0, exists del > 0 \quad\text{s.t.}\quad norm(v{x} - v{x}_0) < del => norm(v{g}(v{f}(v{x})) - v{z}_0) < eps
-$$
+:::
 
-which is equivalent to saying $\lim_{v{x} -> v{x}_0} (v{g} \circ v{f})(v{x}) = v{z}_0$.
+which is equivalent to saying $lim[v{x} -> v{x}_0] (v{g} \circ v{f})(v{x}) = v{z}_0$.
 ::::
 
 
@@ -289,79 +280,75 @@ which is equivalent to saying $\lim_{v{x} -> v{x}_0} (v{g} \circ v{f})(v{x}) = v
 > \end{cases}
 > $$
 >
-> Then using the standard definition of limit, we have $\lim_{x -> 0} f(x) = 0$ and
-> $\lim_{x -> 0} g(x) = 1$. But $\lim_{x -> 0} (g \circ f)(x)$
-> does not exist: $\sin(1/x) = 0$ for $x = 1/(k \pi)$, $k \in bb{Z}$. So, in
+> Then using the standard definition of limit, we have $lim[x -> 0] f(x) = 0$ and
+> $lim[x -> 0] g(x) = 1$. But $lim[x -> 0] (g \circ f)(x)$
+> does not exist: $\sin(1/x) = 0$ for $x = 1/(k pi)$, $k \in bb{Z}$. So, in
 > any radius $r > 0$ of $0$, we have infinitely many points where $f(x) = 0$ and
 > infinitely many points where $f(x) != 0$. Hence, the limit of $(g \circ f)(x)$
 > does not exist.
 >
-> With our definition, $\lim_{y -> 0} g(y)$ does not exist.
+> With our definition, $lim[y -> 0] g(y)$ does not exist.
 
 **Proposition 1.5.25 (Convergence by coordinates).** Suppose
 
-$$
+:::math
 U \subset bb{R}^n, \quad
 v{f} =
-\begin{pmatrix}
-f_1 \\
-\vdots \\
-f_m
-\end{pmatrix}
+pmat(f_1; \vdots; f_m)
 : U -> bb{R}^m,
 \quad \text{and} \quad
 v{x}_0 \in \overline{U}.
-$$
+:::
 
-Then $\lim_{v{x} -> v{x}_0} v{f}(v{x}) = \begin{pmatrix}a_1\\\\ \vdots\\\\ a_m \end{pmatrix}$ if and only if $\lim_{v{x} -> v{x}_0} f_i(v{x}) = a_i$ for all $i = 1, \ldots, m$.
+Then $lim[v{x} -> v{x}_0] v{f}(v{x}) = pmat(a_1; \vdots; a_m)$ if and only if $lim[v{x} -> v{x}_0] f_i(v{x}) = a_i$ for all $i = 1, ..., m$.
 
 :::expandable
 **Proof.** [Click to Expand]
 
-1. ($=>$) Since $forall i \in \\{1,\ldots,m\\}$ we have $norm(v{f}(v{x})-v{f}(v{y}))>= abs(f_i(v{x})-f_i(v{y}))$, then for each $eps$ the same $del$ that works for the limit of vector
+1. ($=>$) Since $forall i \in \\{1,...,m\\}$ we have $norm(v{f}(v{x})-v{f}(v{y}))>= abs(f_i(v{x})-f_i(v{y}))$, then for each $eps$ the same $del$ that works for the limit of vector
 function works also for the limit of each coordinate function.
 
 2. ($\impliedby$) Fix $eps$, and for each coordinate function $f_i$ find the
-$del_i$ corresponding to $eps/\sqrt{m}$. Then use $del=\min\\{del_1,\ldots,del_m\\}$ for the vector function.
+$del_i$ corresponding to $eps/\sqrt{m}$. Then use $del=\min\\{del_1,...,del_m\\}$ for the vector function.
 ::::
 
 **Theorem 1.5.26 (Limits of functions).** Let $U \subset bb{R}^n$, and let $v{f}, v{g}: U -> bb{R}^m$, $h: U -> bb{R}$.
 
-1. If $\lim_{v{x} -> v{x}_0} v{f}(v{x})$ and $\lim_{v{x} -> v{x}_0} v{g}(v{x})$ exist, then
+1. If $lim[v{x} -> v{x}_0] v{f}(v{x})$ and $lim[v{x} -> v{x}_0] v{g}(v{x})$ exist, then
 
-$$
-\lim_{v{x} -> v{x}_0} (v{f} + v{g})(v{x}) = \lim_{v{x} -> v{x}_0} v{f}(v{x}) + \lim_{v{x} -> v{x}_0} v{g}(v{x}).
-$$
+:::math
+lim[v{x} -> v{x}_0] (v{f} + v{g})(v{x}) = lim[v{x} -> v{x}_0] v{f}(v{x}) + lim[v{x} -> v{x}_0] v{g}(v{x}).
+:::
 
-2. If $\lim_{v{x} -> v{x}_0} v{f}(v{x})$ and $\lim_{v{x} -> v{x}_0} h(v{x})$ exist, then
+2. If $lim[v{x} -> v{x}_0] v{f}(v{x})$ and $lim[v{x} -> v{x}_0] h(v{x})$ exist, then
 
-$$
-\lim_{v{x} -> v{x}_0} (h v{f})(v{x}) = \lim_{v{x} -> v{x}_0} h(v{x}) \cdot \lim_{v{x} -> v{x}_0} v{f}(v{x}).
-$$
+:::math
+lim[v{x} -> v{x}_0] (h v{f})(v{x}) = lim[v{x} -> v{x}_0] h(v{x}) dot lim[v{x} -> v{x}_0] v{f}(v{x}).
+:::
 
-3. If $\lim_{v{x} -> v{x}_0} v{f}(v{x})$ and $\lim_{v{x} -> v{x}_0} h(v{x}) != 0$ exist, then
+3. If $lim[v{x} -> v{x}_0] v{f}(v{x})$ and $lim[v{x} -> v{x}_0] h(v{x}) != 0$ exist, then
 
-$$
-\lim_{v{x} -> v{x}_0} ( \frac{v{f}}{h} )(v{x}) = \frac{\lim_{v{x} -> v{x}_0} v{f}(v{x})}{\lim_{v{x} -> v{x}_0} h(v{x})}.
-$$
+:::math
+lim[v{x} -> v{x}_0] ( \frac{v{f}}{h} )(v{x}) = \frac{lim[v{x} -> v{x}_0] v{f}(v{x})}{lim[v{x} -> v{x}_0] h(v{x})}.
+:::
 
-4. Define $(v{f} \cdot v{g})(v{x}) := v{f}(v{x}) \cdot v{g}(v{x})$. If $\lim_{v{x} -> v{x}_0} v{f}(v{x})$ and $\lim_{v{x} -> v{x}_0} v{g}(v{x})$ exist, then
+4. Define $(v{f} dot v{g})(v{x}) := v{f}(v{x}) dot v{g}(v{x})$. If $lim[v{x} -> v{x}_0] v{f}(v{x})$ and $lim[v{x} -> v{x}_0] v{g}(v{x})$ exist, then
 
-$$
-\lim_{v{x} -> v{x}_0} (v{f} \cdot v{g})(v{x}) = \lim_{v{x} -> v{x}_0} v{f}(v{x}) \cdot \lim_{v{x} -> v{x}_0} v{g}(v{x}).
-$$
+:::math
+lim[v{x} -> v{x}_0] (v{f} dot v{g})(v{x}) = lim[v{x} -> v{x}_0] v{f}(v{x}) dot lim[v{x} -> v{x}_0] v{g}(v{x}).
+:::
 
-5. If $v{f}$ is bounded and $\lim_{v{x} -> v{x}_0} h(v{x}) = 0$, then
+5. If $v{f}$ is bounded and $lim[v{x} -> v{x}_0] h(v{x}) = 0$, then
 
-$$
-\lim_{v{x} -> v{x}_0} (h v{f})(v{x}) = 0.
-$$
+:::math
+lim[v{x} -> v{x}_0] (h v{f})(v{x}) = 0.
+:::
 
-6. If $\lim_{v{x} -> v{x}_0} v{f}(v{x}) = 0$ and $h$ is bounded, then
+6. If $lim[v{x} -> v{x}_0] v{f}(v{x}) = 0$ and $h$ is bounded, then
 
-$$
-\lim_{v{x} -> v{x}_0} (h v{f})(v{x}) = 0.
-$$
+:::math
+lim[v{x} -> v{x}_0] (h v{f})(v{x}) = 0.
+:::
 
 :::expandable
 **Proof of 4.** [Click to Expand]
@@ -370,25 +357,17 @@ Using **1.5.25**, since limit of $v{f}$ exists, then limit of each coordinate fu
 
 So, we have:
 
-$$
-\begin{align*}
-\lim_{v{x} -> v{x}_0} v{f}(v{x}) \cdot \lim_{v{x} -> v{x}_0} v{g}(v{x}) &=
-\sum_{i=1}^{m} (\lim_{v{x} -> v{x}_0}{f_i(v{x})})
-(\lim_{v{x} -> v{x}_0} {g_i(v{x})})
-\\
-&= \sum_{i=1}^{m} \lim_{v{x} -> v{x}_0}{f_i(v{x}) g_i(v{x})} \tag{using part 2}
-\\
-&=\lim_{v{x} -> v{x}_0} \sum_{i=1}^{m}{f_i(v{x}) g_i(v{x})}
-\tag{using part 1}
-\\
-&= \lim_{v{x} -> v{x}_0} (v{f} \cdot v{g})(v{x})
-\end{align*}
-$$
+:::math align
+lim[v{x} -> v{x}_0] v{f}(v{x}) dot lim[v{x} -> v{x}_0] v{g}(v{x}) &= sum[i=1..m] (lim[v{x} -> v{x}_0]{f_i(v{x})}) (lim[v{x} -> v{x}_0] {g_i(v{x})})
+&= sum[i=1..m] lim[v{x} -> v{x}_0]{f_i(v{x}) g_i(v{x})} \tag{using part 2}
+&=lim[v{x} -> v{x}_0] sum[i=1..m]{f_i(v{x}) g_i(v{x})} \tag{using part 1}
+&= lim[v{x} -> v{x}_0] (v{f} dot v{g})(v{x})
+:::
 ::::
 
 ### Continuous Functions
 
-**Continuous function.** Let $X \subset bb{R}^n$. A function $v{f}: X -> bb{R}^m$ is _continuous_ at $v{x}_0 \in X$ if $\lim_{v{x} -> v{x}_0} v{f}(v{x}) = v{f}(v{x}_0)$.
+**Continuous function.** Let $X \subset bb{R}^n$. A function $v{f}: X -> bb{R}^m$ is _continuous_ at $v{x}_0 \in X$ if $lim[v{x} -> v{x}_0] v{f}(v{x}) = v{f}(v{x}_0)$.
 
 $v{f}$ is continuous on $X$ if it is continuous at every point $v{x}_0 \in X$.
 
@@ -413,9 +392,9 @@ $v{f}$ is continuous on $X$ if it is continuous at every point $v{x}_0 \in X$.
 
 **Proposition 1.5.28 (Criterion for continuity).** Let $X \subset bb{R}^n$. A function $v{f}: X -> bb{R}^m$ is continuous at $v{x}_0 \in X$ if and only if for every sequence $i \mapsto v{x}_i$ in $X$ converging to $v{x}_0$, we have
 
-$$
-\lim_{i-> inf} v{f}(v{x}_i) = v{f}(v{x}_0).
-$$
+:::math
+lim[i-> inf] v{f}(v{x}_i) = v{f}(v{x}_0).
+:::
 
 :::expandable
 **Proof.** [Click to Expand]
@@ -432,21 +411,19 @@ Let $U$ be a subset of $bb{R}^n$, $v{f}$ and $v{g}$ mappings $U -> bb{R}^m$, and
 
 3. If $v{f}$ and $h$ are continuous at $v{x}_0 \in U$, and $h(v{x}_0) != 0$, so is $\dfrac{v{f}}{h}$.
 
-4. If $v{f}$ and $v{g}$ are continuous at $v{x}_0 \in U$, so is $v{f} \cdot v{g}$.
+4. If $v{f}$ and $v{g}$ are continuous at $v{x}_0 \in U$, so is $v{f} dot v{g}$.
 
 5. If $h$ is defined and continuous at $v{x}_0 \in \overline{U}$ with $h(v{x}_0) = 0$, and there exist $C, del > 0$ such that
 
-$$
+:::math
 |v{f}(v{x})| <= C \quad \text{for } v{x} \in U, \quad |v{x} - v{x}_0| < del,
-$$
+:::
 (i.e. $v{f}$ is bounded near $v{x}_0$), then the map
-$$
-v{x} \mapsto
-\begin{cases}
-h(v{x}) v{f}(v{x}) & \text{for } v{x} \in U \\
-0 & \text{if } v{x} = v{x}_0
-\end{cases}
-$$
+:::math
+v{x} \mapsto cases:
+h(v{x}) v{f}(v{x}) | \text{for } v{x} \in U
+0 | \text{if } v{x} = v{x}_0
+:::
 
 is continuous at $v{x}_0$.
 
@@ -499,49 +476,37 @@ is continuous at $v{x}_0$.
 
 Any linear function has a corresponding matrix $A$ such that $v{f}(v{x}) = A v{x}$. Then
 
-$$
-\begin{align*}
-norm(v{f}(v{x})-v{f}(v{y}))
-&= norm(A \cdot v{x} - A \cdot v{y}) \\
-&= norm(A \cdot (v{x} - v{y})) \\
-&= norm(A) \cdot norm(v{x} - v{y})
-\end{align*}
-$$
+:::math align
+norm(v{f}(v{x})-v{f}(v{y})) &= norm(A dot v{x} - A dot v{y})
+&= norm(A dot (v{x} - v{y}))
+&= norm(A) dot norm(v{x} - v{y})
+:::
 
-Where $norm(A) = \sup_{norm(v)=1} norm(Av)$ is the [operator norm](https://mathworld.wolfram.com/OperatorNorm.html) of $A$.
+Where $norm(A) = sup[norm(v)=1] norm(Av)$ is the [operator norm](https://mathworld.wolfram.com/OperatorNorm.html) of $A$.
 
 Then, for all $eps$ if we take $del = \dfrac{eps}{norm(A) + 1 }$
 , we'll have:
 
-$$
-\begin{align*}
-norm(v{x} - v{y}) < del &=>
-norm(v{x} - v{y}) < \dfrac{eps}{norm(A) + 1 }
-\\
-&=>
-(norm(A) + 1) norm(v{x} - v{y}) < eps
-\\
-&=>
-norm(A) \cdot norm(v{x} - v{y}) < eps
-\\
-&=>
-norm(v{f}(v{x})-v{f}(v{y})) < eps
-\end{align*}
-$$
+:::math align
+norm(v{x} - v{y}) < del &=> norm(v{x} - v{y}) < \dfrac{eps}{norm(A) + 1 }
+&=> (norm(A) + 1) norm(v{x} - v{y}) < eps
+&=> norm(A) dot norm(v{x} - v{y}) < eps
+&=> norm(v{f}(v{x})-v{f}(v{y})) < eps
+:::
 
 which means $v{f}$ is uniformly continuous.
 ::::
 
 ### Series of Vectors
 
-**Convergent series of vectors.** A series $\sum_{i=1}^{inf} \vec{v{a}_i}$
-is _convergent_ if the sequence of partial sums $n \mapsto \vec{v{s}_n} = \sum_{i=1}^{n} \vec{v{a}_i}$ is convergent. The limit of the series is defined as
+**Convergent series of vectors.** A series $sum[i=1..inf] \vec{v{a}_i}$
+is _convergent_ if the sequence of partial sums $n \mapsto \vec{v{s}_n} = sum[i=1..n] \vec{v{a}_i}$ is convergent. The limit of the series is defined as
 
-$$
-\sum_{i=1}^{inf} \vec{v{a}_i} = \lim_{n -> inf} \vec{v{s}_n}
-$$
+:::math
+sum[i=1..inf] \vec{v{a}_i} = lim[n -> inf] \vec{v{s}_n}
+:::
 
-**Proposition 1.5.35 (Absolute convergence).** If $\sum_{i=1}^{inf} norm(\vec{v{a}_i})$ converges, then $\sum_{i=1}^{inf} \vec{v{a}_i}$ converges.
+**Proposition 1.5.35 (Absolute convergence).** If $sum[i=1..inf] norm(\vec{v{a}_i})$ converges, then $sum[i=1..inf] \vec{v{a}_i}$ converges.
 
 > [!NOTE]
 > This is a very important result. This can be used to prove:
@@ -552,14 +517,14 @@ $$
 ### Complex exponentials and trigonometric functions
 
 **Proposition 1.5.36 (Complex exponentials).** For any complex number $z$, the
-series $e^z = \sum_{n=0}^{inf} \dfrac{z^n}{n!}$ converges.
+series $e^z = sum[n=0..inf] \dfrac{z^n}{n!}$ converges.
 
 **Proposition 1.5.37.** For any real number $t$ we have $e^{it} = \cos(t) + i \sin(t)$.
 
 ### Geometric series of matrices
 
-**Proposition 1.5.38.** Let $A$ be a square matrix. If $norm(A) < 1$, then the series $S = I + A + A^2 + \ldots$ converges to $(I - A)^{-1}$.
+**Proposition 1.5.38.** Let $A$ be a square matrix. If $norm(A) < 1$, then the series $S = I + A + A^2 + ...$ converges to $(I - A)^{-1}$.
 
 **Corollary 1.5.39.** If $norm(A) < 1$, then $(I - A)$ is invertible.
 
-**Corollary 1.5.40.** The set of invertible $n \times n$ matrices is open.
+**Corollary 1.5.40.** The set of invertible $n cross n$ matrices is open.

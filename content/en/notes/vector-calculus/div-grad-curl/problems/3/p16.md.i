@@ -1,6 +1,6 @@
 **Problem III-16.**
 
-**(a)** Consider a vector function with the property $\nabla \times v{F} = 0$ everywhere on two closed curves $C_1$ and $C_2$ and on any capping surface $S$ of the
+**(a)** Consider a vector function with the property $\nabla cross v{F} = 0$ everywhere on two closed curves $C_1$ and $C_2$ and on any capping surface $S$ of the
 region enclosed by them. Show that the circulation of $v{F}$ around $C_1$ equals
 the circulation of $v{F}$ around $C_2$.
 
@@ -20,54 +20,52 @@ Then $S$ is a capping surface for the region enclosed by $C_3$.
 
 Then, we have:
 
-$$
-\oint_{C_3} v{F} \cdot unit{t} \, ds = \iint_S \nabla \times v{F} \cdot unit{n} \, dS
-$$
+:::math
+oint[C_3] v{F} dot unit{t} \, ds = iint[S] \nabla cross v{F} dot unit{n} \, dS
+:::
 
-Since $\nabla \times v{F} = 0$, we have:
+Since $\nabla cross v{F} = 0$, we have:
 
-$$
-\oint_{C_3} v{F} \cdot unit{t} \, ds = 0 \tag{1}
-$$
+:::math
+oint[C_3] v{F} dot unit{t} \, ds = 0 \tag{1}
+:::
 
 Since we have reversed the direction of $C_1$ and line integrals along $a$ and $b$ cancel each other, we have:
 
-$$
-\oint_{C_3} v{F} \cdot unit{t} \, ds = -\oint_{C_1} v{F} \cdot unit{t} \, ds + \oint_{C_2} v{F} \cdot unit{t} \, ds \tag{2}
-$$
+:::math
+oint[C_3] v{F} dot unit{t} \, ds = -oint[C_1] v{F} dot unit{t} \, ds + oint[C_2] v{F} dot unit{t} \, ds \tag{2}
+:::
 
 Putting (1) and (2) together, we have:
 
-$$
--\oint_{C_1} v{F} \cdot unit{t} \, ds + \oint_{C_2} v{F} \cdot unit{t} \, ds = 0
-$$
+:::math
+-oint[C_1] v{F} dot unit{t} \, ds + oint[C_2] v{F} dot unit{t} \, ds = 0
+:::
 
 Thus, we have:
 
-$$
-\oint_{C_1} v{F} \cdot unit{t} \, ds = \oint_{C_2} v{F} \cdot unit{t} \, ds
-$$
+:::math
+oint[C_1] v{F} dot unit{t} \, ds = oint[C_2] v{F} dot unit{t} \, ds
+:::
 ::::
 
 **(b)** The magentic field due to an infinitely long straight wire carrying a uniform current
-$I$ is $v{B} = (\mu_0 I / 2 \pi r) unit{e}_\theta$. Show that $\nabla \times v{B} = 0$ everywhere except at $r = 0$.
+$I$ is $v{B} = (mu_0 I / 2 pi r) unit{e}_theta$. Show that $\nabla cross v{B} = 0$ everywhere except at $r = 0$.
 
 :::expandable
 **Solution.** [Click to Expand]
 
-$$
-\begin{align*}
-(\nabla \times v{B})_r &= \frac{1}{r} \frac{\partial F_z}{\partial \theta} - \frac{\partial F_\theta}{\partial z} \\[0.8em]
-&= - \frac{\partial}{\partial z} ( \frac{\mu_0 I}{2 \pi r} ) \\[0.5em]
-&= 0 \\[1.5em]
-(\nabla \times v{B})_\theta &= \frac{\partial F_r}{\partial z} - \frac{\partial F_z}{\partial r} \\[0.5em]
-&= 0 \\[1.5em]
-(\nabla \times v{B})_z &= \frac{1}{r} \frac{\partial}{\partial r}(r F_\theta) - \frac{\partial F_r}{\partial \theta} \\[1em]
-&= \frac{1}{r} \frac{\partial}{\partial r} ( r \frac{\mu_0 I}{2 \pi r} )\\[1em]
-&= \frac{1}{r} \frac{\partial}{\partial r} ( \frac{\mu_0 I}{2 \pi} ) \\[0.5em]
+:::math align
+(\nabla cross v{B})_r &= \frac{1}{r} pd(F_z, theta) - pd(F_theta, z)
+&= - pd(\partial, z) ( \frac{mu_0 I}{2 pi r} )
 &= 0
-\end{align*}
-$$
+(\nabla cross v{B})_theta &= pd(F_r, z) - pd(F_z, r)
+&= 0
+(\nabla cross v{B})_z &= \frac{1}{r} pd(\partial, r)(r F_theta) - pd(F_r, theta)
+&= \frac{1}{r} pd(\partial, r) ( r \frac{mu_0 I}{2 pi r} )
+&= \frac{1}{r} pd(\partial, r) ( \frac{mu_0 I}{2 pi} )
+&= 0
+:::
 
 ::::
 
@@ -76,19 +74,19 @@ $$
 :::expandable
 **Solution.** [Click to Expand]
 
-For a circle of radius $r$, $ds = r \\, d\theta$ and $unit{t} = unit{e}_\theta$. Then, we have:
+For a circle of radius $r$, $ds = r \\, dtheta$ and $unit{t} = unit{e}_theta$. Then, we have:
 
-$$
-\oint_{circle} v{B} \cdot unit{t} \, ds = \int_{0}^{2 \pi} \frac{\mu_0 I}{2 \pi r} r \, d\theta = \mu_0 I
-$$
+:::math
+oint[circle] v{B} dot unit{t} \, ds = int[0..2 pi] \frac{mu_0 I}{2 pi r} r \, dtheta = mu_0 I
+:::
 
 For any curve $C$ not passing through the wire, there exists a circle around the wire inside it.
-Putting together the results from part (a) and (b), circulation of $v{B}$ around $C$ is equal to the circulation of $v{B}$ around the circle, which is $\mu_0 I$.
+Putting together the results from part (a) and (b), circulation of $v{B}$ around $C$ is equal to the circulation of $v{B}$ around the circle, which is $mu_0 I$.
 
 So, for any curve $C$ not passing through the wire, we have:
 
-$$
-\oint_C v{B} \cdot unit{t} \, ds = \mu_0 I
-$$
+:::math
+oint[C] v{B} dot unit{t} \, ds = mu_0 I
+:::
 
 ::::

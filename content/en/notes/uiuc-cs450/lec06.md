@@ -13,95 +13,64 @@ $L$ is lower triangular with ones on the diagonal, and $U$ is upper triangular.
 
 $U$ might have zeros in the diagonal. We have:
 
-$$
+:::math
 \text{rank}(A) = \text{rank}(LU) = \text{rank}(U)
-$$
+:::
 
 In **partial pivoting**, at each step we pick the largest
 absolute value in the column. $P$ is product of $n-1$
 row permutation matrices:
 
-$$
+:::math
 P_{jk} = I - (e_j - e_k)(e_j - e_k)^T
-$$
+:::
 
 #### Partial Pivoting Example
 
 **Theorem.** The LU factorization exists if and only if:
 
-$$
+:::math
 \text{rank}(A[1:k, 1:k]) = \text{rank}(A[1:n, 1:k])
-$$
+:::
 
 For all $1 <= k <= n - 1$.
 
 **Example.** Consider the matrix:
 
-$$
-A = \begin{bmatrix}
-3 & 2 \\
-6 & 4 \\
-0 & 3
-\end{bmatrix}
-$$
+:::math
+A = mat(3, 2; 6, 4; 0, 3)
+:::
 
 Here, $\text{rank}(A[1:2, 1:2]) = 1$ and $\text{rank}(A[1:3, 1:2]) = 2$.
 So, an LU factorization does not exist. So, we'll need to use partial pivoting.
 
 Then:
 
-$$
-\underbrace{\begin{bmatrix}
-0 & 1 & 0 \\
-1 & 0 & 0 \\
-0 & 0 & 1
-\end{bmatrix}}_{P_1}
+:::math
+\underbrace{mat(0, 1, 0; 1, 0, 0; 0, 0, 1)}_{P_1}
 \;
-\underbrace{\begin{bmatrix}
-3 & 2 \\
-6 & 4 \\
-0 & 3
-\end{bmatrix}}_{A}
-= \begin{bmatrix}
-1 \\
-1/2 \\
-0
-\end{bmatrix}
+\underbrace{mat(3, 2; 6, 4; 0, 3)}_{A}
+= mat(1; 1/2; 0)
 \;
-\begin{bmatrix}
-6 & 4
-\end{bmatrix}
+mat(6, 4)
 +
-\begin{bmatrix}
-0 & 0 \\
-0 & 2 - (1/2) \cdot 4 \\
-0 & 3 - 0 \cdot 4
-\end{bmatrix}
-$$
+mat(0, 0; 0, 2 - (1/2) dot 4; 0, 3 - 0 dot 4)
+:::
 
-The Schur complement is $\begin{bmatrix}0 & 3\end{bmatrix}^T$, and
+The Schur complement is $mat(0, 3)^T$, and
 we proceed with pivoted LU:
 
-$$
-\underbrace{\begin{bmatrix}
-0 & 1\\
-1 & 0
-\end{bmatrix}}_{P_2}
-\begin{bmatrix}
-0 \\
-3
-\end{bmatrix}
+:::math
+\underbrace{mat(0, 1; 1, 0)}_{P_2}
+mat(0; 3)
 \=
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-\begin{bmatrix}3\end{bmatrix}
-$$
+mat(1; 0)
+mat(3)
+:::
 
 Then the overall factorization is given by:
 
-$$
+:::math plain
 \begin{bmatrix}1 & \\ & P_2\end{bmatrix}
 \;
 P_1
@@ -112,12 +81,12 @@ A
 0 & 1 \\
 1/2 & 0
 \end{bmatrix}
-\cdot
+dot
 \begin{bmatrix}
 6 & 4 \\
   & 3
 \end{bmatrix}
-$$
+:::
 
 #### Complete Pivoting
 
@@ -128,14 +97,11 @@ Complete pivoting is noticeably more expensive than partial pivoting.
 
 #### Round-off Error in LU
 
-Consider the following matrix where $eps < \epsilon_{\text{mach}}$:
+Consider the following matrix where $eps < eps_{\text{mach}}$:
 
-$$
-A = \begin{bmatrix}
-eps & 1 \\
-1 & 1
-\end{bmatrix}
-$$
+:::math
+A = mat(eps, 1; 1, 1)
+:::
 
 **Without pivoting.**
 
@@ -182,17 +148,17 @@ eps & 1 + eps
 When computing in floating-point, absolute backward error $del A$ in LU,
 so that $\hat L \hat U = A + del A$, is:
 
-$$
-abs(del a_{ij}) <= \epsilon_{\text{mach}} (abs(\hat L) \cdot abs(\hat U))_{ij}
-$$
+:::math
+abs(del a_{ij}) <= eps_{\text{mach}} (abs(\hat L) dot abs(\hat U))_{ij}
+:::
 
 #### Helpful Matrix Properties
 
 **Strictly Diagonally Dominant Matrix.** Pivoting is not required if the matrix is strictly diagonally dominant, meaning:
 
-$$
-abs(a_{ii}) > \sum_{j != i} abs(a_{ij})
-$$
+:::math
+abs(a_{ii}) > sum[j != i] abs(a_{ij})
+:::
 
 That is, the absolute value of each diagonal entry is greater than the sum of the absolute values of the other entries in that **row**.
 
@@ -201,29 +167,21 @@ That is, the absolute value of each diagonal entry is greater than the sum of th
 :::card[example]
 **Example.** Consider the matrix:
 
-$$
-A = \begin{bmatrix}
-4 & 12 & -16 \\
-12 & 37 & -43 \\
--16 & -43 & 98
-\end{bmatrix}
-$$
+:::math
+A = mat(4, 12, -16; 12, 37, -43; -16, -43, 98)
+:::
 
 Here $A^T = A$ and all principal minors are positive, so it is symmetric positive definite.
 Thus, we can use Cholesky factor:
 
-$$
-L = \begin{bmatrix}
-2 & 0 & 0 \\
-6 & 1 & 0 \\
--8 & 5 & 3
-\end{bmatrix}
-$$
+:::math
+L = mat(2, 0, 0; 6, 1, 0; -8, 5, 3)
+:::
 
 One can verify that $A = LL^T$.
 ::::
 
-**Symmetric Indefinite Matrix.** If $A^T = A$  and $\lambda(A) < 0$, then
+**Symmetric Indefinite Matrix.** If $A^T = A$  and $lambda(A) < 0$, then
 we can use pivoted **LDL factorization** $P A P^T = L D L^T$, where $L$ is lower triangular and unit-diagonal, and $D$ is block diagonal with 2x2 diagonal or antidiagonal blocks.
 
 **Banded Matrix.** If we have non-zero entries only on the main diagonal and $b$ diagonals above and below it, i.e $a_{ij} = 0$ for $|i - j| > b$, then
@@ -236,15 +194,15 @@ $(A - uv^T)x = b$. That is, we want to find $x = (A - uv^T)^{-1} b$.
 
 From the **Sherman-Morrison-Woodbury** formula we have:
 
-$$
+:::math
 (A - uv^T)^{-1} = A^{-1} + \frac{A^{-1} u v^T A^{-1}}{1 + v^T A^{-1} u}
-$$
+:::
 
 Then:
 
-$$
+:::math
 x = (A - uv^T)^{-1} \; b = A^{-1} b + \frac{(A^{-1} u) \; v^T \; (A^{-1} b)}{1 + v^T \; (A^{-1} u)}
-$$
+:::
 
 To compute this:
 - Solve $Az = u$ to find $z = A^{-1} u$ using the LU factorization of $A$. Similarly, solve $Ay = b$ to find $y = A^{-1} b$ (cost: $O(n^2)$),
