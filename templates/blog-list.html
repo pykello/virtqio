@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 
 {% block content %}
+{% if title %}
+  <header class="list-header mb-4">
+    <h1 class="mb-0">{{ title }}</h1>
+  </header>
+{% endif %}
+
 {% for post in content_items %}
   <!-- Post -->
   <article class="post-card p-4 mb-4">
