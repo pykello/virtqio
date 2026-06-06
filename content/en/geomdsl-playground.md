@@ -27,9 +27,10 @@ A = pt(-2, -1)
 B = pt(2, -1)
 C = pt(-1, 2)
 
-sideAB = line_through(A, B)
-sideBC = line_through(B, C)
-sideCA = line_through(C, A)
+sides = sidelines(A, B, C)
+sideAB = sides[0]
+sideBC = sides[1]
+sideCA = sides[2]
 
 D = midpoint(A, B)
 transversal_line = perpendicular(sideCA, D)
@@ -50,12 +51,12 @@ draw marker(D) @ cut_point
 draw marker(E) @ cut_point
 draw marker(F) @ cut_point
 
-draw label(A, "$A$") @ {offset: vec(-0.20, -0.20)}
-draw label(B, "$B$") @ {offset: vec(0.16, -0.20)}
-draw label(C, "$C$") @ {offset: vec(0.10, 0.14)}
-draw label(D, "$D$") @ {offset: vec(0.12, -0.18), color: red}
-draw label(E, "$E$") @ {offset: vec(0.13, 0.03), color: red}
-draw label(F, "$F$") @ {offset: vec(0.13, 0.05), color: red}
+draw point_label(A, "$A$")
+draw point_label(B, "$B$")
+draw point_label(C, "$C$")
+draw point_label(D, "$D$") @ {color: red}
+draw point_label(E, "$E$") @ {color: red}
+draw point_label(F, "$F$") @ {color: red}
 :::
 
 :::proof[Proof of Menelaus' Theorem]
@@ -145,12 +146,12 @@ D = curve_at(K, thetaD)
 E = curve_at(K, thetaE)
 F = curve_at(K, thetaF)
 
-L_ab = line_through(A, B)
-L_bc = line_through(B, C)
-L_cd = line_through(C, D)
-L_de = line_through(D, E)
-L_ef = line_through(E, F)
-L_fa = line_through(F, A)
+L_ab = secant(K, thetaA, thetaB)
+L_bc = secant(K, thetaB, thetaC)
+L_cd = secant(K, thetaC, thetaD)
+L_de = secant(K, thetaD, thetaE)
+L_ef = secant(K, thetaE, thetaF)
+L_fa = secant(K, thetaF, thetaA)
 
 X = intersect(L_ab, L_de)
 Y = intersect(L_bc, L_ef)
@@ -180,16 +181,16 @@ draw marker(X) @ pascal_point
 draw marker(Y) @ pascal_point
 draw marker(Z) @ pascal_point
 
-draw label(A, "$A$") @ {offset: vec(0.12, 0.03)}
-draw label(B, "$B$") @ {offset: vec(0.05, 0.13)}
-draw label(C, "$C$") @ {offset: vec(-0.20, 0.10)}
-draw label(D, "$D$") @ {offset: vec(-0.22, 0.02)}
-draw label(E, "$E$") @ {offset: vec(-0.16, -0.19)}
-draw label(F, "$F$") @ {offset: vec(0.12, -0.12)}
+draw point_label(A, "$A$")
+draw point_label(B, "$B$")
+draw point_label(C, "$C$")
+draw point_label(D, "$D$")
+draw point_label(E, "$E$")
+draw point_label(F, "$F$")
 
-draw label(X, "$X$") @ {offset: vec(-0.18, 0.10), color: red}
-draw label(Y, "$Y$") @ {offset: vec(0.12, -0.12), color: red}
-draw label(Z, "$Z$") @ {offset: vec(0.12, 0.08), color: red}
+draw point_label(X, "$X$") @ {color: red}
+draw point_label(Y, "$Y$") @ {color: red}
+draw point_label(Z, "$Z$") @ {color: red}
 :::
 
 :::proof[Proof of Pascal's Theorem]
