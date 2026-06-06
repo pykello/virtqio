@@ -348,7 +348,7 @@ def extract_sheet(
     if not pdf_path.exists():
         raise FileNotFoundError(pdf_path)
 
-    llm_markdown = clean_extracted_markdown(pymupdf4llm.to_markdown(str(pdf_path)))
+    llm_markdown = extract_pymupdf4llm_markdown(pdf_path)
     text_markdown = clean_extracted_text(extract_pdf_text(pdf_path))
     ocr_markdown = ""
     page_images: list[str] = []
@@ -369,7 +369,7 @@ def extract_sheet(
     item_parser = str(source.get("item_parser", "sheet"))
     section = (
         str(source["title"])
-        if item_parser == "book" and source.get("title")
+        if item_parser in {"book", "numbered_exercises"} and source.get("title")
         else infer_section(markdown, sheet_number)
     )
     items = split_learning_items(markdown, sheet_number, section, item_parser)
@@ -407,6 +407,17 @@ def clean_extracted_markdown(markdown: str) -> str:
         line = normalize_text_ligatures(line.replace("\x00", ""))
         cleaned.append(line.rstrip())
     return collapse_blank_lines("\n".join(cleaned)).strip()
+
+
+def extract_pymupdf4llm_markdown(pdf_path: Path) -> str:
+    try:
+        return clean_extracted_markdown(pymupdf4llm.to_markdown(str(pdf_path)))
+    except Exception as exc:
+        print(
+            f"warning: pymupdf4llm extraction failed for {pdf_path}: {exc}",
+            file=sys.stderr,
+        )
+        return ""
 
 
 def extract_pdf_text(pdf_path: Path) -> str:
@@ -743,6 +754,10 @@ def split_learning_items(
         items = split_book_items(markdown, section)
         if items:
             return items
+    if item_parser == "numbered_exercises":
+        items = split_numbered_exercise_items(markdown, sheet_number, section)
+        if items:
+            return items
     return split_exercises(markdown, sheet_number, section)
 
 
@@ -802,6 +817,78 @@ def trim_book_statement(statement: str, label: str) -> str:
             flags=re.IGNORECASE | re.S,
         ).strip()
     return statement
+
+
+def split_numbered_exercise_items(
+    markdown: str,
+    chapter_number: int,
+    section: str,
+) -> list[LearningItem]:
+    text = strip_sheet_headers(markdown)
+    exercise_start = find_numbered_exercises_start(text, chapter_number)
+    if exercise_start is not None:
+        text = text[exercise_start:]
+    text = re.sub(
+        rf"\b{chapter_number}\.\d+\s+Exercises\b(?:\s+\d+\b(?!\.))?",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
+
+    starts = [
+        match
+        for match in re.finditer(
+            rf"(?<![\d.])({chapter_number}\.\d+)\s+(?!Exercises\b)",
+            text,
+        )
+        if is_numbered_exercise_start(text, match.start())
+    ]
+    items: list[LearningItem] = []
+    for index, match in enumerate(starts):
+        number = match.group(1)
+        end = starts[index + 1].start() if index + 1 < len(starts) else len(text)
+        statement = collapse_blank_lines(text[match.start() : end]).strip()
+        statement = trim_numbered_exercise_statement(statement)
+        if not statement:
+            continue
+        items.append(
+            LearningItem(
+                kind="exercise",
+                number=number,
+                title=f"Exercise {number}",
+                section=section,
+                statement=statement,
+            )
+        )
+    return items
+
+
+def trim_numbered_exercise_statement(statement: str) -> str:
+    lines = []
+    for line in statement.splitlines():
+        stripped = line.strip()
+        if re.fullmatch(r"\d+", stripped):
+            continue
+        if re.fullmatch(r"\d+\s+\d+\s+.+", stripped):
+            continue
+        lines.append(line)
+    return "\n".join(lines).strip()
+
+
+def find_numbered_exercises_start(text: str, chapter_number: int) -> int | None:
+    match = re.search(
+        rf"\b{chapter_number}\.\d+\s+Exercises\b(?:\s+\d+\b(?!\.))?",
+        text,
+        re.IGNORECASE,
+    )
+    return match.end() if match else None
+
+
+def is_numbered_exercise_start(text: str, start: int) -> bool:
+    prefix = text[max(0, start - 16) : start]
+    if re.search(r"(?:Fig|Sect|Chap)\.\s*$", prefix, re.IGNORECASE):
+        return False
+    return True
 
 
 def split_exercises(markdown: str, sheet_number: int, section: str) -> list[LearningItem]:

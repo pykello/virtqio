@@ -50,7 +50,8 @@ Fields:
 - `sources[].item_parser`: optional parser mode. Use `book` for split book
   chapters so the generator tracks numbered `Problem`, `Exercise`, and
   proof-as-exercise `Proposition` entries instead of sheet-style numbered
-  questions.
+  questions. Use `numbered_exercises` for book chapters whose exercises live
+  in an `N.M Exercises` section and are numbered like `N.1`, `N.2`, and so on.
 
 Generated pages and `extracted.json` never include local PDF file paths. The
 `pdf` values are only used by the extraction script and ignored cache; use
