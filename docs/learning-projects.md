@@ -28,6 +28,7 @@ source_url: https://courses.maths.ox.ac.uk/course/view.php?id=608
 output_dir: content/en/learning/analysis-i
 sources:
   - sheet: 1
+    title: "Chapter 1: Intervals"
     pdf: pdfs/AnalysisI_Sheet1.pdf
   - sheet: 2
     pdf: ~/Downloads/AnalysisI_Sheet2.pdf
@@ -44,6 +45,12 @@ Fields:
   from the virtqio repository root; absolute paths are also accepted.
 - `sources`: ordered PDF sheets. `pdf` can use `~`. Relative PDF paths are
   resolved from the YAML config file's directory.
+- `sources[].title`: optional generated page title for that source. This is
+  useful when sources are book chapters instead of problem sheets.
+- `sources[].item_parser`: optional parser mode. Use `book` for split book
+  chapters so the generator tracks numbered `Problem`, `Exercise`, and
+  proof-as-exercise `Proposition` entries instead of sheet-style numbered
+  questions.
 
 Generated pages and `extracted.json` never include local PDF file paths. The
 `pdf` values are only used by the extraction script and ignored cache; use
@@ -139,6 +146,38 @@ python3 scripts/learning/generate_project.py /path/to/<project>.yaml --sheets 4,
 Selected-sheet runs preserve existing sheet Markdown and merge new sheet data
 into `extracted.json`. The progress tracker scans the generated `sheets/`
 directory, so it expands automatically as new sheet files appear.
+
+## Book PDFs
+
+For book-style PDFs, first split the source file into chapter PDFs. The helper
+script uses an embedded PDF outline when available. If the PDF has no outline,
+it scans page text for `CHAPTER N` headings and writes one PDF per chapter:
+
+```sh
+python3 scripts/learning/split_book.py /path/to/book.pdf \
+  --output-dir /path/to/private-learning/book/pdfs \
+  --chapters 1,2,3
+```
+
+The script also writes `chapters.json` in the output directory with detected
+chapter titles and page ranges. Add the generated chapter PDFs to the external
+learning-project YAML, using `title` to make generated pages read like chapter
+pages:
+
+```yaml
+id: advanced-calculus
+title: Advanced Calculus ProblemText
+source_title: "A ProblemText in Advanced Calculus"
+output_dir: content/en/learning/advanced-calculus
+sources:
+  - sheet: 1
+    title: "Chapter 1: Intervals"
+    item_parser: book
+    pdf: pdfs/chapter-01.pdf
+```
+
+To expand the project later, split more chapters, append them to the YAML, and
+run the generator with `--sheets` for the new chapter numbers.
 
 ## Output
 

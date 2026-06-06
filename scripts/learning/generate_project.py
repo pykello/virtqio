@@ -88,6 +88,7 @@ class Sheet:
     section: str
     extracted_markdown: str
     items: list[LearningItem]
+    item_parser: str = "sheet"
     source_markdowns: dict[str, str] = field(default_factory=dict)
     ocr_markdown: str = ""
     page_image_paths: list[str] = field(default_factory=list)
@@ -304,7 +305,14 @@ def write_cached_sheet(cache_dir: Path, sheet: Sheet) -> None:
     cache_sheet["page_image_paths"] = []
     payload = {
         "cache_version": _CACHE_VERSION,
-        "source_signature": source_signature({"sheet": sheet.number, "pdf": sheet.pdf}),
+        "source_signature": source_signature(
+            {
+                "sheet": sheet.number,
+                "pdf": sheet.pdf,
+                "title": sheet.title,
+                "item_parser": sheet.item_parser,
+            }
+        ),
         "sheet": cache_sheet,
     }
     sheet_cache_path(cache_dir, sheet.number).write_text(json.dumps(payload, indent=2))
@@ -323,6 +331,8 @@ def source_signature(source: dict[str, Any]) -> dict[str, Any]:
         "pdf": str(resolved),
         "size": stat.st_size,
         "mtime_ns": stat.st_mtime_ns,
+        "title": str(source.get("title", "")),
+        "item_parser": str(source.get("item_parser", "sheet")),
     }
 
 
@@ -356,17 +366,23 @@ def extract_sheet(
         source_markdowns["ocr_text"] = ocr_markdown
 
     markdown = choose_best_extraction(source_markdowns)
-    section = infer_section(markdown, sheet_number)
-    items = split_exercises(markdown, sheet_number, section)
+    item_parser = str(source.get("item_parser", "sheet"))
+    section = (
+        str(source["title"])
+        if item_parser == "book" and source.get("title")
+        else infer_section(markdown, sheet_number)
+    )
+    items = split_learning_items(markdown, sheet_number, section, item_parser)
     if enhance_math:
         items = enhance_items_math(items)
 
     return Sheet(
         number=sheet_number,
         pdf=str(pdf_path),
-        title=f"Sheet {sheet_number}",
+        title=str(source.get("title", f"Sheet {sheet_number}")),
         section=section,
         extracted_markdown=markdown,
+        item_parser=item_parser,
         source_markdowns=source_markdowns,
         ocr_markdown=ocr_markdown,
         page_image_paths=page_images,
@@ -388,7 +404,7 @@ def clean_extracted_markdown(markdown: str) -> str:
         if "picture" in stripped and "intentionally omitted" in stripped:
             cleaned.append("[Formula or figure omitted by PDF extraction.]")
             continue
-        line = line.replace("\x00", "")
+        line = normalize_text_ligatures(line.replace("\x00", ""))
         cleaned.append(line.rstrip())
     return collapse_blank_lines("\n".join(cleaned)).strip()
 
@@ -585,10 +601,21 @@ def clean_extracted_text(text: str) -> str:
 
 
 def normalize_pdf_text_line(line: str) -> str:
+    line = normalize_text_ligatures(line)
     line = line.replace("\x12", "(").replace("\x13", ")")
     line = line.replace("\x14", "[").replace("\x15", "]")
     line = re.sub(r"[\x00-\x08\x0b-\x1f]", "", line)
     return re.sub(r"\s+", " ", line).strip()
+
+
+def normalize_text_ligatures(text: str) -> str:
+    return (
+        text.replace("ﬁ", "fi")
+        .replace("ﬀ", "ff")
+        .replace("ﬂ", "fl")
+        .replace("ﬃ", "ffi")
+        .replace("ﬄ", "ffl")
+    )
 
 
 def keep_pdf_text_line(line: str) -> bool:
@@ -704,6 +731,77 @@ def infer_section(markdown: str, sheet_number: int) -> str:
 def clean_section_title(section: str) -> str:
     section = re.sub(r"\s*\[[^\]]+\]\s*$", "", section).strip()
     return section or "Sheet"
+
+
+def split_learning_items(
+    markdown: str,
+    sheet_number: int,
+    section: str,
+    item_parser: str,
+) -> list[LearningItem]:
+    if item_parser == "book":
+        items = split_book_items(markdown, section)
+        if items:
+            return items
+    return split_exercises(markdown, sheet_number, section)
+
+
+def split_book_items(markdown: str, section: str) -> list[LearningItem]:
+    text = strip_sheet_headers(markdown)
+    pattern = re.compile(
+        r"(?m)(?P<number>\d+\.\d+\.\d+)\.\s+"
+        r"(?P<label>Problem|Exercise|Proposition)\.\s+",
+        re.IGNORECASE,
+    )
+    starts = list(pattern.finditer(text))
+    items: list[LearningItem] = []
+    for index, match in enumerate(starts):
+        number = match.group("number")
+        label = match.group("label").lower()
+        start = match.start()
+        end = starts[index + 1].start() if index + 1 < len(starts) else len(text)
+        statement = text[start:end].strip()
+        if label == "proposition" and not re.search(
+            r"\bProof\.\s+(?:Exercise|Problem)\b",
+            statement,
+            re.IGNORECASE,
+        ):
+            continue
+        kind = "theorem" if label == "proposition" else "exercise"
+        title_label = "Proposition" if label == "proposition" else label.title()
+        statement = trim_book_statement(statement, label)
+        if not statement:
+            continue
+        items.append(
+            LearningItem(
+                kind=kind,
+                number=number,
+                title=f"{title_label} {number}",
+                section=section,
+                statement=statement,
+            )
+        )
+    return items
+
+
+def trim_book_statement(statement: str, label: str) -> str:
+    statement = collapse_blank_lines(statement).strip()
+    next_label = re.search(
+        r"(?<!^)(?P<number>\d+\.\d+\.\d+)\.\s+"
+        r"(?:Definition|Example|Problem|Exercise|Proposition|Theorem|Lemma|Corollary)\.\s+",
+        statement,
+        re.IGNORECASE | re.S,
+    )
+    if next_label:
+        statement = statement[: next_label.start()].strip()
+    if label == "proposition":
+        statement = re.sub(
+            r"\bProof\.\s+(?:Exercise|Problem)\.?.*$",
+            "Proof left as an exercise.",
+            statement,
+            flags=re.IGNORECASE | re.S,
+        ).strip()
+    return statement
 
 
 def split_exercises(markdown: str, sheet_number: int, section: str) -> list[LearningItem]:
@@ -1259,10 +1357,11 @@ def merge_refined_sheet(refined: Sheet, original: Sheet) -> Sheet:
     refined_extracted_markdown = normalize_statement(
         refined.extracted_markdown or original.extracted_markdown
     )
-    markdown_items = split_exercises(
+    markdown_items = split_learning_items(
         refined_extracted_markdown,
         refined.number,
         normalize_statement(refined.section or original.section),
+        original.item_parser,
     )
 
     refined_items_by_number = {
@@ -1305,6 +1404,7 @@ def merge_refined_sheet(refined: Sheet, original: Sheet) -> Sheet:
         section=normalize_statement(refined.section or original.section),
         extracted_markdown=refined_extracted_markdown,
         items=best_items,
+        item_parser=original.item_parser,
         source_markdowns=unescape_text_artifacts_json_object(refined.source_markdowns)
         if refined.source_markdowns
         else original.source_markdowns,
@@ -1621,6 +1721,7 @@ def sheet_from_json(data: dict[str, Any]) -> Sheet:
         section=data.get("section", f"Sheet {data['number']}"),
         extracted_markdown=data.get("extracted_markdown", ""),
         items=[LearningItem(**item) for item in data.get("items", [])],
+        item_parser=data.get("item_parser", "sheet"),
         source_markdowns=data.get("source_markdowns", {}),
         ocr_markdown=data.get("ocr_markdown", ""),
         page_image_paths=data.get("page_image_paths", []),
