@@ -13,7 +13,7 @@ D,E,F \text{ collinear}
 :::
 
 :::geomdsl width=660 alt="Menelaus theorem configuration with a transversal through the three sides of a triangle" caption="The transversal through D, E, and F cuts two sides of the triangle and the extension of the third."
-scene(min=(-2.75,-2.35), max=(3.35,2.65), size=(6.8,5.6), grid=false, axes=false)
+scene(min=(-2.75,-2.35), max=(3.35,2.65), size=(6.8,5.6), grid=false, axes=false, frame=false, ticks=false, tick_labels=false)
 
 include "geomdsl-common.geom"
 
@@ -118,7 +118,7 @@ Z = CD inter FA
 :::
 
 :::geomdsl width=720 alt="Pascal theorem configuration for a hexagon inscribed in a circle" caption="For a hexagon on a conic, the three opposite-side intersections X, Y, and Z lie on one line."
-scene(min=(-4.0,-2.65), max=(3.85,3.55), size=(7.6,5.8), grid=false, axes=false)
+scene(min=(-4.0,-2.65), max=(3.85,3.55), size=(7.6,5.8), grid=false, axes=false, frame=false, ticks=false, tick_labels=false)
 
 include "geomdsl-common.geom"
 
