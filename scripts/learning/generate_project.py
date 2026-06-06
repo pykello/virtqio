@@ -219,6 +219,8 @@ def main() -> int:
                 for sheet in sheets
             ]
 
+        sheets = [normalize_sheet_ir(sheet) for sheet in sheets]
+
         if not args.fast:
             for sheet in sheets:
                 write_cached_sheet(cache_dir, sheet)
@@ -1636,6 +1638,62 @@ def merge_refined_sheet(refined: Sheet, original: Sheet) -> Sheet:
     )
 
 
+def normalize_sheet_ir(sheet: Sheet) -> Sheet:
+    return Sheet(
+        number=sheet.number,
+        pdf=sheet.pdf,
+        title=sheet.title.strip(),
+        section=clean_section_title(sheet.section),
+        extracted_markdown=sheet.extracted_markdown,
+        items=[normalize_learning_item_ir(item) for item in sheet.items],
+        item_parser=sheet.item_parser or "sheet",
+        source_markdowns=sheet.source_markdowns,
+        ocr_markdown=sheet.ocr_markdown,
+        page_image_paths=sheet.page_image_paths,
+    )
+
+
+def normalize_learning_item_ir(item: LearningItem) -> LearningItem:
+    kind = normalize_learning_kind(item.kind)
+    number = item.number.strip()
+    title = item.title.strip() or f"{kind.replace('_', ' ').title()} {number}".strip()
+    section = clean_section_title(item.section)
+    parts = [
+        normalize_learning_part_ir(part, title)
+        for part in item.parts
+    ]
+    parts = [part for part in parts if part.marker]
+    parts.sort(key=lambda part: part_marker_sort_key(part.marker))
+    return LearningItem(
+        kind=kind,
+        number=number,
+        title=title,
+        section=section,
+        statement=item.statement.strip(),
+        status=item.status.strip() or "todo",
+        preamble=item.preamble.strip(),
+        parts=parts,
+    )
+
+
+def normalize_learning_kind(kind: str) -> str:
+    normalized = kind.strip().lower().replace("-", "_").replace(" ", "_")
+    return normalized or "exercise"
+
+
+def normalize_learning_part_ir(part: LearningPart, item_title: str) -> LearningPart:
+    marker = normalize_part_marker(part.marker)
+    title = part.title.strip() or f"{item_title}({marker})"
+    statement = strip_leading_part_marker(part.statement.strip(), marker)
+    return LearningPart(marker=marker, title=title, statement=statement)
+
+
+def normalize_part_marker(marker: str) -> str:
+    marker = marker.strip().lower()
+    marker = re.sub(r"^\((.+)\)$", r"\1", marker)
+    return marker.strip()
+
+
 def items_artifact_score(items: list[LearningItem]) -> int:
     text = "\n\n".join(item_content_text(item) for item in items)
     return statement_artifact_score(text)
@@ -1874,11 +1932,7 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
                 preamble = strip_leading_item_number(preamble, item.number)
                 lines.extend([normalize_statement_for_output(preamble), ""])
             for part in parts:
-                part_slug = slugify_part_marker(part.marker)
-                item_id = (
-                    f"{project['id']}-sheet-{sheet.number:02d}-"
-                    f"{item.kind}-{item.number}-{part_slug}"
-                )
+                item_id = learning_item_output_id(project["id"], sheet.number, item, part)
                 lines.extend(
                     learning_item_block(
                         item=item,
@@ -1890,7 +1944,7 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
                 )
                 used_existing_ids.add(item_id)
         else:
-            item_id = f"{project['id']}-sheet-{sheet.number:02d}-{item.kind}-{item.number}"
+            item_id = learning_item_output_id(project["id"], sheet.number, item)
             lines.extend(
                 learning_item_block(
                     item=item,
@@ -1909,6 +1963,32 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
     if orphaned_items:
         lines.extend(orphaned_learning_item_blocks(orphaned_items))
     sheet_path.write_text("\n".join(lines).strip() + "\n")
+
+
+def learning_item_output_id(
+    project_id: str,
+    sheet_number: int,
+    item: LearningItem,
+    part: LearningPart | None = None,
+) -> str:
+    base_id = f"{project_id}-sheet-{sheet_number:02d}-{item.kind}-{item.number}"
+    if part is None:
+        return base_id
+    return f"{base_id}-{slugify_part_marker(part.marker)}"
+
+
+def learning_item_output_ids(
+    project_id: str,
+    sheet_number: int,
+    item: LearningItem,
+) -> list[str]:
+    _, parts = item_parts_for_output(item)
+    if not parts:
+        return [learning_item_output_id(project_id, sheet_number, item)]
+    return [
+        learning_item_output_id(project_id, sheet_number, item, part)
+        for part in parts
+    ]
 
 
 def source_lines(project: dict[str, Any]) -> list[str]:

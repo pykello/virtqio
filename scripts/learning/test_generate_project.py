@@ -6,6 +6,57 @@ import generate_project as gp
 
 
 class WriteSheetTests(unittest.TestCase):
+    def test_normalize_sheet_ir_sorts_and_cleans_parts(self) -> None:
+        sheet = gp.Sheet(
+            number=1,
+            pdf="",
+            title=" Sheet 1 ",
+            section=" Section ",
+            extracted_markdown="",
+            items=[
+                gp.LearningItem(
+                    kind="Exercise",
+                    number=" 4 ",
+                    title="",
+                    section=" Section ",
+                    statement="",
+                    preamble=" Shared preamble. ",
+                    parts=[
+                        gp.LearningPart(
+                            marker="(b)",
+                            title="",
+                            statement="(b) Second part.",
+                        ),
+                        gp.LearningPart(
+                            marker="a",
+                            title="",
+                            statement="First part.",
+                        ),
+                    ],
+                )
+            ],
+        )
+
+        normalized = gp.normalize_sheet_ir(sheet)
+        item = normalized.items[0]
+
+        self.assertEqual(normalized.title, "Sheet 1")
+        self.assertEqual(normalized.section, "Section")
+        self.assertEqual(item.kind, "exercise")
+        self.assertEqual(item.number, "4")
+        self.assertEqual(item.title, "Exercise 4")
+        self.assertEqual(item.preamble, "Shared preamble.")
+        self.assertEqual([part.marker for part in item.parts], ["a", "b"])
+        self.assertEqual(item.parts[1].title, "Exercise 4(b)")
+        self.assertEqual(item.parts[1].statement, "Second part.")
+        self.assertEqual(
+            gp.learning_item_output_ids("demo", 1, item),
+            [
+                "demo-sheet-01-exercise-4-a",
+                "demo-sheet-01-exercise-4-b",
+            ],
+        )
+
     def test_write_sheet_preserves_existing_solution_and_status(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             sheets_dir = Path(tmp)
