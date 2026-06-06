@@ -234,3 +234,90 @@ detmat(x_1, x_2, x_3; y_1, y_2, y_3; z_1, z_2, z_3)=0.
 
 Hence the homogeneous points $v{x},v{y},v{z}$ are linearly dependent. Linear dependence of three homogeneous point vectors is exactly collinearity, so $X,Y,Z$ lie on one line.
 :::
+
+## Fourier Analysis: A First Sine Series
+
+Fourier analysis decomposes a periodic function into sinusoidal modes. For the
+$2pi$-periodic extension of $f(x)=x$ on $(-pi,pi)$, the function is odd, so only
+sine terms appear. The partial sums
+
+:::math
+S_N(x)=2 sum[n=1..N](\frac{(-1)^{n+1}}{n}\sin(nx))
+:::
+
+approximate the ramp on the open interval and converge to the midpoint value at
+the jump discontinuities.
+
+:::geomdsl width=760 alt="Fourier sine-series partial sums for the periodic ramp function" caption="The first, third, and seventh Fourier partial sums follow the ramp more closely as more sine modes are included."
+scene(min=(-3.6,-3.75), max=(3.6,3.95), size=(7.8,5.6), grid=true, grid_step=1, axes=true, frame=false, ticks=false, tick_labels=false)
+
+include "geomdsl-common.geom"
+
+style target = {color: "#111827", weight: 2.5, z: 20, samples: 260}
+style s_one = {color: "#2f6f9f", weight: 1.5, z: 12, samples: 360}
+style s_three = {color: "#c44e52", weight: 1.7, z: 14, samples: 420}
+style s_seven = {color: "#2f8f5b", weight: 1.9, z: 16, samples: 520}
+style guide = {color: "#8a949e", weight: 1.0, pattern: dashed, z: 3}
+style legend = {font_size: 12, z: 30}
+
+f = graph(x, x = -pi..pi)
+sum_1 = graph(2*sin(x), x = -pi..pi)
+sum_3 = graph(2*(sin(x) - sin(2*x)/2 + sin(3*x)/3), x = -pi..pi)
+sum_7 = graph(2*(sin(x) - sin(2*x)/2 + sin(3*x)/3 - sin(4*x)/4 + sin(5*x)/5 - sin(6*x)/6 + sin(7*x)/7), x = -pi..pi)
+
+left_jump = Line(pt(-pi, -3.35), vec(0, 1))
+right_jump = Line(pt(pi, -3.35), vec(0, 1))
+
+draw left_jump @ guide
+draw right_jump @ guide
+draw f @ target
+draw sum_1 @ s_one
+draw sum_3 @ s_three
+draw sum_7 @ s_seven
+
+draw label(pt(-3.25, 3.35), "$f(x)=x$") @ legend
+draw label(pt(-3.25, 2.85), "$S_1$") @ {color: "#2f6f9f", font_size: 12, z: 30}
+draw label(pt(-3.25, 2.35), "$S_3$") @ {color: "#c44e52", font_size: 12, z: 30}
+draw label(pt(-3.25, 1.85), "$S_7$") @ {color: "#2f8f5b", font_size: 12, z: 30}
+draw label(pt(-pi, -3.55), "$-\\pi$") @ {font_size: 11, anchor: top, z: 30}
+draw label(pt(pi, -3.55), "$\\pi$") @ {font_size: 11, anchor: top, z: 30}
+:::
+
+:::proof[Coefficient derivation]
+For a $2pi$-periodic function, write the Fourier series as
+
+:::math
+f(x) \sim \frac{a_0}{2} + sum[n=1..inf](a_n \cos(nx) + b_n \sin(nx)).
+:::
+
+Since $f(x)=x$ is odd on $(-pi,pi)$, the constant term and all cosine
+coefficients vanish:
+
+:::math
+a_0 = 0,\quad a_n=0.
+:::
+
+The sine coefficient is
+
+:::math
+b_n = \frac{1}{pi} int[-pi..pi](x\sin(nx), x).
+:::
+
+Integrating by parts gives
+
+:::math
+b_n
+= \frac{2}{pi} int[0..pi](x\sin(nx), x)
+= 2\frac{(-1)^{n+1}}{n}.
+:::
+
+Thus
+
+:::math
+x \sim 2 sum[n=1..inf](\frac{(-1)^{n+1}}{n}\sin(nx))
+\qquad (-pi < x < pi).
+:::
+
+At $x = \pm pi$, the periodic extension has a jump from $pi$ to $-pi$, so the
+Fourier series converges to their average, $0$.
+:::
