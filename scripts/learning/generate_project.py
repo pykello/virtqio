@@ -518,7 +518,9 @@ For each sheet, output:
 - optional: `source_markdowns`, `ocr_markdown`, `page_image_paths`
 
 Editing constraints:
-- Keep exercise numbers, headings, and order. Do not reorder content.
+- Keep exercise numbers and headings. Preserve logical order.
+- If page images show a multi-column layout and text extraction interleaves
+  subparts, restore the visible logical subpart order such as (a), (b), (c).
 - Preserve meaning; do not solve any exercise.
 - Do not invent missing results or hidden formulas.
 - Never algebraically rewrite expressions or replace valid mathematical content with a different formula.
@@ -1433,9 +1435,10 @@ def merge_refined_sheet(refined: Sheet, original: Sheet) -> Sheet:
             return refined if refined else f"{number}.\n[Formula or figure omitted by PDF extraction.]"
         if not refined:
             return original
-        if not refined.startswith(f"{number}."):
-            return original
-        if similarity_ratio(original, refined) < 0.95:
+        similarity = similarity_ratio(original, refined)
+        original_score = statement_artifact_score(original)
+        refined_score = statement_artifact_score(refined)
+        if similarity < 0.45 and refined_score >= original_score:
             return original
         if contains_garbled_ocr(refined) and not contains_garbled_ocr(original):
             return original
@@ -1506,6 +1509,10 @@ def merge_refined_sheet(refined: Sheet, original: Sheet) -> Sheet:
 
 def items_artifact_score(items: list[LearningItem]) -> int:
     text = "\n\n".join(item.statement for item in items)
+    return statement_artifact_score(text)
+
+
+def statement_artifact_score(text: str) -> int:
     return (
         extraction_artifact_score(text)
         + text.count("\nX\n") * 20
@@ -1513,6 +1520,14 @@ def items_artifact_score(items: list[LearningItem]) -> int:
         + text.count("$sqrt$") * 10
         + text.count("$$") * 10
         + text.count("�") * 20
+        + text.count("a_nd") * 10
+        + text.count("o_r") * 10
+        + text.count("⎛") * 2
+        + text.count("⎜") * 2
+        + text.count("⎟") * 2
+        + text.count("⎞") * 2
+        + len(re.findall(r"\$bb\{[A-Z]\}[^$\n]*\$\.[A-Za-z]", text)) * 5
+        + len(re.findall(r"\b[ao]_nd\b|\bo_r\b", text)) * 10
         + len(re.findall(r"\$[^$\n]{0,4}\$", text)) * 2
         + len(re.findall(r"\b(?:an|bn|cn|sn|ak|zn)\b", text)) * 2
     )
@@ -1538,7 +1553,82 @@ def normalize_supported_math_shorthand(text: str) -> str:
         lambda match: f"$sum[k=1..inf]({match.group(1).strip()})$",
         text,
     )
+    text = re.sub(
+        r"\$([^$\n]+)\$",
+        lambda match: f"${normalize_inline_math_fragment(match.group(1))}$",
+        text,
+    )
     return text
+
+
+def normalize_inline_math_fragment(fragment: str) -> str:
+    fragment = replace_math_function_calls(fragment, "span", r"\langle", r"\rangle")
+    fragment = escape_raw_set_braces(fragment)
+    return fragment
+
+
+def replace_math_function_calls(fragment: str, name: str, left: str, right: str) -> str:
+    prefix = f"{name}("
+    output: list[str] = []
+    index = 0
+    while index < len(fragment):
+        start = fragment.find(prefix, index)
+        if start == -1:
+            output.append(fragment[index:])
+            break
+        if start > 0 and re.match(r"[A-Za-z\\]", fragment[start - 1]):
+            output.append(fragment[index : start + len(prefix)])
+            index = start + len(prefix)
+            continue
+        end = find_matching_delimiter(fragment, start + len(name), "(", ")")
+        if end is None:
+            output.append(fragment[index:])
+            break
+        output.append(fragment[index:start])
+        inner = fragment[start + len(prefix) : end].strip()
+        output.append(f"{left} {inner} {right}")
+        index = end + 1
+    return "".join(output)
+
+
+def escape_raw_set_braces(fragment: str) -> str:
+    output: list[str] = []
+    index = 0
+    while index < len(fragment):
+        char = fragment[index]
+        if char != "{" or (index > 0 and re.match(r"[A-Za-z\\^_]", fragment[index - 1])):
+            output.append(char)
+            index += 1
+            continue
+        end = find_matching_delimiter(fragment, index, "{", "}")
+        if end is None:
+            output.append(char)
+            index += 1
+            continue
+        inner = fragment[index + 1 : end].strip()
+        output.append(r"\{" + inner + r"\}")
+        index = end + 1
+    return "".join(output)
+
+
+def find_matching_delimiter(
+    text: str,
+    start: int,
+    opening: str,
+    closing: str,
+) -> int | None:
+    if start >= len(text) or text[start] != opening:
+        return None
+    depth = 0
+    for index in range(start, len(text)):
+        char = text[index]
+        if char == opening:
+            depth += 1
+        elif char == closing:
+            depth -= 1
+            if depth == 0:
+                return index
+    return None
 
 
 def unescape_text_artifacts_json_object(data: Any) -> dict[str, Any]:
@@ -1643,7 +1733,7 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
         lines.extend([f"## {item.title}", ""])
         if parts:
             if preamble:
-                lines.extend([preamble, ""])
+                lines.extend([normalize_statement_for_output(preamble), ""])
             for part in parts:
                 part_slug = slugify_part_marker(part.marker)
                 item_id = (
@@ -1690,7 +1780,7 @@ def learning_item_block(
     title: str,
     statement: str,
 ) -> list[str]:
-    statement = normalize_supported_math_shorthand(statement.strip())
+    statement = normalize_statement_for_output(statement)
     section = clean_section_title(item.section)
     return [
         (
@@ -1705,6 +1795,34 @@ def learning_item_block(
         ":::",
         "",
     ]
+
+
+def normalize_statement_for_output(statement: str) -> str:
+    statement = flatten_nested_math_directives(statement.strip())
+    return normalize_supported_math_shorthand(statement)
+
+
+def flatten_nested_math_directives(statement: str) -> str:
+    lines = statement.splitlines()
+    flattened: list[str] = []
+    index = 0
+    while index < len(lines):
+        line = lines[index]
+        if not re.match(r"^:{3,}math(?:\s|$)", line.strip()):
+            flattened.append(line)
+            index += 1
+            continue
+        index += 1
+        math_lines: list[str] = []
+        while index < len(lines) and not re.fullmatch(r":{3,}", lines[index].strip()):
+            math_lines.append(lines[index])
+            index += 1
+        if index < len(lines):
+            index += 1
+        flattened.append("$$")
+        flattened.extend(math_lines)
+        flattened.append("$$")
+    return "\n".join(flattened)
 
 
 def split_item_into_parts(item: LearningItem) -> tuple[str, list[LearningPart]]:
@@ -1737,7 +1855,34 @@ def split_item_into_parts(item: LearningItem) -> tuple[str, list[LearningPart]]:
                 statement=part_statement.strip(),
             )
         )
+    parts.sort(key=lambda part: part_marker_sort_key(part.marker))
     return preamble, parts
+
+
+def part_marker_sort_key(marker: str) -> tuple[int, int | str]:
+    marker = marker.lower()
+    if re.fullmatch(r"[a-z]", marker):
+        return (0, ord(marker) - ord("a"))
+    roman_value = roman_to_int(marker)
+    if roman_value is not None:
+        return (1, roman_value)
+    return (2, marker)
+
+
+def roman_to_int(value: str) -> int | None:
+    numerals = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100, "d": 500, "m": 1000}
+    if not value or any(char not in numerals for char in value):
+        return None
+    total = 0
+    previous = 0
+    for char in reversed(value):
+        current = numerals[char]
+        if current < previous:
+            total -= current
+        else:
+            total += current
+            previous = current
+    return total
 
 
 def slugify_part_marker(marker: str) -> str:
