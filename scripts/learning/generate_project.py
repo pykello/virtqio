@@ -12,9 +12,11 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
+from contextlib import contextmanager, nullcontext
 from dataclasses import dataclass, asdict, field
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, Iterator, TextIO
 
 import fitz
 import pymupdf4llm
@@ -116,6 +118,96 @@ class ValidationIssue:
     message: str
 
 
+@dataclass
+class ProgressEvent:
+    project_id: str
+    phase: str
+    status: str
+    message: str = ""
+    sheet: int | None = None
+    duration_s: float | None = None
+
+
+class ProgressReporter:
+    def __init__(
+        self,
+        project_id: str,
+        *,
+        enabled: bool = True,
+        stream: TextIO | None = None,
+        clock: Callable[[], float] = time.monotonic,
+    ) -> None:
+        self.project_id = project_id
+        self.enabled = enabled
+        self.stream = stream or sys.stderr
+        self.clock = clock
+        self.events: list[ProgressEvent] = []
+
+    def event(
+        self,
+        phase: str,
+        status: str,
+        message: str = "",
+        *,
+        sheet: int | None = None,
+        duration_s: float | None = None,
+    ) -> ProgressEvent:
+        progress_event = ProgressEvent(
+            project_id=self.project_id,
+            phase=phase,
+            status=status,
+            message=message,
+            sheet=sheet,
+            duration_s=duration_s,
+        )
+        self.events.append(progress_event)
+        if self.enabled:
+            print(self.format_event(progress_event), file=self.stream)
+        return progress_event
+
+    @contextmanager
+    def span(
+        self,
+        phase: str,
+        message: str = "",
+        *,
+        sheet: int | None = None,
+    ) -> Iterator[None]:
+        self.event(phase, "start", message, sheet=sheet)
+        started_at = self.clock()
+        try:
+            yield
+        except Exception as exc:
+            self.event(
+                phase,
+                "error",
+                str(exc),
+                sheet=sheet,
+                duration_s=self.clock() - started_at,
+            )
+            raise
+        self.event(
+            phase,
+            "done",
+            message,
+            sheet=sheet,
+            duration_s=self.clock() - started_at,
+        )
+
+    def format_event(self, event: ProgressEvent) -> str:
+        parts = [f"[{event.project_id}]"]
+        if event.sheet is not None:
+            parts.append(f"sheet {event.sheet:02d}")
+        parts.append(event.phase)
+        parts.append(event.status)
+        line = " ".join(parts)
+        if event.duration_s is not None:
+            line += f" in {event.duration_s:.2f}s"
+        if event.message:
+            line += f": {event.message}"
+        return line
+
+
 def main() -> int:
     configure_tesseract_data()
     parser = argparse.ArgumentParser(
@@ -173,6 +265,11 @@ def main() -> int:
         action="store_true",
         help="Skip generated learning-project validation after writing pages.",
     )
+    parser.add_argument(
+        "--quiet-progress",
+        action="store_true",
+        help="Do not print per-phase progress messages to stderr.",
+    )
     args = parser.parse_args()
     use_codex_by_default = args.llm_command is None
     if use_codex_by_default and not args.fast:
@@ -198,32 +295,81 @@ def main() -> int:
         for source in project["sources"]
         if selected_sheets is None or int(source["sheet"]) in selected_sheets
     ]
+    progress = ProgressReporter(project["id"], enabled=not args.quiet_progress)
+    project_started_at = progress.clock()
+    progress.event(
+        "project",
+        "start",
+        (
+            f"{len(sources)} sheet(s); "
+            f"fast={'yes' if args.fast else 'no'}; "
+            f"cache={'refresh' if args.refresh_cache else 'reuse'}"
+        ),
+    )
     with tempfile.TemporaryDirectory(prefix="learning-projects-") as scratch_dir:
         scratch_root = Path(scratch_dir)
         sheets: list[Sheet] = []
         extracted_sheets: list[Sheet] = []
         for source in sources:
-            cached_sheet = None if args.refresh_cache else load_cached_sheet(cache_dir, output_dir, source)
+            sheet_number = int(source["sheet"])
+            progress.event(
+                "source",
+                "start",
+                str(source.get("title", f"Sheet {sheet_number}")),
+                sheet=sheet_number,
+            )
+            cached_sheet = None
+            if args.refresh_cache:
+                progress.event("cache", "refresh", "refresh requested", sheet=sheet_number)
+            else:
+                with progress.span("cache-check", "load cached sheet", sheet=sheet_number):
+                    cached_sheet = load_cached_sheet(cache_dir, output_dir, source)
             if cached_sheet is not None:
+                progress.event(
+                    "cache",
+                    "hit",
+                    f"{len(cached_sheet.items)} item(s)",
+                    sheet=sheet_number,
+                )
                 sheets.append(cached_sheet)
                 continue
             if args.fast:
+                progress.event("cache", "missing", "fast mode requires cache", sheet=sheet_number)
                 raise RuntimeError(
                     f"No valid cache entry for sheet {source['sheet']}; run without --fast first."
                 )
-            extracted = extract_sheet(
-                source,
-                enhance_math=enhance_math,
-                use_ocr=not args.disable_ocr,
-                scratch_dir=scratch_root,
+            with progress.span("extract", "PDF/OCR extraction", sheet=sheet_number):
+                extracted = extract_sheet(
+                    source,
+                    enhance_math=enhance_math,
+                    use_ocr=not args.disable_ocr,
+                    scratch_dir=scratch_root,
+                )
+            progress.event(
+                "extract",
+                "summary",
+                f"{len(extracted.items)} item(s)",
+                sheet=sheet_number,
             )
             sheets.append(extracted)
             extracted_sheets.append(extracted)
 
         if llm_command and extracted_sheets:
+            progress.event(
+                "refine",
+                "start",
+                f"{len(extracted_sheets)} sheet(s) via {refiner_label(llm_command)}",
+            )
             refined_by_number = {
-                sheet.number: sheet for sheet in refine_with_llm(llm_command, project, extracted_sheets)
+                sheet.number: sheet
+                for sheet in refine_with_llm(
+                    llm_command,
+                    project,
+                    extracted_sheets,
+                    progress=progress,
+                )
             }
+            progress.event("refine", "done", f"{len(refined_by_number)} sheet(s)")
             sheets = [
                 refined_by_number.get(sheet.number, sheet)
                 if any(extracted.number == sheet.number for extracted in extracted_sheets)
@@ -231,21 +377,40 @@ def main() -> int:
                 for sheet in sheets
             ]
 
-        sheets = [normalize_sheet_ir(sheet) for sheet in sheets]
+        with progress.span("normalize", f"{len(sheets)} sheet(s)"):
+            sheets = [normalize_sheet_ir(sheet) for sheet in sheets]
 
         if not args.fast:
             for sheet in sheets:
-                write_cached_sheet(cache_dir, sheet)
+                with progress.span("cache-write", "write sheet cache", sheet=sheet.number):
+                    write_cached_sheet(cache_dir, sheet)
 
-        write_project_pages(project, output_dir, sheets)
+        with progress.span("write", f"{len(sheets)} sheet(s) to {output_dir}"):
+            write_project_pages(project, output_dir, sheets)
         if args.write_json:
-            write_intermediate_json(output_dir, project, sheets)
+            with progress.span("write-json", "write extracted intermediate JSON"):
+                write_intermediate_json(output_dir, project, sheets)
         if not args.no_validate:
-            issues = validate_learning_project_output(project, output_dir, sheets)
+            with progress.span("validate", "validate generated output"):
+                issues = validate_learning_project_output(project, output_dir, sheets)
             report_validation_issues(issues)
+            progress.event(
+                "validate",
+                "summary",
+                (
+                    f"{sum(issue.severity == 'error' for issue in issues)} error(s), "
+                    f"{sum(issue.severity == 'warning' for issue in issues)} warning(s)"
+                ),
+            )
             if any(issue.severity == "error" for issue in issues):
                 raise RuntimeError("Generated learning project failed validation.")
 
+    progress.event(
+        "project",
+        "done",
+        f"generated {len(sheets)} sheet(s) in {output_dir}",
+        duration_s=progress.clock() - project_started_at,
+    )
     print(f"Generated {len(sheets)} sheets in {output_dir}")
     return 0
 
@@ -588,6 +753,12 @@ def configure_tesseract_data() -> None:
         return
     if (_LOCAL_TESSDATA_DIR / "eng.traineddata").exists():
         os.environ["TESSDATA_PREFIX"] = str(_LOCAL_TESSDATA_DIR)
+
+
+def refiner_label(command: str) -> str:
+    if command == _CODex_DEFAULT_COMMAND:
+        return "codex"
+    return "custom command"
 
 
 def codex_refinement_prompt() -> str:
@@ -1429,7 +1600,13 @@ def compact_inline_math(line: str) -> str:
     return line
 
 
-def refine_with_llm(command: str, project: dict[str, Any], sheets: list[Sheet]) -> list[Sheet]:
+def refine_with_llm(
+    command: str,
+    project: dict[str, Any],
+    sheets: list[Sheet],
+    *,
+    progress: ProgressReporter | None = None,
+) -> list[Sheet]:
     payload = {
         "project": project,
         "instructions": (
@@ -1453,14 +1630,27 @@ def refine_with_llm(command: str, project: dict[str, Any], sheets: list[Sheet]) 
             with tempfile.TemporaryDirectory(prefix="learning-codex-") as tmp:
                 output_path = Path(tmp) / "codex-refined.json"
                 image_paths = sorted({path for path in sheet.page_image_paths if path})
-                command = build_codex_command(
+                codex_command = build_codex_command(
                     output_path,
                     image_paths,
                     codex_refinement_prompt(),
                 )
                 try:
-                    raw_output = run_codex_command(command, payload_json)
+                    span = (
+                        progress.span("codex", "OCR/transcription cleanup", sheet=sheet.number)
+                        if progress
+                        else nullcontext()
+                    )
+                    with span:
+                        raw_output = run_codex_command(codex_command, payload_json)
                 except RuntimeError:
+                    if progress:
+                        progress.event(
+                            "codex",
+                            "fallback",
+                            "using local extraction after Codex failure",
+                            sheet=sheet.number,
+                        )
                     print(
                         f"warning: Codex refinement failed for sheet {sheet.number}; using local extraction.",
                         file=sys.stderr,
@@ -1470,6 +1660,13 @@ def refine_with_llm(command: str, project: dict[str, Any], sheets: list[Sheet]) 
             try:
                 refined = parse_refinement_response(raw_output, output_path)
             except (ValueError, json.JSONDecodeError):
+                if progress:
+                    progress.event(
+                        "codex",
+                        "fallback",
+                        "using local extraction after malformed JSON",
+                        sheet=sheet.number,
+                    )
                 print(
                     f"warning: Codex refinement returned malformed JSON for sheet {sheet.number}; using local extraction.",
                     file=sys.stderr,
@@ -1478,21 +1675,43 @@ def refine_with_llm(command: str, project: dict[str, Any], sheets: list[Sheet]) 
                 continue
             candidates = refined.get("sheets", [])
             if not candidates:
+                if progress:
+                    progress.event(
+                        "codex",
+                        "fallback",
+                        "using local extraction after empty response",
+                        sheet=sheet.number,
+                    )
                 refined_sheets.append(sheet)
                 continue
-            refined_sheets.extend([merge_refined_sheet(sheet_from_json(candidate), sheet) for candidate in candidates])
+            refined_sheets.extend(
+                [merge_refined_sheet(sheet_from_json(candidate), sheet) for candidate in candidates]
+            )
+            if progress:
+                progress.event(
+                    "codex",
+                    "accepted",
+                    f"{len(candidates)} candidate sheet(s)",
+                    sheet=sheet.number,
+                )
         return refined_sheets
 
     payload_json = json.dumps(payload, ensure_ascii=False)
     try:
-        completed = subprocess.run(
-            command,
-            input=payload_json,
-            text=True,
-            shell=True,
-            check=True,
-            capture_output=True,
+        span = (
+            progress.span("llm-command", f"{len(sheets)} sheet(s) via custom command")
+            if progress
+            else nullcontext()
         )
+        with span:
+            completed = subprocess.run(
+                command,
+                input=payload_json,
+                text=True,
+                shell=True,
+                check=True,
+                capture_output=True,
+            )
         raw_output = completed.stdout
     except subprocess.CalledProcessError as exc:
         raise RuntimeError(exc.stderr or exc.stdout) from exc

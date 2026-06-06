@@ -117,6 +117,11 @@ Skip generated-output validation:
 python3 scripts/learning/generate_project.py /path/to/<project>.yaml --no-validate --write-json
 ```
 
+The generator prints progress messages to stderr for cache checks, PDF/OCR
+extraction, Codex refinement, normalization, writes, and validation. Each
+completed phase includes elapsed time. Use `--quiet-progress` when running in a
+script that should only emit the final generated-path line.
+
 ## Local OCR Data
 
 The generator uses Tesseract when it is available. To avoid depending on system

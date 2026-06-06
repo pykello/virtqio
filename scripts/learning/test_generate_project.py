@@ -1,3 +1,4 @@
+import io
 import tempfile
 import unittest
 from pathlib import Path
@@ -6,6 +7,24 @@ import generate_project as gp
 
 
 class WriteSheetTests(unittest.TestCase):
+    def test_progress_reporter_formats_sheet_timing(self) -> None:
+        ticks = iter([10.0, 12.25])
+        stream = io.StringIO()
+        reporter = gp.ProgressReporter(
+            "demo",
+            stream=stream,
+            clock=lambda: next(ticks),
+        )
+
+        with reporter.span("extract", "PDF/OCR extraction", sheet=3):
+            pass
+
+        output = stream.getvalue()
+        self.assertIn("[demo] sheet 03 extract start: PDF/OCR extraction", output)
+        self.assertIn("[demo] sheet 03 extract done in 2.25s: PDF/OCR extraction", output)
+        self.assertEqual(len(reporter.events), 2)
+        self.assertEqual(reporter.events[1].duration_s, 2.25)
+
     def test_normalize_sheet_ir_sorts_and_cleans_parts(self) -> None:
         sheet = gp.Sheet(
             number=1,
