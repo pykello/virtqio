@@ -111,6 +111,28 @@ Skip OCR/image rendering:
 python3 scripts/learning/generate_project.py /path/to/<project>.yaml --disable-ocr --write-json
 ```
 
+## Local OCR Data
+
+The generator uses Tesseract when it is available. To avoid depending on system
+language packages, virtqio keeps English OCR data at:
+
+```text
+scripts/learning/tessdata/eng.traineddata
+```
+
+When `TESSDATA_PREFIX` is not already set and that file exists, the generator
+sets `TESSDATA_PREFIX` to `scripts/learning/tessdata` before running
+Tesseract or `pymupdf4llm`. If you want to use a system or custom tessdata
+directory, set `TESSDATA_PREFIX` yourself and the script will leave it alone.
+
+If the local file is missing, install it with:
+
+```sh
+mkdir -p scripts/learning/tessdata
+curl -L -o scripts/learning/tessdata/eng.traineddata \
+  https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/main/eng.traineddata
+```
+
 ## Cache
 
 Generated sheet data is cached in:

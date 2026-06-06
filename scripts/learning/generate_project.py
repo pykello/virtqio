@@ -4,6 +4,9 @@ from __future__ import annotations
 import argparse
 import json
 import difflib
+import multiprocessing as mp
+import os
+import queue
 import re
 import shutil
 import subprocess
@@ -33,8 +36,10 @@ Existing LaTeX is allowed when shorthand would be awkward.
 _CODex_DEFAULT_COMMAND = "__codex_default__"
 _DEFAULT_RENDER_DPI = 300
 _CACHE_VERSION = 1
+_PYMUPDF4LLM_TIMEOUT_SECONDS = 90
 
 _TESSERACT_CMD = shutil.which("tesseract")
+_LOCAL_TESSDATA_DIR = Path(__file__).resolve().parent / "tessdata"
 
 PROSE_WORDS = {
     "adapt",
@@ -64,6 +69,13 @@ PROSE_WORDS = {
 
 
 @dataclass
+class LearningPart:
+    marker: str
+    title: str
+    statement: str
+
+
+@dataclass
 class LearningItem:
     kind: str
     number: str
@@ -71,13 +83,8 @@ class LearningItem:
     section: str
     statement: str
     status: str = "todo"
-
-
-@dataclass
-class LearningPart:
-    marker: str
-    title: str
-    statement: str
+    preamble: str = ""
+    parts: list[LearningPart] = field(default_factory=list)
 
 
 @dataclass
@@ -95,6 +102,7 @@ class Sheet:
 
 
 def main() -> int:
+    configure_tesseract_data()
     parser = argparse.ArgumentParser(
         description="Generate virtqio learning-project pages from PDF problem sheets."
     )
@@ -265,10 +273,15 @@ def load_cached_sheet(cache_dir: Path, output_dir: Path, source: dict[str, Any])
         signature = source_signature(source)
     except OSError:
         return None
-    if payload.get("source_signature") != signature:
+    sheet_payload = payload.get("sheet", {})
+    if not source_signature_matches(
+        payload.get("source_signature"),
+        signature,
+        item_parser_hint=sheet_payload.get("item_parser") if isinstance(sheet_payload, dict) else None,
+    ):
         return None
     try:
-        sheet = sheet_from_json(payload["sheet"])
+        sheet = sheet_from_json(sheet_payload)
     except (KeyError, TypeError, ValueError):
         return None
     sheet.page_image_paths = []
@@ -331,9 +344,26 @@ def source_signature(source: dict[str, Any]) -> dict[str, Any]:
         "pdf": str(resolved),
         "size": stat.st_size,
         "mtime_ns": stat.st_mtime_ns,
-        "title": str(source.get("title", "")),
         "item_parser": str(source.get("item_parser", "sheet")),
     }
+
+
+def source_signature_matches(
+    cached: Any,
+    current: dict[str, Any],
+    *,
+    item_parser_hint: str | None = None,
+) -> bool:
+    if not isinstance(cached, dict):
+        return False
+    normalized = dict(cached)
+    normalized.pop("title", None)
+    if "item_parser" not in normalized:
+        if item_parser_hint == current.get("item_parser"):
+            normalized["item_parser"] = item_parser_hint
+        elif current.get("item_parser") == "sheet":
+            normalized["item_parser"] = "sheet"
+    return normalized == current
 
 
 def extract_sheet(
@@ -410,14 +440,48 @@ def clean_extracted_markdown(markdown: str) -> str:
 
 
 def extract_pymupdf4llm_markdown(pdf_path: Path) -> str:
-    try:
-        return clean_extracted_markdown(pymupdf4llm.to_markdown(str(pdf_path)))
-    except Exception as exc:
+    configure_tesseract_data()
+    context = mp.get_context("fork")
+    result_queue: mp.Queue[tuple[str, str]] = context.Queue()
+    process = context.Process(
+        target=extract_pymupdf4llm_markdown_worker,
+        args=(str(pdf_path), result_queue),
+    )
+    process.start()
+    process.join(_PYMUPDF4LLM_TIMEOUT_SECONDS)
+    if process.is_alive():
+        process.terminate()
+        process.join()
         print(
-            f"warning: pymupdf4llm extraction failed for {pdf_path}: {exc}",
+            f"warning: pymupdf4llm extraction timed out for {pdf_path}; using other sources.",
             file=sys.stderr,
         )
         return ""
+    try:
+        status, payload = result_queue.get_nowait()
+    except queue.Empty:
+        print(
+            f"warning: pymupdf4llm extraction returned no output for {pdf_path}; using other sources.",
+            file=sys.stderr,
+        )
+        return ""
+    if status == "ok":
+        return clean_extracted_markdown(payload)
+    print(
+        f"warning: pymupdf4llm extraction failed for {pdf_path}: {payload}",
+        file=sys.stderr,
+    )
+    return ""
+
+
+def extract_pymupdf4llm_markdown_worker(
+    pdf_path: str,
+    result_queue: mp.Queue[tuple[str, str]],
+) -> None:
+    try:
+        result_queue.put(("ok", pymupdf4llm.to_markdown(pdf_path)))
+    except Exception as exc:
+        result_queue.put(("error", str(exc)))
 
 
 def extract_pdf_text(pdf_path: Path) -> str:
@@ -492,6 +556,13 @@ def is_codex_available() -> bool:
     return shutil.which("codex") is not None
 
 
+def configure_tesseract_data() -> None:
+    if os.environ.get("TESSDATA_PREFIX"):
+        return
+    if (_LOCAL_TESSDATA_DIR / "eng.traineddata").exists():
+        os.environ["TESSDATA_PREFIX"] = str(_LOCAL_TESSDATA_DIR)
+
+
 def codex_refinement_prompt() -> str:
     return """
 You are a specialist at OCR and math cleanup for an SSG educational workflow.
@@ -501,21 +572,31 @@ You receive a JSON object on stdin with:
   - extracted markdown (`extracted_markdown`)
   - candidate raw sources in `source_markdowns`
   - attached page image file paths in `page_image_paths`
-  - current `items` with kind, number, title, section, and statement
+  - current `items` with kind, number, title, section, statement,
+    optional preamble, and optional structured parts
 
-Your goal is to produce the best possible transcription for each sheet while making the
-smallest possible edit.
-Copy the input `extracted_markdown` and `items` first, then apply only local corrections
-for clearly broken OCR artifacts.
-Only use page images as evidence when the nearby text is clearly unreadable in the text sources.
+Your goal is to produce the best possible source-grounded transcription
+for each sheet. Prefer structured item data over prose that embeds labels.
+Use page images as evidence when the text sources are clearly corrupted,
+especially for math, tables, and multi-column exercise lists.
 
 Return a JSON object with the same top-level shape:
 - keep `project`
 - keep `sheets` as an array of sheet objects
 For each sheet, output:
 - `number`, `pdf`, `title`, `section`, `extracted_markdown`
-- `items` (exercise objects with kind, number, title, section, statement, status)
+- `items` with kind, number, title, section, statement, status, preamble,
+  and parts
 - optional: `source_markdowns`, `ocr_markdown`, `page_image_paths`
+
+Item shape:
+- For a single-part item, put the cleaned body in `statement`, and use
+  empty `preamble` and empty `parts`.
+- For a multipart item, put shared introductory text in `preamble`, put
+  each subpart in `parts`, and leave `statement` empty unless there is
+  useful unsplit source text to preserve.
+- Each part is `{ "marker": "a", "title": "15.5(a)", "statement": "..." }`.
+- Do not repeat item numbers or part markers in statement text.
 
 Editing constraints:
 - Keep exercise numbers and headings. Preserve logical order.
@@ -523,6 +604,8 @@ Editing constraints:
   subparts, restore the visible logical subpart order such as (a), (b), (c).
 - Preserve meaning; do not solve any exercise.
 - Do not invent missing results or hidden formulas.
+- Do not put solutions, hints, or proof text into statements.
+- Do not duplicate labels such as `Exercise 15.1`, `15.1`, or `(a)`.
 - Never algebraically rewrite expressions or replace valid mathematical content with a different formula.
 - If a part is unreadable after best effort, use exactly:
   [Formula or figure omitted by PDF extraction.]
@@ -571,6 +654,19 @@ def codex_refinement_schema() -> dict[str, Any]:
                                     "section": {"type": "string"},
                                     "statement": {"type": "string"},
                                     "status": {"type": "string"},
+                                    "preamble": {"type": "string"},
+                                    "parts": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "required": ["marker", "title", "statement"],
+                                            "properties": {
+                                                "marker": {"type": "string"},
+                                                "title": {"type": "string"},
+                                                "statement": {"type": "string"},
+                                            },
+                                        },
+                                    },
                                 },
                             },
                         },
@@ -950,6 +1046,15 @@ def enhance_items_math(items: list[LearningItem]) -> list[LearningItem]:
             section=item.section,
             statement=enhance_statement_math(item.statement),
             status=item.status,
+            preamble=enhance_statement_math(item.preamble),
+            parts=[
+                LearningPart(
+                    marker=part.marker,
+                    title=part.title,
+                    statement=enhance_statement_math(part.statement),
+                )
+                for part in item.parts
+            ],
         )
         for item in items
     ]
@@ -1428,21 +1533,46 @@ def merge_refined_sheet(refined: Sheet, original: Sheet) -> Sheet:
         statement = statement.replace("ℝ", "bb{R}").replace("ℂ", "bb{C}")
         return normalize_supported_math_shorthand(statement)
 
-    def accept_refinement(item_original: str, item_refined: str, number: str) -> str:
-        original = unescape_text_artifacts(item_original).strip()
-        refined = unescape_text_artifacts(item_refined).strip()
-        if is_minimal_or_missing_statement(original):
-            return refined if refined else f"{number}.\n[Formula or figure omitted by PDF extraction.]"
-        if not refined:
-            return original
-        similarity = similarity_ratio(original, refined)
-        original_score = statement_artifact_score(original)
-        refined_score = statement_artifact_score(refined)
+    def normalize_part(part: LearningPart, item_title: str) -> LearningPart:
+        marker = part.marker.strip().lower()
+        title = part.title.strip() or f"{item_title}({marker})"
+        statement = strip_leading_part_marker(normalize_statement(part.statement), marker)
+        return LearningPart(marker=marker, title=title, statement=statement)
+
+    def normalize_item(item: LearningItem, fallback: LearningItem | None = None) -> LearningItem:
+        fallback = fallback or item
+        parts = [
+            normalize_part(part, item.title or fallback.title)
+            for part in item.parts
+            if part.marker.strip()
+        ]
+        parts.sort(key=lambda part: part_marker_sort_key(part.marker))
+        return LearningItem(
+            kind=item.kind or fallback.kind,
+            number=item.number or fallback.number,
+            title=normalize_statement(item.title or fallback.title),
+            section=normalize_statement(item.section or fallback.section),
+            status=item.status or fallback.status,
+            statement=normalize_statement(item.statement),
+            preamble=normalize_statement(item.preamble),
+            parts=parts,
+        )
+
+    def accept_refinement(original_item: LearningItem, refined_item: LearningItem) -> LearningItem:
+        original_text = item_content_text(original_item)
+        refined_text = item_content_text(refined_item)
+        if is_minimal_or_missing_statement(original_text):
+            return refined_item if refined_text else original_item
+        if not refined_text:
+            return original_item
+        similarity = similarity_ratio(original_text, refined_text)
+        original_score = statement_artifact_score(original_text)
+        refined_score = statement_artifact_score(refined_text)
         if similarity < 0.45 and refined_score >= original_score:
-            return original
-        if contains_garbled_ocr(refined) and not contains_garbled_ocr(original):
-            return original
-        return refined
+            return original_item
+        if contains_garbled_ocr(refined_text) and not contains_garbled_ocr(original_text):
+            return original_item
+        return refined_item
 
     refined_extracted_markdown = normalize_statement(
         refined.extracted_markdown or original.extracted_markdown
@@ -1463,29 +1593,20 @@ def merge_refined_sheet(refined: Sheet, original: Sheet) -> Sheet:
         if candidate is None:
             merged_items.append(original_item)
             continue
-        merged_items.append(
-            LearningItem(
-                kind=candidate.kind,
-                number=candidate.number,
-                title=candidate.title,
-                section=candidate.section,
-                status=candidate.status or original_item.status,
-                statement=accept_refinement(
-                    original_item.statement,
-                    normalize_statement(candidate.statement),
-                    candidate.number,
-                ),
-            )
-        )
+        normalized_candidate = normalize_item(candidate, original_item)
+        merged_items.append(accept_refinement(original_item, normalized_candidate))
 
     for candidate in (refined.items or []):
         if all(existing.number != candidate.number for existing in original.items):
-            merged_items.append(candidate)
+            merged_items.append(normalize_item(candidate))
 
-    item_sets = [original.items, merged_items]
-    if markdown_items:
-        item_sets.append(markdown_items)
-    best_items = min(item_sets, key=items_artifact_score)
+    if refined.items:
+        best_items = merged_items
+    else:
+        item_sets = [original.items]
+        if markdown_items:
+            item_sets.append(markdown_items)
+        best_items = min(item_sets, key=items_artifact_score)
 
     return Sheet(
         number=refined.number,
@@ -1508,8 +1629,14 @@ def merge_refined_sheet(refined: Sheet, original: Sheet) -> Sheet:
 
 
 def items_artifact_score(items: list[LearningItem]) -> int:
-    text = "\n\n".join(item.statement for item in items)
+    text = "\n\n".join(item_content_text(item) for item in items)
     return statement_artifact_score(text)
+
+
+def item_content_text(item: LearningItem) -> str:
+    chunks = [item.preamble, item.statement]
+    chunks.extend(part.statement for part in item.parts)
+    return "\n".join(chunk.strip() for chunk in chunks if chunk and chunk.strip())
 
 
 def statement_artifact_score(text: str) -> int:
@@ -1729,7 +1856,7 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
         "",
     ]
     for item in sheet.items:
-        preamble, parts = split_item_into_parts(item)
+        preamble, parts = item_parts_for_output(item)
         if parts:
             if preamble:
                 preamble = strip_leading_item_number(preamble, item.number)
@@ -1798,6 +1925,22 @@ def learning_item_block(
     ]
 
 
+def item_parts_for_output(item: LearningItem) -> tuple[str, list[LearningPart]]:
+    if not item.parts:
+        return split_item_into_parts(item)
+    parts = [
+        LearningPart(
+            marker=part.marker.strip().lower(),
+            title=part.title.strip() or f"{item.title}({part.marker.strip().lower()})",
+            statement=strip_leading_part_marker(part.statement, part.marker),
+        )
+        for part in item.parts
+        if part.marker.strip()
+    ]
+    parts.sort(key=lambda part: part_marker_sort_key(part.marker))
+    return item.preamble.strip(), parts
+
+
 def compact_learning_item_title(kind: str, title: str) -> str:
     title = title.strip()
     kind_label = kind.replace("_", " ")
@@ -1817,6 +1960,19 @@ def strip_leading_item_number(statement: str, number: str) -> str:
         "",
         statement.strip(),
         count=1,
+    )
+
+
+def strip_leading_part_marker(statement: str, marker: str) -> str:
+    marker = marker.strip()
+    if not marker:
+        return statement.strip()
+    return re.sub(
+        rf"^\s*(?:-\s*)?\({re.escape(marker)}\)\s*",
+        "",
+        statement.strip(),
+        count=1,
+        flags=re.IGNORECASE,
     )
 
 
@@ -1975,12 +2131,24 @@ def sheet_from_json(data: dict[str, Any]) -> Sheet:
         title=data.get("title", f"Sheet {data['number']}"),
         section=data.get("section", f"Sheet {data['number']}"),
         extracted_markdown=data.get("extracted_markdown", ""),
-        items=[LearningItem(**item) for item in data.get("items", [])],
+        items=[learning_item_from_json(item) for item in data.get("items", [])],
         item_parser=data.get("item_parser", "sheet"),
         source_markdowns=data.get("source_markdowns", {}),
         ocr_markdown=data.get("ocr_markdown", ""),
         page_image_paths=data.get("page_image_paths", []),
     )
+
+
+def learning_item_from_json(data: dict[str, Any]) -> LearningItem:
+    item = dict(data)
+    item["parts"] = [
+        part if isinstance(part, LearningPart) else LearningPart(**part)
+        for part in item.get("parts") or []
+    ]
+    item.setdefault("preamble", "")
+    item.setdefault("status", "todo")
+    item.setdefault("statement", "")
+    return LearningItem(**item)
 
 
 if __name__ == "__main__":
