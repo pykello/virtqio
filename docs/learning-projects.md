@@ -13,7 +13,9 @@ tracking blocks understood by `ssg`.
 
 ## Project Config
 
-Create a YAML file under `learning-projects/`:
+Create a YAML file anywhere convenient. It does not need to live inside the
+virtqio checkout, which is useful when the config points at local PDFs that
+should not be committed. For example:
 
 ```yaml
 id: analysis-i
@@ -21,10 +23,12 @@ title: Analysis I
 description: >
   A learning project for working through Analysis I problem sheets by writing
   every proof and solution.
+source_title: "Oxford M2: Analysis I - Sequences and Series (2022-23)"
+source_url: https://courses.maths.ox.ac.uk/course/view.php?id=608
 output_dir: content/en/learning/analysis-i
 sources:
   - sheet: 1
-    pdf: ~/Downloads/AnalysisI_Sheet1.pdf
+    pdf: pdfs/AnalysisI_Sheet1.pdf
   - sheet: 2
     pdf: ~/Downloads/AnalysisI_Sheet2.pdf
 ```
@@ -34,39 +38,69 @@ Fields:
 - `id`: stable project id used for generated tracking item ids.
 - `title`: project title shown on generated pages.
 - `description`: optional text shown on the project tracker page.
-- `output_dir`: generated Markdown destination.
-- `sources`: ordered PDF sheets. `pdf` can use `~`.
+- `source_title`: optional public source title shown on each generated sheet.
+- `source_url`: optional public URL linked from `source_title`.
+- `output_dir`: generated Markdown destination. Relative paths are resolved
+  from the virtqio repository root; absolute paths are also accepted.
+- `sources`: ordered PDF sheets. `pdf` can use `~`. Relative PDF paths are
+  resolved from the YAML config file's directory.
+
+Generated pages and `extracted.json` never include local PDF file paths. The
+`pdf` values are only used by the extraction script and ignored cache; use
+`source_title` and `source_url` for the human-readable citation.
+
+The script defaults `--repo-root` to the virtqio checkout containing
+`scripts/learning/generate_project.py`. Override it only when running the
+script from a copied location or generating into another checkout:
+
+```sh
+python3 /path/to/virtqio/scripts/learning/generate_project.py \
+  /path/to/private-learning/analysis-i.yaml \
+  --repo-root /path/to/virtqio \
+  --write-json
+```
+
+Example external config layout:
+
+```text
+~/projects/virtqio-learning/
+  analysis-i.yaml
+  pdfs/
+    AnalysisI_Sheet1.pdf
+    AnalysisI_Sheet2.pdf
+    AnalysisI_Sheet3.pdf
+```
 
 ## Running
 
 First run, or refresh after changing PDFs:
 
 ```sh
-python3 scripts/learning/generate_project.py learning-projects/<project>.yaml --write-json
+python3 scripts/learning/generate_project.py /path/to/<project>.yaml --write-json
 ```
 
 Fast rewrite from cache:
 
 ```sh
-python3 scripts/learning/generate_project.py learning-projects/<project>.yaml --fast --write-json
+python3 scripts/learning/generate_project.py /path/to/<project>.yaml --fast --write-json
 ```
 
 Force fresh extraction/refinement:
 
 ```sh
-python3 scripts/learning/generate_project.py learning-projects/<project>.yaml --refresh-cache --write-json
+python3 scripts/learning/generate_project.py /path/to/<project>.yaml --refresh-cache --write-json
 ```
 
 Generate only selected sheets while debugging:
 
 ```sh
-python3 scripts/learning/generate_project.py learning-projects/<project>.yaml --sheets 3,5 --write-json
+python3 scripts/learning/generate_project.py /path/to/<project>.yaml --sheets 3,5 --write-json
 ```
 
 Skip OCR/image rendering:
 
 ```sh
-python3 scripts/learning/generate_project.py learning-projects/<project>.yaml --disable-ocr --write-json
+python3 scripts/learning/generate_project.py /path/to/<project>.yaml --disable-ocr --write-json
 ```
 
 ## Cache
@@ -81,8 +115,9 @@ The cache is ignored by Git. A cached sheet is reused only when the PDF path,
 size, and `mtime_ns` match. `--fast` requires valid cached sheets and does not
 read PDFs, render page images, run local OCR, or call Codex.
 
-If `.learning-cache` is missing but the project already has an
-`extracted.json`, a normal run can seed the cache from that intermediate file.
+The ignored `.learning-cache` entries keep local PDF signatures so `--fast` can
+verify cache validity. The generated `extracted.json` is sanitized for commit
+and does not expose local PDF addresses.
 
 ## Output
 

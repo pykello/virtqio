@@ -135,6 +135,15 @@ def main() -> int:
         action="store_true",
         help="Ignore cached sheet data and refresh it from PDFs/LLM output.",
     )
+    parser.add_argument(
+        "--repo-root",
+        type=Path,
+        default=Path(__file__).resolve().parents[2],
+        help=(
+            "Virtqio repository root. Defaults to the checkout containing this script, "
+            "so configs can live outside the repo."
+        ),
+    )
     args = parser.parse_args()
     use_codex_by_default = args.llm_command is None
     if use_codex_by_default and not args.fast:
@@ -146,10 +155,12 @@ def main() -> int:
     else:
         llm_command = args.llm_command
 
-    project_path = args.config
+    project_path = args.config.expanduser().resolve()
     project = load_yaml(project_path)
-    repo_root = project_path.parent.parent
-    output_dir = repo_root / project["output_dir"]
+    config_dir = project_path.parent
+    repo_root = args.repo_root.expanduser().resolve()
+    project = normalize_project_paths(project, config_dir)
+    output_dir = resolve_project_output_dir(repo_root, project["output_dir"])
     cache_dir = repo_root / ".learning-cache" / project["id"]
     selected_sheets = parse_sheet_filter(args.sheets)
     enhance_math = not args.no_enhance_math
@@ -206,6 +217,31 @@ def main() -> int:
 def load_yaml(path: Path) -> dict[str, Any]:
     with path.open() as handle:
         return yaml.safe_load(handle)
+
+
+def normalize_project_paths(project: dict[str, Any], config_dir: Path) -> dict[str, Any]:
+    normalized = dict(project)
+    normalized["sources"] = [
+        normalize_source_path(source, config_dir)
+        for source in project.get("sources", [])
+    ]
+    return normalized
+
+
+def normalize_source_path(source: dict[str, Any], config_dir: Path) -> dict[str, Any]:
+    normalized = dict(source)
+    pdf_path = Path(str(source["pdf"])).expanduser()
+    if not pdf_path.is_absolute():
+        pdf_path = config_dir / pdf_path
+    normalized["pdf"] = str(pdf_path.resolve())
+    return normalized
+
+
+def resolve_project_output_dir(repo_root: Path, output_dir: str) -> Path:
+    output_path = Path(output_dir).expanduser()
+    if output_path.is_absolute():
+        return output_path
+    return repo_root / output_path
 
 
 def parse_sheet_filter(value: str | None) -> set[int] | None:
@@ -650,7 +686,7 @@ def infer_section(markdown: str, sheet_number: int) -> str:
         lower = normalized.lower()
         if "analysis i" in lower or f"sheet {sheet_number}" in lower:
             continue
-        return normalized
+        return clean_section_title(normalized)
     for line in markdown.splitlines():
         normalized = re.sub(r"[*_]", "", line).strip()
         lower = normalized.lower()
@@ -661,8 +697,13 @@ def infer_section(markdown: str, sheet_number: int) -> str:
         if re.match(r"^\d+\.", normalized):
             break
         if len(normalized) > 8:
-            return normalized
+            return clean_section_title(normalized)
     return f"Sheet {sheet_number}"
+
+
+def clean_section_title(section: str) -> str:
+    section = re.sub(r"\s*\[[^\]]+\]\s*$", "", section).strip()
+    return section or "Sheet"
 
 
 def split_exercises(markdown: str, sheet_number: int, section: str) -> list[LearningItem]:
@@ -1386,8 +1427,12 @@ def write_progress(project: dict[str, Any], output_dir: Path) -> None:
     title = project["title"]
     description = project.get("description", "").strip()
     description_block = f"\n{description}\n" if description else ""
+    source_block = "\n".join(source_lines(project))
+    if source_block:
+        source_block = f"\n{source_block}"
     content = f"""# {title}
 {description_block}
+{source_block}
 :::learning-progress root="sheets" title="{title} Progress"
 :::
 """
@@ -1396,12 +1441,12 @@ def write_progress(project: dict[str, Any], output_dir: Path) -> None:
 
 def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None:
     slug = sheet_slug(sheet.number)
+    sheet_section = clean_section_title(sheet.section)
     lines = [
-        f"# {project['title']}: {sheet.title}",
+        f"# {sheet.title}",
         "",
-        f"Source: `{sheet.pdf}`",
-        "",
-        f"Section: **{sheet.section}**",
+        *source_lines(project),
+        f"Section: **{sheet_section}**",
         "",
         "[Project progress](../index.html)",
         "",
@@ -1439,6 +1484,18 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
     (sheets_dir / f"{slug}.md").write_text("\n".join(lines).strip() + "\n")
 
 
+def source_lines(project: dict[str, Any]) -> list[str]:
+    title = str(project.get("source_title", "")).strip()
+    url = str(project.get("source_url", "")).strip()
+    if not title and not url:
+        return []
+    if title and url:
+        return [f"Source: [{title}]({url})", ""]
+    if title:
+        return [f"Source: {title}", ""]
+    return [f"Source: {url}", ""]
+
+
 def learning_item_block(
     *,
     item: LearningItem,
@@ -1447,10 +1504,11 @@ def learning_item_block(
     statement: str,
 ) -> list[str]:
     statement = normalize_supported_math_shorthand(statement.strip())
+    section = clean_section_title(item.section)
     return [
         (
             f':::learning-item type={item.kind} id="{item_id}" '
-            f'section="{item.section}" status={item.status} title="{title}"'
+            f'section="{section}" status={item.status} title="{title}"'
         ),
         statement,
         ":::",
@@ -1466,7 +1524,7 @@ def split_item_into_parts(item: LearningItem) -> tuple[str, list[LearningPart]]:
     lines = item.statement.strip().splitlines()
     starts: list[tuple[int, str, str]] = []
     part_pattern = re.compile(
-        r"^\s*(?:-\s*)?\(([a-z]|[ivxlcdm]+)\)\s*(.*)$",
+        r"^\s*(?:\d+\.\s*)?(?:-\s*)?\(([a-z]|[ivxlcdm]+)\)\s*(.*)$",
         re.IGNORECASE,
     )
     for index, line in enumerate(lines):
@@ -1500,8 +1558,27 @@ def slugify_part_marker(marker: str) -> str:
 
 
 def write_intermediate_json(output_dir: Path, project: dict[str, Any], sheets: list[Sheet]) -> None:
-    payload = {"project": project, "sheets": [sheet_to_json(sheet) for sheet in sheets]}
+    payload = {
+        "project": sanitize_project_for_output(project),
+        "sheets": [sanitize_sheet_for_output(sheet_to_json(sheet)) for sheet in sheets],
+    }
     (output_dir / "extracted.json").write_text(json.dumps(payload, indent=2))
+
+
+def sanitize_project_for_output(project: dict[str, Any]) -> dict[str, Any]:
+    sanitized = dict(project)
+    sanitized["sources"] = [
+        {key: value for key, value in source.items() if key != "pdf"}
+        for source in project.get("sources", [])
+    ]
+    return sanitized
+
+
+def sanitize_sheet_for_output(sheet: dict[str, Any]) -> dict[str, Any]:
+    sanitized = dict(sheet)
+    sanitized.pop("pdf", None)
+    sanitized["page_image_paths"] = []
+    return sanitized
 
 
 def sheet_slug(number: int) -> str:
