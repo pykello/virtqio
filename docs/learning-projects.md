@@ -119,6 +119,27 @@ The ignored `.learning-cache` entries keep local PDF signatures so `--fast` can
 verify cache validity. The generated `extracted.json` is sanitized for commit
 and does not expose local PDF addresses.
 
+## Expanding Projects
+
+Learning projects are incremental. To add more PDFs, append them to the
+external YAML config and run the generator again. Existing cached sheets are
+reused when their PDF signatures still match, so a normal run only extracts and
+refines the new or changed sources:
+
+```sh
+python3 scripts/learning/generate_project.py /path/to/<project>.yaml --write-json
+```
+
+If you only want to process the newly added PDFs, pass their sheet numbers:
+
+```sh
+python3 scripts/learning/generate_project.py /path/to/<project>.yaml --sheets 4,5 --write-json
+```
+
+Selected-sheet runs preserve existing sheet Markdown and merge new sheet data
+into `extracted.json`. The progress tracker scans the generated `sheets/`
+directory, so it expands automatically as new sheet files appear.
+
 ## Output
 
 The generator writes:

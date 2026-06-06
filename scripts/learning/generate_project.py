@@ -1558,11 +1558,33 @@ def slugify_part_marker(marker: str) -> str:
 
 
 def write_intermediate_json(output_dir: Path, project: dict[str, Any], sheets: list[Sheet]) -> None:
+    existing = load_existing_intermediate_payload(output_dir)
+    existing_sheets = {
+        int(sheet["number"]): sheet
+        for sheet in existing.get("sheets", [])
+        if isinstance(sheet, dict) and "number" in sheet
+    }
+    for sheet in sheets:
+        existing_sheets[sheet.number] = sanitize_sheet_for_output(sheet_to_json(sheet))
     payload = {
         "project": sanitize_project_for_output(project),
-        "sheets": [sanitize_sheet_for_output(sheet_to_json(sheet)) for sheet in sheets],
+        "sheets": [
+            existing_sheets[number]
+            for number in sorted(existing_sheets)
+        ],
     }
     (output_dir / "extracted.json").write_text(json.dumps(payload, indent=2))
+
+
+def load_existing_intermediate_payload(output_dir: Path) -> dict[str, Any]:
+    path = output_dir / "extracted.json"
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text())
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
 
 
 def sanitize_project_for_output(project: dict[str, Any]) -> dict[str, Any]:
