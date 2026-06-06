@@ -1,4 +1,5 @@
 import io
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -24,6 +25,84 @@ class WriteSheetTests(unittest.TestCase):
         self.assertIn("[demo] sheet 03 extract done in 2.25s: PDF/OCR extraction", output)
         self.assertEqual(len(reporter.events), 2)
         self.assertEqual(reporter.events[1].duration_s, 2.25)
+
+    def test_progress_reporter_writes_event_log(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            event_log = Path(tmp) / "events.jsonl"
+            reporter = gp.ProgressReporter(
+                "demo",
+                enabled=False,
+                event_log_path=event_log,
+            )
+
+            reporter.event("cache", "hit", "1 item", sheet=1)
+
+            entries = [
+                json.loads(line)
+                for line in event_log.read_text().splitlines()
+            ]
+            self.assertEqual(entries[0]["project_id"], "demo")
+            self.assertEqual(entries[0]["sheet"], 1)
+            self.assertEqual(entries[0]["phase"], "cache")
+            self.assertEqual(entries[0]["status"], "hit")
+
+    def test_progress_metadata_writes_run_and_sheet_summaries(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            cache_dir = Path(tmp) / ".learning-cache" / "demo"
+            source_pdf = Path(__file__)
+            sheet = gp.Sheet(
+                number=1,
+                pdf=str(source_pdf),
+                title="Sheet 1",
+                section="Section",
+                extracted_markdown="",
+                items=[
+                    gp.LearningItem(
+                        kind="exercise",
+                        number="1",
+                        title="Exercise 1",
+                        section="Section",
+                        statement="Show $a = b$.",
+                    )
+                ],
+            )
+            events = [
+                gp.ProgressEvent(
+                    project_id="demo",
+                    phase="cache-check",
+                    status="done",
+                    sheet=1,
+                    duration_s=0.125,
+                ),
+            ]
+            issues = [
+                gp.ValidationIssue(
+                    "warning",
+                    str(Path(tmp) / "sheet-01.md"),
+                    "sample warning",
+                )
+            ]
+
+            paths = gp.write_progress_metadata(
+                cache_dir,
+                {"id": "demo", "title": "Demo"},
+                "run-1",
+                [{"sheet": 1, "pdf": str(source_pdf)}],
+                [sheet],
+                events,
+                issues,
+                options={"fast": True},
+            )
+
+            run_summary = json.loads(paths["run_summary"].read_text())
+            stage = json.loads((cache_dir / "stages" / "sheet-01.json").read_text())
+            self.assertEqual(run_summary["sheet_count"], 1)
+            self.assertEqual(run_summary["validation"]["warnings"], 1)
+            self.assertEqual(stage["item_count"], 1)
+            self.assertEqual(stage["tracking_item_count"], 1)
+            self.assertEqual(stage["source_signature"]["sheet"], 1)
+            self.assertEqual(stage["phases"]["cache-check"]["duration_s"], 0.125)
+            self.assertEqual(stage["validation"]["warnings"], 1)
 
     def test_normalize_sheet_ir_sorts_and_cleans_parts(self) -> None:
         sheet = gp.Sheet(

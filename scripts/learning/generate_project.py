@@ -136,12 +136,17 @@ class ProgressReporter:
         enabled: bool = True,
         stream: TextIO | None = None,
         clock: Callable[[], float] = time.monotonic,
+        event_log_path: Path | None = None,
     ) -> None:
         self.project_id = project_id
         self.enabled = enabled
         self.stream = stream or sys.stderr
         self.clock = clock
+        self.event_log_path = event_log_path
         self.events: list[ProgressEvent] = []
+        if self.event_log_path is not None:
+            self.event_log_path.parent.mkdir(parents=True, exist_ok=True)
+            self.event_log_path.write_text("")
 
     def event(
         self,
@@ -163,6 +168,7 @@ class ProgressReporter:
         self.events.append(progress_event)
         if self.enabled:
             print(self.format_event(progress_event), file=self.stream)
+        self.write_event_log(progress_event)
         return progress_event
 
     @contextmanager
@@ -206,6 +212,24 @@ class ProgressReporter:
         if event.message:
             line += f": {event.message}"
         return line
+
+    def write_event_log(self, event: ProgressEvent) -> None:
+        if self.event_log_path is None:
+            return
+        with self.event_log_path.open("a") as handle:
+            handle.write(json.dumps(progress_event_to_json(event)) + "\n")
+
+
+def progress_event_to_json(event: ProgressEvent) -> dict[str, Any]:
+    return {
+        key: value
+        for key, value in asdict(event).items()
+        if value is not None
+    }
+
+
+def build_run_id() -> str:
+    return f"{time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())}-{os.getpid()}"
 
 
 def main() -> int:
@@ -288,6 +312,7 @@ def main() -> int:
     project = normalize_project_paths(project, config_dir)
     output_dir = resolve_project_output_dir(repo_root, project["output_dir"])
     cache_dir = repo_root / ".learning-cache" / project["id"]
+    run_id = build_run_id()
     selected_sheets = parse_sheet_filter(args.sheets)
     enhance_math = not args.no_enhance_math
     sources = [
@@ -295,8 +320,13 @@ def main() -> int:
         for source in project["sources"]
         if selected_sheets is None or int(source["sheet"]) in selected_sheets
     ]
-    progress = ProgressReporter(project["id"], enabled=not args.quiet_progress)
+    progress = ProgressReporter(
+        project["id"],
+        enabled=not args.quiet_progress,
+        event_log_path=cache_dir / "runs" / f"{run_id}.jsonl",
+    )
     project_started_at = progress.clock()
+    issues: list[ValidationIssue] = []
     progress.event(
         "project",
         "start",
@@ -410,6 +440,21 @@ def main() -> int:
         "done",
         f"generated {len(sheets)} sheet(s) in {output_dir}",
         duration_s=progress.clock() - project_started_at,
+    )
+    metadata_paths = write_progress_metadata(
+        cache_dir,
+        project,
+        run_id,
+        sources,
+        sheets,
+        progress.events,
+        issues,
+        options=build_run_options(args, selected_sheets, enhance_math, llm_command),
+    )
+    progress.event(
+        "metadata",
+        "done",
+        f"wrote run metadata to {metadata_paths['run_summary']}",
     )
     print(f"Generated {len(sheets)} sheets in {output_dir}")
     return 0
@@ -525,6 +570,182 @@ def write_cached_sheet(cache_dir: Path, sheet: Sheet) -> None:
 
 def sheet_cache_path(cache_dir: Path, sheet_number: int) -> Path:
     return cache_dir / f"sheet-{sheet_number:02d}.json"
+
+
+def write_progress_metadata(
+    cache_dir: Path,
+    project: dict[str, Any],
+    run_id: str,
+    sources: list[dict[str, Any]],
+    sheets: list[Sheet],
+    events: list[ProgressEvent],
+    issues: list[ValidationIssue],
+    *,
+    options: dict[str, Any],
+) -> dict[str, Path]:
+    runs_dir = cache_dir / "runs"
+    stages_dir = cache_dir / "stages"
+    runs_dir.mkdir(parents=True, exist_ok=True)
+    stages_dir.mkdir(parents=True, exist_ok=True)
+
+    source_by_number = {int(source["sheet"]): source for source in sources}
+    stage_files: list[str] = []
+    for sheet in sheets:
+        source = source_by_number.get(
+            sheet.number,
+            {"sheet": sheet.number, "pdf": sheet.pdf, "item_parser": sheet.item_parser},
+        )
+        stage_path = stages_dir / f"{sheet_slug(sheet.number)}.json"
+        stage_payload = build_sheet_stage_metadata(
+            project,
+            run_id,
+            source,
+            sheet,
+            events,
+            issues,
+        )
+        stage_path.write_text(json.dumps(stage_payload, indent=2))
+        stage_files.append(str(stage_path))
+
+    run_summary_path = runs_dir / f"{run_id}.summary.json"
+    run_summary = {
+        "cache_version": _CACHE_VERSION,
+        "project_id": project["id"],
+        "project_title": project.get("title", project["id"]),
+        "run_id": run_id,
+        "options": options,
+        "sheet_count": len(sheets),
+        "event_count": len(events),
+        "phase_totals": summarize_phase_totals(events),
+        "validation": summarize_validation_issues(issues),
+        "stage_files": stage_files,
+    }
+    run_summary_path.write_text(json.dumps(run_summary, indent=2))
+    return {
+        "run_summary": run_summary_path,
+        "runs_dir": runs_dir,
+        "stages_dir": stages_dir,
+    }
+
+
+def build_sheet_stage_metadata(
+    project: dict[str, Any],
+    run_id: str,
+    source: dict[str, Any],
+    sheet: Sheet,
+    events: list[ProgressEvent],
+    issues: list[ValidationIssue],
+) -> dict[str, Any]:
+    sheet_issues = [
+        issue_to_json(issue)
+        for issue in issues
+        if issue_matches_sheet(issue, sheet.number)
+    ]
+    return {
+        "cache_version": _CACHE_VERSION,
+        "project_id": project["id"],
+        "run_id": run_id,
+        "sheet": sheet.number,
+        "title": sheet.title,
+        "section": sheet.section,
+        "item_parser": sheet.item_parser,
+        "item_count": len(sheet.items),
+        "tracking_item_count": sum(
+            len(learning_item_output_ids(project["id"], sheet.number, item))
+            for item in sheet.items
+        ),
+        "item_ids": [
+            item_id
+            for item in sheet.items
+            for item_id in learning_item_output_ids(project["id"], sheet.number, item)
+        ],
+        "source_signature": safe_source_signature(source),
+        "phases": summarize_sheet_events(events, sheet.number),
+        "validation": summarize_validation_issues(sheet_issues),
+        "validation_issues": sheet_issues,
+    }
+
+
+def build_run_options(
+    args: argparse.Namespace,
+    selected_sheets: set[int] | None,
+    enhance_math: bool,
+    llm_command: str | None,
+) -> dict[str, Any]:
+    return {
+        "fast": args.fast,
+        "refresh_cache": args.refresh_cache,
+        "write_json": args.write_json,
+        "validate": not args.no_validate,
+        "enhance_math": enhance_math,
+        "ocr": not args.disable_ocr,
+        "selected_sheets": sorted(selected_sheets) if selected_sheets else None,
+        "refiner": refiner_label(llm_command) if llm_command else None,
+    }
+
+
+def safe_source_signature(source: dict[str, Any]) -> dict[str, Any]:
+    try:
+        return source_signature(source)
+    except (OSError, KeyError, ValueError) as exc:
+        return {
+            "sheet": int(source.get("sheet", 0)),
+            "pdf": str(source.get("pdf", "")),
+            "error": str(exc),
+            "item_parser": str(source.get("item_parser", "sheet")),
+        }
+
+
+def summarize_sheet_events(
+    events: list[ProgressEvent],
+    sheet_number: int,
+) -> dict[str, Any]:
+    return summarize_events([event for event in events if event.sheet == sheet_number])
+
+
+def summarize_phase_totals(events: list[ProgressEvent]) -> dict[str, Any]:
+    return summarize_events(events)
+
+
+def summarize_events(events: list[ProgressEvent]) -> dict[str, Any]:
+    phases: dict[str, Any] = {}
+    for event in events:
+        phase = phases.setdefault(
+            event.phase,
+            {
+                "event_count": 0,
+                "duration_s": 0.0,
+                "statuses": {},
+                "events": [],
+            },
+        )
+        phase["event_count"] += 1
+        phase["statuses"][event.status] = phase["statuses"].get(event.status, 0) + 1
+        if event.duration_s is not None:
+            phase["duration_s"] = round(phase["duration_s"] + event.duration_s, 3)
+        phase["events"].append(progress_event_to_json(event))
+    return phases
+
+
+def summarize_validation_issues(issues: list[ValidationIssue] | list[dict[str, Any]]) -> dict[str, int]:
+    errors = 0
+    warnings = 0
+    for issue in issues:
+        severity = issue["severity"] if isinstance(issue, dict) else issue.severity
+        if severity == "error":
+            errors += 1
+        elif severity == "warning":
+            warnings += 1
+    return {"errors": errors, "warnings": warnings}
+
+
+def issue_to_json(issue: ValidationIssue) -> dict[str, Any]:
+    return asdict(issue)
+
+
+def issue_matches_sheet(issue: ValidationIssue, sheet_number: int) -> bool:
+    sheet_path_fragment = f"{sheet_slug(sheet_number)}.md"
+    return issue.path == f"sheet {sheet_number}" or sheet_path_fragment in issue.path
 
 
 def source_signature(source: dict[str, Any]) -> dict[str, Any]:

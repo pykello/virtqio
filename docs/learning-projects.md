@@ -160,6 +160,20 @@ The ignored `.learning-cache` entries keep local PDF signatures so `--fast` can
 verify cache validity. The generated `extracted.json` is sanitized for commit
 and does not expose local PDF addresses.
 
+Each run also writes ignored progress metadata:
+
+```text
+.learning-cache/<project-id>/runs/<run-id>.jsonl
+.learning-cache/<project-id>/runs/<run-id>.summary.json
+.learning-cache/<project-id>/stages/sheet-XX.json
+```
+
+The JSONL file is appended while generation is running, so it can be tailed
+during long OCR/Codex work. The run summary records options, phase totals, and
+validation counts. The per-sheet stage files record source signatures, item
+counts, generated tracking ids, phase timings, and sheet-specific validation
+issues.
+
 ## Safe Regeneration
 
 Generated sheet pages are merge-aware. When a sheet already exists, the
