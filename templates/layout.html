@@ -325,6 +325,60 @@
       font-weight: bold;
     }
 
+    .learning-item {
+      margin: 1.65rem 0;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--line);
+      border-inline-start: 5px solid #8a949e;
+      border-radius: 8px;
+      background: #fffffb;
+    }
+
+    .learning-item--done {
+      border-inline-start-color: #2f7d57;
+    }
+
+    .learning-item--partial {
+      border-inline-start-color: #b8872b;
+    }
+
+    .learning-item__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      color: #172114;
+    }
+
+    .learning-status {
+      border: 1px solid #c8ddc7;
+      border-radius: 999px;
+      padding: 0.15rem 0.55rem;
+      background: var(--accent-soft);
+      color: #225f42;
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    .learning-status--todo {
+      border-color: #d4d8de;
+      background: #f3f5f7;
+      color: #57606a;
+    }
+
+    .learning-status--partial {
+      border-color: #ead3a2;
+      background: #fff6df;
+      color: #765214;
+    }
+
+    .learning-progress {
+      overflow-x: auto;
+    }
+
     main img {
       max-width: 100%;
       height: auto;
