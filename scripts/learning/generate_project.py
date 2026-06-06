@@ -109,6 +109,13 @@ class ExistingLearningItem:
     proof_block: list[str]
 
 
+@dataclass
+class ValidationIssue:
+    severity: str
+    path: str
+    message: str
+
+
 def main() -> int:
     configure_tesseract_data()
     parser = argparse.ArgumentParser(
@@ -160,6 +167,11 @@ def main() -> int:
             "Virtqio repository root. Defaults to the checkout containing this script, "
             "so configs can live outside the repo."
         ),
+    )
+    parser.add_argument(
+        "--no-validate",
+        action="store_true",
+        help="Skip generated learning-project validation after writing pages.",
     )
     args = parser.parse_args()
     use_codex_by_default = args.llm_command is None
@@ -228,6 +240,11 @@ def main() -> int:
         write_project_pages(project, output_dir, sheets)
         if args.write_json:
             write_intermediate_json(output_dir, project, sheets)
+        if not args.no_validate:
+            issues = validate_learning_project_output(project, output_dir, sheets)
+            report_validation_issues(issues)
+            if any(issue.severity == "error" for issue in issues):
+                raise RuntimeError("Generated learning project failed validation.")
 
     print(f"Generated {len(sheets)} sheets in {output_dir}")
     return 0
@@ -2038,13 +2055,20 @@ def default_solution_block() -> list[str]:
 
 
 def parse_existing_learning_items(path: Path) -> dict[str, ExistingLearningItem]:
+    return {
+        item.item_id: item
+        for item in parse_learning_item_occurrences(path)
+    }
+
+
+def parse_learning_item_occurrences(path: Path) -> list[ExistingLearningItem]:
     if not path.exists():
-        return {}
+        return []
     try:
         lines = path.read_text().splitlines()
     except OSError:
-        return {}
-    items: dict[str, ExistingLearningItem] = {}
+        return []
+    items: list[ExistingLearningItem] = []
     index = 0
     while index < len(lines):
         if not lines[index].lstrip().startswith(":::learning-item"):
@@ -2069,8 +2093,7 @@ def parse_existing_learning_items(path: Path) -> dict[str, ExistingLearningItem]
                 proof_block = lines[proof_start : proof_end + 1]
                 index = proof_end + 1
         if item_id:
-            items.setdefault(
-                item_id,
+            items.append(
                 ExistingLearningItem(
                     item_id=item_id,
                     status=status,
@@ -2291,6 +2314,145 @@ def write_intermediate_json(output_dir: Path, project: dict[str, Any], sheets: l
         ],
     }
     (output_dir / "extracted.json").write_text(json.dumps(payload, indent=2))
+
+
+def validate_learning_project_output(
+    project: dict[str, Any],
+    output_dir: Path,
+    sheets: list[Sheet],
+) -> list[ValidationIssue]:
+    issues: list[ValidationIssue] = []
+    index_path = output_dir / "index.md"
+    if not index_path.exists():
+        issues.append(ValidationIssue("error", str(index_path), "missing progress index"))
+    else:
+        index_text = index_path.read_text()
+        if ":::learning-progress" not in index_text:
+            issues.append(
+                ValidationIssue("error", str(index_path), "missing learning-progress block")
+            )
+
+    for sheet in sheets:
+        issues.extend(validate_sheet_ir(project, sheet))
+        sheet_path = output_dir / "sheets" / f"{sheet_slug(sheet.number)}.md"
+        issues.extend(validate_generated_sheet_markdown(project, sheet, sheet_path))
+    return issues
+
+
+def validate_sheet_ir(project: dict[str, Any], sheet: Sheet) -> list[ValidationIssue]:
+    issues: list[ValidationIssue] = []
+    seen_ids: set[str] = set()
+    path = f"sheet {sheet.number}"
+    for item in sheet.items:
+        output_ids = learning_item_output_ids(project["id"], sheet.number, item)
+        for item_id in output_ids:
+            if item_id in seen_ids:
+                issues.append(
+                    ValidationIssue("error", path, f"duplicate generated item id {item_id}")
+                )
+            seen_ids.add(item_id)
+        if not item_content_text(item).strip():
+            issues.append(
+                ValidationIssue(
+                    "error",
+                    path,
+                    f"{item.kind} {item.number} has an empty statement",
+                )
+            )
+        markers = [part.marker for part in item.parts]
+        duplicate_markers = sorted({marker for marker in markers if markers.count(marker) > 1})
+        for marker in duplicate_markers:
+            issues.append(
+                ValidationIssue(
+                    "error",
+                    path,
+                    f"{item.kind} {item.number} has duplicate part marker {marker}",
+                )
+            )
+        for part in item.parts:
+            if not part.statement.strip():
+                issues.append(
+                    ValidationIssue(
+                        "error",
+                        path,
+                        f"{item.kind} {item.number}({part.marker}) has an empty statement",
+                    )
+                )
+    return issues
+
+
+def validate_generated_sheet_markdown(
+    project: dict[str, Any],
+    sheet: Sheet,
+    path: Path,
+) -> list[ValidationIssue]:
+    issues: list[ValidationIssue] = []
+    if not path.exists():
+        return [ValidationIssue("error", str(path), "missing generated sheet")]
+    text = path.read_text()
+    occurrences = parse_learning_item_occurrences(path)
+    ids = [item.item_id for item in occurrences]
+    for item_id in sorted({item_id for item_id in ids if ids.count(item_id) > 1}):
+        issues.append(ValidationIssue("error", str(path), f"duplicate item id {item_id}"))
+
+    expected_ids = {
+        item_id
+        for item in sheet.items
+        for item_id in learning_item_output_ids(project["id"], sheet.number, item)
+    }
+    actual_ids = set(ids)
+    for item_id in sorted(expected_ids - actual_ids):
+        issues.append(ValidationIssue("error", str(path), f"missing item id {item_id}"))
+    for item_id in sorted(actual_ids - expected_ids):
+        issues.append(
+            ValidationIssue(
+                "warning",
+                str(path),
+                f"extra item id {item_id}; this may be preserved orphaned work",
+            )
+        )
+    for item in occurrences:
+        if not learning_item_statement_from_block(item).strip():
+            issues.append(ValidationIssue("error", str(path), f"{item.item_id} is empty"))
+    issues.extend(validate_artifact_patterns(path, text))
+    return issues
+
+
+def learning_item_statement_from_block(item: ExistingLearningItem) -> str:
+    return "\n".join(item.item_block[1:-1]).strip()
+
+
+def validate_artifact_patterns(path: Path, text: str) -> list[ValidationIssue]:
+    patterns = {
+        "a_nd": "OCR split the word 'and'",
+        "o_r": "OCR split the word 'or'",
+        "�": "replacement character remains",
+        "[unreadable math symbol]": "unreadable math placeholder remains",
+        "⎛": "matrix box-drawing glyph remains",
+        "⎜": "matrix box-drawing glyph remains",
+        "⎟": "matrix box-drawing glyph remains",
+        "⎞": "matrix box-drawing glyph remains",
+    }
+    issues: list[ValidationIssue] = []
+    for pattern, message in patterns.items():
+        count = text.count(pattern)
+        if count:
+            issues.append(
+                ValidationIssue(
+                    "warning",
+                    str(path),
+                    f"{message}: {pattern!r} appears {count} time(s)",
+                )
+            )
+    return issues
+
+
+def report_validation_issues(issues: list[ValidationIssue]) -> None:
+    for issue in issues:
+        print(
+            f"{issue.severity}: {issue.path}: {issue.message}",
+            file=sys.stderr,
+        )
 
 
 def load_existing_intermediate_payload(output_dir: Path) -> dict[str, Any]:

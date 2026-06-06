@@ -111,6 +111,12 @@ Skip OCR/image rendering:
 python3 scripts/learning/generate_project.py /path/to/<project>.yaml --disable-ocr --write-json
 ```
 
+Skip generated-output validation:
+
+```sh
+python3 scripts/learning/generate_project.py /path/to/<project>.yaml --no-validate --write-json
+```
+
 ## Local OCR Data
 
 The generator uses Tesseract when it is available. To avoid depending on system
@@ -162,6 +168,21 @@ preserves:
 Unmatched items with local work are moved under an `Orphaned Local Work`
 heading instead of being deleted. Placeholder todo items that no longer appear
 in the source are dropped.
+
+## Validation
+
+Generation validates the structured IR and written Markdown by default.
+Structural issues fail generation, including:
+
+- duplicate generated item ids;
+- missing generated item ids in the written Markdown;
+- empty item or part statements;
+- missing progress index or `:::learning-progress` block.
+
+Extraction-quality concerns are warnings rather than failures. These include
+common OCR artifacts such as `a_nd`, `o_r`, replacement characters, and matrix
+box-drawing glyphs. Use `--no-validate` only when debugging the generator or
+when you intentionally need to inspect broken intermediate output.
 
 ## Expanding Projects
 

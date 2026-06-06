@@ -57,6 +57,77 @@ class WriteSheetTests(unittest.TestCase):
             ],
         )
 
+    def test_validate_sheet_ir_reports_duplicate_generated_ids(self) -> None:
+        sheet = gp.Sheet(
+            number=1,
+            pdf="",
+            title="Sheet 1",
+            section="Section",
+            extracted_markdown="",
+            items=[
+                gp.LearningItem(
+                    kind="exercise",
+                    number="1",
+                    title="Exercise 1",
+                    section="Section",
+                    statement="First statement.",
+                ),
+                gp.LearningItem(
+                    kind="exercise",
+                    number="1",
+                    title="Exercise 1",
+                    section="Section",
+                    statement="Duplicate statement.",
+                ),
+            ],
+        )
+
+        issues = gp.validate_sheet_ir({"id": "demo"}, sheet)
+
+        self.assertTrue(any(issue.severity == "error" for issue in issues))
+        self.assertTrue(any("duplicate generated item id" in issue.message for issue in issues))
+
+    def test_validate_generated_sheet_markdown_warns_on_artifacts(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "sheet-01.md"
+            path.write_text(
+                "\n".join(
+                    [
+                        "# Sheet 1",
+                        "",
+                        ':::learning-item type=exercise id="demo-sheet-01-exercise-1" section="Section" status=todo title="1"',
+                        "$a_nd b$",
+                        ":::",
+                        "",
+                        ":::proof[Solution]",
+                        "Write the solution here, then change the tracked item status to done.",
+                        ":::",
+                        "",
+                    ]
+                )
+            )
+            sheet = gp.Sheet(
+                number=1,
+                pdf="",
+                title="Sheet 1",
+                section="Section",
+                extracted_markdown="",
+                items=[
+                    gp.LearningItem(
+                        kind="exercise",
+                        number="1",
+                        title="Exercise 1",
+                        section="Section",
+                        statement="$a_nd b$",
+                    )
+                ],
+            )
+
+            issues = gp.validate_generated_sheet_markdown({"id": "demo"}, sheet, path)
+
+            self.assertFalse(any(issue.severity == "error" for issue in issues))
+            self.assertTrue(any("OCR split" in issue.message for issue in issues))
+
     def test_write_sheet_preserves_existing_solution_and_status(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             sheets_dir = Path(tmp)
