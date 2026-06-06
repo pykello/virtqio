@@ -1730,9 +1730,9 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
     ]
     for item in sheet.items:
         preamble, parts = split_item_into_parts(item)
-        lines.extend([f"## {item.title}", ""])
         if parts:
             if preamble:
+                preamble = strip_leading_item_number(preamble, item.number)
                 lines.extend([normalize_statement_for_output(preamble), ""])
             for part in parts:
                 part_slug = slugify_part_marker(part.marker)
@@ -1744,7 +1744,7 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
                     learning_item_block(
                         item=item,
                         item_id=item_id,
-                        title=part.title,
+                        title=compact_learning_item_title(item.kind, part.title),
                         statement=part.statement,
                     )
                 )
@@ -1754,7 +1754,7 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
                 learning_item_block(
                     item=item,
                     item_id=item_id,
-                    title=item.title,
+                    title=compact_learning_item_title(item.kind, item.title),
                     statement=item.statement,
                 )
             )
@@ -1780,6 +1780,7 @@ def learning_item_block(
     title: str,
     statement: str,
 ) -> list[str]:
+    statement = strip_leading_item_number(statement, item.number)
     statement = normalize_statement_for_output(statement)
     section = clean_section_title(item.section)
     return [
@@ -1795,6 +1796,28 @@ def learning_item_block(
         ":::",
         "",
     ]
+
+
+def compact_learning_item_title(kind: str, title: str) -> str:
+    title = title.strip()
+    kind_label = kind.replace("_", " ")
+    pattern = rf"^{re.escape(kind_label)}\s+(.+)$"
+    match = re.match(pattern, title, flags=re.IGNORECASE)
+    if match:
+        return match.group(1).strip()
+    return title
+
+
+def strip_leading_item_number(statement: str, number: str) -> str:
+    number = number.strip()
+    if not number:
+        return statement
+    return re.sub(
+        rf"^\s*{re.escape(number)}(?:\.|\b)\s*",
+        "",
+        statement.strip(),
+        count=1,
+    )
 
 
 def normalize_statement_for_output(statement: str) -> str:
@@ -1846,7 +1869,7 @@ def split_item_into_parts(item: LearningItem) -> tuple[str, list[LearningPart]]:
         end_line = starts[start_index + 1][0] if start_index + 1 < len(starts) else len(lines)
         part_lines = [first_line] if first_line else []
         part_lines.extend(lines[line_index + 1 : end_line])
-        part_statement = f"({marker}) " + "\n".join(part_lines).strip()
+        part_statement = "\n".join(part_lines).strip()
         title = f"{item.title}({marker})"
         parts.append(
             LearningPart(
