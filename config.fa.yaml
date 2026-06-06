@@ -1,6 +1,7 @@
 build_dir: build
 content_dir: content
 template_dir: templates
+geomdsl_dir: .geomdsl
 translations_csv: translate.fa.csv
 language: fa
 text_direction: rtl

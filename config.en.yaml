@@ -1,6 +1,7 @@
 build_dir: build
 content_dir: content
 template_dir: templates
+geomdsl_dir: .geomdsl
 context:
   twitter: "pykello"
   github: "pykello"
