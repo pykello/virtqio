@@ -1858,6 +1858,7 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
     for item in sheet.items:
         preamble, parts = item_parts_for_output(item)
         if parts:
+            lines.extend([f"## {parent_learning_item_title(item)}", ""])
             if preamble:
                 preamble = strip_leading_item_number(preamble, item.number)
                 lines.extend([normalize_statement_for_output(preamble), ""])
@@ -1949,6 +1950,15 @@ def compact_learning_item_title(kind: str, title: str) -> str:
     if match:
         return match.group(1).strip()
     return title
+
+
+def parent_learning_item_title(item: LearningItem) -> str:
+    title = item.title.strip()
+    kind_label = item.kind.replace("_", " ").title()
+    if re.match(rf"^{re.escape(kind_label)}\b", title, flags=re.IGNORECASE):
+        return title
+    compact_title = compact_learning_item_title(item.kind, title) or item.number
+    return f"{kind_label} {compact_title}".strip()
 
 
 def strip_leading_item_number(statement: str, number: str) -> str:
