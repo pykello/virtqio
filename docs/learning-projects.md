@@ -149,6 +149,20 @@ The ignored `.learning-cache` entries keep local PDF signatures so `--fast` can
 verify cache validity. The generated `extracted.json` is sanitized for commit
 and does not expose local PDF addresses.
 
+## Safe Regeneration
+
+Generated sheet pages are merge-aware. When a sheet already exists, the
+generator matches existing `:::learning-item` blocks by stable `id` and
+preserves:
+
+- manually changed item status values;
+- existing `:::proof[Solution]` blocks;
+- unmatched items that contain local status or proof work.
+
+Unmatched items with local work are moved under an `Orphaned Local Work`
+heading instead of being deleted. Placeholder todo items that no longer appear
+in the source are dropped.
+
 ## Expanding Projects
 
 Learning projects are incremental. To add more PDFs, append them to the

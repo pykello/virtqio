@@ -101,6 +101,14 @@ class Sheet:
     page_image_paths: list[str] = field(default_factory=list)
 
 
+@dataclass
+class ExistingLearningItem:
+    item_id: str
+    status: str
+    item_block: list[str]
+    proof_block: list[str]
+
+
 def main() -> int:
     configure_tesseract_data()
     parser = argparse.ArgumentParser(
@@ -1845,7 +1853,10 @@ def write_progress(project: dict[str, Any], output_dir: Path) -> None:
 
 def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None:
     slug = sheet_slug(sheet.number)
+    sheet_path = sheets_dir / f"{slug}.md"
     sheet_section = clean_section_title(sheet.section)
+    existing_items = parse_existing_learning_items(sheet_path)
+    used_existing_ids: set[str] = set()
     lines = [
         f"# {sheet.title}",
         "",
@@ -1874,8 +1885,10 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
                         item_id=item_id,
                         title=compact_learning_item_title(item.kind, part.title),
                         statement=part.statement,
+                        existing_item=existing_items.get(item_id),
                     )
                 )
+                used_existing_ids.add(item_id)
         else:
             item_id = f"{project['id']}-sheet-{sheet.number:02d}-{item.kind}-{item.number}"
             lines.extend(
@@ -1884,9 +1897,18 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
                     item_id=item_id,
                     title=compact_learning_item_title(item.kind, item.title),
                     statement=item.statement,
+                    existing_item=existing_items.get(item_id),
                 )
             )
-    (sheets_dir / f"{slug}.md").write_text("\n".join(lines).strip() + "\n")
+            used_existing_ids.add(item_id)
+    orphaned_items = [
+        existing
+        for item_id, existing in existing_items.items()
+        if item_id not in used_existing_ids and existing_learning_item_has_user_work(existing)
+    ]
+    if orphaned_items:
+        lines.extend(orphaned_learning_item_blocks(orphaned_items))
+    sheet_path.write_text("\n".join(lines).strip() + "\n")
 
 
 def source_lines(project: dict[str, Any]) -> list[str]:
@@ -1907,23 +1929,117 @@ def learning_item_block(
     item_id: str,
     title: str,
     statement: str,
+    existing_item: ExistingLearningItem | None = None,
 ) -> list[str]:
     statement = strip_leading_item_number(statement, item.number)
     statement = normalize_statement_for_output(statement)
     section = clean_section_title(item.section)
+    status = existing_item.status if existing_item and existing_item.status else item.status
+    proof_block = existing_item.proof_block if existing_item else default_solution_block()
     return [
         (
             f':::learning-item type={item.kind} id="{item_id}" '
-            f'section="{section}" status={item.status} title="{title}"'
+            f'section="{section}" status={status} title="{title}"'
         ),
         statement,
         ":::",
         "",
+        *proof_block,
+        "",
+    ]
+
+
+def default_solution_block() -> list[str]:
+    return [
         ":::proof[Solution]",
         "Write the solution here, then change the tracked item status to done.",
         ":::",
+    ]
+
+
+def parse_existing_learning_items(path: Path) -> dict[str, ExistingLearningItem]:
+    if not path.exists():
+        return {}
+    try:
+        lines = path.read_text().splitlines()
+    except OSError:
+        return {}
+    items: dict[str, ExistingLearningItem] = {}
+    index = 0
+    while index < len(lines):
+        if not lines[index].lstrip().startswith(":::learning-item"):
+            index += 1
+            continue
+        item_start = index
+        item_directive = lines[index].strip()
+        item_id = parse_directive_attribute(item_directive, "id")
+        status = parse_directive_attribute(item_directive, "status")
+        item_end = find_directive_end(lines, item_start + 1)
+        if item_end is None:
+            index += 1
+            continue
+        proof_start = item_end + 1
+        while proof_start < len(lines) and not lines[proof_start].strip():
+            proof_start += 1
+        proof_block: list[str] = []
+        index = item_end + 1
+        if proof_start < len(lines) and lines[proof_start].lstrip().startswith(":::proof"):
+            proof_end = find_directive_end(lines, proof_start + 1)
+            if proof_end is not None:
+                proof_block = lines[proof_start : proof_end + 1]
+                index = proof_end + 1
+        if item_id:
+            items.setdefault(
+                item_id,
+                ExistingLearningItem(
+                    item_id=item_id,
+                    status=status,
+                    item_block=lines[item_start : item_end + 1],
+                    proof_block=proof_block or default_solution_block(),
+                ),
+            )
+    return items
+
+
+def parse_directive_attribute(directive: str, name: str) -> str:
+    match = re.search(
+        rf"""{re.escape(name)}=(?:"([^"]*)"|'([^']*)'|([^\s]+))""",
+        directive,
+    )
+    if not match:
+        return ""
+    return next(group for group in match.groups() if group is not None)
+
+
+def find_directive_end(lines: list[str], start: int) -> int | None:
+    for index in range(start, len(lines)):
+        if re.fullmatch(r":{3,}", lines[index].strip()):
+            return index
+    return None
+
+
+def existing_learning_item_has_user_work(existing: ExistingLearningItem) -> bool:
+    if existing.status and existing.status != "todo":
+        return True
+    return existing.proof_block != default_solution_block()
+
+
+def orphaned_learning_item_blocks(items: list[ExistingLearningItem]) -> list[str]:
+    lines = [
+        "## Orphaned Local Work",
+        "",
+        (
+            "These items were not present in the latest generated source, "
+            "but local status or proof work was preserved."
+        ),
         "",
     ]
+    for item in items:
+        lines.extend(item.item_block)
+        lines.append("")
+        lines.extend(item.proof_block)
+        lines.append("")
+    return lines
 
 
 def item_parts_for_output(item: LearningItem) -> tuple[str, list[LearningPart]]:
