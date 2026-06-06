@@ -2,6 +2,8 @@
 
 ## Menelaus' Theorem
 
+Menelaus' theorem is a collinearity test for three points on the sidelines of a triangle. It says that a line cuts the three sidelines exactly when the product of the three directed side ratios is fixed.
+
 :::math
 D in AB,\quad E in BC,\quad F in CA
 
@@ -106,6 +108,8 @@ Thus the directed product is $-1$. In the drawn case, $F$ lies on the extension 
 :::
 
 ## Pascal's Theorem
+
+Pascal's theorem is a projective incidence theorem for six points on a conic. It says that the three intersections of opposite sides of the inscribed hexagon always fall on a single line, called the Pascal line.
 
 :::math
 set(A,B,C,D,E,F) subset cal{C}
