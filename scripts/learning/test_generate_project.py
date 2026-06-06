@@ -104,6 +104,92 @@ class WriteSheetTests(unittest.TestCase):
             self.assertEqual(stage["phases"]["cache-check"]["duration_s"], 0.125)
             self.assertEqual(stage["validation"]["warnings"], 1)
 
+    def test_auto_refinement_skips_clean_sheet(self) -> None:
+        sheet = gp.Sheet(
+            number=1,
+            pdf="",
+            title="Sheet 1",
+            section="Section",
+            extracted_markdown="",
+            items=[
+                gp.LearningItem(
+                    kind="exercise",
+                    number="1",
+                    title="Exercise 1",
+                    section="Section",
+                    statement="Show $a = b$.",
+                )
+            ],
+        )
+        progress = gp.ProgressReporter("demo", enabled=False)
+
+        selected = gp.select_sheets_for_refinement(
+            {"id": "demo"},
+            [sheet],
+            "auto",
+            progress=progress,
+        )
+
+        self.assertEqual(selected, [])
+        self.assertEqual(progress.events[-1].status, "skip")
+
+    def test_auto_refinement_queues_artifact_sheet(self) -> None:
+        sheet = gp.Sheet(
+            number=1,
+            pdf="",
+            title="Sheet 1",
+            section="Section",
+            extracted_markdown="",
+            items=[
+                gp.LearningItem(
+                    kind="exercise",
+                    number="1",
+                    title="Exercise 1",
+                    section="Section",
+                    statement="Show that a_nd b hold.",
+                )
+            ],
+        )
+        progress = gp.ProgressReporter("demo", enabled=False)
+
+        selected = gp.select_sheets_for_refinement(
+            {"id": "demo"},
+            [sheet],
+            "auto",
+            progress=progress,
+        )
+
+        self.assertEqual([sheet.number for sheet in selected], [1])
+        self.assertEqual(progress.events[-1].status, "queued")
+        self.assertIn("OCR split", progress.events[-1].message)
+
+    def test_refinement_policy_always_and_never_override_auto(self) -> None:
+        sheet = gp.Sheet(
+            number=1,
+            pdf="",
+            title="Sheet 1",
+            section="Section",
+            extracted_markdown="",
+            items=[
+                gp.LearningItem(
+                    kind="exercise",
+                    number="1",
+                    title="Exercise 1",
+                    section="Section",
+                    statement="Show $a = b$.",
+                )
+            ],
+        )
+
+        self.assertEqual(
+            gp.select_sheets_for_refinement({"id": "demo"}, [sheet], "always"),
+            [sheet],
+        )
+        self.assertEqual(
+            gp.select_sheets_for_refinement({"id": "demo"}, [sheet], "never"),
+            [],
+        )
+
     def test_normalize_sheet_ir_sorts_and_cleans_parts(self) -> None:
         sheet = gp.Sheet(
             number=1,

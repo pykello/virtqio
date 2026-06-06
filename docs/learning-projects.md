@@ -99,6 +99,20 @@ Force fresh extraction/refinement:
 python3 scripts/learning/generate_project.py /path/to/<project>.yaml --refresh-cache --write-json
 ```
 
+Force Codex/LLM refinement for every extracted cache miss:
+
+```sh
+python3 scripts/learning/generate_project.py /path/to/<project>.yaml \
+  --refresh-cache --refine-policy always --write-json
+```
+
+Disable Codex/LLM refinement:
+
+```sh
+python3 scripts/learning/generate_project.py /path/to/<project>.yaml \
+  --refine-policy never --write-json
+```
+
 Generate only selected sheets while debugging:
 
 ```sh
@@ -297,10 +311,21 @@ the same writer.
 
 ## Codex OCR Pass
 
-By default, the script assumes the `codex` CLI is installed and authenticated.
-For each cache miss, it renders PDF pages to temporary images and asks Codex to
-repair OCR/math formatting. If a Codex call times out, fails, or returns
-malformed JSON, that sheet falls back to deterministic extraction.
+By default, `--refine-policy auto` renders PDF pages for cache misses but only
+calls Codex when local extraction leaves structural validation errors, known OCR
+artifact warnings, omitted-formula placeholders, or malformed extraction
+markers. This keeps clean sheets fast while preserving Codex for the cases that
+need OCR/math repair. The progress output records `refine queued` or
+`refine skip` for each extracted sheet, and the same events are stored in the
+ignored run metadata.
+
+Use `--refine-policy always` to ask Codex to repair every extracted cache miss,
+which matches the older behavior. Use `--refine-policy never` to skip LLM
+refinement entirely.
+
+When a sheet is queued for the default Codex refiner, the script assumes the
+`codex` CLI is installed and authenticated. If a Codex call times out, fails,
+or returns malformed JSON, that sheet falls back to deterministic extraction.
 
 To use a different refiner, pass `--llm-command`. The command reads the JSON
 payload from stdin and writes refined JSON to stdout.

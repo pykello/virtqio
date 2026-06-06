@@ -294,14 +294,20 @@ def main() -> int:
         action="store_true",
         help="Do not print per-phase progress messages to stderr.",
     )
+    parser.add_argument(
+        "--refine-policy",
+        choices=["auto", "always", "never"],
+        default="auto",
+        help=(
+            "Control LLM/Codex refinement for extracted cache misses. "
+            "'auto' refines only sheets with validation or artifact warnings."
+        ),
+    )
     args = parser.parse_args()
-    use_codex_by_default = args.llm_command is None
-    if use_codex_by_default and not args.fast:
-        if not is_codex_available():
-            raise RuntimeError(
-                "codex CLI is not available. Install/ authenticate codex or pass --llm-command explicitly."
-            )
-        llm_command: str | None = _CODex_DEFAULT_COMMAND
+    if args.fast or args.refine_policy == "never":
+        llm_command: str | None = None
+    elif args.llm_command is None:
+        llm_command = _CODex_DEFAULT_COMMAND
     else:
         llm_command = args.llm_command
 
@@ -333,7 +339,8 @@ def main() -> int:
         (
             f"{len(sources)} sheet(s); "
             f"fast={'yes' if args.fast else 'no'}; "
-            f"cache={'refresh' if args.refresh_cache else 'reuse'}"
+            f"cache={'refresh' if args.refresh_cache else 'reuse'}; "
+            f"refine={args.refine_policy}"
         ),
     )
     with tempfile.TemporaryDirectory(prefix="learning-projects-") as scratch_dir:
@@ -384,18 +391,31 @@ def main() -> int:
             sheets.append(extracted)
             extracted_sheets.append(extracted)
 
-        if llm_command and extracted_sheets:
+        sheets_to_refine = select_sheets_for_refinement(
+            project,
+            extracted_sheets,
+            args.refine_policy,
+            progress=progress,
+        )
+
+        if llm_command and sheets_to_refine:
+            if llm_command == _CODex_DEFAULT_COMMAND and not is_codex_available():
+                progress.event("refine", "error", "codex CLI is not available")
+                raise RuntimeError(
+                    "codex CLI is not available. Install/ authenticate codex, "
+                    "pass --llm-command explicitly, or use --refine-policy never."
+                )
             progress.event(
                 "refine",
                 "start",
-                f"{len(extracted_sheets)} sheet(s) via {refiner_label(llm_command)}",
+                f"{len(sheets_to_refine)} sheet(s) via {refiner_label(llm_command)}",
             )
             refined_by_number = {
                 sheet.number: sheet
                 for sheet in refine_with_llm(
                     llm_command,
                     project,
-                    extracted_sheets,
+                    sheets_to_refine,
                     progress=progress,
                 )
             }
@@ -680,6 +700,7 @@ def build_run_options(
         "enhance_math": enhance_math,
         "ocr": not args.disable_ocr,
         "selected_sheets": sorted(selected_sheets) if selected_sheets else None,
+        "refine_policy": args.refine_policy,
         "refiner": refiner_label(llm_command) if llm_command else None,
     }
 
@@ -980,6 +1001,108 @@ def refiner_label(command: str) -> str:
     if command == _CODex_DEFAULT_COMMAND:
         return "codex"
     return "custom command"
+
+
+def select_sheets_for_refinement(
+    project: dict[str, Any],
+    sheets: list[Sheet],
+    refine_policy: str,
+    *,
+    progress: ProgressReporter | None = None,
+) -> list[Sheet]:
+    if refine_policy not in {"auto", "always", "never"}:
+        raise ValueError(f"unknown refine policy {refine_policy!r}")
+
+    selected: list[Sheet] = []
+    for sheet in sheets:
+        if refine_policy == "never":
+            if progress:
+                progress.event(
+                    "refine",
+                    "skip",
+                    "policy never",
+                    sheet=sheet.number,
+                )
+            continue
+        if refine_policy == "always":
+            selected.append(sheet)
+            if progress:
+                progress.event(
+                    "refine",
+                    "queued",
+                    "policy always",
+                    sheet=sheet.number,
+                )
+            continue
+
+        reasons = sheet_refinement_reasons(project, sheet)
+        if reasons:
+            selected.append(sheet)
+            if progress:
+                progress.event(
+                    "refine",
+                    "queued",
+                    "; ".join(reasons[:3]),
+                    sheet=sheet.number,
+                )
+        elif progress:
+            progress.event(
+                "refine",
+                "skip",
+                "local extraction passed quality checks",
+                sheet=sheet.number,
+            )
+    return selected
+
+
+def sheet_refinement_reasons(project: dict[str, Any], sheet: Sheet) -> list[str]:
+    normalized = normalize_sheet_ir(sheet)
+    text = "\n\n".join(item_content_text(item) for item in normalized.items)
+    reasons: list[str] = []
+    if not normalized.items:
+        reasons.append("no learning items detected")
+    reasons.extend(issue.message for issue in validate_sheet_ir(project, normalized))
+    reasons.extend(
+        issue.message
+        for issue in validate_artifact_patterns(Path(f"sheet {sheet.number}"), text)
+    )
+    artifact_score = extraction_artifact_score(text)
+    if artifact_score:
+        reasons.append(f"extraction artifact score {artifact_score}")
+    for item in normalized.items:
+        if is_minimal_learning_item(item):
+            reasons.append(f"{item.kind} {item.number} is minimal or missing")
+    return unique_reasons(reasons)
+
+
+def is_minimal_learning_item(item: LearningItem) -> bool:
+    content = item_content_text(item).strip()
+    if not content:
+        return True
+    if content == "[Formula or figure omitted by PDF extraction.]":
+        return True
+    number = item.number.strip()
+    if not number:
+        return False
+    return bool(
+        re.fullmatch(
+            rf"{re.escape(number)}(?:\.|\b)\s*"
+            r"(?:\[Formula or figure omitted by PDF extraction\.\])?",
+            content,
+        )
+    )
+
+
+def unique_reasons(reasons: list[str]) -> list[str]:
+    seen: set[str] = set()
+    unique: list[str] = []
+    for reason in reasons:
+        reason = reason.strip()
+        if not reason or reason in seen:
+            continue
+        seen.add(reason)
+        unique.append(reason)
+    return unique
 
 
 def codex_refinement_prompt() -> str:
