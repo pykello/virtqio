@@ -6,24 +6,40 @@ PAGE_FILES := $(shell \
 PAGE_TARGETS := $(patsubst content/%.md,build/%.html,$(PAGE_FILES))
 CONTENT_INDEX_FILES := $(shell find content -name "index.yaml")
 CONTENT_INDEX_TARGETS := $(patsubst content/%/index.yaml,build/%/index.html,$(CONTENT_INDEX_FILES))
+TEMPLATE_FILES := $(shell find templates -type f)
+CONFIG_FILES := config.en.yaml config.fa.yaml
+BUILD_SUPPORT_FILES := $(TEMPLATE_FILES) $(CONFIG_FILES) Makefile
+LEARNING_INDEX_FILES := $(shell find content -path "*/learning/*/index.md")
 
 all: copy_static $(CONTENT_TARGETS) $(CONTENT_INDEX_TARGETS) $(PAGE_TARGETS) build/index.html
 
 choose_config = $(if $(findstring content/fa/,$1),config.fa.yaml,config.en.yaml)
 
-build/%.html: content/%/metadata.yaml
+define add_content_dir_deps
+build/$(patsubst content/%/metadata.yaml,%,$1).html: $(shell find $(dir $1) -type f)
+endef
+
+$(foreach metadata,$(CONTENT_METADATA_FILES),$(eval $(call add_content_dir_deps,$(metadata))))
+
+define add_learning_index_deps
+build/$(patsubst content/%.md,%,$1).html: $(shell if [ -d $(dir $1)sheets ]; then find $(dir $1)sheets -type f -name '*.md'; fi)
+endef
+
+$(foreach index,$(LEARNING_INDEX_FILES),$(eval $(call add_learning_index_deps,$(index))))
+
+build/%.html: content/%/metadata.yaml $(BUILD_SUPPORT_FILES)
 	@echo "Generating $@ from $(dir $<)"
 	@ssg-content $(dir $<) --config $(call choose_config,$<)
 
-build/%.html: content/%.md
+build/%.html: content/%.md $(BUILD_SUPPORT_FILES)
 	@echo "Generating $@ from $<"
 	@ssg-content $< --config $(call choose_config,$<)
 
-build/%/index.html: content/%/index.yaml
+build/%/index.html: content/%/index.yaml $(BUILD_SUPPORT_FILES)
 	@echo "Generating $@ from $< (index)"
 	@ssg-list $< --config $(call choose_config,$<)
 
-build/index.html: content/index.yaml
+build/index.html: content/index.yaml $(BUILD_SUPPORT_FILES)
 	@echo "Generating $@ from $< (index)"
 	@ssg-list $< --config $(call choose_config,$<)
 

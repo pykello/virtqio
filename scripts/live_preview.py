@@ -364,8 +364,11 @@ class BuildWatcher(threading.Thread):
         self.stop_event.set()
 
     def run_build(self, reason: str) -> None:
-        print(f"[live] build start ({reason})", flush=True)
-        self.server.broadcast({"type": "build-start", "reason": reason})
+        command_label = " ".join(shlex.quote(part) for part in self.build_cmd)
+        print(f"[live] build start ({reason}): {command_label}", flush=True)
+        self.server.broadcast(
+            {"type": "build-start", "reason": reason, "command": command_label}
+        )
         started = time.monotonic()
         result = subprocess.run(
             self.build_cmd,
@@ -399,9 +402,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8000)
     parser.add_argument("--build-dir", type=Path, default=Path("build"))
-    parser.add_argument("--build-cmd", default="make -B")
-    parser.add_argument("--interval", type=float, default=0.4)
-    parser.add_argument("--debounce", type=float, default=0.6)
+    parser.add_argument("--build-cmd", default="make")
+    parser.add_argument("--interval", type=float, default=0.1)
+    parser.add_argument("--debounce", type=float, default=0.15)
     parser.add_argument("--no-initial-build", action="store_true")
     parser.add_argument(
         "--watch",
