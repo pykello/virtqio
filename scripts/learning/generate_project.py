@@ -43,10 +43,22 @@ _PYMUPDF4LLM_TIMEOUT_SECONDS = 90
 _TESSERACT_CMD = shutil.which("tesseract")
 _LOCAL_TESSDATA_DIR = Path(__file__).resolve().parent / "tessdata"
 
+OCR_WORD_ARTIFACTS = {
+    "a_nd": "and",
+    "o_r": "or",
+    "i_ng": "ing",
+    "i_nf": "inf",
+    "i_s": "is",
+    "o_ne": "one",
+    "a_s": "as",
+    "u_s": "us",
+}
+
 PROSE_WORDS = {
     "adapt",
     "all",
     "and",
+    "as",
     "argument",
     "axioms",
     "deduce",
@@ -54,10 +66,13 @@ PROSE_WORDS = {
     "from",
     "if",
     "in",
+    "is",
     "let",
     "line",
     "only",
+    "or",
     "prove",
+    "say",
     "show",
     "such",
     "that",
@@ -98,6 +113,7 @@ class Sheet:
     extracted_markdown: str
     items: list[LearningItem]
     item_parser: str = "sheet"
+    extractor: str = "auto"
     source_markdowns: dict[str, str] = field(default_factory=dict)
     ocr_markdown: str = ""
     page_image_paths: list[str] = field(default_factory=list)
@@ -116,6 +132,13 @@ class ValidationIssue:
     severity: str
     path: str
     message: str
+
+
+@dataclass
+class ChapterProblemSectionStart:
+    heading: str
+    start: int
+    content_start: int
 
 
 @dataclass
@@ -146,7 +169,7 @@ class ProgressReporter:
         self.events: list[ProgressEvent] = []
         if self.event_log_path is not None:
             self.event_log_path.parent.mkdir(parents=True, exist_ok=True)
-            self.event_log_path.write_text("")
+            atomic_write_text(self.event_log_path, "")
 
     def event(
         self,
@@ -230,6 +253,27 @@ def progress_event_to_json(event: ProgressEvent) -> dict[str, Any]:
 
 def build_run_id() -> str:
     return f"{time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())}-{os.getpid()}"
+
+
+def atomic_write_text(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp_name = tempfile.mkstemp(
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+        dir=path.parent,
+        text=True,
+    )
+    tmp_path = Path(tmp_name)
+    try:
+        with os.fdopen(fd, "w") as handle:
+            handle.write(content)
+        os.replace(tmp_path, path)
+    except Exception:
+        try:
+            tmp_path.unlink()
+        except OSError:
+            pass
+        raise
 
 
 def main() -> int:
@@ -560,6 +604,10 @@ def load_intermediate_cached_sheet(output_dir: Path, source: dict[str, Any]) -> 
             continue
         if sheet_payload.get("pdf") != signature["pdf"]:
             continue
+        if sheet_payload.get("item_parser", "sheet") != signature["item_parser"]:
+            continue
+        if sheet_payload.get("extractor", "auto") != signature["extractor"]:
+            continue
         try:
             sheet = sheet_from_json(sheet_payload)
         except (TypeError, ValueError):
@@ -581,11 +629,12 @@ def write_cached_sheet(cache_dir: Path, sheet: Sheet) -> None:
                 "pdf": sheet.pdf,
                 "title": sheet.title,
                 "item_parser": sheet.item_parser,
+                "extractor": sheet.extractor,
             }
         ),
         "sheet": cache_sheet,
     }
-    sheet_cache_path(cache_dir, sheet.number).write_text(json.dumps(payload, indent=2))
+    atomic_write_text(sheet_cache_path(cache_dir, sheet.number), json.dumps(payload, indent=2))
 
 
 def sheet_cache_path(cache_dir: Path, sheet_number: int) -> Path:
@@ -624,7 +673,7 @@ def write_progress_metadata(
             events,
             issues,
         )
-        stage_path.write_text(json.dumps(stage_payload, indent=2))
+        atomic_write_text(stage_path, json.dumps(stage_payload, indent=2))
         stage_files.append(str(stage_path))
 
     run_summary_path = runs_dir / f"{run_id}.summary.json"
@@ -640,7 +689,7 @@ def write_progress_metadata(
         "validation": summarize_validation_issues(issues),
         "stage_files": stage_files,
     }
-    run_summary_path.write_text(json.dumps(run_summary, indent=2))
+    atomic_write_text(run_summary_path, json.dumps(run_summary, indent=2))
     return {
         "run_summary": run_summary_path,
         "runs_dir": runs_dir,
@@ -669,6 +718,7 @@ def build_sheet_stage_metadata(
         "title": sheet.title,
         "section": sheet.section,
         "item_parser": sheet.item_parser,
+        "extractor": sheet.extractor,
         "item_count": len(sheet.items),
         "tracking_item_count": sum(
             len(learning_item_output_ids(project["id"], sheet.number, item))
@@ -779,6 +829,7 @@ def source_signature(source: dict[str, Any]) -> dict[str, Any]:
         "size": stat.st_size,
         "mtime_ns": stat.st_mtime_ns,
         "item_parser": str(source.get("item_parser", "sheet")),
+        "extractor": str(source.get("extractor", "auto")),
     }
 
 
@@ -797,6 +848,8 @@ def source_signature_matches(
             normalized["item_parser"] = item_parser_hint
         elif current.get("item_parser") == "sheet":
             normalized["item_parser"] = "sheet"
+    if "extractor" not in normalized:
+        normalized["extractor"] = "auto"
     return normalized == current
 
 
@@ -812,11 +865,12 @@ def extract_sheet(
     if not pdf_path.exists():
         raise FileNotFoundError(pdf_path)
 
-    llm_markdown = extract_pymupdf4llm_markdown(pdf_path)
+    extractor = str(source.get("extractor", "auto"))
+    llm_markdown = "" if extractor == "text" else extract_pymupdf4llm_markdown(pdf_path)
     text_markdown = clean_extracted_text(extract_pdf_text(pdf_path))
     ocr_markdown = ""
     page_images: list[str] = []
-    if use_ocr:
+    if use_ocr and extractor != "text":
         page_images = render_pdf_page_images(
             pdf_path,
             scratch_dir / f"sheet-{sheet_number:02d}",
@@ -831,11 +885,7 @@ def extract_sheet(
 
     markdown = choose_best_extraction(source_markdowns)
     item_parser = str(source.get("item_parser", "sheet"))
-    section = (
-        str(source["title"])
-        if item_parser in {"book", "numbered_exercises"} and source.get("title")
-        else infer_section(markdown, sheet_number)
-    )
+    section = default_sheet_section(source, markdown, sheet_number, item_parser)
     items = split_learning_items(markdown, sheet_number, section, item_parser)
     if enhance_math:
         items = enhance_items_math(items)
@@ -847,6 +897,7 @@ def extract_sheet(
         section=section,
         extracted_markdown=markdown,
         item_parser=item_parser,
+        extractor=extractor,
         source_markdowns=source_markdowns,
         ocr_markdown=ocr_markdown,
         page_image_paths=page_images,
@@ -1246,6 +1297,7 @@ def extraction_artifact_score(text: str) -> int:
 
 def clean_extracted_text(text: str) -> str:
     lines = [normalize_pdf_text_line(line) for line in text.splitlines()]
+    lines = strip_pdf_running_header_lines(lines)
     lines = [line for line in lines if keep_pdf_text_line(line)]
     lines = merge_pdf_text_lines(lines)
     return collapse_blank_lines("\n".join(lines)).strip()
@@ -1275,6 +1327,10 @@ def keep_pdf_text_line(line: str) -> bool:
     lower = line.lower()
     if line == "Analysis I" or line in {"—", "MT22"}:
         return False
+    if re.fullmatch(r"\d+\s+Chapter\s+\d+:.*", line):
+        return False
+    if re.fullmatch(r"(?:Review Questions|Exercises|Computer Problems)\s+\d+", line):
+        return False
     if re.fullmatch(r"Sheet \d+", line):
         return False
     if "mathematical institute, university of oxford" in lower:
@@ -1284,6 +1340,40 @@ def keep_pdf_text_line(line: str) -> bool:
     if re.fullmatch(r"Analysis I: Sheet \d+ — MT22", line):
         return False
     return True
+
+
+def strip_pdf_running_header_lines(lines: list[str]) -> list[str]:
+    cleaned: list[str] = []
+    index = 0
+    while index < len(lines):
+        line = lines[index].strip()
+        next_index = next_nonblank_line_index(lines, index + 1)
+
+        if re.fullmatch(r"\d+", line) and next_index is not None:
+            next_line = lines[next_index].strip()
+            if re.fullmatch(r"Chapter\s+\d+:.*", next_line):
+                index = next_index + 1
+                continue
+
+        if re.fullmatch(r"Chapter\s+\d+:.*", line):
+            index += 1
+            continue
+
+        if (
+            line.lower() in CHAPTER_PROBLEM_SECTIONS
+            and next_index is not None
+            and re.fullmatch(r"\d+", lines[next_index].strip())
+        ):
+            after_page_index = next_nonblank_line_index(lines, next_index + 1)
+            after_page = lines[after_page_index].strip() if after_page_index is not None else ""
+            if re.match(r"\d+\.\d{1,2}\.\s+", after_page):
+                cleaned.append(lines[index])
+            index = next_index + 1
+            continue
+
+        cleaned.append(lines[index])
+        index += 1
+    return cleaned
 
 
 def merge_pdf_text_lines(lines: list[str]) -> list[str]:
@@ -1379,6 +1469,21 @@ def infer_section(markdown: str, sheet_number: int) -> str:
     return f"Sheet {sheet_number}"
 
 
+def default_sheet_section(
+    source: dict[str, Any],
+    markdown: str,
+    sheet_number: int,
+    item_parser: str,
+) -> str:
+    if source.get("section"):
+        return str(source["section"])
+    if item_parser in {"book", "numbered_exercises", "chapter_problem_sections"}:
+        title = str(source.get("title", "")).strip()
+        if title:
+            return title
+    return infer_section(markdown, sheet_number)
+
+
 def clean_section_title(section: str) -> str:
     section = re.sub(r"\s*\[[^\]]+\]\s*$", "", section).strip()
     return section or "Sheet"
@@ -1392,6 +1497,10 @@ def split_learning_items(
 ) -> list[LearningItem]:
     if item_parser == "book":
         items = split_book_items(markdown, section)
+        if items:
+            return items
+    if item_parser == "chapter_problem_sections":
+        items = split_chapter_problem_section_items(markdown, sheet_number)
         if items:
             return items
     if item_parser == "numbered_exercises":
@@ -1457,6 +1566,265 @@ def trim_book_statement(statement: str, label: str) -> str:
             flags=re.IGNORECASE | re.S,
         ).strip()
     return statement
+
+
+CHAPTER_PROBLEM_SECTIONS = {
+    "review questions": ("review_question", "Review Question", "Review Questions"),
+    "exercises": ("exercise", "Exercise", "Exercises"),
+    "computer problems": (
+        "computer_problem",
+        "Computer Problem",
+        "Computer Problems",
+    ),
+}
+
+
+def split_chapter_problem_section_items(
+    markdown: str,
+    chapter_number: int,
+) -> list[LearningItem]:
+    text = prepare_chapter_problem_section_text(markdown, chapter_number)
+    section_starts = find_chapter_problem_section_starts(text, chapter_number)
+    items: list[LearningItem] = []
+    for index, section_start in enumerate(section_starts):
+        heading = section_start.heading
+        section_key = heading.lower()
+        kind, title_prefix, section = CHAPTER_PROBLEM_SECTIONS[section_key]
+        end = section_starts[index + 1].start if index + 1 < len(section_starts) else len(text)
+        section_text = text[section_start.content_start:end].strip()
+        items.extend(
+            split_chapter_problem_items_in_section(
+                section_text,
+                chapter_number,
+                kind,
+                title_prefix,
+                section,
+            )
+        )
+    return items
+
+
+def find_chapter_problem_section_starts(
+    text: str,
+    chapter_number: int,
+) -> list[ChapterProblemSectionStart]:
+    section_pattern = re.compile(
+        rf"(?i)\b(Review Questions|Exercises|Computer Problems)\s+"
+        rf"(?:\d+\s+)?(?={chapter_number}\.\d{{1,2}}\.)"
+    )
+    starts = [
+        ChapterProblemSectionStart(
+            heading=match.group(1),
+            start=match.start(),
+            content_start=match.end(),
+        )
+        for match in section_pattern.finditer(text)
+    ]
+    starts.extend(infer_missing_chapter_problem_section_starts(text, chapter_number, starts))
+    starts.sort(key=lambda section: section.start)
+    deduped: list[ChapterProblemSectionStart] = []
+    for section in starts:
+        if deduped and section.heading.lower() == deduped[-1].heading.lower():
+            continue
+        deduped.append(section)
+    return deduped
+
+
+def infer_missing_chapter_problem_section_starts(
+    text: str,
+    chapter_number: int,
+    explicit_starts: list[ChapterProblemSectionStart],
+) -> list[ChapterProblemSectionStart]:
+    inferred: list[ChapterProblemSectionStart] = []
+    explicit_sections = {section.heading.lower() for section in explicit_starts}
+    exercises_start = next(
+        (section.start for section in explicit_starts if section.heading.lower() == "exercises"),
+        len(text),
+    )
+
+    if "review questions" not in explicit_sections:
+        review_start = find_first_chapter_problem_item_start(
+            text[:exercises_start],
+            chapter_number,
+            number=f"{chapter_number}.1",
+            required_text="True or false",
+        )
+        if review_start is not None:
+            inferred.append(
+                ChapterProblemSectionStart(
+                    heading="Review Questions",
+                    start=review_start,
+                    content_start=review_start,
+                )
+            )
+
+    if "computer problems" not in explicit_sections and "exercises" in explicit_sections:
+        exercise_section = next(
+            section for section in explicit_starts if section.heading.lower() == "exercises"
+        )
+        reset_starts = find_chapter_problem_item_starts(
+            text,
+            chapter_number,
+            number=f"{chapter_number}.1",
+            start=exercise_section.content_start,
+        )
+        if len(reset_starts) >= 2:
+            inferred.append(
+                ChapterProblemSectionStart(
+                    heading="Computer Problems",
+                    start=reset_starts[1],
+                    content_start=reset_starts[1],
+                )
+            )
+    return inferred
+
+
+def find_first_chapter_problem_item_start(
+    text: str,
+    chapter_number: int,
+    *,
+    number: str,
+    required_text: str | None = None,
+) -> int | None:
+    starts = find_chapter_problem_item_starts(
+        text,
+        chapter_number,
+        number=number,
+    )
+    for start in starts:
+        if required_text is None or required_text.lower() in text[start : start + 120].lower():
+            return start
+    return None
+
+
+def find_chapter_problem_item_starts(
+    text: str,
+    chapter_number: int,
+    *,
+    number: str | None = None,
+    start: int = 0,
+) -> list[int]:
+    number_pattern = re.escape(number) if number else rf"{chapter_number}\.\d{{1,2}}"
+    starts: list[int] = []
+    for match in re.finditer(rf"(?<![\d.])({number_pattern})\.\s+", text[start:]):
+        absolute_start = start + match.start()
+        if is_chapter_problem_item_start(text, absolute_start):
+            starts.append(absolute_start)
+    return starts
+
+
+def split_chapter_problem_items_in_section(
+    section_text: str,
+    chapter_number: int,
+    kind: str,
+    title_prefix: str,
+    section: str,
+) -> list[LearningItem]:
+    starts = [
+        match
+        for match in re.finditer(
+            rf"(?<![\d.])({chapter_number}\.\d{{1,2}})\.\s+",
+            section_text,
+        )
+        if is_chapter_problem_item_start(section_text, match.start())
+    ]
+    items: list[LearningItem] = []
+    for index, match in enumerate(starts):
+        number = match.group(1)
+        end = starts[index + 1].start() if index + 1 < len(starts) else len(section_text)
+        statement = collapse_blank_lines(section_text[match.start() : end]).strip()
+        statement = trim_numbered_exercise_statement(statement)
+        if not statement:
+            continue
+        items.append(
+            LearningItem(
+                kind=kind,
+                number=number,
+                title=f"{title_prefix} {number}",
+                section=section,
+                statement=statement,
+            )
+        )
+    return items
+
+
+def prepare_chapter_problem_section_text(markdown: str, chapter_number: int) -> str:
+    text = strip_problem_section_running_headers(strip_sheet_headers(markdown))
+    text = re.sub(
+        rf"(?m)^\d+\s+Chapter\s+{chapter_number}:[^\n]*?\s+(?={chapter_number}\.\d{{1,2}}\.)",
+        "",
+        text,
+    )
+    text = re.sub(
+        rf"(?m)(Review Questions|Exercises|Computer Problems)\s+\d+\s+(?=(?:Review Questions|Exercises|Computer Problems|{chapter_number}\.\d{{1,2}}\b))",
+        "",
+        text,
+    )
+    return collapse_blank_lines(text)
+
+
+def strip_problem_section_running_headers(text: str) -> str:
+    lines = text.splitlines()
+    output: list[str] = []
+    index = 0
+    while index < len(lines):
+        stripped = lines[index].strip()
+        next_index = next_nonblank_line_index(lines, index + 1)
+        if (
+            stripped.lower() in CHAPTER_PROBLEM_SECTIONS
+            and next_index is not None
+            and re.fullmatch(r"\d+", lines[next_index].strip())
+        ):
+            index = next_index + 1
+            continue
+        output.append(lines[index])
+        index += 1
+    return collapse_blank_lines("\n".join(output))
+
+
+def next_nonblank_line_index(lines: list[str], start: int) -> int | None:
+    for index in range(start, len(lines)):
+        if lines[index].strip():
+            return index
+    return None
+
+
+def is_chapter_problem_item_start(text: str, start: int) -> bool:
+    prefix = text[max(0, start - 16) : start]
+    if re.search(r"(?:Example|Table|Figure|Section|Sect)\s*$", prefix, re.IGNORECASE):
+        return False
+    if looks_like_problem_prompt_start(text[start : start + 120]):
+        return True
+    if start > 0 and text[start - 1] == "\n":
+        return True
+    previous = previous_nonspace_character(text, start)
+    if previous is None:
+        return True
+    if previous in ".?!)]":
+        return True
+    return bool(
+        re.search(
+            r"(?:Review Questions|Exercises|Computer Problems)\s*$",
+            text[max(0, start - 32) : start],
+            re.IGNORECASE,
+        )
+    )
+
+
+def looks_like_problem_prompt_start(text: str) -> bool:
+    return bool(
+        re.match(
+            r"\d+\.\d{1,2}\.\s+(?:\$?\([a-z]\)|[Tt]rue or false|[A-Z])",
+            text,
+        )
+    )
+
+
+def previous_nonspace_character(text: str, start: int) -> str | None:
+    for index in range(start - 1, -1, -1):
+        if not text[index].isspace():
+            return text[index]
+    return None
 
 
 def split_numbered_exercise_items(
@@ -1612,6 +1980,7 @@ def enhance_math_line(line: str) -> str:
     if is_complex_extraction_line(line):
         return minimal_cleanup_line(line)
 
+    line = normalize_ocr_word_artifacts(line)
     line = normalize_unicode_math(line)
     line = normalize_plain_number_systems(line)
     line = normalize_plain_powers(line)
@@ -1684,6 +2053,7 @@ def is_complex_extraction_line(line: str) -> bool:
 
 
 def minimal_cleanup_line(line: str) -> str:
+    line = normalize_ocr_word_artifacts(line)
     line = line.replace("\x00", "")
     line = line.replace("⩽", "<=").replace("≤", "<=")
     line = line.replace("⩾", ">=").replace("≥", ">=")
@@ -1726,6 +2096,16 @@ def normalize_unicode_math(text: str) -> str:
     return text
 
 
+def normalize_ocr_word_artifacts(text: str) -> str:
+    for artifact, replacement in OCR_WORD_ARTIFACTS.items():
+        text = re.sub(
+            rf"(?<![A-Za-z0-9]){re.escape(artifact)}(?![A-Za-z0-9])",
+            replacement,
+            text,
+        )
+    return text
+
+
 def normalize_plain_number_systems(line: str) -> str:
     line = re.sub(
         r"\b([RNZQC])\s*(>=|<=|>|<|=)\s*(\d+)\b",
@@ -1737,7 +2117,6 @@ def normalize_plain_number_systems(line: str) -> str:
         lambda m: f"$bb{{{m.group(1)}}}^{m.group(2)}$",
         line,
     )
-    line = re.sub(r"(?<!\{)\b([RNZQC])\b(?!\})", lambda m: f"$bb{{{m.group(1)}}}$", line)
     return line
 
 
@@ -1843,19 +2222,18 @@ def format_math_fragment(fragment: str) -> str:
         lambda m: f"bb{{{m.group(1)}}}^{m.group(2)}",
         fragment,
     )
-    fragment = re.sub(r"(?<!\{)\b([RNZQC])\b(?!\})", lambda m: f"bb{{{m.group(1)}}}", fragment)
     fragment = re.sub(
         r"\b([A-Za-z])([0-9]+)\b",
         lambda m: f"{m.group(1)}^{m.group(2)}",
         fragment,
     )
     fragment = re.sub(
-        r"\b(?!in\b|inf\b)([A-Za-z])([nmkrs])\b",
+        r"\b(?!(?:in|inf|is|as|us)\b)([A-Za-z])([nmkrs])\b",
         lambda m: f"{m.group(1)}_{m.group(2)}",
         fragment,
     )
     fragment = re.sub(
-        r"\b([A-Za-z])([nmkrs])([A-Za-z])\b",
+        r"\b(?!(?:and|ing|one)\b)([A-Za-z])([nmkrs])([A-Za-z])\b",
         lambda m: f"{m.group(1)}_{m.group(2)}{m.group(3)}",
         fragment,
     )
@@ -2206,6 +2584,7 @@ def merge_refined_sheet(refined: Sheet, original: Sheet) -> Sheet:
         extracted_markdown=refined_extracted_markdown,
         items=best_items,
         item_parser=original.item_parser,
+        extractor=original.extractor,
         source_markdowns=unescape_text_artifacts_json_object(refined.source_markdowns)
         if refined.source_markdowns
         else original.source_markdowns,
@@ -2227,6 +2606,7 @@ def normalize_sheet_ir(sheet: Sheet) -> Sheet:
         extracted_markdown=sheet.extracted_markdown,
         items=[normalize_learning_item_ir(item) for item in sheet.items],
         item_parser=sheet.item_parser or "sheet",
+        extractor=sheet.extractor or "auto",
         source_markdowns=sheet.source_markdowns,
         ocr_markdown=sheet.ocr_markdown,
         page_image_paths=sheet.page_image_paths,
@@ -2249,9 +2629,9 @@ def normalize_learning_item_ir(item: LearningItem) -> LearningItem:
         number=number,
         title=title,
         section=section,
-        statement=item.statement.strip(),
+        statement=normalize_ocr_word_artifacts(item.statement.strip()),
         status=item.status.strip() or "todo",
-        preamble=item.preamble.strip(),
+        preamble=normalize_ocr_word_artifacts(item.preamble.strip()),
         parts=parts,
     )
 
@@ -2265,7 +2645,11 @@ def normalize_learning_part_ir(part: LearningPart, item_title: str) -> LearningP
     marker = normalize_part_marker(part.marker)
     title = part.title.strip() or f"{item_title}({marker})"
     statement = strip_leading_part_marker(part.statement.strip(), marker)
-    return LearningPart(marker=marker, title=title, statement=statement)
+    return LearningPart(
+        marker=marker,
+        title=title,
+        statement=normalize_ocr_word_artifacts(statement),
+    )
 
 
 def normalize_part_marker(marker: str) -> str:
@@ -2295,12 +2679,18 @@ def statement_artifact_score(text: str) -> int:
         + text.count("�") * 20
         + text.count("a_nd") * 10
         + text.count("o_r") * 10
+        + text.count("i_ng") * 10
+        + text.count("i_nf") * 10
+        + text.count("i_s") * 10
+        + text.count("o_ne") * 10
+        + text.count("a_s") * 10
+        + text.count("u_s") * 10
         + text.count("⎛") * 2
         + text.count("⎜") * 2
         + text.count("⎟") * 2
         + text.count("⎞") * 2
         + len(re.findall(r"\$bb\{[A-Z]\}[^$\n]*\$\.[A-Za-z]", text)) * 5
-        + len(re.findall(r"\b[ao]_nd\b|\bo_r\b", text)) * 10
+        + len(re.findall(r"\b(?:a_nd|o_r|i_ng|i_nf|i_s|o_ne|a_s|u_s)\b", text)) * 10
         + len(re.findall(r"\$[^$\n]{0,4}\$", text)) * 2
         + len(re.findall(r"\b(?:an|bn|cn|sn|ak|zn)\b", text)) * 2
     )
@@ -2486,7 +2876,7 @@ def write_progress(project: dict[str, Any], output_dir: Path) -> None:
 :::learning-progress root="sheets" title="{title} Progress"
 :::
 """
-    (output_dir / "index.md").write_text(content)
+    atomic_write_text(output_dir / "index.md", content)
 
 
 def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None:
@@ -2542,7 +2932,7 @@ def write_sheet(project: dict[str, Any], sheets_dir: Path, sheet: Sheet) -> None
     ]
     if orphaned_items:
         lines.extend(orphaned_learning_item_blocks(orphaned_items))
-    sheet_path.write_text("\n".join(lines).strip() + "\n")
+    atomic_write_text(sheet_path, "\n".join(lines).strip() + "\n")
 
 
 def learning_item_output_id(
@@ -2770,7 +3160,33 @@ def strip_leading_part_marker(statement: str, marker: str) -> str:
 
 def normalize_statement_for_output(statement: str) -> str:
     statement = flatten_nested_math_directives(statement.strip())
-    return normalize_supported_math_shorthand(statement)
+    statement = normalize_supported_math_shorthand(statement)
+    statement = normalize_ocr_word_artifacts(statement)
+    return strip_output_running_headers(statement).strip()
+
+
+def strip_output_running_headers(statement: str) -> str:
+    statement = re.sub(
+        r"(?m)^\s*(?:Review Questions|Exercises|Computer Problems)\s*$",
+        "",
+        statement,
+    )
+    statement = re.sub(
+        r"(?m)^\s*(?:Review Questions|Exercises|Computer Problems)\s+\d+\s*$",
+        "",
+        statement,
+    )
+    statement = re.sub(
+        r"(?m)^\s*\d+\s+Chapter\s+\d+:[^\n]*\s*$",
+        "",
+        statement,
+    )
+    statement = re.sub(
+        r"\b(?:Review Questions|Exercises|Computer Problems)\s+\d+\s+",
+        "",
+        statement,
+    )
+    return collapse_blank_lines(statement)
 
 
 def flatten_nested_math_directives(statement: str) -> str:
@@ -2797,7 +3213,8 @@ def flatten_nested_math_directives(statement: str) -> str:
 
 
 def split_item_into_parts(item: LearningItem) -> tuple[str, list[LearningPart]]:
-    lines = item.statement.strip().splitlines()
+    statement = strip_leading_item_number(item.statement.strip(), item.number)
+    lines = statement.splitlines()
     starts: list[tuple[int, str, str]] = []
     part_pattern = re.compile(
         r"^\s*(?:\d+\.\s*)?(?:-\s*)?\(([a-z]|[ivxlcdm]+)\)\s*(.*)$",
@@ -2876,7 +3293,7 @@ def write_intermediate_json(output_dir: Path, project: dict[str, Any], sheets: l
             for number in sorted(existing_sheets)
         ],
     }
-    (output_dir / "extracted.json").write_text(json.dumps(payload, indent=2))
+    atomic_write_text(output_dir / "extracted.json", json.dumps(payload, indent=2))
 
 
 def validate_learning_project_output(
@@ -2989,6 +3406,12 @@ def validate_artifact_patterns(path: Path, text: str) -> list[ValidationIssue]:
     patterns = {
         "a_nd": "OCR split the word 'and'",
         "o_r": "OCR split the word 'or'",
+        "i_ng": "OCR split the word 'ing'",
+        "i_nf": "OCR split the word 'inf'",
+        "i_s": "OCR split the word 'is'",
+        "o_ne": "OCR split the word 'one'",
+        "a_s": "OCR split the word 'as'",
+        "u_s": "OCR split the word 'us'",
         "�": "replacement character remains",
         "[unreadable math symbol]": "unreadable math placeholder remains",
         "⎛": "matrix box-drawing glyph remains",
@@ -3005,6 +3428,25 @@ def validate_artifact_patterns(path: Path, text: str) -> list[ValidationIssue]:
                     "warning",
                     str(path),
                     f"{message}: {pattern!r} appears {count} time(s)",
+                )
+            )
+    running_header_patterns = {
+        r"(?m)^\s*(?:Review Questions|Exercises|Computer Problems)\s*$": (
+            "problem-section running header remains"
+        ),
+        r"\b(?:Review Questions|Exercises|Computer Problems)\s+\d+\b": (
+            "problem-section running header remains"
+        ),
+        r"(?m)^\s*\d+\s+Chapter\s+\d+:": "chapter running header remains",
+    }
+    for pattern, message in running_header_patterns.items():
+        count = len(re.findall(pattern, text))
+        if count:
+            issues.append(
+                ValidationIssue(
+                    "warning",
+                    str(path),
+                    f"{message}: pattern {pattern!r} appears {count} time(s)",
                 )
             )
     return issues
@@ -3064,6 +3506,7 @@ def sheet_from_json(data: dict[str, Any]) -> Sheet:
         extracted_markdown=data.get("extracted_markdown", ""),
         items=[learning_item_from_json(item) for item in data.get("items", [])],
         item_parser=data.get("item_parser", "sheet"),
+        extractor=data.get("extractor", "auto"),
         source_markdowns=data.get("source_markdowns", {}),
         ocr_markdown=data.get("ocr_markdown", ""),
         page_image_paths=data.get("page_image_paths", []),

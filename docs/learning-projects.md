@@ -47,11 +47,20 @@ Fields:
   resolved from the YAML config file's directory.
 - `sources[].title`: optional generated page title for that source. This is
   useful when sources are book chapters instead of problem sheets.
+- `sources[].section`: optional page section label. Book-style parsers default
+  this to `sources[].title`; sheet-style parsers infer it from the PDF text.
 - `sources[].item_parser`: optional parser mode. Use `book` for split book
   chapters so the generator tracks numbered `Problem`, `Exercise`, and
   proof-as-exercise `Proposition` entries instead of sheet-style numbered
   questions. Use `numbered_exercises` for book chapters whose exercises live
   in an `N.M Exercises` section and are numbered like `N.1`, `N.2`, and so on.
+  Use `chapter_problem_sections` for textbook chapters whose end matter has
+  sections such as `Review Questions`, `Exercises`, and `Computer Problems`
+  numbered like `N.1`, `N.2`, and so on.
+- `sources[].extractor`: optional extraction mode. Omit it or use `auto` to try
+  `pymupdf4llm`, fitz text, and OCR candidates. Use `text` for PDFs where
+  `pymupdf4llm` is known to time out or produce worse output; this uses fitz
+  text directly and skips OCR image rendering for that source.
 
 Generated pages and `extracted.json` never include local PDF file paths. The
 `pdf` values are only used by the extraction script and ignored cache; use
@@ -213,9 +222,9 @@ Structural issues fail generation, including:
 - missing progress index or `:::learning-progress` block.
 
 Extraction-quality concerns are warnings rather than failures. These include
-common OCR artifacts such as `a_nd`, `o_r`, replacement characters, and matrix
-box-drawing glyphs. Use `--no-validate` only when debugging the generator or
-when you intentionally need to inspect broken intermediate output.
+common OCR artifacts such as `a_nd`, `o_r`, `i_s`, replacement characters, and
+matrix box-drawing glyphs. Use `--no-validate` only when debugging the generator
+or when you intentionally need to inspect broken intermediate output.
 
 ## Expanding Projects
 

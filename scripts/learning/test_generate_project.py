@@ -146,7 +146,7 @@ class WriteSheetTests(unittest.TestCase):
                     number="1",
                     title="Exercise 1",
                     section="Section",
-                    statement="Show that a_nd b hold.",
+                    statement="Show that � b hold.",
                 )
             ],
         )
@@ -161,7 +161,7 @@ class WriteSheetTests(unittest.TestCase):
 
         self.assertEqual([sheet.number for sheet in selected], [1])
         self.assertEqual(progress.events[-1].status, "queued")
-        self.assertIn("OCR split", progress.events[-1].message)
+        self.assertIn("replacement character", progress.events[-1].message)
 
     def test_refinement_policy_always_and_never_override_auto(self) -> None:
         sheet = gp.Sheet(
@@ -189,6 +189,155 @@ class WriteSheetTests(unittest.TestCase):
             gp.select_sheets_for_refinement({"id": "demo"}, [sheet], "never"),
             [],
         )
+
+    def test_chapter_problem_sections_split_overlapping_numbers(self) -> None:
+        markdown = "\n".join(
+            [
+                "Review Questions",
+                "39",
+                "Review Questions",
+                "1.1. True or false: A problem is ill-conditioned.",
+                "1.2. Explain conditioning.",
+                "",
+                "Exercises",
+                "41",
+                "(continued review page header)",
+                "",
+                "Exercises",
+                "1.1. Compute an error.",
+                "(a) Absolute error.",
+                "(b) Relative error.",
+                "1.2. Let x = 1.23456 and y =",
+                "1.23579.",
+                "(a) How many significant digits does y - x contain?",
+                "",
+                "42 Chapter 1: Scientific Computing",
+                "1.3. Header text should not leak into this item.",
+                "",
+                "Computer Problems",
+                "44",
+                "Computer Problems",
+                "1.1. Write a program.",
+            ]
+        )
+
+        items = gp.split_chapter_problem_section_items(markdown, 1)
+
+        self.assertEqual(
+            [(item.kind, item.number, item.section) for item in items],
+            [
+                ("review_question", "1.1", "Review Questions"),
+                ("review_question", "1.2", "Review Questions"),
+                ("exercise", "1.1", "Exercises"),
+                ("exercise", "1.2", "Exercises"),
+                ("exercise", "1.3", "Exercises"),
+                ("computer_problem", "1.1", "Computer Problems"),
+            ],
+        )
+        self.assertIn("(a) Absolute error.", items[2].statement)
+        self.assertIn("1.23579", items[3].statement)
+        self.assertNotIn("Chapter 1", items[4].statement)
+        self.assertEqual(
+            [
+                gp.learning_item_output_id("demo", 1, item)
+                for item in items
+            ],
+            [
+                "demo-sheet-01-review_question-1.1",
+                "demo-sheet-01-review_question-1.2",
+                "demo-sheet-01-exercise-1.1",
+                "demo-sheet-01-exercise-1.2",
+                "demo-sheet-01-exercise-1.3",
+                "demo-sheet-01-computer_problem-1.1",
+            ],
+        )
+
+    def test_chapter_problem_section_uses_configured_title_as_section(self) -> None:
+        source = {"title": "Chapter 1: Scientific Computing"}
+
+        section = gp.default_sheet_section(
+            source,
+            "1.1. True or false: A problem is ill-conditioned.",
+            1,
+            "chapter_problem_sections",
+        )
+
+        self.assertEqual(section, "Chapter 1: Scientific Computing")
+
+    def test_text_cleanup_removes_scientific_computing_headers(self) -> None:
+        text = "\n".join(
+            [
+                "Estimate the relative error in evaluating",
+                "42",
+                "Chapter 1: Scientific Computing",
+                "sin(x).",
+                "Computer Problems",
+                "101",
+                "to solve the resulting system.",
+                "Exercises",
+                "41",
+                "1.1. Compute an error.",
+            ]
+        )
+
+        cleaned = gp.clean_extracted_text(text)
+
+        self.assertNotIn("Chapter 1", cleaned)
+        self.assertNotIn("Computer Problems 101", cleaned)
+        self.assertIn("to solve the resulting system.", cleaned)
+        self.assertIn("Exercises", cleaned)
+        self.assertIn("1.1. Compute an error.", cleaned)
+
+    def test_output_cleanup_removes_scientific_computing_headers(self) -> None:
+        lines = [
+            "42 Chapter 1: Scientific Computing",
+            "Exercises 41",
+            "Exercises",
+            "Computer Problems 101 to solve the resulting system.",
+            "Actual problem statement.",
+        ]
+
+        cleaned = gp.normalize_statement_for_output("\n".join(lines))
+
+        self.assertNotIn("Chapter 1", cleaned)
+        self.assertNotIn("Exercises 41", cleaned)
+        self.assertNotIn("\nExercises\n", f"\n{cleaned}\n")
+        self.assertNotIn("Computer Problems 101", cleaned)
+        self.assertIn("to solve the resulting system.", cleaned)
+        self.assertIn("Actual problem statement.", cleaned)
+
+    def test_math_cleanup_preserves_words_and_matrix_names(self) -> None:
+        statement = "Let C = A + iB and say, s and t. Is C nonsingular?"
+
+        enhanced = gp.enhance_math_line(statement)
+        output = gp.normalize_statement_for_output("$x = 0.1, a_nd 1.0$ and $i_s x$")
+
+        self.assertNotIn("bb{C}", enhanced)
+        self.assertNotIn("a_nd", output)
+        self.assertNotIn("i_s", output)
+        self.assertIn("and", output)
+        self.assertIn("is", output)
+
+    def test_split_item_into_parts_handles_chapter_numbered_first_part(self) -> None:
+        item = gp.LearningItem(
+            kind="review_question",
+            number="1.24",
+            title="Review Question 1.24",
+            section="Review Questions",
+            statement="\n".join(
+                [
+                    "1.24. (a) Explain forward error.",
+                    " - (b) Explain backward error.",
+                ]
+            ),
+        )
+
+        preamble, parts = gp.split_item_into_parts(item)
+
+        self.assertEqual(preamble, "")
+        self.assertEqual([part.marker for part in parts], ["a", "b"])
+        self.assertEqual(parts[0].statement, "Explain forward error.")
+        self.assertEqual(parts[1].statement, "Explain backward error.")
 
     def test_normalize_sheet_ir_sorts_and_cleans_parts(self) -> None:
         sheet = gp.Sheet(
