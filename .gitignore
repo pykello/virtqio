@@ -3,3 +3,4 @@ ssg/*
 ssg
 pandoc*
 .geomdsl/
+content/private/

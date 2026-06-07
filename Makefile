@@ -1,28 +1,30 @@
-CONTENT_METADATA_FILES := $(shell find content -name "metadata.yaml")
+FIND_CONTENT = find content \( -path "*/.git" -o -path "*/.git/*" \) -prune -o
+
+CONTENT_METADATA_FILES := $(shell $(FIND_CONTENT) -name "metadata.yaml" -print)
 CONTENT_TARGETS := $(patsubst content/%/metadata.yaml,build/%.html,$(CONTENT_METADATA_FILES))
 PAGE_FILES := $(shell \
-        find content -type f -name '*.md' \
+        $(FIND_CONTENT) -type f -name '*.md' \
              \! -execdir test -e metadata.yaml \; -print)
 PAGE_TARGETS := $(patsubst content/%.md,build/%.html,$(PAGE_FILES))
-CONTENT_INDEX_FILES := $(shell find content -name "index.yaml")
+CONTENT_INDEX_FILES := $(shell $(FIND_CONTENT) -name "index.yaml" -print)
 CONTENT_INDEX_TARGETS := $(patsubst content/%/index.yaml,build/%/index.html,$(CONTENT_INDEX_FILES))
 TEMPLATE_FILES := $(shell find templates -type f)
 CONFIG_FILES := config.en.yaml config.fa.yaml
 BUILD_SUPPORT_FILES := $(TEMPLATE_FILES) $(CONFIG_FILES) Makefile
-LEARNING_INDEX_FILES := $(shell find content -path "*/learning/*/index.md")
+LEARNING_INDEX_FILES := $(shell $(FIND_CONTENT) -path "*/learning/*/index.md" -print)
 
 all: copy_static $(CONTENT_TARGETS) $(CONTENT_INDEX_TARGETS) $(PAGE_TARGETS) build/index.html
 
 choose_config = $(if $(findstring content/fa/,$1),config.fa.yaml,config.en.yaml)
 
 define add_content_dir_deps
-build/$(patsubst content/%/metadata.yaml,%,$1).html: $(shell find $(dir $1) -type f)
+build/$(patsubst content/%/metadata.yaml,%,$1).html: $(shell find $(dir $1) \( -path "*/.git" -o -path "*/.git/*" \) -prune -o -type f -print)
 endef
 
 $(foreach metadata,$(CONTENT_METADATA_FILES),$(eval $(call add_content_dir_deps,$(metadata))))
 
 define add_learning_index_deps
-build/$(patsubst content/%.md,%,$1).html: $(shell if [ -d $(dir $1)sheets ]; then find $(dir $1)sheets -type f -name '*.md'; fi)
+build/$(patsubst content/%.md,%,$1).html: $(shell if [ -d $(dir $1)sheets ]; then find $(dir $1)sheets \( -path "*/.git" -o -path "*/.git/*" \) -prune -o -type f -name '*.md' -print; fi)
 endef
 
 $(foreach index,$(LEARNING_INDEX_FILES),$(eval $(call add_learning_index_deps,$(index))))
