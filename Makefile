@@ -37,9 +37,12 @@ clean:
 	@echo "Cleaning up"
 	@rm -rf build
 
-.PHONY: all clean copy_static
+.PHONY: all clean copy_static http live
 
 http:
 	@echo "Starting HTTP server"
 	@python3 -m http.server --directory build 8000
 	@echo "Server started at http://localhost:8000"
+
+live:
+	@python3 scripts/live_preview.py
