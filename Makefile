@@ -1,3 +1,7 @@
+SSG_CONTENT ?= ssg-content
+SSG_LIST ?= ssg-list
+SSG_REQUIRED_FEATURES := learning math-shorthand proof-directives
+
 FIND_CONTENT = find content \( -path "*/.git" -o -path "*/.git/*" \) -prune -o
 
 CONTENT_METADATA_FILES := $(shell $(FIND_CONTENT) -name "metadata.yaml" -print)
@@ -10,8 +14,14 @@ CONTENT_INDEX_FILES := $(shell $(FIND_CONTENT) -name "index.yaml" -print)
 CONTENT_INDEX_TARGETS := $(patsubst content/%/index.yaml,build/%/index.html,$(CONTENT_INDEX_FILES))
 TEMPLATE_FILES := $(shell find templates -type f)
 CONFIG_FILES := config.en.yaml config.fa.yaml
-BUILD_SUPPORT_FILES := $(TEMPLATE_FILES) $(CONFIG_FILES) Makefile
+BUILD_SUPPORT_FILES := $(TEMPLATE_FILES) $(CONFIG_FILES) Makefile scripts/check_ssg_features.sh
 LEARNING_INDEX_FILES := $(shell $(FIND_CONTENT) -path "*/learning/*/index.md" -print)
+LEARNING_PAGE_FILES := $(shell $(FIND_CONTENT) -path "*/learning/*" -type f -name '*.md' -print)
+
+SSG_FEATURE_STATUS := $(shell if [ -n "$(LEARNING_PAGE_FILES)" ]; then scripts/check_ssg_features.sh "$(SSG_CONTENT)" $(SSG_REQUIRED_FEATURES) 1>&2; echo $$?; else echo 0; fi)
+ifneq ($(SSG_FEATURE_STATUS),0)
+$(error SSG binary does not provide required learning features)
+endif
 
 all: copy_static $(CONTENT_TARGETS) $(CONTENT_INDEX_TARGETS) $(PAGE_TARGETS) build/index.html
 
@@ -31,15 +41,15 @@ $(foreach index,$(LEARNING_INDEX_FILES),$(eval $(call add_learning_index_deps,$(
 
 build/%.html: content/%/metadata.yaml $(BUILD_SUPPORT_FILES)
 	@echo "Generating $@ from $(dir $<)"
-	@ssg-content $(dir $<) --config $(call choose_config,$<)
+	@$(SSG_CONTENT) $(dir $<) --config $(call choose_config,$<)
 
 build/%.html: content/%.md $(BUILD_SUPPORT_FILES)
 	@echo "Generating $@ from $<"
-	@ssg-content $< --config $(call choose_config,$<)
+	@$(SSG_CONTENT) $< --config $(call choose_config,$<)
 
 build/%/index.html: content/%/index.yaml $(BUILD_SUPPORT_FILES)
 	@echo "Generating $@ from $< (index)"
-	@ssg-list $< --config $(call choose_config,$<)
+	@$(SSG_LIST) $< --config $(call choose_config,$<)
 
 build/index.html: content/index.yaml $(BUILD_SUPPORT_FILES)
 	@echo "Generating $@ from $< (index)"

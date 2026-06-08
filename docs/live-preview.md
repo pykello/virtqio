@@ -44,6 +44,14 @@ they exist:
 This lets `make` find the local `ssg-content` and `ssg-list` binaries without
 editing your shell profile.
 
+When learning pages exist, the Makefile checks `ssg-content --version` for the
+required learning directive features. If you want to pin a specific SSG binary,
+pass it explicitly:
+
+```sh
+make SSG_CONTENT=../ssg/target/release/ssg-content SSG_LIST=../ssg/target/release/ssg-list
+```
+
 Useful options:
 
 ```sh
