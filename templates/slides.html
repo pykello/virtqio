@@ -1,0 +1,279 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<style>
+  :root {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #eef3ed;
+  }
+
+  nav.navbar {
+    display: none !important;
+  }
+
+  main.container {
+    max-width: none !important;
+    width: 100%;
+    padding: 0 !important;
+  }
+
+  .vq-slide-shell {
+    width: 100%;
+  }
+
+  .vq-slide-controls {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    background: rgba(255, 255, 251, 0.92);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 14px 34px rgba(50, 75, 45, 0.12);
+    backdrop-filter: blur(12px);
+  }
+
+  .vq-slide-controls button,
+  .vq-slide-controls a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 0;
+    border-radius: 6px;
+    color: var(--ink);
+    background: transparent;
+    text-decoration: none;
+  }
+
+  .vq-slide-controls button:hover,
+  .vq-slide-controls a:hover {
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+  }
+
+  .vq-slide-count {
+    min-width: 4.5rem;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .vq-deck {
+    scroll-snap-type: y mandatory;
+  }
+
+  .vq-slide {
+    display: grid;
+    align-content: center;
+    min-height: 100vh;
+    padding: 3.8rem max(1.2rem, calc((100vw - 960px) / 2)) 4.6rem;
+    scroll-margin-top: 0;
+    scroll-snap-align: start;
+  }
+
+  .vq-slide__content {
+    width: min(920px, 100%);
+    margin: 0 auto;
+    padding: 2.4rem 2.65rem;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 18px 44px rgba(50, 75, 45, 0.09);
+  }
+
+  .vq-slide--title .vq-slide__content {
+    background: #172114;
+    color: #f7fbf2;
+    border-color: #172114;
+  }
+
+  .vq-slide--title h1,
+  .vq-slide--title p {
+    color: #f7fbf2;
+  }
+
+  .vq-slide h1 {
+    font-size: 3.35rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .vq-slide h2 {
+    font-size: 2.35rem !important;
+    margin-top: 0;
+    margin-bottom: 1.15rem;
+  }
+
+  .vq-slide h3 {
+    margin-top: 1.25rem;
+  }
+
+  .vq-slide p,
+  .vq-slide li {
+    font-size: 1.2rem;
+  }
+
+  .vq-slide .MathJax,
+  .vq-slide mjx-container {
+    font-size: 115% !important;
+  }
+
+  .vq-slide :last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 720px) {
+    .vq-slide {
+      padding: 2.4rem 0.75rem 4.4rem;
+    }
+
+    .vq-slide__content {
+      padding: 1.35rem 1.1rem;
+    }
+
+    .vq-slide h1 {
+      font-size: 2.25rem !important;
+    }
+
+    .vq-slide h2 {
+      font-size: 1.8rem !important;
+    }
+
+    .vq-slide p,
+    .vq-slide li {
+      font-size: 1rem;
+    }
+  }
+
+  @media print {
+    nav.navbar,
+    .vq-slide-controls {
+      display: none !important;
+    }
+
+    body {
+      background: white;
+    }
+
+    .vq-slide {
+      min-height: 0;
+      padding: 0;
+      page-break-after: always;
+    }
+
+    .vq-slide__content {
+      box-shadow: none;
+      border: 0;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="vq-slide-shell">
+  {{ page["body"] | safe }}
+</div>
+
+<div class="vq-slide-controls" aria-label="Slide controls">
+  <button type="button" data-slide-prev aria-label="Previous slide">
+    <i class="bi bi-chevron-up"></i>
+  </button>
+  <span class="vq-slide-count" data-slide-count>1 / 1</span>
+  <button type="button" data-slide-next aria-label="Next slide">
+    <i class="bi bi-chevron-down"></i>
+  </button>
+  <a href="#slide-1" aria-label="First slide">
+    <i class="bi bi-house"></i>
+  </a>
+</div>
+
+<script>
+(() => {
+  if (document.documentElement.dir === "rtl") {
+    for (const link of document.querySelectorAll(".expand-link")) {
+      if (link.textContent.trim() === "Click to Expand") {
+        link.textContent = "باز کردن";
+      }
+    }
+  }
+
+  const slides = [...document.querySelectorAll(".vq-slide")];
+  const count = document.querySelector("[data-slide-count]");
+  if (slides.length === 0) return;
+
+  slides.forEach((slide, index) => {
+    if (!slide.id) slide.id = `slide-${index + 1}`;
+  });
+
+  let active = 0;
+
+  function update(index) {
+    active = Math.max(0, Math.min(slides.length - 1, index));
+    if (count) count.textContent = `${active + 1} / ${slides.length}`;
+    history.replaceState(null, "", `#${slides[active].id}`);
+  }
+
+  function nearestSlide() {
+    let bestIndex = 0;
+    let bestDistance = Infinity;
+    for (const [index, slide] of slides.entries()) {
+      const distance = Math.abs(slide.getBoundingClientRect().top);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = index;
+      }
+    }
+    return bestIndex;
+  }
+
+  function go(index) {
+    update(index);
+    slides[active].scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  document.querySelector("[data-slide-prev]")?.addEventListener("click", () => go(active - 1));
+  document.querySelector("[data-slide-next]")?.addEventListener("click", () => go(active + 1));
+
+  document.addEventListener("keydown", (event) => {
+    if (["ArrowDown", "ArrowRight", "PageDown", " "].includes(event.key)) {
+      event.preventDefault();
+      go(nearestSlide() + 1);
+    } else if (["ArrowUp", "ArrowLeft", "PageUp"].includes(event.key)) {
+      event.preventDefault();
+      go(nearestSlide() - 1);
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      go(0);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      go(slides.length - 1);
+    }
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    update(slides.indexOf(visible.target));
+  }, { threshold: [0.55, 0.75, 0.95] });
+
+  slides.forEach((slide) => observer.observe(slide));
+
+  const start = slides.findIndex((slide) => slide.id === location.hash.slice(1));
+  if (start >= 0) {
+    update(start);
+  } else {
+    update(0);
+  }
+})();
+</script>
+{% endblock %}

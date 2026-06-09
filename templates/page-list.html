@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="toc-wrapper">
+  {% if title %}
+    <h1>{{ title }}</h1>
+  {% endif %}
+
+  {% for page in content_items %}
+    <div class="toc-item">
+      <h3><a href="{{ page['url'] }}">{{ page["title"] }}</a></h3>
+      {% if page["description"] %}
+        <p>{{ page["description"] }}</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

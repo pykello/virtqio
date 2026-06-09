@@ -1,0 +1,4 @@
+type: "page"
+template: "slides.html"
+title: "نوشتن اسلاید در virtqio"
+description: "یک نمونهٔ کوتاه برای ساختن اسلاید با محتوای فارسی، ریاضی و برهان."

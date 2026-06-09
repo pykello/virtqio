@@ -1,0 +1,4 @@
+type: "page"
+template: "slides.html"
+title: "Writing Slides In virtqio"
+description: "A small sample deck showing how to write slides as virtqio content."
